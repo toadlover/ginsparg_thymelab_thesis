@@ -1,0 +1,59 @@
+executable = shell.sh
+
+arguments = $(Process) $(Cluster) $(sub_num)
+
+s3_access_key_id_file = /home/abgvg9/conformator_and_params/access_key
+s3_secret_access_key_file = /home/abgvg9/conformator_and_params/secret_key
+
+
+#max_idle=2000
+max_idle=10000
+
+#needed inputs: compressed split_new_named sdf file, processing python script
+transfer_input_files = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/split_new_named_$(sub_num).sdf.tar.gz, make_conformator_and_params.py
+
+#transfer_output_remaps = "split_new_named_$(sub_num).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/split_new_named_$(sub_num).tar.gz"
+transfer_output_remaps = "split_new_named_$(sub_num).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/00000_00099_visualization/$(directory)/split_new_named_$(sub_num).tar.gz"
+
+#output = output/$(directory)/conf.$(Process).$(Cluster).out
+#error = error/$(directory)/conf.$(Process).$(Cluster).err
+log = log/$(directory)/conf.$(Process).$(Cluster).log
+
+#+SingularityImage = "stash:///osgconnect/protected/abgvg9/conformator_container.sif"
+#+SingularityImage = "/home/abgvg9/conformator_and_params/conformator_container.sif"
++SingularityImage = "stash:///ospool/ap21/data/abgvg9/conformator_container.sif"
+
+#request_memory = 20GB
+#request_disk = 20GB
+
+request_memory = 15GB
+request_disk = 15GB
+
+request_cpus = 1
+
+#queue directory,sub_num from input_file_53084_53084.txt
+
+#single small test
+#queue directory,sub_num from small_53083_test.txt
+
+#queue directory,sub_num from input_file_0_999.txt
+#queue directory,sub_num from input_file_1000_53084.txt
+
+#remainder, resubmitted on 1/25/23
+#queue directory,sub_num from input_file_remainder.txt
+
+#remainder resubmit from 6/1/23
+#queue directory,sub_num from no_confs_6_1_23_reversed.txt
+#queue directory,sub_num from no_confs_6_1_23_reversed_head.txt
+#queue directory,sub_num from no_confs.txt
+
+#recreate confs for visualization 11/2/2023
+queue directory,sub_num from input_00000_00099.txt
+
+#full library
+#queue directory,sub_num from input_file_0_53084.txt
+
+#s3://ariosg/ligand_library/53081/for_s3/split_new_named_3.sdf.tar.gz
+
+#preiodic release due to shadow hold
+periodic_release =  (NumJobStarts < 3) && ((HoldReasonCode == 12 || HoldReasonCode == 13) && HoldReasonSubCode == 256)

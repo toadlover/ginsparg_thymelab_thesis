@@ -1,0 +1,22 @@
+#increase number of idle jobs to 5000 from 2000
+
+#test
+condor_qedit -dry-run 28442492 MaxIdle 5000
+#real
+condor_qedit 28442492 MaxIdle 5000
+
+
+#decrease requested disk space to 4GB from 10GB
+#test
+condor_qedit -dry-run 28442492 RequestDisk 4085760
+#real
+condor_qedit 28442492 RequestDisk 4085760
+
+
+
+#changed disk space on jobs to 8GB because running out of memory on a few jobs
+condor_qedit 28442492 RequestDisk 8085760
+
+
+#Mats recommendation for resolving shadowhold error
+condor_qedit  28442492 "periodic_release =  (NumJobStarts < 3) && ((HoldReasonCode == 12 || HoldReasonCode == 13) && HoldReasonSubCode == 256)"
