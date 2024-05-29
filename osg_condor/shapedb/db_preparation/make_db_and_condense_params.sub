@@ -1,0 +1,53 @@
+#executable = dummy.sh
+executable = make_db_and_condense_params.sh
+
+arguments = $(Process) $(Cluster) $(sub_num) $(directory)
+
+s3_access_key_id_file = /home/abgvg9/conformator_and_params/access_key
+s3_secret_access_key_file = /home/abgvg9/conformator_and_params/secret_key
+
+
+#max_idle=2000
+max_idle=5000
+
+#needed inputs: compressed directory that contains the params and conformers in sdf format, script that can condense the params data, and the align.py script that is needed before creating the database with shapedb
+transfer_input_files = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/split_new_named_$(sub_num).tar.gz, condense_conformer_params_data.py, align.py
+
+transfer_output_remaps = "condensed_params_and_db_$(sub_num).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/condensed_params_and_db_$(sub_num).tar.gz"
+#transfer_output_remaps = "$(sub_num) = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/$(sub_num)"
+#transfer_output_remaps = "$(directory)_$(sub_num)_lig_name_list.txt.tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/$(directory)_$(sub_num)_$(Process)_lig_name_list.txt.tar.gz"
+
+#output = output/$(directory)/conf.$(Process).$(Cluster).out
+#error = error/$(directory)/conf.$(Process).$(Cluster).err
+log = log/$(directory)/conf.$(Process).$(Cluster).log
+
+#+SingularityImage = "stash:///osgconnect/protected/abgvg9/shapedb_container.sif"
++SingularityImage = "stash:///ospool/ap21/data/abgvg9/shapedb_container.sif"
+
+request_memory = 13GB
+request_disk = 13GB
+request_cpus = 1
+
+#queue directory,sub_num from input_file_53084_53084.txt
+
+
+
+#remainder, resubmitted on 1/25/23
+#queue directory,sub_num from input_file_remainder.txt
+
+
+#COMPLETED CONFORMER RUNS
+#NEED TO DELETE COMPLETED SHAPEDB RUNS AS WE GO FROM THE CHEAHA SIDE!
+#queue directory,sub_num from confs_no_db.txt
+#queue directory,sub_num from make_db_list_6_27_23.txt
+
+queue directory,sub_num from /home/abgvg9/conformator_and_params/no_confs.txt
+
+#full library
+#queue directory,sub_num from input_file_0_53084.txt
+
+
+
+#preiodic release due to shadow hold
+periodic_release =  (NumJobStarts < 3) && ((HoldReasonCode == 12 || HoldReasonCode == 13) && HoldReasonSubCode == 256)
+

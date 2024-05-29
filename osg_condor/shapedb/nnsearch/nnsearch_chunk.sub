@@ -1,0 +1,65 @@
+#executable = dummy.sh
+executable = nnsearch_chunk.sh
+
+file_prefix = OxB_4_shifted
+#file_prefix = OxB_5_shifted
+#file_prefix = OxB_6_shifted
+#file_prefix = OxB_7_shifted
+#file_prefix = OxA_4_shifted
+#file_prefix = OxA_5_shifted
+#file_prefix = OxA_6_shifted
+#file_prefix = OxA_7_shifted
+file_suffix = mol2
+
+#place_holder_arg = stuff
+
+#arguments = $(Process) $(Cluster) $(file)
+#first case of directory does not do anything, it is only kept to avoid having to adjust all argument variable calls in nnsearch_chunk.sh since we no longer call each chunk
+arguments = $(Process) $(Cluster) $(directory) $(directory) $(file_prefix) $(file_suffix)
+
+s3_access_key_id_file = /home/abgvg9/conformator_and_params/access_key
+s3_secret_access_key_file = /home/abgvg9/conformator_and_params/secret_key
+
+
+#max_idle=2000
+max_idle=10000
+
+#needed inputs: compressed directory that contains the params and conformers in sdf format, script that can condense the params data, and the align.py script that is needed before creating the database with shapedb
+transfer_input_files = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/condensed_params_and_db_0.tar.gz, s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/condensed_params_and_db_1.tar.gz, s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/condensed_params_and_db_2.tar.gz, s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/condensed_params_and_db_3.tar.gz, s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/condensed_params_and_db_4.tar.gz, s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/condensed_params_and_db_5.tar.gz, s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/condensed_params_and_db_6.tar.gz, s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/condensed_params_and_db_7.tar.gz, s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/condensed_params_and_db_8.tar.gz, s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/condensed_params_and_db_9.tar.gz, shapedb_inputs/$(file_prefix).$(file_suffix), run_nnsearch.py
+
+#transfer_output_remaps = "suvo_NN_$(file).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/00000/for_s3/suvo_NN_$(file).tar.gz"
+
+#rosetta_runs/old_algorithm_shapedb_test_1_5_23_rosetta_ligand_search.sub:transfer_output_remaps = "$(ligname)_$(confnum)_$(shapedblig).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/discovery_outputs/rosetta_full_50rep_test/$(shapedblig)/$(ligname)/$(confnum)/$(ligname)_$(confnum)_$(shapedblig).tar.gz;score_file.csv = s3://s3.lts.rc.uab.edu/ariosg/discovery_outputs/rosetta_full_50rep_test/$(shapedblig)/$(ligname)/$(confnum)/score_file.csv;count_file.csv = s3://s3.lts.rc.uab.edu/ariosg/discovery_outputs/rosetta_full_50rep_test/$(shapedblig)/$(ligname)/$(confnum)/count_file.csv"
+
+
+transfer_output_remaps = "$(file_prefix)_NN_0_$(directory).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/$(file_prefix)_NN_0_$(directory).tar.gz;$(file_prefix)_NN_1_$(directory).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/$(file_prefix)_NN_1_$(directory).tar.gz;$(file_prefix)_NN_2_$(directory).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/$(file_prefix)_NN_2_$(directory).tar.gz;$(file_prefix)_NN_3_$(directory).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/$(file_prefix)_NN_3_$(directory).tar.gz;$(file_prefix)_NN_4_$(directory).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/$(file_prefix)_NN_4_$(directory).tar.gz;$(file_prefix)_NN_5_$(directory).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/$(file_prefix)_NN_5_$(directory).tar.gz;$(file_prefix)_NN_6_$(directory).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/$(file_prefix)_NN_6_$(directory).tar.gz;$(file_prefix)_NN_7_$(directory).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/$(file_prefix)_NN_7_$(directory).tar.gz;$(file_prefix)_NN_8_$(directory).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/$(file_prefix)_NN_8_$(directory).tar.gz;$(file_prefix)_NN_9_$(directory).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/$(file_prefix)_NN_9_$(directory).tar.gz;"
+
+#output = output/$(directory)/nn.$(Process).$(Cluster).out
+#error = error/$(directory)/nn.$(Process).$(Cluster).err
+log = log/$(directory)/nn.$(Process).$(Cluster).log
+
+#+SingularityImage = "stash:///osgconnect/protected/abgvg9/shapedb_container.sif"
++SingularityImage = "stash:///ospool/ap21/data/abgvg9/shapedb_container.sif"
+
+request_memory = 2GB
+request_disk = 5GB
+request_cpus = 1
+
+#queue directory,sub_num from input_file_53084_53084.txt
+
+
+
+#remainder, resubmitted on 1/25/23
+#queue file from nntest.txt
+
+#full library
+queue directory from input_file_0_53084_chunks_only.txt
+#queue directory from input_file_0_9_chunks_only.txt
+#queue directory,sub_num from 10_addresses.txt
+#10_addresses.txt
+
+
+#preiodic release due to shadow hold
+#periodic_release =  (NumJobStarts < 3) && ((HoldReasonCode == 12 || HoldReasonCode == 13) && HoldReasonSubCode == 256)
+periodic_release =  ((HoldReasonCode == 12 || HoldReasonCode == 13) && HoldReasonSubCode == 256)
+
