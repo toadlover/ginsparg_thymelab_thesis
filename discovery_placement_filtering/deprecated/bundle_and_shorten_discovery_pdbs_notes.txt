@@ -1,0 +1,4 @@
+This is an older script that is used for shortening the names of placed pdb files and bundling them into groups of 100 files.
+The script has no arguments and needs no extra packages to run.
+
+Run as: python bundle_and_shorten_discovery_pdbs.py
