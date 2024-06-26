@@ -1,0 +1,21 @@
+Running this script requires rdkit and openbabel to be present in an environment.
+
+The purpose of this script is to run tldr's strain torsion on a user-specified directory of ligand placement pdbs. The script extracts the placed ligand and converts it to mol2 format so that the tldr torsion script can read it.
+The resulting torsion scores are appended together into a single csv file in the directory called all_torsion_data.csv
+
+With the inputted path to where the placement pdbs are, this script will look recursively at ALL pdb files in this location (searching for files with ".pdb"), and looks for ligands based on having the HETATM line header.
+
+The tldr torsion python script "Torsion_Strain.py" does not seem to function when called from any location except where the script and package is located.
+
+The script takes two command line arguments:
+1. The complete path to the directory where the pdb files are
+2. The complete path to where the tldr torsion package is
+
+Example run command:
+python run_torsion_check_on_placed_ligands.py /scratch/abgvg9/discovery_results/top_1000_placement /scratch/abgvg9/STRAIN/STRAIN_FILTER
+
+There is a failure rate for calculating torsions. In a set of 620 placed ligands, the tldr torsion package failed to calculate the torsion on 10 systems (1.6% fail rate). I do not know how to reasonably recover this.
+
+Citation information on tldr torsion strain:
+https://tldr.docking.org/
+Shoichet, Mysinger et al., "Automated docking screens: a feasibility study.", J. Med. Chem. 2009, 52(18), pp 5712-5720.
