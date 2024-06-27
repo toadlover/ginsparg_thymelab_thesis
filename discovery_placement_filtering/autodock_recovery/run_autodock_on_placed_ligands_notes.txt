@@ -1,0 +1,1 @@
+Example run command: python ../run_autodock_on_placed_ligands.py /scratch/abgvg9/discovery_results/top_1000_placement/test/testing /data/user/abgvg9/autodock_vina_1_1_2_linux_x86/bin/vina
