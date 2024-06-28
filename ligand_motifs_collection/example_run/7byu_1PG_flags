@@ -1,0 +1,6 @@
+-extra_res_fa 7byu2.params 7byu1.params 
+-ignore_unrecognized_res
+-hb_score_cutoff -0.3
+-water_score_cutoff -0.3
+-pack_score_cutoff -0.5
+-s 7byu_1PG.pdb
