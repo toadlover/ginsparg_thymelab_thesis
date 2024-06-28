@@ -1,0 +1,19 @@
+#Generated params files of any ligands found in the pdb
+#Rosetta will crash if a corresponding param for ligands are not found
+-extra_res_fa 7byu2.params 7byu1.params
+
+#Inputted PDB file
+-s 7byu_1PG.pdb
+
+#Some safety if unknown residues are found in the PDB file
+-ignore_unrecognized_res
+
+#minimum cutoff for hydrogen bond score
+-hb_score_cutoff -0.3
+
+#minimum cutoff for water score
+-water_score_cutoff -0.3
+
+#minimum cutoff for packing score
+-pack_score_cutoff -0.5
+
