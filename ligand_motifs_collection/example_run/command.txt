@@ -1,0 +1,1 @@
+/data/project/thymelab/running_Rosetta/ari_work/Rosetta_Code/main/source/bin/ligand_motifs.linuxgccrelease @/scratch/abgvg9/motif_library_work/789_new/7byu/7byu_1PG_flags
