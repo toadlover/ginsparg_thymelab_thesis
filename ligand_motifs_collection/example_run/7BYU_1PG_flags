@@ -1,0 +1,7 @@
+-extra_res_fa 
+-ignore_unrecognized_res
+-hb_score_cutoff -0.3
+-water_score_cutoff -0.3
+-pack_score_cutoff -0.5
+-s 7BYU_1PG.pdb
+-output_motifs_as_pdb false 

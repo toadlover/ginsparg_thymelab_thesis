@@ -1,0 +1,1095 @@
+core.init: Checking for fconfig files in pwd and ./rosetta/flags 
+core.init: Rosetta version: 2023.03.post.dev+8.master.2c586ea 2c586ea176bef82aa012b77dcf6907e26e49a49e https://github.com/RosettaCommons/main.git 2023-01-25T12:55:36
+core.init: command: /data/project/thymelab/running_Rosetta/ari_work/Rosetta_Code_Fresh/main/source/bin/identify_ligand_motifs.linuxgccrelease @/data/user/abgvg9/scratch_backups/download_pdb_space_1_26_23/789/7BYU/7BYU_1PG_flags
+basic.random.init_random_generator: 'RNG device' seed mode, using '/dev/urandom', seed=391261398 seed_offset=0 real_seed=391261398
+basic.random.init_random_generator: RandomGenerator:init: Normal mode, seed=391261398 RG_type=mt19937
+core.init: Resolved executable path: /data/project/thymelab/running_Rosetta/ari_work/Rosetta_Code_Fresh/main/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/identify_ligand_motifs.default.linuxgccrelease
+core.init: Looking for database based on location of executable: /data/project/thymelab/running_Rosetta/ari_work/Rosetta_Code_Fresh/main/database/
+apps.pilot.ligand_motifs: motif_pdb_output_path_: 
+apps.pilot.ligand_motifs: motif_file_output_: AllMattMotifs.motifs
+apps.pilot.ligand_motifs: output_motifs_: 1
+apps.pilot.ligand_motifs: output_motifs_as_pdb_: 0
+core.scoring.etable: Starting energy table calculation
+core.scoring.etable: smooth_etable: changing atr/rep split to bottom of energy well
+core.scoring.etable: smooth_etable: spline smoothing lj etables (maxdis = 6)
+core.scoring.etable: smooth_etable: spline smoothing solvation etables (max_dis = 6)
+core.scoring.etable: Finished calculating energy tables.
+basic.io.database: Database file opened: scoring/score_functions/PairEPotential/pdb_pair_stats_fine
+basic.io.database: Database file opened: scoring/score_functions/P_AA_pp/P_AA
+basic.io.database: Database file opened: scoring/score_functions/P_AA_pp/P_AA_n
+core.scoring.P_AA: shapovalov_lib::shap_p_aa_pp_smooth_level of 1( aka low_smooth ) got activated.
+basic.io.database: Database file opened: scoring/score_functions/P_AA_pp/shapovalov/10deg/kappa131/a20.prop
+basic.io.database: Database file opened: scoring/score_functions/hbonds/ref2015_params/HBPoly1D.csv
+basic.io.database: Database file opened: scoring/score_functions/hbonds/ref2015_params/HBFadeIntervals.csv
+basic.io.database: Database file opened: scoring/score_functions/hbonds/ref2015_params/HBEval.csv
+basic.io.database: Database file opened: scoring/score_functions/hbonds/ref2015_params/DonStrength.csv
+basic.io.database: Database file opened: scoring/score_functions/hbonds/ref2015_params/AccStrength.csv
+core.chemical.GlobalResidueTypeSet: Finished initializing fa_standard residue type set.  Created 985 residue types
+core.chemical.GlobalResidueTypeSet: Total time to initialize 0.79 seconds.
+core.import_pose.import_pose: File '7BYU_1PG.pdb' automatically determined to be of type PDB
+core.chemical.GlobalResidueTypeSet: Loading (but possibly not actually using) '1PG' from the PDB components dictionary for residue type 'pdb_1PG'
+basic.io.database: Database file opened: scoring/score_functions/omega/omega_ppdep.all.txt
+basic.io.database: Database file opened: scoring/score_functions/omega/omega_ppdep.gly.txt
+basic.io.database: Database file opened: scoring/score_functions/omega/omega_ppdep.pro.txt
+basic.io.database: Database file opened: scoring/score_functions/omega/omega_ppdep.valile.txt
+basic.io.database: Database file opened: scoring/score_functions/elec_cp_reps.dat
+core.scoring.elec.util: Read 40 countpair representative atoms
+core.pack.dunbrack.RotamerLibrary: shapovalov_lib_fixes_enable option is true.
+core.pack.dunbrack.RotamerLibrary: shapovalov_lib::shap_dun10_smooth_level of 1( aka lowest_smooth ) got activated.
+core.pack.dunbrack.RotamerLibrary: Binary rotamer library selected: /data/project/thymelab/running_Rosetta/ari_work/Rosetta_Code_Fresh/main/database/rotamer/shapovalov/StpDwn_0-0-0/Dunbrack10.lib.bin
+core.pack.dunbrack.RotamerLibrary: Using Dunbrack library binary file '/data/project/thymelab/running_Rosetta/ari_work/Rosetta_Code_Fresh/main/database/rotamer/shapovalov/StpDwn_0-0-0/Dunbrack10.lib.bin'.
+core.pack.dunbrack.RotamerLibrary: Dunbrack 2010 library took 0.16 seconds to load from binary
+apps.pilot.ligand_motifs: in ligand splitter block, found my ligand, lig_pos is 109
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 1
+apps.pilot.ligand_motifs: atom name is C2
+apps.pilot.ligand_motifs: ATOM j: 3 Name: O1
+apps.pilot.ligand_motifs: ATOM k: 1 Name: C2
+apps.pilot.ligand_motifs: Connected triplet is: 1, type is CH2; 3, type is OH; 1, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 2 Name: C1
+apps.pilot.ligand_motifs: Connected triplet is: 1, type is CH2; 3, type is OH; 2, type is CH3 
+apps.pilot.ligand_motifs: atom_i: 1
+apps.pilot.ligand_motifs: atom_i to atom_j: 3
+apps.pilot.ligand_motifs: atom_j to atom_k: 2
+apps.pilot.ligand_motifs: ATOM j: 5 Name: C3
+apps.pilot.ligand_motifs: ATOM k: 1 Name: C2
+apps.pilot.ligand_motifs: Connected triplet is: 1, type is CH2; 5, type is CH2; 1, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 4 Name: O2
+apps.pilot.ligand_motifs: Connected triplet is: 1, type is CH2; 5, type is CH2; 4, type is OH 
+apps.pilot.ligand_motifs: atom_i: 1
+apps.pilot.ligand_motifs: atom_i to atom_j: 5
+apps.pilot.ligand_motifs: atom_j to atom_k: 4
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 2
+apps.pilot.ligand_motifs: atom name is C1
+apps.pilot.ligand_motifs: ATOM j: 3 Name: O1
+apps.pilot.ligand_motifs: ATOM k: 1 Name: C2
+apps.pilot.ligand_motifs: Connected triplet is: 2, type is CH3; 3, type is OH; 1, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 2
+apps.pilot.ligand_motifs: atom_i to atom_j: 3
+apps.pilot.ligand_motifs: atom_j to atom_k: 1
+apps.pilot.ligand_motifs: ATOM k: 2 Name: C1
+apps.pilot.ligand_motifs: Connected triplet is: 2, type is CH3; 3, type is OH; 2, type is CH3 
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 3
+apps.pilot.ligand_motifs: atom name is O1
+apps.pilot.ligand_motifs: ATOM j: 1 Name: C2
+apps.pilot.ligand_motifs: ATOM k: 3 Name: O1
+apps.pilot.ligand_motifs: Connected triplet is: 3, type is OH; 1, type is CH2; 3, type is OH 
+apps.pilot.ligand_motifs: ATOM k: 5 Name: C3
+apps.pilot.ligand_motifs: Connected triplet is: 3, type is OH; 1, type is CH2; 5, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 3
+apps.pilot.ligand_motifs: atom_i to atom_j: 1
+apps.pilot.ligand_motifs: atom_j to atom_k: 5
+apps.pilot.ligand_motifs: ATOM j: 2 Name: C1
+apps.pilot.ligand_motifs: ATOM k: 3 Name: O1
+apps.pilot.ligand_motifs: Connected triplet is: 3, type is OH; 2, type is CH3; 3, type is OH 
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 4
+apps.pilot.ligand_motifs: atom name is O2
+apps.pilot.ligand_motifs: ATOM j: 5 Name: C3
+apps.pilot.ligand_motifs: ATOM k: 1 Name: C2
+apps.pilot.ligand_motifs: Connected triplet is: 4, type is OH; 5, type is CH2; 1, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 4
+apps.pilot.ligand_motifs: atom_i to atom_j: 5
+apps.pilot.ligand_motifs: atom_j to atom_k: 1
+apps.pilot.ligand_motifs: ATOM k: 4 Name: O2
+apps.pilot.ligand_motifs: Connected triplet is: 4, type is OH; 5, type is CH2; 4, type is OH 
+apps.pilot.ligand_motifs: ATOM j: 6 Name: C4
+apps.pilot.ligand_motifs: ATOM k: 4 Name: O2
+apps.pilot.ligand_motifs: Connected triplet is: 4, type is OH; 6, type is CH2; 4, type is OH 
+apps.pilot.ligand_motifs: ATOM k: 7 Name: C5
+apps.pilot.ligand_motifs: Connected triplet is: 4, type is OH; 6, type is CH2; 7, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 4
+apps.pilot.ligand_motifs: atom_i to atom_j: 6
+apps.pilot.ligand_motifs: atom_j to atom_k: 7
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 5
+apps.pilot.ligand_motifs: atom name is C3
+apps.pilot.ligand_motifs: ATOM j: 1 Name: C2
+apps.pilot.ligand_motifs: ATOM k: 3 Name: O1
+apps.pilot.ligand_motifs: Connected triplet is: 5, type is CH2; 1, type is CH2; 3, type is OH 
+apps.pilot.ligand_motifs: atom_i: 5
+apps.pilot.ligand_motifs: atom_i to atom_j: 1
+apps.pilot.ligand_motifs: atom_j to atom_k: 3
+apps.pilot.ligand_motifs: ATOM k: 5 Name: C3
+apps.pilot.ligand_motifs: Connected triplet is: 5, type is CH2; 1, type is CH2; 5, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 4 Name: O2
+apps.pilot.ligand_motifs: ATOM k: 5 Name: C3
+apps.pilot.ligand_motifs: Connected triplet is: 5, type is CH2; 4, type is OH; 5, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 6 Name: C4
+apps.pilot.ligand_motifs: Connected triplet is: 5, type is CH2; 4, type is OH; 6, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 5
+apps.pilot.ligand_motifs: atom_i to atom_j: 4
+apps.pilot.ligand_motifs: atom_j to atom_k: 6
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 6
+apps.pilot.ligand_motifs: atom name is C4
+apps.pilot.ligand_motifs: ATOM j: 4 Name: O2
+apps.pilot.ligand_motifs: ATOM k: 5 Name: C3
+apps.pilot.ligand_motifs: Connected triplet is: 6, type is CH2; 4, type is OH; 5, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 6
+apps.pilot.ligand_motifs: atom_i to atom_j: 4
+apps.pilot.ligand_motifs: atom_j to atom_k: 5
+apps.pilot.ligand_motifs: ATOM k: 6 Name: C4
+apps.pilot.ligand_motifs: Connected triplet is: 6, type is CH2; 4, type is OH; 6, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 7 Name: C5
+apps.pilot.ligand_motifs: ATOM k: 6 Name: C4
+apps.pilot.ligand_motifs: Connected triplet is: 6, type is CH2; 7, type is CH2; 6, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 8 Name: O3
+apps.pilot.ligand_motifs: Connected triplet is: 6, type is CH2; 7, type is CH2; 8, type is OH 
+apps.pilot.ligand_motifs: atom_i: 6
+apps.pilot.ligand_motifs: atom_i to atom_j: 7
+apps.pilot.ligand_motifs: atom_j to atom_k: 8
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 7
+apps.pilot.ligand_motifs: atom name is C5
+apps.pilot.ligand_motifs: ATOM j: 6 Name: C4
+apps.pilot.ligand_motifs: ATOM k: 4 Name: O2
+apps.pilot.ligand_motifs: Connected triplet is: 7, type is CH2; 6, type is CH2; 4, type is OH 
+apps.pilot.ligand_motifs: atom_i: 7
+apps.pilot.ligand_motifs: atom_i to atom_j: 6
+apps.pilot.ligand_motifs: atom_j to atom_k: 4
+apps.pilot.ligand_motifs: ATOM k: 7 Name: C5
+apps.pilot.ligand_motifs: Connected triplet is: 7, type is CH2; 6, type is CH2; 7, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 8 Name: O3
+apps.pilot.ligand_motifs: ATOM k: 7 Name: C5
+apps.pilot.ligand_motifs: Connected triplet is: 7, type is CH2; 8, type is OH; 7, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 9 Name: C6
+apps.pilot.ligand_motifs: Connected triplet is: 7, type is CH2; 8, type is OH; 9, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 7
+apps.pilot.ligand_motifs: atom_i to atom_j: 8
+apps.pilot.ligand_motifs: atom_j to atom_k: 9
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 8
+apps.pilot.ligand_motifs: atom name is O3
+apps.pilot.ligand_motifs: ATOM j: 7 Name: C5
+apps.pilot.ligand_motifs: ATOM k: 6 Name: C4
+apps.pilot.ligand_motifs: Connected triplet is: 8, type is OH; 7, type is CH2; 6, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 8
+apps.pilot.ligand_motifs: atom_i to atom_j: 7
+apps.pilot.ligand_motifs: atom_j to atom_k: 6
+apps.pilot.ligand_motifs: ATOM k: 8 Name: O3
+apps.pilot.ligand_motifs: Connected triplet is: 8, type is OH; 7, type is CH2; 8, type is OH 
+apps.pilot.ligand_motifs: ATOM j: 9 Name: C6
+apps.pilot.ligand_motifs: ATOM k: 8 Name: O3
+apps.pilot.ligand_motifs: Connected triplet is: 8, type is OH; 9, type is CH2; 8, type is OH 
+apps.pilot.ligand_motifs: ATOM k: 10 Name: C7
+apps.pilot.ligand_motifs: Connected triplet is: 8, type is OH; 9, type is CH2; 10, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 8
+apps.pilot.ligand_motifs: atom_i to atom_j: 9
+apps.pilot.ligand_motifs: atom_j to atom_k: 10
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 9
+apps.pilot.ligand_motifs: atom name is C6
+apps.pilot.ligand_motifs: ATOM j: 8 Name: O3
+apps.pilot.ligand_motifs: ATOM k: 7 Name: C5
+apps.pilot.ligand_motifs: Connected triplet is: 9, type is CH2; 8, type is OH; 7, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 9
+apps.pilot.ligand_motifs: atom_i to atom_j: 8
+apps.pilot.ligand_motifs: atom_j to atom_k: 7
+apps.pilot.ligand_motifs: ATOM k: 9 Name: C6
+apps.pilot.ligand_motifs: Connected triplet is: 9, type is CH2; 8, type is OH; 9, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 10 Name: C7
+apps.pilot.ligand_motifs: ATOM k: 9 Name: C6
+apps.pilot.ligand_motifs: Connected triplet is: 9, type is CH2; 10, type is CH2; 9, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 11 Name: O4
+apps.pilot.ligand_motifs: Connected triplet is: 9, type is CH2; 10, type is CH2; 11, type is OH 
+apps.pilot.ligand_motifs: atom_i: 9
+apps.pilot.ligand_motifs: atom_i to atom_j: 10
+apps.pilot.ligand_motifs: atom_j to atom_k: 11
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 10
+apps.pilot.ligand_motifs: atom name is C7
+apps.pilot.ligand_motifs: ATOM j: 9 Name: C6
+apps.pilot.ligand_motifs: ATOM k: 8 Name: O3
+apps.pilot.ligand_motifs: Connected triplet is: 10, type is CH2; 9, type is CH2; 8, type is OH 
+apps.pilot.ligand_motifs: atom_i: 10
+apps.pilot.ligand_motifs: atom_i to atom_j: 9
+apps.pilot.ligand_motifs: atom_j to atom_k: 8
+apps.pilot.ligand_motifs: ATOM k: 10 Name: C7
+apps.pilot.ligand_motifs: Connected triplet is: 10, type is CH2; 9, type is CH2; 10, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 11 Name: O4
+apps.pilot.ligand_motifs: ATOM k: 10 Name: C7
+apps.pilot.ligand_motifs: Connected triplet is: 10, type is CH2; 11, type is OH; 10, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 12 Name: C8
+apps.pilot.ligand_motifs: Connected triplet is: 10, type is CH2; 11, type is OH; 12, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 10
+apps.pilot.ligand_motifs: atom_i to atom_j: 11
+apps.pilot.ligand_motifs: atom_j to atom_k: 12
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 11
+apps.pilot.ligand_motifs: atom name is O4
+apps.pilot.ligand_motifs: ATOM j: 10 Name: C7
+apps.pilot.ligand_motifs: ATOM k: 9 Name: C6
+apps.pilot.ligand_motifs: Connected triplet is: 11, type is OH; 10, type is CH2; 9, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 11
+apps.pilot.ligand_motifs: atom_i to atom_j: 10
+apps.pilot.ligand_motifs: atom_j to atom_k: 9
+apps.pilot.ligand_motifs: ATOM k: 11 Name: O4
+apps.pilot.ligand_motifs: Connected triplet is: 11, type is OH; 10, type is CH2; 11, type is OH 
+apps.pilot.ligand_motifs: ATOM j: 12 Name: C8
+apps.pilot.ligand_motifs: ATOM k: 11 Name: O4
+apps.pilot.ligand_motifs: Connected triplet is: 11, type is OH; 12, type is CH2; 11, type is OH 
+apps.pilot.ligand_motifs: ATOM k: 13 Name: C9
+apps.pilot.ligand_motifs: Connected triplet is: 11, type is OH; 12, type is CH2; 13, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 11
+apps.pilot.ligand_motifs: atom_i to atom_j: 12
+apps.pilot.ligand_motifs: atom_j to atom_k: 13
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 12
+apps.pilot.ligand_motifs: atom name is C8
+apps.pilot.ligand_motifs: ATOM j: 11 Name: O4
+apps.pilot.ligand_motifs: ATOM k: 10 Name: C7
+apps.pilot.ligand_motifs: Connected triplet is: 12, type is CH2; 11, type is OH; 10, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 12
+apps.pilot.ligand_motifs: atom_i to atom_j: 11
+apps.pilot.ligand_motifs: atom_j to atom_k: 10
+apps.pilot.ligand_motifs: ATOM k: 12 Name: C8
+apps.pilot.ligand_motifs: Connected triplet is: 12, type is CH2; 11, type is OH; 12, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 13 Name: C9
+apps.pilot.ligand_motifs: ATOM k: 12 Name: C8
+apps.pilot.ligand_motifs: Connected triplet is: 12, type is CH2; 13, type is CH2; 12, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 14 Name: O5
+apps.pilot.ligand_motifs: Connected triplet is: 12, type is CH2; 13, type is CH2; 14, type is OH 
+apps.pilot.ligand_motifs: atom_i: 12
+apps.pilot.ligand_motifs: atom_i to atom_j: 13
+apps.pilot.ligand_motifs: atom_j to atom_k: 14
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 13
+apps.pilot.ligand_motifs: atom name is C9
+apps.pilot.ligand_motifs: ATOM j: 12 Name: C8
+apps.pilot.ligand_motifs: ATOM k: 11 Name: O4
+apps.pilot.ligand_motifs: Connected triplet is: 13, type is CH2; 12, type is CH2; 11, type is OH 
+apps.pilot.ligand_motifs: atom_i: 13
+apps.pilot.ligand_motifs: atom_i to atom_j: 12
+apps.pilot.ligand_motifs: atom_j to atom_k: 11
+apps.pilot.ligand_motifs: ATOM k: 13 Name: C9
+apps.pilot.ligand_motifs: Connected triplet is: 13, type is CH2; 12, type is CH2; 13, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 14 Name: O5
+apps.pilot.ligand_motifs: ATOM k: 13 Name: C9
+apps.pilot.ligand_motifs: Connected triplet is: 13, type is CH2; 14, type is OH; 13, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 15 Name: C10
+apps.pilot.ligand_motifs: Connected triplet is: 13, type is CH2; 14, type is OH; 15, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 13
+apps.pilot.ligand_motifs: atom_i to atom_j: 14
+apps.pilot.ligand_motifs: atom_j to atom_k: 15
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 14
+apps.pilot.ligand_motifs: atom name is O5
+apps.pilot.ligand_motifs: ATOM j: 13 Name: C9
+apps.pilot.ligand_motifs: ATOM k: 12 Name: C8
+apps.pilot.ligand_motifs: Connected triplet is: 14, type is OH; 13, type is CH2; 12, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 14
+apps.pilot.ligand_motifs: atom_i to atom_j: 13
+apps.pilot.ligand_motifs: atom_j to atom_k: 12
+apps.pilot.ligand_motifs: ATOM k: 14 Name: O5
+apps.pilot.ligand_motifs: Connected triplet is: 14, type is OH; 13, type is CH2; 14, type is OH 
+apps.pilot.ligand_motifs: ATOM j: 15 Name: C10
+apps.pilot.ligand_motifs: ATOM k: 14 Name: O5
+apps.pilot.ligand_motifs: Connected triplet is: 14, type is OH; 15, type is CH2; 14, type is OH 
+apps.pilot.ligand_motifs: ATOM k: 16 Name: C11
+apps.pilot.ligand_motifs: Connected triplet is: 14, type is OH; 15, type is CH2; 16, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 14
+apps.pilot.ligand_motifs: atom_i to atom_j: 15
+apps.pilot.ligand_motifs: atom_j to atom_k: 16
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 15
+apps.pilot.ligand_motifs: atom name is C10
+apps.pilot.ligand_motifs: ATOM j: 14 Name: O5
+apps.pilot.ligand_motifs: ATOM k: 13 Name: C9
+apps.pilot.ligand_motifs: Connected triplet is: 15, type is CH2; 14, type is OH; 13, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 15
+apps.pilot.ligand_motifs: atom_i to atom_j: 14
+apps.pilot.ligand_motifs: atom_j to atom_k: 13
+apps.pilot.ligand_motifs: ATOM k: 15 Name: C10
+apps.pilot.ligand_motifs: Connected triplet is: 15, type is CH2; 14, type is OH; 15, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 16 Name: C11
+apps.pilot.ligand_motifs: ATOM k: 15 Name: C10
+apps.pilot.ligand_motifs: Connected triplet is: 15, type is CH2; 16, type is CH2; 15, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 17 Name: O6
+apps.pilot.ligand_motifs: Connected triplet is: 15, type is CH2; 16, type is CH2; 17, type is OH 
+apps.pilot.ligand_motifs: atom_i: 15
+apps.pilot.ligand_motifs: atom_i to atom_j: 16
+apps.pilot.ligand_motifs: atom_j to atom_k: 17
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 16
+apps.pilot.ligand_motifs: atom name is C11
+apps.pilot.ligand_motifs: ATOM j: 15 Name: C10
+apps.pilot.ligand_motifs: ATOM k: 14 Name: O5
+apps.pilot.ligand_motifs: Connected triplet is: 16, type is CH2; 15, type is CH2; 14, type is OH 
+apps.pilot.ligand_motifs: atom_i: 16
+apps.pilot.ligand_motifs: atom_i to atom_j: 15
+apps.pilot.ligand_motifs: atom_j to atom_k: 14
+apps.pilot.ligand_motifs: ATOM k: 16 Name: C11
+apps.pilot.ligand_motifs: Connected triplet is: 16, type is CH2; 15, type is CH2; 16, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 17 Name: O6
+apps.pilot.ligand_motifs: ATOM k: 16 Name: C11
+apps.pilot.ligand_motifs: Connected triplet is: 16, type is CH2; 17, type is OH; 16, type is CH2 
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 17
+apps.pilot.ligand_motifs: atom name is O6
+apps.pilot.ligand_motifs: ATOM j: 16 Name: C11
+apps.pilot.ligand_motifs: ATOM k: 15 Name: C10
+apps.pilot.ligand_motifs: Connected triplet is: 17, type is OH; 16, type is CH2; 15, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 17
+apps.pilot.ligand_motifs: atom_i to atom_j: 16
+apps.pilot.ligand_motifs: atom_j to atom_k: 15
+apps.pilot.ligand_motifs: ATOM k: 17 Name: O6
+apps.pilot.ligand_motifs: Connected triplet is: 17, type is OH; 16, type is CH2; 17, type is OH 
+apps.pilot.ligand_motifs: Total 3 atoms in pruned indices list is: 15
+apps.pilot.ligand_motifs: Total 3 atoms in unpruned indices list is: 30
+apps.pilot.ligand_motifs: Residue 5 passed energy cut with pack score: -1.15256, hbond score: 0, for a total score of: -1.15256
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is MET
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is OH
+protocols.motifs.Motif: atom3 name is CH2
+apps.pilot.ligand_motifs: 10: 10-11-12Residue 55 passed energy cut with pack score: -1.35931, hbond score: 0, for a total score of: -1.35931
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is TRP
+protocols.motifs.Motif: atom1 name is OH
+protocols.motifs.Motif: atom2 name is CH2
+protocols.motifs.Motif: atom3 name is CH2
+apps.pilot.ligand_motifs: 11: 11-12-13Residue 62 passed energy cut with pack score: -1.18001, hbond score: 0, for a total score of: -1.18001
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is TYR
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is OH
+protocols.motifs.Motif: atom3 name is CH2
+apps.pilot.ligand_motifs: 13: 13-14-15Residue 66 passed energy cut with pack score: -1.45254, hbond score: 0, for a total score of: -1.45254
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 0 items.
+apps.pilot.ligand_motifs: Top triplets are: Residue 79 passed energy cut with pack score: -3.84865, hbond score: 0, for a total score of: -3.84865
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is TRP
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is CH2
+protocols.motifs.Motif: atom3 name is OH
+apps.pilot.ligand_motifs: 6: 6-7-8Residue 97 passed energy cut with pack score: -2.366, hbond score: 0, for a total score of: -2.366
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is HIS
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is OH
+protocols.motifs.Motif: atom3 name is CH2
+apps.pilot.ligand_motifs: 5: 5-4-6Residue 98 passed energy cut with pack score: -2.50772, hbond score: 0, for a total score of: -2.50772
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is TRP
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is OH
+protocols.motifs.Motif: atom3 name is CH2
+apps.pilot.ligand_motifs: 7: 7-8-9Motif index contains: 1-3-2
+apps.pilot.ligand_motifs: Motif index contains: 1-5-4
+apps.pilot.ligand_motifs: Motif index contains: 3-1-5
+apps.pilot.ligand_motifs: Motif index contains: 4-6-7
+apps.pilot.ligand_motifs: Motif index contains: 5-4-6
+apps.pilot.ligand_motifs: Motif index contains: 6-7-8
+apps.pilot.ligand_motifs: Motif index contains: 7-8-9
+apps.pilot.ligand_motifs: Motif index contains: 8-9-10
+apps.pilot.ligand_motifs: Motif index contains: 9-10-11
+apps.pilot.ligand_motifs: Motif index contains: 10-11-12
+apps.pilot.ligand_motifs: Motif index contains: 11-12-13
+apps.pilot.ligand_motifs: Motif index contains: 12-13-14
+apps.pilot.ligand_motifs: Motif index contains: 13-14-15
+apps.pilot.ligand_motifs: Motif index contains: 14-15-16
+apps.pilot.ligand_motifs: Motif index contains: 15-16-17
+apps.pilot.ligand_motifs: in ligand splitter block, found my ligand, lig_pos is 218
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 1
+apps.pilot.ligand_motifs: atom name is C2
+apps.pilot.ligand_motifs: ATOM j: 3 Name: O1
+apps.pilot.ligand_motifs: ATOM k: 1 Name: C2
+apps.pilot.ligand_motifs: Connected triplet is: 1, type is CH2; 3, type is OH; 1, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 2 Name: C1
+apps.pilot.ligand_motifs: Connected triplet is: 1, type is CH2; 3, type is OH; 2, type is CH3 
+apps.pilot.ligand_motifs: atom_i: 1
+apps.pilot.ligand_motifs: atom_i to atom_j: 3
+apps.pilot.ligand_motifs: atom_j to atom_k: 2
+apps.pilot.ligand_motifs: ATOM j: 5 Name: C3
+apps.pilot.ligand_motifs: ATOM k: 1 Name: C2
+apps.pilot.ligand_motifs: Connected triplet is: 1, type is CH2; 5, type is CH2; 1, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 4 Name: O2
+apps.pilot.ligand_motifs: Connected triplet is: 1, type is CH2; 5, type is CH2; 4, type is OH 
+apps.pilot.ligand_motifs: atom_i: 1
+apps.pilot.ligand_motifs: atom_i to atom_j: 5
+apps.pilot.ligand_motifs: atom_j to atom_k: 4
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 2
+apps.pilot.ligand_motifs: atom name is C1
+apps.pilot.ligand_motifs: ATOM j: 3 Name: O1
+apps.pilot.ligand_motifs: ATOM k: 1 Name: C2
+apps.pilot.ligand_motifs: Connected triplet is: 2, type is CH3; 3, type is OH; 1, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 2
+apps.pilot.ligand_motifs: atom_i to atom_j: 3
+apps.pilot.ligand_motifs: atom_j to atom_k: 1
+apps.pilot.ligand_motifs: ATOM k: 2 Name: C1
+apps.pilot.ligand_motifs: Connected triplet is: 2, type is CH3; 3, type is OH; 2, type is CH3 
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 3
+apps.pilot.ligand_motifs: atom name is O1
+apps.pilot.ligand_motifs: ATOM j: 1 Name: C2
+apps.pilot.ligand_motifs: ATOM k: 3 Name: O1
+apps.pilot.ligand_motifs: Connected triplet is: 3, type is OH; 1, type is CH2; 3, type is OH 
+apps.pilot.ligand_motifs: ATOM k: 5 Name: C3
+apps.pilot.ligand_motifs: Connected triplet is: 3, type is OH; 1, type is CH2; 5, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 3
+apps.pilot.ligand_motifs: atom_i to atom_j: 1
+apps.pilot.ligand_motifs: atom_j to atom_k: 5
+apps.pilot.ligand_motifs: ATOM j: 2 Name: C1
+apps.pilot.ligand_motifs: ATOM k: 3 Name: O1
+apps.pilot.ligand_motifs: Connected triplet is: 3, type is OH; 2, type is CH3; 3, type is OH 
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 4
+apps.pilot.ligand_motifs: atom name is O2
+apps.pilot.ligand_motifs: ATOM j: 5 Name: C3
+apps.pilot.ligand_motifs: ATOM k: 1 Name: C2
+apps.pilot.ligand_motifs: Connected triplet is: 4, type is OH; 5, type is CH2; 1, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 4
+apps.pilot.ligand_motifs: atom_i to atom_j: 5
+apps.pilot.ligand_motifs: atom_j to atom_k: 1
+apps.pilot.ligand_motifs: ATOM k: 4 Name: O2
+apps.pilot.ligand_motifs: Connected triplet is: 4, type is OH; 5, type is CH2; 4, type is OH 
+apps.pilot.ligand_motifs: ATOM j: 6 Name: C4
+apps.pilot.ligand_motifs: ATOM k: 4 Name: O2
+apps.pilot.ligand_motifs: Connected triplet is: 4, type is OH; 6, type is CH2; 4, type is OH 
+apps.pilot.ligand_motifs: ATOM k: 7 Name: C5
+apps.pilot.ligand_motifs: Connected triplet is: 4, type is OH; 6, type is CH2; 7, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 4
+apps.pilot.ligand_motifs: atom_i to atom_j: 6
+apps.pilot.ligand_motifs: atom_j to atom_k: 7
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 5
+apps.pilot.ligand_motifs: atom name is C3
+apps.pilot.ligand_motifs: ATOM j: 1 Name: C2
+apps.pilot.ligand_motifs: ATOM k: 3 Name: O1
+apps.pilot.ligand_motifs: Connected triplet is: 5, type is CH2; 1, type is CH2; 3, type is OH 
+apps.pilot.ligand_motifs: atom_i: 5
+apps.pilot.ligand_motifs: atom_i to atom_j: 1
+apps.pilot.ligand_motifs: atom_j to atom_k: 3
+apps.pilot.ligand_motifs: ATOM k: 5 Name: C3
+apps.pilot.ligand_motifs: Connected triplet is: 5, type is CH2; 1, type is CH2; 5, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 4 Name: O2
+apps.pilot.ligand_motifs: ATOM k: 5 Name: C3
+apps.pilot.ligand_motifs: Connected triplet is: 5, type is CH2; 4, type is OH; 5, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 6 Name: C4
+apps.pilot.ligand_motifs: Connected triplet is: 5, type is CH2; 4, type is OH; 6, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 5
+apps.pilot.ligand_motifs: atom_i to atom_j: 4
+apps.pilot.ligand_motifs: atom_j to atom_k: 6
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 6
+apps.pilot.ligand_motifs: atom name is C4
+apps.pilot.ligand_motifs: ATOM j: 4 Name: O2
+apps.pilot.ligand_motifs: ATOM k: 5 Name: C3
+apps.pilot.ligand_motifs: Connected triplet is: 6, type is CH2; 4, type is OH; 5, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 6
+apps.pilot.ligand_motifs: atom_i to atom_j: 4
+apps.pilot.ligand_motifs: atom_j to atom_k: 5
+apps.pilot.ligand_motifs: ATOM k: 6 Name: C4
+apps.pilot.ligand_motifs: Connected triplet is: 6, type is CH2; 4, type is OH; 6, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 7 Name: C5
+apps.pilot.ligand_motifs: ATOM k: 6 Name: C4
+apps.pilot.ligand_motifs: Connected triplet is: 6, type is CH2; 7, type is CH2; 6, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 8 Name: O3
+apps.pilot.ligand_motifs: Connected triplet is: 6, type is CH2; 7, type is CH2; 8, type is OH 
+apps.pilot.ligand_motifs: atom_i: 6
+apps.pilot.ligand_motifs: atom_i to atom_j: 7
+apps.pilot.ligand_motifs: atom_j to atom_k: 8
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 7
+apps.pilot.ligand_motifs: atom name is C5
+apps.pilot.ligand_motifs: ATOM j: 6 Name: C4
+apps.pilot.ligand_motifs: ATOM k: 4 Name: O2
+apps.pilot.ligand_motifs: Connected triplet is: 7, type is CH2; 6, type is CH2; 4, type is OH 
+apps.pilot.ligand_motifs: atom_i: 7
+apps.pilot.ligand_motifs: atom_i to atom_j: 6
+apps.pilot.ligand_motifs: atom_j to atom_k: 4
+apps.pilot.ligand_motifs: ATOM k: 7 Name: C5
+apps.pilot.ligand_motifs: Connected triplet is: 7, type is CH2; 6, type is CH2; 7, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 8 Name: O3
+apps.pilot.ligand_motifs: ATOM k: 7 Name: C5
+apps.pilot.ligand_motifs: Connected triplet is: 7, type is CH2; 8, type is OH; 7, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 9 Name: C6
+apps.pilot.ligand_motifs: Connected triplet is: 7, type is CH2; 8, type is OH; 9, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 7
+apps.pilot.ligand_motifs: atom_i to atom_j: 8
+apps.pilot.ligand_motifs: atom_j to atom_k: 9
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 8
+apps.pilot.ligand_motifs: atom name is O3
+apps.pilot.ligand_motifs: ATOM j: 7 Name: C5
+apps.pilot.ligand_motifs: ATOM k: 6 Name: C4
+apps.pilot.ligand_motifs: Connected triplet is: 8, type is OH; 7, type is CH2; 6, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 8
+apps.pilot.ligand_motifs: atom_i to atom_j: 7
+apps.pilot.ligand_motifs: atom_j to atom_k: 6
+apps.pilot.ligand_motifs: ATOM k: 8 Name: O3
+apps.pilot.ligand_motifs: Connected triplet is: 8, type is OH; 7, type is CH2; 8, type is OH 
+apps.pilot.ligand_motifs: ATOM j: 9 Name: C6
+apps.pilot.ligand_motifs: ATOM k: 8 Name: O3
+apps.pilot.ligand_motifs: Connected triplet is: 8, type is OH; 9, type is CH2; 8, type is OH 
+apps.pilot.ligand_motifs: ATOM k: 10 Name: C7
+apps.pilot.ligand_motifs: Connected triplet is: 8, type is OH; 9, type is CH2; 10, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 8
+apps.pilot.ligand_motifs: atom_i to atom_j: 9
+apps.pilot.ligand_motifs: atom_j to atom_k: 10
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 9
+apps.pilot.ligand_motifs: atom name is C6
+apps.pilot.ligand_motifs: ATOM j: 8 Name: O3
+apps.pilot.ligand_motifs: ATOM k: 7 Name: C5
+apps.pilot.ligand_motifs: Connected triplet is: 9, type is CH2; 8, type is OH; 7, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 9
+apps.pilot.ligand_motifs: atom_i to atom_j: 8
+apps.pilot.ligand_motifs: atom_j to atom_k: 7
+apps.pilot.ligand_motifs: ATOM k: 9 Name: C6
+apps.pilot.ligand_motifs: Connected triplet is: 9, type is CH2; 8, type is OH; 9, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 10 Name: C7
+apps.pilot.ligand_motifs: ATOM k: 9 Name: C6
+apps.pilot.ligand_motifs: Connected triplet is: 9, type is CH2; 10, type is CH2; 9, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 11 Name: O4
+apps.pilot.ligand_motifs: Connected triplet is: 9, type is CH2; 10, type is CH2; 11, type is OH 
+apps.pilot.ligand_motifs: atom_i: 9
+apps.pilot.ligand_motifs: atom_i to atom_j: 10
+apps.pilot.ligand_motifs: atom_j to atom_k: 11
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 10
+apps.pilot.ligand_motifs: atom name is C7
+apps.pilot.ligand_motifs: ATOM j: 9 Name: C6
+apps.pilot.ligand_motifs: ATOM k: 8 Name: O3
+apps.pilot.ligand_motifs: Connected triplet is: 10, type is CH2; 9, type is CH2; 8, type is OH 
+apps.pilot.ligand_motifs: atom_i: 10
+apps.pilot.ligand_motifs: atom_i to atom_j: 9
+apps.pilot.ligand_motifs: atom_j to atom_k: 8
+apps.pilot.ligand_motifs: ATOM k: 10 Name: C7
+apps.pilot.ligand_motifs: Connected triplet is: 10, type is CH2; 9, type is CH2; 10, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 11 Name: O4
+apps.pilot.ligand_motifs: ATOM k: 10 Name: C7
+apps.pilot.ligand_motifs: Connected triplet is: 10, type is CH2; 11, type is OH; 10, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 12 Name: C8
+apps.pilot.ligand_motifs: Connected triplet is: 10, type is CH2; 11, type is OH; 12, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 10
+apps.pilot.ligand_motifs: atom_i to atom_j: 11
+apps.pilot.ligand_motifs: atom_j to atom_k: 12
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 11
+apps.pilot.ligand_motifs: atom name is O4
+apps.pilot.ligand_motifs: ATOM j: 10 Name: C7
+apps.pilot.ligand_motifs: ATOM k: 9 Name: C6
+apps.pilot.ligand_motifs: Connected triplet is: 11, type is OH; 10, type is CH2; 9, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 11
+apps.pilot.ligand_motifs: atom_i to atom_j: 10
+apps.pilot.ligand_motifs: atom_j to atom_k: 9
+apps.pilot.ligand_motifs: ATOM k: 11 Name: O4
+apps.pilot.ligand_motifs: Connected triplet is: 11, type is OH; 10, type is CH2; 11, type is OH 
+apps.pilot.ligand_motifs: ATOM j: 12 Name: C8
+apps.pilot.ligand_motifs: ATOM k: 11 Name: O4
+apps.pilot.ligand_motifs: Connected triplet is: 11, type is OH; 12, type is CH2; 11, type is OH 
+apps.pilot.ligand_motifs: ATOM k: 13 Name: C9
+apps.pilot.ligand_motifs: Connected triplet is: 11, type is OH; 12, type is CH2; 13, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 11
+apps.pilot.ligand_motifs: atom_i to atom_j: 12
+apps.pilot.ligand_motifs: atom_j to atom_k: 13
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 12
+apps.pilot.ligand_motifs: atom name is C8
+apps.pilot.ligand_motifs: ATOM j: 11 Name: O4
+apps.pilot.ligand_motifs: ATOM k: 10 Name: C7
+apps.pilot.ligand_motifs: Connected triplet is: 12, type is CH2; 11, type is OH; 10, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 12
+apps.pilot.ligand_motifs: atom_i to atom_j: 11
+apps.pilot.ligand_motifs: atom_j to atom_k: 10
+apps.pilot.ligand_motifs: ATOM k: 12 Name: C8
+apps.pilot.ligand_motifs: Connected triplet is: 12, type is CH2; 11, type is OH; 12, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 13 Name: C9
+apps.pilot.ligand_motifs: ATOM k: 12 Name: C8
+apps.pilot.ligand_motifs: Connected triplet is: 12, type is CH2; 13, type is CH2; 12, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 14 Name: O5
+apps.pilot.ligand_motifs: Connected triplet is: 12, type is CH2; 13, type is CH2; 14, type is OH 
+apps.pilot.ligand_motifs: atom_i: 12
+apps.pilot.ligand_motifs: atom_i to atom_j: 13
+apps.pilot.ligand_motifs: atom_j to atom_k: 14
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 13
+apps.pilot.ligand_motifs: atom name is C9
+apps.pilot.ligand_motifs: ATOM j: 12 Name: C8
+apps.pilot.ligand_motifs: ATOM k: 11 Name: O4
+apps.pilot.ligand_motifs: Connected triplet is: 13, type is CH2; 12, type is CH2; 11, type is OH 
+apps.pilot.ligand_motifs: atom_i: 13
+apps.pilot.ligand_motifs: atom_i to atom_j: 12
+apps.pilot.ligand_motifs: atom_j to atom_k: 11
+apps.pilot.ligand_motifs: ATOM k: 13 Name: C9
+apps.pilot.ligand_motifs: Connected triplet is: 13, type is CH2; 12, type is CH2; 13, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 14 Name: O5
+apps.pilot.ligand_motifs: ATOM k: 13 Name: C9
+apps.pilot.ligand_motifs: Connected triplet is: 13, type is CH2; 14, type is OH; 13, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 15 Name: C10
+apps.pilot.ligand_motifs: Connected triplet is: 13, type is CH2; 14, type is OH; 15, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 13
+apps.pilot.ligand_motifs: atom_i to atom_j: 14
+apps.pilot.ligand_motifs: atom_j to atom_k: 15
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 14
+apps.pilot.ligand_motifs: atom name is O5
+apps.pilot.ligand_motifs: ATOM j: 13 Name: C9
+apps.pilot.ligand_motifs: ATOM k: 12 Name: C8
+apps.pilot.ligand_motifs: Connected triplet is: 14, type is OH; 13, type is CH2; 12, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 14
+apps.pilot.ligand_motifs: atom_i to atom_j: 13
+apps.pilot.ligand_motifs: atom_j to atom_k: 12
+apps.pilot.ligand_motifs: ATOM k: 14 Name: O5
+apps.pilot.ligand_motifs: Connected triplet is: 14, type is OH; 13, type is CH2; 14, type is OH 
+apps.pilot.ligand_motifs: ATOM j: 15 Name: C10
+apps.pilot.ligand_motifs: ATOM k: 14 Name: O5
+apps.pilot.ligand_motifs: Connected triplet is: 14, type is OH; 15, type is CH2; 14, type is OH 
+apps.pilot.ligand_motifs: ATOM k: 16 Name: C11
+apps.pilot.ligand_motifs: Connected triplet is: 14, type is OH; 15, type is CH2; 16, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 14
+apps.pilot.ligand_motifs: atom_i to atom_j: 15
+apps.pilot.ligand_motifs: atom_j to atom_k: 16
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 15
+apps.pilot.ligand_motifs: atom name is C10
+apps.pilot.ligand_motifs: ATOM j: 14 Name: O5
+apps.pilot.ligand_motifs: ATOM k: 13 Name: C9
+apps.pilot.ligand_motifs: Connected triplet is: 15, type is CH2; 14, type is OH; 13, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 15
+apps.pilot.ligand_motifs: atom_i to atom_j: 14
+apps.pilot.ligand_motifs: atom_j to atom_k: 13
+apps.pilot.ligand_motifs: ATOM k: 15 Name: C10
+apps.pilot.ligand_motifs: Connected triplet is: 15, type is CH2; 14, type is OH; 15, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 16 Name: C11
+apps.pilot.ligand_motifs: ATOM k: 15 Name: C10
+apps.pilot.ligand_motifs: Connected triplet is: 15, type is CH2; 16, type is CH2; 15, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 17 Name: O6
+apps.pilot.ligand_motifs: Connected triplet is: 15, type is CH2; 16, type is CH2; 17, type is OH 
+apps.pilot.ligand_motifs: atom_i: 15
+apps.pilot.ligand_motifs: atom_i to atom_j: 16
+apps.pilot.ligand_motifs: atom_j to atom_k: 17
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 16
+apps.pilot.ligand_motifs: atom name is C11
+apps.pilot.ligand_motifs: ATOM j: 15 Name: C10
+apps.pilot.ligand_motifs: ATOM k: 14 Name: O5
+apps.pilot.ligand_motifs: Connected triplet is: 16, type is CH2; 15, type is CH2; 14, type is OH 
+apps.pilot.ligand_motifs: atom_i: 16
+apps.pilot.ligand_motifs: atom_i to atom_j: 15
+apps.pilot.ligand_motifs: atom_j to atom_k: 14
+apps.pilot.ligand_motifs: ATOM k: 16 Name: C11
+apps.pilot.ligand_motifs: Connected triplet is: 16, type is CH2; 15, type is CH2; 16, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 17 Name: O6
+apps.pilot.ligand_motifs: ATOM k: 16 Name: C11
+apps.pilot.ligand_motifs: Connected triplet is: 16, type is CH2; 17, type is OH; 16, type is CH2 
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 17
+apps.pilot.ligand_motifs: atom name is O6
+apps.pilot.ligand_motifs: ATOM j: 16 Name: C11
+apps.pilot.ligand_motifs: ATOM k: 15 Name: C10
+apps.pilot.ligand_motifs: Connected triplet is: 17, type is OH; 16, type is CH2; 15, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 17
+apps.pilot.ligand_motifs: atom_i to atom_j: 16
+apps.pilot.ligand_motifs: atom_j to atom_k: 15
+apps.pilot.ligand_motifs: ATOM k: 17 Name: O6
+apps.pilot.ligand_motifs: Connected triplet is: 17, type is OH; 16, type is CH2; 17, type is OH 
+apps.pilot.ligand_motifs: Total 3 atoms in pruned indices list is: 15
+apps.pilot.ligand_motifs: Total 3 atoms in unpruned indices list is: 30
+apps.pilot.ligand_motifs: Residue 114 passed energy cut with pack score: -1.15068, hbond score: 0, for a total score of: -1.15068
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is MET
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is OH
+protocols.motifs.Motif: atom3 name is CH2
+apps.pilot.ligand_motifs: 13: 13-14-15Residue 164 passed energy cut with pack score: -1.50783, hbond score: 0, for a total score of: -1.50783
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is TRP
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is OH
+protocols.motifs.Motif: atom3 name is CH2
+apps.pilot.ligand_motifs: 13: 13-14-15Residue 171 passed energy cut with pack score: -1.11149, hbond score: 0, for a total score of: -1.11149
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is TYR
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is CH2
+protocols.motifs.Motif: atom3 name is OH
+apps.pilot.ligand_motifs: 15: 15-16-17Residue 175 passed energy cut with pack score: -1.74568, hbond score: 0, for a total score of: -1.74568
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is MET
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is CH2
+protocols.motifs.Motif: atom3 name is OH
+apps.pilot.ligand_motifs: 15: 15-16-17Residue 188 passed energy cut with pack score: -4.36104, hbond score: 0, for a total score of: -4.36104
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is TRP
+protocols.motifs.Motif: atom1 name is OH
+protocols.motifs.Motif: atom2 name is CH2
+protocols.motifs.Motif: atom3 name is CH2
+apps.pilot.ligand_motifs: 8: 8-9-10Residue 206 passed energy cut with pack score: -2.49459, hbond score: 0, for a total score of: -2.49459
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is HIS
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is OH
+protocols.motifs.Motif: atom3 name is CH2
+apps.pilot.ligand_motifs: 7: 7-8-9Residue 207 passed energy cut with pack score: -2.31172, hbond score: 0, for a total score of: -2.31172
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is TRP
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is CH2
+protocols.motifs.Motif: atom3 name is OH
+apps.pilot.ligand_motifs: 9: 9-10-11Residue 209 passed energy cut with pack score: -1.11794, hbond score: 0, for a total score of: -1.11794
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is HIS
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is CH2
+protocols.motifs.Motif: atom3 name is OH
+apps.pilot.ligand_motifs: 15: 15-16-17Motif index contains: 1-3-2
+apps.pilot.ligand_motifs: Motif index contains: 1-5-4
+apps.pilot.ligand_motifs: Motif index contains: 3-1-5
+apps.pilot.ligand_motifs: Motif index contains: 4-6-7
+apps.pilot.ligand_motifs: Motif index contains: 5-4-6
+apps.pilot.ligand_motifs: Motif index contains: 6-7-8
+apps.pilot.ligand_motifs: Motif index contains: 7-8-9
+apps.pilot.ligand_motifs: Motif index contains: 8-9-10
+apps.pilot.ligand_motifs: Motif index contains: 9-10-11
+apps.pilot.ligand_motifs: Motif index contains: 10-11-12
+apps.pilot.ligand_motifs: Motif index contains: 11-12-13
+apps.pilot.ligand_motifs: Motif index contains: 12-13-14
+apps.pilot.ligand_motifs: Motif index contains: 13-14-15
+apps.pilot.ligand_motifs: Motif index contains: 14-15-16
+apps.pilot.ligand_motifs: Motif index contains: 15-16-17
+core.init: Checking for fconfig files in pwd and ./rosetta/flags 
+core.init: Rosetta version: 2023.03.post.dev+8.master.2c586ea 2c586ea176bef82aa012b77dcf6907e26e49a49e https://github.com/RosettaCommons/main.git 2023-01-25T12:55:36
+core.init: command: /data/project/thymelab/running_Rosetta/ari_work/Rosetta_Code_Fresh/main/source/bin/identify_ligand_motifs.linuxgccrelease @/data/user/abgvg9/scratch_backups/download_pdb_space_1_26_23/789/7BYU/7BYU_EDO_flags
+basic.random.init_random_generator: 'RNG device' seed mode, using '/dev/urandom', seed=-957515618 seed_offset=0 real_seed=-957515618
+basic.random.init_random_generator: RandomGenerator:init: Normal mode, seed=-957515618 RG_type=mt19937
+core.init: Resolved executable path: /data/project/thymelab/running_Rosetta/ari_work/Rosetta_Code_Fresh/main/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/identify_ligand_motifs.default.linuxgccrelease
+core.init: Looking for database based on location of executable: /data/project/thymelab/running_Rosetta/ari_work/Rosetta_Code_Fresh/main/database/
+apps.pilot.ligand_motifs: motif_pdb_output_path_: 
+apps.pilot.ligand_motifs: motif_file_output_: AllMattMotifs.motifs
+apps.pilot.ligand_motifs: output_motifs_: 1
+apps.pilot.ligand_motifs: output_motifs_as_pdb_: 0
+core.scoring.etable: Starting energy table calculation
+core.scoring.etable: smooth_etable: changing atr/rep split to bottom of energy well
+core.scoring.etable: smooth_etable: spline smoothing lj etables (maxdis = 6)
+core.scoring.etable: smooth_etable: spline smoothing solvation etables (max_dis = 6)
+core.scoring.etable: Finished calculating energy tables.
+basic.io.database: Database file opened: scoring/score_functions/PairEPotential/pdb_pair_stats_fine
+basic.io.database: Database file opened: scoring/score_functions/P_AA_pp/P_AA
+basic.io.database: Database file opened: scoring/score_functions/P_AA_pp/P_AA_n
+core.scoring.P_AA: shapovalov_lib::shap_p_aa_pp_smooth_level of 1( aka low_smooth ) got activated.
+basic.io.database: Database file opened: scoring/score_functions/P_AA_pp/shapovalov/10deg/kappa131/a20.prop
+basic.io.database: Database file opened: scoring/score_functions/hbonds/ref2015_params/HBPoly1D.csv
+basic.io.database: Database file opened: scoring/score_functions/hbonds/ref2015_params/HBFadeIntervals.csv
+basic.io.database: Database file opened: scoring/score_functions/hbonds/ref2015_params/HBEval.csv
+basic.io.database: Database file opened: scoring/score_functions/hbonds/ref2015_params/DonStrength.csv
+basic.io.database: Database file opened: scoring/score_functions/hbonds/ref2015_params/AccStrength.csv
+core.chemical.GlobalResidueTypeSet: Finished initializing fa_standard residue type set.  Created 985 residue types
+core.chemical.GlobalResidueTypeSet: Total time to initialize 0.77 seconds.
+core.import_pose.import_pose: File '7BYU_EDO.pdb' automatically determined to be of type PDB
+core.chemical.GlobalResidueTypeSet: Loading (but possibly not actually using) 'EDO' from the PDB components dictionary for residue type 'pdb_EDO'
+basic.io.database: Database file opened: scoring/score_functions/omega/omega_ppdep.all.txt
+basic.io.database: Database file opened: scoring/score_functions/omega/omega_ppdep.gly.txt
+basic.io.database: Database file opened: scoring/score_functions/omega/omega_ppdep.pro.txt
+basic.io.database: Database file opened: scoring/score_functions/omega/omega_ppdep.valile.txt
+basic.io.database: Database file opened: scoring/score_functions/elec_cp_reps.dat
+core.scoring.elec.util: Read 40 countpair representative atoms
+core.pack.dunbrack.RotamerLibrary: shapovalov_lib_fixes_enable option is true.
+core.pack.dunbrack.RotamerLibrary: shapovalov_lib::shap_dun10_smooth_level of 1( aka lowest_smooth ) got activated.
+core.pack.dunbrack.RotamerLibrary: Binary rotamer library selected: /data/project/thymelab/running_Rosetta/ari_work/Rosetta_Code_Fresh/main/database/rotamer/shapovalov/StpDwn_0-0-0/Dunbrack10.lib.bin
+core.pack.dunbrack.RotamerLibrary: Using Dunbrack library binary file '/data/project/thymelab/running_Rosetta/ari_work/Rosetta_Code_Fresh/main/database/rotamer/shapovalov/StpDwn_0-0-0/Dunbrack10.lib.bin'.
+core.pack.dunbrack.RotamerLibrary: Dunbrack 2010 library took 0.15 seconds to load from binary
+apps.pilot.ligand_motifs: in ligand splitter block, found my ligand, lig_pos is 109
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 1
+apps.pilot.ligand_motifs: atom name is C1
+apps.pilot.ligand_motifs: ATOM j: 2 Name: O1
+apps.pilot.ligand_motifs: ATOM k: 1 Name: C1
+apps.pilot.ligand_motifs: Connected triplet is: 1, type is CH2; 2, type is OH; 1, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 3 Name: C2
+apps.pilot.ligand_motifs: ATOM k: 1 Name: C1
+apps.pilot.ligand_motifs: Connected triplet is: 1, type is CH2; 3, type is CH2; 1, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 4 Name: O2
+apps.pilot.ligand_motifs: Connected triplet is: 1, type is CH2; 3, type is CH2; 4, type is OH 
+apps.pilot.ligand_motifs: atom_i: 1
+apps.pilot.ligand_motifs: atom_i to atom_j: 3
+apps.pilot.ligand_motifs: atom_j to atom_k: 4
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 2
+apps.pilot.ligand_motifs: atom name is O1
+apps.pilot.ligand_motifs: ATOM j: 1 Name: C1
+apps.pilot.ligand_motifs: ATOM k: 2 Name: O1
+apps.pilot.ligand_motifs: Connected triplet is: 2, type is OH; 1, type is CH2; 2, type is OH 
+apps.pilot.ligand_motifs: ATOM k: 3 Name: C2
+apps.pilot.ligand_motifs: Connected triplet is: 2, type is OH; 1, type is CH2; 3, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 2
+apps.pilot.ligand_motifs: atom_i to atom_j: 1
+apps.pilot.ligand_motifs: atom_j to atom_k: 3
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 3
+apps.pilot.ligand_motifs: atom name is C2
+apps.pilot.ligand_motifs: ATOM j: 1 Name: C1
+apps.pilot.ligand_motifs: ATOM k: 2 Name: O1
+apps.pilot.ligand_motifs: Connected triplet is: 3, type is CH2; 1, type is CH2; 2, type is OH 
+apps.pilot.ligand_motifs: atom_i: 3
+apps.pilot.ligand_motifs: atom_i to atom_j: 1
+apps.pilot.ligand_motifs: atom_j to atom_k: 2
+apps.pilot.ligand_motifs: ATOM k: 3 Name: C2
+apps.pilot.ligand_motifs: Connected triplet is: 3, type is CH2; 1, type is CH2; 3, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 4 Name: O2
+apps.pilot.ligand_motifs: ATOM k: 3 Name: C2
+apps.pilot.ligand_motifs: Connected triplet is: 3, type is CH2; 4, type is OH; 3, type is CH2 
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 4
+apps.pilot.ligand_motifs: atom name is O2
+apps.pilot.ligand_motifs: ATOM j: 3 Name: C2
+apps.pilot.ligand_motifs: ATOM k: 1 Name: C1
+apps.pilot.ligand_motifs: Connected triplet is: 4, type is OH; 3, type is CH2; 1, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 4
+apps.pilot.ligand_motifs: atom_i to atom_j: 3
+apps.pilot.ligand_motifs: atom_j to atom_k: 1
+apps.pilot.ligand_motifs: ATOM k: 4 Name: O2
+apps.pilot.ligand_motifs: Connected triplet is: 4, type is OH; 3, type is CH2; 4, type is OH 
+apps.pilot.ligand_motifs: Total 3 atoms in pruned indices list is: 2
+apps.pilot.ligand_motifs: Total 3 atoms in unpruned indices list is: 4
+apps.pilot.ligand_motifs: Residue 21 passed energy cut with pack score: -1.14678, hbond score: -0.748888, for a total score of: -1.89567
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is HIS
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is CH2
+protocols.motifs.Motif: atom3 name is OH
+apps.pilot.ligand_motifs: 1: 1-3-4Residue 78 passed energy cut with pack score: -1.10289, hbond score: -1.37625, for a total score of: -2.47914
+apps.pilot.ligand_motifs: Skipping motif whose closest atom-atom distance is no closer than 5.0 angstroms
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is TRP
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is CH2
+protocols.motifs.Motif: atom3 name is OH
+apps.pilot.ligand_motifs: 1: 1-3-4Motif index contains: 1-3-4
+apps.pilot.ligand_motifs: Motif index contains: 2-1-3
+apps.pilot.ligand_motifs: in ligand splitter block, found my ligand, lig_pos is 218
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 1
+apps.pilot.ligand_motifs: atom name is C1
+apps.pilot.ligand_motifs: ATOM j: 2 Name: O1
+apps.pilot.ligand_motifs: ATOM k: 1 Name: C1
+apps.pilot.ligand_motifs: Connected triplet is: 1, type is CH2; 2, type is OH; 1, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 3 Name: C2
+apps.pilot.ligand_motifs: ATOM k: 1 Name: C1
+apps.pilot.ligand_motifs: Connected triplet is: 1, type is CH2; 3, type is CH2; 1, type is CH2 
+apps.pilot.ligand_motifs: ATOM k: 4 Name: O2
+apps.pilot.ligand_motifs: Connected triplet is: 1, type is CH2; 3, type is CH2; 4, type is OH 
+apps.pilot.ligand_motifs: atom_i: 1
+apps.pilot.ligand_motifs: atom_i to atom_j: 3
+apps.pilot.ligand_motifs: atom_j to atom_k: 4
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 2
+apps.pilot.ligand_motifs: atom name is O1
+apps.pilot.ligand_motifs: ATOM j: 1 Name: C1
+apps.pilot.ligand_motifs: ATOM k: 2 Name: O1
+apps.pilot.ligand_motifs: Connected triplet is: 2, type is OH; 1, type is CH2; 2, type is OH 
+apps.pilot.ligand_motifs: ATOM k: 3 Name: C2
+apps.pilot.ligand_motifs: Connected triplet is: 2, type is OH; 1, type is CH2; 3, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 2
+apps.pilot.ligand_motifs: atom_i to atom_j: 1
+apps.pilot.ligand_motifs: atom_j to atom_k: 3
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 3
+apps.pilot.ligand_motifs: atom name is C2
+apps.pilot.ligand_motifs: ATOM j: 1 Name: C1
+apps.pilot.ligand_motifs: ATOM k: 2 Name: O1
+apps.pilot.ligand_motifs: Connected triplet is: 3, type is CH2; 1, type is CH2; 2, type is OH 
+apps.pilot.ligand_motifs: atom_i: 3
+apps.pilot.ligand_motifs: atom_i to atom_j: 1
+apps.pilot.ligand_motifs: atom_j to atom_k: 2
+apps.pilot.ligand_motifs: ATOM k: 3 Name: C2
+apps.pilot.ligand_motifs: Connected triplet is: 3, type is CH2; 1, type is CH2; 3, type is CH2 
+apps.pilot.ligand_motifs: ATOM j: 4 Name: O2
+apps.pilot.ligand_motifs: ATOM k: 3 Name: C2
+apps.pilot.ligand_motifs: Connected triplet is: 3, type is CH2; 4, type is OH; 3, type is CH2 
+apps.pilot.ligand_motifs: in atom iterate block, atom num is 4
+apps.pilot.ligand_motifs: atom name is O2
+apps.pilot.ligand_motifs: ATOM j: 3 Name: C2
+apps.pilot.ligand_motifs: ATOM k: 1 Name: C1
+apps.pilot.ligand_motifs: Connected triplet is: 4, type is OH; 3, type is CH2; 1, type is CH2 
+apps.pilot.ligand_motifs: atom_i: 4
+apps.pilot.ligand_motifs: atom_i to atom_j: 3
+apps.pilot.ligand_motifs: atom_j to atom_k: 1
+apps.pilot.ligand_motifs: ATOM k: 4 Name: O2
+apps.pilot.ligand_motifs: Connected triplet is: 4, type is OH; 3, type is CH2; 4, type is OH 
+apps.pilot.ligand_motifs: Total 3 atoms in pruned indices list is: 2
+apps.pilot.ligand_motifs: Total 3 atoms in unpruned indices list is: 4
+apps.pilot.ligand_motifs: Residue 130 passed energy cut with pack score: -1.02163, hbond score: -0.279867, for a total score of: -1.30149
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is HIS
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is CH2
+protocols.motifs.Motif: atom3 name is OH
+apps.pilot.ligand_motifs: 1: 1-3-4Residue 187 passed energy cut with pack score: -1.09929, hbond score: -1.10464, for a total score of: -2.20393
+apps.pilot.ligand_motifs: Top triplets contains 1 items.
+apps.pilot.ligand_motifs: Top triplets are: Size of top_triplets:  1
+apps.pilot.ligand_motifs: Size of this_triplet:  3
+protocols.motifs.Motif: Res1 name is TRP
+protocols.motifs.Motif: atom1 name is CH2
+protocols.motifs.Motif: atom2 name is CH2
+protocols.motifs.Motif: atom3 name is OH
+apps.pilot.ligand_motifs: 1: 1-3-4Motif index contains: 1-3-4
+apps.pilot.ligand_motifs: Motif index contains: 2-1-3

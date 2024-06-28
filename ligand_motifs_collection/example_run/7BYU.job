@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH -p short # Partition to submit to\n")
+#SBATCH -n 1 # Number of cores requested\n")
+#SBATCH -N 1 # Ensure that all cores are on one machine\n")
+#SBATCH -t 720 # Runtime in minutes\n")
+#SBATCH --mem=1280 # Memory per cpu in MB (see also --mem-per-cpu)\n")
+#SBATCH -o /data/user/abgvg9/scratch_backups/download_pdb_space_1_26_23/789/7BYU/7BYU_hostname_%A_%a.out # Standard out goes to this file\n")
+#SBATCH -e /data/user/abgvg9/scratch_backups/download_pdb_space_1_26_23/789/7BYU/7BYU_hostname_%A_%a.err # Standard err goes to this filehostname\n")
+cd /data/user/abgvg9/scratch_backups/download_pdb_space_1_26_23/789/7BYU
+mkdir /data/user/abgvg9/scratch_backups/download_pdb_space_1_26_23/789/7BYU/Ligand_motif_dir
+/data/project/thymelab/running_Rosetta/ari_work/Rosetta_Code_Fresh/main/source/bin/identify_ligand_motifs.linuxgccrelease @/data/user/abgvg9/scratch_backups/download_pdb_space_1_26_23/789/7BYU/7BYU_1PG_flags
+mv Ligand_motif_dir 7BYU_1PG
+mv AllMattMotifs.motifs 7BYU_1PG
+mkdir /data/user/abgvg9/scratch_backups/download_pdb_space_1_26_23/789/7BYU/Ligand_motif_dir
+/data/project/thymelab/running_Rosetta/ari_work/Rosetta_Code_Fresh/main/source/bin/identify_ligand_motifs.linuxgccrelease @/data/user/abgvg9/scratch_backups/download_pdb_space_1_26_23/789/7BYU/7BYU_EDO_flags
+mv Ligand_motif_dir 7BYU_EDO
+mv AllMattMotifs.motifs 7BYU_EDO
