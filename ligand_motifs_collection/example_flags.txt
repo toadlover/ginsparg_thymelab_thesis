@@ -7,9 +7,6 @@
 #minimum cutoff for hydrogen bond score
 -hb_score_cutoff -0.3
 
-#minimum cutoff for water score
--water_score_cutoff -0.3
-
 #minimum cutoff for packing score
 -pack_score_cutoff -0.5
 
