@@ -1,0 +1,2 @@
+auto_params.sh was initially made by Matt Smith, Ph.D.
+SeparatePDBsByChain.pl was made by Sinisa Bjelic, Ph.D.
