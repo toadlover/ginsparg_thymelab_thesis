@@ -1,0 +1,9 @@
+#Build shapedb container with docker
+sudo docker build - < Dockerfile -t (image name):(tag) --progress=plain
+
+#export docker image to tar
+#get 12 character image id by running: sudo docker images
+sudo docker save (image_id) -o (image name).tar
+
+#build tar into singularity container
+sudo singularity build (container name).sif docker-archive://(image name).tar
