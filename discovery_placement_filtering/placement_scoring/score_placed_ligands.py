@@ -131,7 +131,7 @@ attempt_strain = True
 #strain torsion path
 #if 't' in vars(args) or 'tpath' in vars(args):
 if args.tpath != None:
-	strain_exec_path = args.vpath
+	strain_exec_path = args.tpath
 
 	#add backslash to end of path if there is not one
 	if strain_exec_path.endswith("/") == False:
