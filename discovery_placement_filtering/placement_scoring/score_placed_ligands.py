@@ -279,11 +279,12 @@ for r,d,f in os.walk(location):
 				print("Attempting tldr STRAIN")
 
 				#call the run_torsion_check_on_placed_ligands.py script
+				print("python " + strain_automate_path + "run_torsion_check_on_placed_ligands.py " + r + "/" + dir_name + " " + strain_exec_path)
 				os.system("python " + strain_automate_path + "run_torsion_check_on_placed_ligands.py " + r + "/" + dir_name + " " + strain_exec_path)
 
 				#read the torsion data table csv
 				#(pdb name)_torsion_data.csv
-				strain_file = open(dir_name + "/" + dir_name + "_torsion_data.csv", "r")
+				strain_file = open(dir_name + "/" + dir_name + "_lig_Torsion_Strain.csv", "r")
 
 				#read the strain file and get the total strain energy if it was calculated
 				for line in strain_file.readlines():
