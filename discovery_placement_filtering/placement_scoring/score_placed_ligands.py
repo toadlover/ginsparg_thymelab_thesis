@@ -307,5 +307,5 @@ for r,d,f in os.walk(location):
 
 			#write scores to the score files
 			#file,ddg,total_motifs,significant_motifs,real_motif_ratio,closest_autodock_recovery_rmsd,closest_autodock_recovery_ddg,strain_energy,total
-			raw_score_file.write(file + "," + str(ddg[0]) + "," + str(total_motifs[0]) + "," + str(significant_motifs[0]) + "," + str(real_motif_ratio[0]) + "," + str(closest_autodock_recovery_rmsd[0]) + "," + str(closest_autodock_recovery_ddg[0]) + "," + str(strain_energy[0]) + "," + str(total[0]))
-			weighted_score_file.write(file + "," + str(ddg[1]) + "," + str(total_motifs[1]) + "," + str(significant_motifs[1]) + "," + str(real_motif_ratio[1]) + "," + str(closest_autodock_recovery_rmsd[1]) + "," + str(closest_autodock_recovery_ddg[1]) + "," + str(strain_energy[1]) + "," + str(total[1]))
+			raw_score_file.write(file + "," + str(ddg[0]) + "," + str(total_motifs[0]) + "," + str(significant_motifs[0]) + "," + str(real_motif_ratio[0]) + "," + str(closest_autodock_recovery_rmsd[0]) + "," + str(closest_autodock_recovery_ddg[0]) + "," + str(strain_energy[0]) + "," + str(total[0]) + "\n")
+			weighted_score_file.write(file + "," + str(ddg[1]) + "," + str(total_motifs[1]) + "," + str(significant_motifs[1]) + "," + str(real_motif_ratio[1]) + "," + str(closest_autodock_recovery_rmsd[1]) + "," + str(closest_autodock_recovery_ddg[1]) + "," + str(strain_energy[1]) + "," + str(total[1]) + "\n")
