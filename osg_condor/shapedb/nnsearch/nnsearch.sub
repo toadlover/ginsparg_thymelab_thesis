@@ -1,17 +1,25 @@
 #executable = dummy.sh
 executable = nnsearch.sh
 
+#agonists
 #file_prefix = OxB_4_shifted
 #file_prefix = OxB_5_shifted
-file_prefix = OxB_6_shifted
+#file_prefix = OxB_6_shifted
 #file_prefix = OxB_7_shifted
 #file_prefix = OxA_4_shifted
 #file_prefix = OxA_5_shifted
 #file_prefix = OxA_6_shifted
 #file_prefix = OxA_7_shifted
+
+#antagonists
+#file_prefix = empa_shifted
+#file_prefix = htl6641_shifted
+file_prefix = lemborexant_shifted
+#file_prefix = suvo_shifted
+
 file_suffix = mol2
 
-#arguments = $(Process) $(Cluster) $(file) 
+#arguments = $(Process) $(Cluster) $(file)
 arguments = $(Process) $(Cluster) $(sub_num) $(directory) $(file_prefix) $(file_suffix)
 
 s3_access_key_id_file = /home/abgvg9/conformator_and_params/access_key
@@ -19,10 +27,13 @@ s3_secret_access_key_file = /home/abgvg9/conformator_and_params/secret_key
 
 
 #max_idle=2000
-max_idle=10000
+#max_idle=1000
+max_idle=5000
 
-#needed inputs: compressed directory that contains the params and conformers in sdf format, script that can condense the params data, and the align.py script that is needed before creating the database with shapedb
-transfer_input_files = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/condensed_params_and_db_$(sub_num).tar.gz, shapedb_inputs/$(file_prefix).$(file_suffix), run_nnsearch.py
+#needed inputs: compressed directory that contains the params and conformers in sdf format, script that can condense the params data, and the align.py script that is needed before creating the database with>
+#transfer_input_files = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/condensed_params_and_db_$(sub_num).tar.gz, shapedb_inputs/$(file_prefix).$(file_suffix), run_nnsearch.py
+
+transfer_input_files = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/condensed_params_and_db_$(sub_num).tar.gz, thesis_discovery_shapedb_inputs/antagonists/$(file_prefix).$(file_suffix), run_nnsearch.py
 
 #transfer_output_remaps = "suvo_NN_$(file).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/00000/for_s3/suvo_NN_$(file).tar.gz"
 transfer_output_remaps = "$(file_prefix)_NN_$(sub_num)_$(directory).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(directory)/for_s3/$(file_prefix)_NN_$(sub_num)_$(directory).tar.gz"
@@ -38,8 +49,10 @@ request_memory = 2GB
 request_disk = 5GB
 request_cpus = 1
 
-#queue directory,sub_num from input_file_53084_53084.txt
 
+#preiodic release due to shadow hold
+#periodic_release =  (NumJobStarts < 3) && ((HoldReasonCode == 12 || HoldReasonCode == 13) && HoldReasonSubCode == 256)
+periodic_release =  ((HoldReasonCode == 12 || HoldReasonCode == 13) && HoldReasonSubCode == 256)
 
 
 #remainder, resubmitted on 1/25/23
@@ -49,8 +62,3 @@ request_cpus = 1
 queue directory,sub_num from input_file_0_53084.txt
 #queue directory,sub_num from 10_addresses.txt
 #10_addresses.txt
-
-
-#preiodic release due to shadow hold
-#periodic_release =  (NumJobStarts < 3) && ((HoldReasonCode == 12 || HoldReasonCode == 13) && HoldReasonSubCode == 256)
-periodic_release =  ((HoldReasonCode == 12 || HoldReasonCode == 13) && HoldReasonSubCode == 256)
