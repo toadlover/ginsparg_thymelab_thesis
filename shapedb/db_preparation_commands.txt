@@ -1,6 +1,12 @@
-#use shapedb to make database (db.db)
-#run align.py on the confs_named.sdf file, name as aligned.sdf
+#Initial setup of conformers to be aligned using align.py script
+#all conformers to be found in single file (example named confs_named.sdf; these files are uniquely named by their ligand and conformer number in the sdf data)
+#In example, aligned molecules are written to file named aligned.sdf
+#run with python
 python ../align.py confs_named.sdf aligned.sdf
 
-#run shapedb on aligned.sdf to create the database
+#Usage for shapedb to create a database of aligned molecules for usage in later shape similarity comparisons
+# -h flag allows hydrogens to be kept in creating database
+# -Create flag indicates making a molecular shape index
+# -in indicates the name of the input file (aligned conformers in aligned.sdf)
+# -db indicates the name of the output database file that can be used for shape comparison
 /pharmit/src/build/shapedb -h -Create -in aligned.sdf -db db.db
