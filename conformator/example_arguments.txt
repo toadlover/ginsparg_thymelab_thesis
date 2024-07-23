@@ -1,1 +1,10 @@
-/conformator_for_container/conformator_1.2.1/conformator -i ligand.sdf -o confs.sdf --keep3d --hydrogens -n 15 -v 0
+Example command, calling conformator from working location:
+./conformator -i ligand.sdf -o confs.sdf --keep3d --hydrogens -n 15 -v 0
+
+Flags used:
+-i - name of input ligand file (with path if necessary)
+-o - name of output file with all conformers of initial ligand (with path if necessary)
+--keep3d - keep 3d representation of conformers
+--hydrogens - add/keep hydrogens for generated conformers
+-n - maximum number of conformers to keep; having up to 15 conformers generally promotes diversity without oversaturating conformer amount
+-v - verbosity, set to zero to improve runtime by eliminating all messaging
