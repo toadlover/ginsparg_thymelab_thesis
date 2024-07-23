@@ -1,0 +1,6 @@
+#use shapedb to make database (db.db)
+#run align.py on the confs_named.sdf file, name as aligned.sdf
+python ../align.py confs_named.sdf aligned.sdf
+
+#run shapedb on aligned.sdf to create the database
+/pharmit/src/build/shapedb -h -Create -in aligned.sdf -db db.db

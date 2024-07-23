@@ -1,0 +1,1 @@
+/pharmit/src/build/shapedb -NNSearch -k " + str(line_counter) + " -ligand " + compare_sdf + " -db db.db -print > " + dir_and_sub + "_scored_confs_against_" + sdf_base + ".txt
