@@ -1,1 +1,9 @@
-/pharmit/src/build/shapedb -NNSearch -k " + str(line_counter) + " -ligand " + compare_sdf + " -db db.db -print > " + dir_and_sub + "_scored_confs_against_" + sdf_base + ".txt
+#Command to call shapedb's NNsearch command to compare target shape against a database of aligned ligands
+# -NNSearch flag indicates to use shapedb's nnsearch
+# -k flag indicates the number of nearest neighbors to return by shape similarity; ideally have k = total number of conformers in aligned database so that we return information on all conformers
+# -ligand indicates target ligand file that is used to compare against all ligands in the database; this ligand must be aligned with the rest of the aligned.sdf file ahead of this command
+# -db command indicates which shapedb database to use against target ligand
+# -print indicates to write out the nearest neighbors to output stream
+# The written NNSearch results can be piped into a text file for further processing
+
+/pharmit/src/build/shapedb -NNSearch -k 10000 -ligand suvo_shifted.sdf -db db.db -print >  scored_confs_against_suvo_shifted.txt
