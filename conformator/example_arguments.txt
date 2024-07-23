@@ -1,0 +1,1 @@
+/conformator_for_container/conformator_1.2.1/conformator -i ligand.sdf -o confs.sdf --keep3d --hydrogens -n 15 -v 0
