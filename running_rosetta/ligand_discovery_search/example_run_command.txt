@@ -1,0 +1,2 @@
+#Run Rosetta executable for ligand_discovery_search_protocol (likely linuxgccrelease build), calling arguments file
+/rosetta/source/bin/ligand_discovery_search_protocol.linuxgccrelease @arguments_file
