@@ -16,19 +16,24 @@ max_idle=5000
 #i.e. to reach s3://ariosg/Ox_truncations_12M_cheaha/0/test_params/
 #input_source=s3://s3.lts.rc.uab.edu/ariosg/Ox_truncations_12M_cheaha/
 
-input_source=s3://s3.lts.rc.uab.edu/ariosg/Ox_truncations_12M_chunk_sorted/
+#input_source=s3://s3.lts.rc.uab.edu/ariosg/Ox_truncations_12M_chunk_sorted/
+input_source=s3://s3.lts.rc.uab.edu/ariosg/antagonists_12M_chunk_sorted/
 
-output_dir=s3://s3.lts.rc.uab.edu/ariosg/Ox_truncations_12M_placements/
+#output_dir=s3://s3.lts.rc.uab.edu/ariosg/Ox_truncations_12M_placements/
+output_dir=s3://s3.lts.rc.uab.edu/ariosg/antagonist_12M_placements/
 
-arg_file=args_sf_GLN_cutoffs
+#arg_file=args_sf_GLN_cutoffs_7l1u
+arg_file=args_sf_ASN_cutoffs_4s0v
 
-
+#pdb_file=7l1u_receptor_only.pdb
+pdb_file=4s0v_receptor_only.pdb
 
 #needed inputs: compressed directory that contains the params and conformers in sdf format, script that can uncondense the params data, motifs file, arg file
 #transfer_input_files = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(chunknum)/for_s3/condensed_params_and_db_$(subchunknum).tar.gz, /home/abgvg9/rosetta_runs/extract_single_param_from_condensed_file.py, /home/abgvg9/rosetta_runs/FINAL_motifs_list_filtered_2_3_2023.motifs, /home/abgvg9/rosetta_runs/argsASN227, /home/abgvg9/rosetta_runs/argsGLN86, /home/abgvg9/rosetta_runs/argsHIS253, /home/abgvg9/rosetta_runs/argsTHR63, /home/abgvg9/rosetta_runs/argsTYR257, /home/abgvg9/rosetta_runs/fix_condensed_param_file_spacing.py, /home/abgvg9/rosetta_runs/7l1u_receptor_only.pdb, initial_score_breakdown_from_rosetta_output.py, /home/abgvg9/rosetta_runs/$(arg_file)
 
 #transfer_input_files = $(input_source)$(directory)/test_params, FINAL_motifs_list_filtered_2_3_2023.motifs, initial_score_breakdown_from_rosetta_output.py, $(arg_file)
-transfer_input_files = $(input_source)$(directory)/test_params.tar.gz, FINAL_motifs_list_filtered_2_3_2023.motifs, $(arg_file), 7l1u_receptor_only.pdb
+#transfer_input_files = $(input_source)$(directory)/test_params.tar.gz, FINAL_motifs_list_filtered_2_3_2023.motifs, $(arg_file), 7l1u_receptor_only.pdb
+transfer_input_files = $(input_source)$(directory)/test_params.tar.gz, FINAL_motifs_list_filtered_2_3_2023.motifs, $(arg_file), $(pdb_file)
 
 #s3://ariosg/Ox_truncations_12M_cheaha/0/test_params/
 
@@ -46,15 +51,15 @@ transfer_output_remaps = "placements.tar.gz = $(output_dir)$(directory)/placemen
 #easier to work with
 #output = output/discovery_$(directory).$(Process).$(Cluster).out
 #error = error/discovery_$(directory).$(Process).$(Cluster).err
-#log = log/discovery_$(directory).$(Process).$(Cluster).log
+log = log/discovery_$(directory).$(Process).$(Cluster).log
 
-output = /ospool/ap21/data/abgvg9/discovery_output/discovery_$(directory).$(Process).$(Cluster).out
+#output = /ospool/ap21/data/abgvg9/discovery_output/discovery_$(directory).$(Process).$(Cluster).out
 error = /ospool/ap21/data/abgvg9/discovery_error/discovery_$(directory).$(Process).$(Cluster).err
-log = /ospool/ap21/data/abgvg9/discovery_log/discovery_$(directory).$(Process).$(Cluster).log
+#log = /ospool/ap21/data/abgvg9/discovery_log/discovery_$(directory).$(Process).$(Cluster).log
 
 
 #updated image with space fill method and ability to select multiple residues for motif searching in a single Rosetta call
-+SingularityImage = "osdf:///ospool/ap21/data/abgvg9/rosetta_condensed_5_29_24.sif"
++SingularityImage = "osdf:///ospool/ap21/data/abgvg9/rosetta_condensed_6_25_2024.sif"
 
 #request_memory = 12GB
 #request_memory = 2GB
@@ -67,14 +72,20 @@ request_cpus = 1
 #preiodic release due to shadow hold
 #periodic_release =  (NumJobStarts < 3) && (((HoldReasonCode == 12 || HoldReasonCode == 13) && HoldReasonSubCode == 256) || (HoldReasonSubCode == 42))
 periodic_release =  (((HoldReasonCode == 12 || HoldReasonCode == 13) && HoldReasonSubCode == 256) || (HoldReasonSubCode == 42))
-periodic_hold = (JobStatus == 2) && (time() - EnteredCurrentStatus) > (2 * 3600)
-periodic_hold_reason = "Job ran for more than two hours"
-periodic_hold_subcode = 42
+#periodic_hold = (JobStatus == 2) && (time() - EnteredCurrentStatus) > (2 * 3600)
+#periodic_hold_reason = "Job ran for more than two hours"
+#periodic_hold_subcode = 42
 #periodic_release = (HoldReasonSubCode == 42)
-
+#periodic_release_interval = 120
 
 #use this one for whole
 queue directory from all_discovery_directories.txt
+#queue directory from test.txt
+
+#queue directory from rerun_chunks.txt
+#queue directory from 10_directories_to_run.txt
+#redo of directories that segfaulted due to filling up osg storage
+#queue directory from redo_dires_6_5_2024.txt
 
 #10 dir  test
 #queue directory from 10_directories_to_run.txt

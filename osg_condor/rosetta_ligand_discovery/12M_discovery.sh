@@ -28,7 +28,9 @@ echo $rosetta_end
 ls
 
 mkdir placements
-mv *delta*pdb placements
+#mv *delta*pdb placements
+rm minipose.pdb
+mv *pdb placements
 
 #compress pdb folder
 tar -czf placements.tar.gz placements
