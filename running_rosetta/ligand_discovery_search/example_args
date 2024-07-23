@@ -1,51 +1,71 @@
+#use constant random seed
 -constant_seed 1
+
+#input receptor pdb file (with binding pocket empty)
 -s 7l1u_receptor_only.pdb
--params_directory_path test_params/ 
+
+#path to directory named "test_params" that contains ligand params files, exclude_pdb_component_list.txt, patches.txt, and residue_types.txt
+#residue_types.txt file must list all params files to be used. patches.txt and exclude_pdb_component_list.txt can be empty, but must exist.
+#include trailing forward slash
+-params_directory_path test_params/
+
+#filed of protein-ligand motifs
 -motif_filename FINAL_motifs_list_filtered_2_3_2023.motifs
+
+#index/indices of residues to be used as anchors for relevant motifs in motifs library to place ligands against
+#multiple indices can be listed, separated by commas with no spaces
 -protein_discovery_locus 86
+
+#apply constrain in high_res_dock step
 -constrain_relax_to_start_coords
+
+#scoring cutoffs
 -fa_atr_cutoff = -2
 -fa_rep_cutoff = 150
-#-fa_atr_cutoff = 10000
-#-fa_rep_cutoff = 10000
 -ddg_cutoff = -9
-#-ddg_cutoff = 10000
+
+#indicate number of placement pdbs to keep, based on ddG score
+#if set to 0, will keep all placements that pass all other cutoffs
 -best_pdbs_to_keep = 0
-#-jran = 1294695101
+
 
 #space fill
+#integer coordinates of user-defined center of receptor binding pocket
 -binding_pocket_center_sf 122,125,160
+#integer dimensions to investigate about binding pocket center coordinate (in angstroms)
 -binding_pocket_dimensions_sf 4,5,5
-#-space_fill_cutoff_differential_score_sub 0.15
+#minimum occupied-empty ratio that ligand must fill binding pocket beyond what is already filled by receptor residues
 -space_fill_cutoff_differential_score_sub 0.15
-#-space_fill_cutoff_score_sub 0
+
 
 #placement motifs collection
+#indicate to attempt to collect motifs off of placed ligand
 -collect_motifs_from_placed_ligand true
+#indices of residues of interest to note if motifs are collected against
 -significant_residues_for_motifs 227,86,253,63,257
+#cutoff for minimum number of total motifs to be collected
 -minimum_motifs_formed_cutoff 6
+#cutoff for minimum number of total motifs to be collected against residues noted as significant
 -minimum_significant_motifs_formed_cutoff 1
-#mandatory at least 1 real motif
--minimum_ratio_of_real_motifs_from_ligand 0.01
-
-#must form a motif with GLN86
+#residue indices that placed ligand must form a motif against (or else will be cut)
 -mandatory_residues_for_motifs 86
-
-#check real motifs
+#check if collected placement motifs match motifs from input library (considered to be real)
 -check_if_ligand_motifs_match_real true
+#cutoffs for angle and distance difference between placed ligand motif and library motif
 -duplicate_dist_cutoff 0.8
 -duplicate_angle_cutoff 0.3
+#cutoff for minimum ratio of motifs from placed ligand to be real
+-minimum_ratio_of_real_motifs_from_ligand 0.01
+#do not output generated ligand motifs as pdbs
+-output_motifs_as_pdb false
 
-#get additional scores (atr, rep, atr_rep, whole)
+#get additional score data on placed ligand (atr, rep, atr_rep, whole)
+#atr_rep is a score function that uses only fa_atr and fa_rep in the score function
 -post_highresdock_fa_atr_rep_score true
-#-score_with_ligand_wts_function true
+-score_with_ligand_wts_function true
 
 #use whole score function for highresdock
 -highresdock_with_whole_score_fxn true
 
-#do not output generated ligand motifs as pdbs
--output_motifs_as_pdb false
-
-#high verbosity to collect space fill ratio of all placements (3) and pre highresdock scores (2)
-#-motifs:verbose 1
--motifs:verbose 4
+#verbosity of program output to determine how much extra information is presented
+-motifs:verbose 1
