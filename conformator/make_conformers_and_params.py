@@ -3,6 +3,9 @@ import os,sys
 #untarred sdf file containing up to 5k ligands
 starting_file = sys.argv[1]
 
+#license key used to activate conformator
+license_key = sys.argv[2]
+
 #split name to remove extension
 starting_file_no_ext = starting_file.split(".")[0]
 
@@ -12,7 +15,7 @@ os.system("mv " + starting_file + " " + starting_file_no_ext)
 os.chdir(starting_file_no_ext)
 
 #activate conformator
-os.system("/conformator_for_container/conformator_1.2.1/conformator --license AAAAAAAlipwAAAAUa4uYdwUmshy2E89ozf/NkIDeLgg=")
+os.system("/conformator_for_container/conformator_1.2.1/conformator --license " + license_key)
 
 #run conformator on the starting file
 os.system("/conformator_for_container/conformator_1.2.1/conformator -i " + starting_file + " -o confs.sdf --keep3d --hydrogens -n 15 -v 0")
