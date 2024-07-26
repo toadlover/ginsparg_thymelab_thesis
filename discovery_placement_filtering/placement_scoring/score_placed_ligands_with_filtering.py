@@ -70,6 +70,24 @@ parser.add_argument(
 	help='(Optional) Full path to the location where the score weights file score_weights.csv is located. The format within the file is that each line has a score term at index 0 and the score weight at index 1.'
 )
 
+# Add the minimum_real_motif_ratio argument
+#optional, collects user-set score weights for values used on scoring placed ligands; any value that does not have a weight set is defaulted to 1
+parser.add_argument(
+	'-m', '--minimum_real_motif_ratio',
+	type=float,
+	required=False,
+	help='(Optional) The minimum ratio of real motifs for a placement to be considered. Any placements with a lower value will not be listed or have autodock/STRAIN be used on them.'
+)
+
+# Add the kill argument
+#optional, program will not ignore placements if Autodock fails to place the ligand or if STRAIN can not derive an energy score
+parser.add_argument(
+	'-k', '--kill',
+	type=float,
+	required=False,
+	help='(Optional) Program will not ignore placements if Autodock fails to place the ligand or if STRAIN can not derive an energy score.'
+)
+
 #parse arguments
 args = parser.parse_args()
 
@@ -189,6 +207,17 @@ if args.weights_path != None:
 			print("WARNING: included term '" + term + "' is not valid!")
 			print("Valid terms are ddg, total_motifs, significant_motifs, real_motif_ratio, closest_autodock_recovery_rmsd, closest_autodock_recovery_ddg, and strain_energy.")
 
+#minimum motif ratio
+minimum_real_motif_ratio = 0
+#set ratio if flag is used
+if args.minimum_real_motif_ratio != None:
+	minimum_real_motif_ratio = args.minimum_real_motif_ratio
+
+#kill failed placements for strain or autodock
+kill = False
+if args.kill != None:
+	kill = args.kill
+
 #set up a file to hold the scoring for the placed ligands in csv format both with weighted and non-weighted values
 #write the file in the location
 #raw score file, generally for debugging and score term weights are not applied
@@ -246,32 +275,9 @@ for r,d,f in os.walk(location):
 				if line.startswith("Placement motifs: Real motif ratio:"):
 					real_motif_ratio = [float(line.split()[len(line.split()) - 1].strip()),float(line.split()[len(line.split()) - 1].strip())*score_weights["real_motif_ratio"]]
 
-			#attempt autodock if able
-			if attempt_autodock:
-
-				print("Attempting autodock")
-
-				#call run_autodock_on_placed_ligands.py on the directory for this file
-				#path to automation script, path to working file, path to autodock executable
-				os.system("python " + autodock_automate_path + "run_autodock_on_placed_ligands.py " + r + "/" + dir_name + " " + autodock_exec_path)
-
-				#read the corresponding autodock_data.csv file and determine the closest placement if there is any (and get corresponding energy score)
-				#if there are no placement attempts, set values for closest_autodock_recovery_rmsd to 100 (arbitrary high value that should tank the placement because getting no placement attempts is bad) and closest_autodock_recovery_ddg to 0
-				autodock_file = open(dir_name + "/autodock_data.csv", "r")
-
-				for line in autodock_file.readlines():
-					#ignore the header line
-					if "system,model,rmsd,close_to_rosetta,vina_energy" in line:
-						continue
-					#handle if there were no placements; if split(,)[1] is 0
-					if line.split(",")[1] == "0":
-						closest_autodock_recovery_ddg = [0,0*score_weights["closest_autodock_recovery_ddg"]]
-						closest_autodock_recovery_rmsd = [100,100*score_weights["closest_autodock_recovery_rmsd"]]
-					#otherwise, handle the data extract the closest rmsd with its corresponding energy
-					if float(line.split(",")[2]) < closest_autodock_recovery_rmsd[0]:
-						#set the new closest rmsd with its ddg
-						closest_autodock_recovery_rmsd = [float(line.split(",")[2]), float(line.split(",")[2]) * score_weights["closest_autodock_recovery_rmsd"]]
-						closest_autodock_recovery_ddg = [float(line.split(",")[4].strip()), float(line.split(",")[4].strip()) * score_weights["closest_autodock_recovery_ddg"]]
+			#if the unweighted real motif ratio is below the cutoff, continue to the next ligand and ignore current
+			if real_motif_ratio[0] < minimum_real_motif_ratio:
+				continue
 
 			#attempt strain torsion if able
 			if attempt_strain:
@@ -301,6 +307,42 @@ for r,d,f in os.walk(location):
 						average = (high + low) / 2
 
 						strain_energy = [average,average*score_weights["strain_energy"]]
+
+			#if STRAIN was not able to get an energy score, kill and continue
+			if strain_energy[0] == 100:
+				continue
+
+			#attempt autodock if able
+			#attempt autodock last, as autodock is the slowest step
+			if attempt_autodock:
+
+				print("Attempting autodock")
+
+				#call run_autodock_on_placed_ligands.py on the directory for this file
+				#path to automation script, path to working file, path to autodock executable
+				os.system("python " + autodock_automate_path + "run_autodock_on_placed_ligands.py " + r + "/" + dir_name + " " + autodock_exec_path)
+
+				#read the corresponding autodock_data.csv file and determine the closest placement if there is any (and get corresponding energy score)
+				#if there are no placement attempts, set values for closest_autodock_recovery_rmsd to 100 (arbitrary high value that should tank the placement because getting no placement attempts is bad) and closest_autodock_recovery_ddg to 0
+				autodock_file = open(dir_name + "/autodock_data.csv", "r")
+
+				for line in autodock_file.readlines():
+					#ignore the header line
+					if "system,model,rmsd,close_to_rosetta,vina_energy" in line:
+						continue
+					#handle if there were no placements; if split(,)[1] is 0
+					if line.split(",")[1] == "0":
+						closest_autodock_recovery_ddg = [0,0*score_weights["closest_autodock_recovery_ddg"]]
+						closest_autodock_recovery_rmsd = [100,100*score_weights["closest_autodock_recovery_rmsd"]]
+					#otherwise, handle the data extract the closest rmsd with its corresponding energy
+					if float(line.split(",")[2]) < closest_autodock_recovery_rmsd[0]:
+						#set the new closest rmsd with its ddg
+						closest_autodock_recovery_rmsd = [float(line.split(",")[2]), float(line.split(",")[2]) * score_weights["closest_autodock_recovery_rmsd"]]
+						closest_autodock_recovery_ddg = [float(line.split(",")[4].strip()), float(line.split(",")[4].strip()) * score_weights["closest_autodock_recovery_ddg"]]
+
+			#if Autodock was not able to place, kill and continue
+			if closest_autodock_recovery_ddg[0] == 100:
+				continue
 
 			total[0] = ddg[0] + total_motifs[0] + significant_motifs[0] + real_motif_ratio[0] + closest_autodock_recovery_rmsd[0] + closest_autodock_recovery_ddg[0] + strain_energy[0]
 			total[1] = ddg[1] + total_motifs[1] + significant_motifs[1] + real_motif_ratio[1] + closest_autodock_recovery_rmsd[1] + closest_autodock_recovery_ddg[1] + strain_energy[1]
