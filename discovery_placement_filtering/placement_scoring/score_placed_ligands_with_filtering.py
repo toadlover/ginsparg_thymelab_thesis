@@ -309,7 +309,7 @@ for r,d,f in os.walk(location):
 						strain_energy = [average,average*score_weights["strain_energy"]]
 
 			#if STRAIN was not able to get an energy score, kill and continue
-			if strain_energy[0] == 100:
+			if strain_energy[0] == 100 and kill:
 				continue
 
 			#attempt autodock if able
@@ -341,7 +341,7 @@ for r,d,f in os.walk(location):
 						closest_autodock_recovery_ddg = [float(line.split(",")[4].strip()), float(line.split(",")[4].strip()) * score_weights["closest_autodock_recovery_ddg"]]
 
 			#if Autodock was not able to place, kill and continue
-			if closest_autodock_recovery_ddg[0] == 100:
+			if closest_autodock_recovery_rmsd[0] == 100 and kill:
 				continue
 
 			total[0] = ddg[0] + total_motifs[0] + significant_motifs[0] + real_motif_ratio[0] + closest_autodock_recovery_rmsd[0] + closest_autodock_recovery_ddg[0] + strain_energy[0]
