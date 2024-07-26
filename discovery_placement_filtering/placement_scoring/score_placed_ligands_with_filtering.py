@@ -83,7 +83,7 @@ parser.add_argument(
 #optional, program will not ignore placements if Autodock fails to place the ligand or if STRAIN can not derive an energy score
 parser.add_argument(
 	'-k', '--kill',
-	type=float,
+	type=bool,
 	required=False,
 	help='(Optional) Program will not ignore placements if Autodock fails to place the ligand or if STRAIN can not derive an energy score.'
 )
