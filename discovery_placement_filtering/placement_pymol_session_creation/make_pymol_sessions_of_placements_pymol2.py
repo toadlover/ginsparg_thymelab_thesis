@@ -102,6 +102,6 @@ with pymol2.PyMOL() as pymol:
     
     for obj in all_objects:
         if obj.endswith("_hbond") == False:
-        pymol.cmd.delete(obj)
+            pymol.cmd.delete(obj)
 
     pymol.cmd.save('hbonds_only_session.pse')
