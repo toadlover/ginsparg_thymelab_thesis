@@ -95,7 +95,7 @@ with pymol2.PyMOL() as pymol:
                 print(f"No hydrogen bonds found for {object_name}. Error: {e}")
 
             #merge attempt
-            pymol.cmd.create(f'{object_name}', f'{object_name} or {object_name}_hbonds')
+            pymol.cmd.create(f'{object_name}_merged', f'{object_name} or {object_name}_hbonds')
             pymol.cmd.delete(f'{object_name}')
             pymol.cmd.delete(f'{object_name}_hbonds')
 
