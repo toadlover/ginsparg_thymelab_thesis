@@ -78,7 +78,7 @@ with pymol2.PyMOL() as pymol:
             pymol.cmd.set('dash_color', 'green', f'{object_name}_hbonds')
             pymol.cmd.set('dash_width', 2.0)
             
-            """
+            
             # Trace hydrogen bonds
             try:
                 hbonds = pymol.cmd.get_model(f'{object_name}_hbonds')
@@ -94,7 +94,7 @@ with pymol2.PyMOL() as pymol:
                     print(f"No hydrogen bonds found for {object_name}")
             except Exception as e:
                 print(f"No hydrogen bonds found for {object_name}. Error: {e}")
-            """
+            
 
              # Print names of all active objects
             active_objects = pymol.cmd.get_names()
