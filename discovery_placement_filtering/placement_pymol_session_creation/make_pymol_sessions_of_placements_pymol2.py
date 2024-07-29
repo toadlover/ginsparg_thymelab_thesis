@@ -94,5 +94,11 @@ with pymol2.PyMOL() as pymol:
             except Exception as e:
                 print(f"No hydrogen bonds found for {object_name}. Error: {e}")
 
+            #merge attempt
+            pymol.cmd.create(f'{object_name}', f'{object_name} or {object_name}_hbonds')
+            pymol.cmd.delete(f'{object_name}')
+            pymol.cmd.delete(f'{object_name}_hbonds')
+
+
     # Save the session for all proteins
     pymol.cmd.save('all_proteins_session.pse')  # Save the PyMOL session
