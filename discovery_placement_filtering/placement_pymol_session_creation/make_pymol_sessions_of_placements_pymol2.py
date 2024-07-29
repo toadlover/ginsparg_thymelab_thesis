@@ -70,6 +70,7 @@ with pymol2.PyMOL() as pymol:
             pymol.cmd.color('cyan', 'elem F')
             pymol.cmd.color('brown', 'elem Br')
             pymol.cmd.color('purple', 'elem I')
+            pymol.cmd.color('yellow', 'elem S')
 
 
 
