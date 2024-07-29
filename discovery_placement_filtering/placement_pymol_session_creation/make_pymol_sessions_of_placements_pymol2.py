@@ -77,36 +77,10 @@ with pymol2.PyMOL() as pymol:
             pymol.cmd.dist(f'{object_name}_hbonds', f'{object_name} and {ligand_selection}', neighboring_residues, cutoff=3.5, mode=2)
             pymol.cmd.set('dash_color', 'green', f'{object_name}_hbonds')
             pymol.cmd.set('dash_width', 2.0)
-            
-            #Add the ligand residue to the hydrogen bond object
-            pymol.cmd.create(f'{object_name}_hbonds', f'{object_name}_hbonds or ({ligand_selection} and {object_name})')
-
-            """
-            # Trace hydrogen bonds
-            try:
-                hbonds = pymol.cmd.get_model(f'{object_name}_hbonds')
-                if hbonds.bonds:
-                    print(f"Hydrogen bonds for {object_name}:")
-                    for bond in hbonds.bonds:
-                        atom1, atom2 = bond.index
-                        resi1 = pymol.cmd.get_model(f'id {atom1}').atom[0].resi
-                        resi2 = pymol.cmd.get_model(f'id {atom2}').atom[0].resi
-                        distance = pymol.cmd.get_distance(f'id {atom1}', f'id {atom2}')
-                        print(f"  H-bond between residue {resi1} and residue {resi2}: {distance:.2f} Å")
-                else:
-                    print(f"No hydrogen bonds found for {object_name}")
-            except Exception as e:
-                print(f"No hydrogen bonds found for {object_name}. Error: {e}")
-            """
 
              # Print names of all active objects
             active_objects = pymol.cmd.get_names()
             print(f"Active objects in the session: {active_objects}")
-
-            #merge attempt
-            #pymol.cmd.create(f'{object_name}_merged', f'{object_name} or {object_name}_hbonds')
-            #pymol.cmd.delete(f'{object_name}')
-            #pymol.cmd.delete(f'{object_name}_hbonds')
 
             # Group the molecule and the hydrogen bond distance objects together
             pymol.cmd.group(f'{object_name}_group', f'{object_name} {object_name}_hbonds')
