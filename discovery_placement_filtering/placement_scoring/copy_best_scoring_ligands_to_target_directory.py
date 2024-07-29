@@ -1,5 +1,7 @@
 import os,sys
 
+# python /data/user/abgvg9/ginsparg_thymelab_thesis/discovery_placement_filtering/placement_scoring/copy_best_scoring_ligands_to_target_directory.py  /scratch/abgvg9/discovery_results/top_1000_placement/12M_raw_ddg_sorted.csv /scratch/abgvg9/discovery_results/top_1000_placement/agonist_12M_passing_placements/
+
 #first argument is the scores list csv that has the placed ligand files with a path leading to them (can include a path)
 scores_file = sys.argv[1]
 
