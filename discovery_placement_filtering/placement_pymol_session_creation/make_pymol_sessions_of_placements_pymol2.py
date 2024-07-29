@@ -33,6 +33,10 @@ ligand_selection = "resi " + str(ligand_residue)  # Adjust as necessary for your
 
 # Initialize PyMOL in headless mode
 with pymol2.PyMOL() as pymol:
+    
+    #set the internal gui width
+    pymol.cmd.set('internal_gui_width', 600)
+
     # Loop through each file in the directory
     for filename in os.listdir(directory):
         if filename.endswith('.pdb'):  # Ensure only PDB files are processed
