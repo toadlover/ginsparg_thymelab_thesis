@@ -43,6 +43,7 @@ with pymol2.PyMOL() as pymol:
             
             # Get the object name (assumed to be the filename without the extension)
             object_name = os.path.splitext(filename)[0]
+            print(object_name)
             
             # Color the entire protein
             pymol.cmd.color(protein_color, object_name)
