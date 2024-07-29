@@ -46,15 +46,18 @@ with pymol2.PyMOL() as pymol:
             
             # Color the entire protein
             pymol.cmd.color(protein_color, object_name)
+
             
             # Find and show residues within a certain distance of the ligand
             neighboring_residues = f'(byres {ligand_selection} around {distance_threshold}) and {object_name}'
             pymol.cmd.show('sticks', neighboring_residues)
-            pymol.cmd.color('yellow', neighboring_residues)
+            pymol.cmd.color('elem', neighboring_residues)
+            pymol.cmd.color('yellow', f'{neighboring_residues} and elem C')
 
             # Show the specific residues as sticks and color them
             pymol.cmd.show('sticks', f'{object_name} and resi {highlight_residues}')
-            pymol.cmd.color('red', f'{object_name} and resi {highlight_residues}')
+            pymol.cmd.color('elem', f'{object_name} and resi {highlight_residues}')
+            pymol.cmd.color('red', f'{object_name} and resi {highlight_residues} and elem C')
 
     # Save the session for all proteins
     pymol.cmd.save('all_proteins_session.pse')  # Save the PyMOL session
