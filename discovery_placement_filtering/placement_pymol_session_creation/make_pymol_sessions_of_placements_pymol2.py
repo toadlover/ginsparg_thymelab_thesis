@@ -29,7 +29,7 @@ protein_color = 'cyan'
 distance_threshold = 5.0
 
 # Define the selection around which to find neighboring residues (e.g., ligand)
-ligand_selection = 'ligand'  # Adjust as necessary for your files
+ligand_selection = ligand_residue  # Adjust as necessary for your files
 
 # Initialize PyMOL in headless mode
 with pymol2.PyMOL() as pymol:
