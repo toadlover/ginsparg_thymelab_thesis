@@ -78,6 +78,7 @@ with pymol2.PyMOL() as pymol:
             pymol.cmd.set('dash_color', 'green', f'{object_name}_hbonds')
             pymol.cmd.set('dash_width', 2.0)
             
+            """
             # Trace hydrogen bonds
             try:
                 hbonds = pymol.cmd.get_model(f'{object_name}_hbonds')
@@ -93,11 +94,16 @@ with pymol2.PyMOL() as pymol:
                     print(f"No hydrogen bonds found for {object_name}")
             except Exception as e:
                 print(f"No hydrogen bonds found for {object_name}. Error: {e}")
+            """
+
+             # Print names of all active objects
+            active_objects = pymol.cmd.get_names()
+            print(f"Active objects in the session: {active_objects}")
 
             #merge attempt
-            pymol.cmd.create(f'{object_name}_merged', f'{object_name} or {object_name}_hbonds')
-            pymol.cmd.delete(f'{object_name}')
-            pymol.cmd.delete(f'{object_name}_hbonds')
+            #pymol.cmd.create(f'{object_name}_merged', f'{object_name} or {object_name}_hbonds')
+            #pymol.cmd.delete(f'{object_name}')
+            #pymol.cmd.delete(f'{object_name}_hbonds')
 
 
     # Save the session for all proteins
