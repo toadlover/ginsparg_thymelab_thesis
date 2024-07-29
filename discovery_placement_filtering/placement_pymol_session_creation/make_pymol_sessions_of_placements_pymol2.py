@@ -57,7 +57,24 @@ with pymol2.PyMOL() as pymol:
             # Show the specific residues as sticks and color them
             pymol.cmd.show('sticks', f'{object_name} and resi {highlight_residues}')
             #pymol.cmd.color('elem', f'{object_name} and resi {highlight_residues}')
-            pymol.cmd.color('red', f'{object_name} and resi {highlight_residues} and elem C')
+            pymol.cmd.color('orange', f'{object_name} and resi {highlight_residues} and elem C')
+
+            #color the ligands magenta
+            pymol.cmd.color('white', f'{ligand_selection} and elem C')
+
+            #fixing element coloring:
+            pymol.cmd.color('white', 'elem H')
+            pymol.cmd.color('red', 'elem O')
+            pymol.cmd.color('blue', 'elem N')
+            pymol.cmd.color('green', 'elem Cl')
+            pymol.cmd.color('cyan', 'elem F')
+            pymol.cmd.color('brown', 'elem Br')
+            pymol.cmd.color('purple', 'elem I')
+
+
+
+
+
 
     # Save the session for all proteins
     pymol.cmd.save('all_proteins_session.pse')  # Save the PyMOL session
