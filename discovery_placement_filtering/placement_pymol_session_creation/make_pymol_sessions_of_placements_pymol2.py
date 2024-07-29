@@ -1,15 +1,12 @@
 #note, this script was initially written by ChatGPT to write most of the pymol logic, and further modified by me (Ari) to enhance use of inputs
 
 #usage:
-#python make_pymol_sessions_of_placements.py /path/to/placements/directory/ ligandresidueindex list+string+of+residue+indices
-#python make_pymol_sessions_of_placements.py /scratch/abgvg9/discovery_results/top_1000_placement/agonist_12M_passing_placements/0 282 227+86+253+63+257
+#python make_pymol_sessions_of_placements_pymol2.py /path/to/placements/directory/ ligandresidueindex list+string+of+residue+indices
+#python make_pymol_sessions_of_placements_pymol2.py /scratch/abgvg9/discovery_results/top_1000_placement/agonist_12M_passing_placements/0 282 227+86+253+63+257
 
 #this uses pymol2, which may be better
 import os,sys
 import pymol2
-
-# Initialize PyMOL
-pymol.finish_launching()
 
 # Define the directory containing your files as a command line argument
 #directory = 'path/to/your/files'
