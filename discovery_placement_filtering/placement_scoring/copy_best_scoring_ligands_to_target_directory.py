@@ -15,6 +15,8 @@ read_file = open(scores_file, "r")
 
 #break up the files into sections of up to 100 files by separating into directories so as to not overwhelm pymol if these files are converted into sessions
 sub_dir = 0
+#make directory
+os.system("mkdir " + destination_folder + str(sub_dir))
 
 file_counter = 0
 
@@ -32,6 +34,8 @@ for line in read_file.readlines():
 	#if the file counter is divisible by 100, incremend the sub_dir
 	if file_counter % 100 == 0:
 		sub_dir = sub_dir + 1
+		#make directory
+		os.system("mkdir " + destination_folder + str(sub_dir))
 
 	#otherwise, copy the file to the destination
 	os.system("cp " + placement_file + " " + destination_folder + str(sub_dir))
