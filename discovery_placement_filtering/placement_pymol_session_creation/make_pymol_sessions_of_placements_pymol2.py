@@ -73,14 +73,12 @@ with pymol2.PyMOL() as pymol:
             pymol.cmd.color('yellow', 'elem S')
 
             # Display hydrogen bonds
-            pymol.cmd.dist('hydrogen_bonds', ligand_selection, neighboring_residues, cutoff=3.5, mode=2)
-            pymol.cmd.set('dash_color', 'green', 'hydrogen_bonds')
+            pymol.cmd.dist('hbonds_temp', ligand_selection, neighboring_residues, cutoff=3.5, mode=2)
+            pymol.cmd.set('dash_color', 'green', 'hbonds_temp')
             pymol.cmd.set('dash_width', 2.0)
-
-
-
-
-
+            # Merge the hydrogen bonds into the protein-ligand object
+            pymol.cmd.create(f'{object_name}', f'{object_name} or hbonds_temp')
+            pymol.cmd.delete('hbonds_temp')
 
     # Save the session for all proteins
     pymol.cmd.save('all_proteins_session.pse')  # Save the PyMOL session
