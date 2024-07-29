@@ -80,7 +80,7 @@ with pymol2.PyMOL() as pymol:
             # Merge the hydrogen bonds into the protein-ligand object
             try:
                 pymol.cmd.create(f'{object_name}', f'{object_name} or hbonds_temp')
-            pymol.cmd.delete('hbonds_temp')
+                pymol.cmd.delete('hbonds_temp')
 
     # Save the session for all proteins
     pymol.cmd.save('all_proteins_session.pse')  # Save the PyMOL session
