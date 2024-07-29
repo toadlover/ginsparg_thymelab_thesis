@@ -108,6 +108,9 @@ with pymol2.PyMOL() as pymol:
             #pymol.cmd.delete(f'{object_name}')
             #pymol.cmd.delete(f'{object_name}_hbonds')
 
+            # Group the molecule and the hydrogen bond distance objects together
+            pymol.cmd.group(f'{object_name}_group', f'{object_name} {object_name}_hbonds')
+
 
     # Save the session for all proteins
     pymol.cmd.save('all_proteins_session.pse')  # Save the PyMOL session
