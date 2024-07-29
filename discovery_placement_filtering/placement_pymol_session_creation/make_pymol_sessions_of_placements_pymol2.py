@@ -79,14 +79,20 @@ with pymol2.PyMOL() as pymol:
             pymol.cmd.set('dash_width', 2.0)
             
             # Trace hydrogen bonds
-            print(f"Hydrogen bonds for {object_name}:")
-            hbonds = pymol.cmd.get_model(f'{object_name}_hbonds')
-            for bond in hbonds.bonds:
-                atom1, atom2 = bond.index
-                resi1 = pymol.cmd.get_model(f'id {atom1}').atom[0].resi
-                resi2 = pymol.cmd.get_model(f'id {atom2}').atom[0].resi
-                distance = pymol.cmd.get_distance(f'id {atom1}', f'id {atom2}')
-                print(f"  H-bond between residue {resi1} and residue {resi2}: {distance:.2f} Å")
+            try:
+                hbonds = pymol.cmd.get_model(f'{object_name}_hbonds')
+                if hbonds.bonds:
+                    print(f"Hydrogen bonds for {object_name}:")
+                    for bond in hbonds.bonds:
+                        atom1, atom2 = bond.index
+                        resi1 = pymol.cmd.get_model(f'id {atom1}').atom[0].resi
+                        resi2 = pymol.cmd.get_model(f'id {atom2}').atom[0].resi
+                        distance = pymol.cmd.get_distance(f'id {atom1}', f'id {atom2}')
+                        print(f"  H-bond between residue {resi1} and residue {resi2}: {distance:.2f} Å")
+                else:
+                    print(f"No hydrogen bonds found for {object_name}")
+            except Exception as e:
+                print(f"No hydrogen bonds found for {object_name}. Error: {e}")
 
     # Save the session for all proteins
     pymol.cmd.save('all_proteins_session.pse')  # Save the PyMOL session
