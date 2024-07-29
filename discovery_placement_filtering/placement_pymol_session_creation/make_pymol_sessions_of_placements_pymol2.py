@@ -74,7 +74,7 @@ with pymol2.PyMOL() as pymol:
             pymol.cmd.color('yellow', 'elem S')
 
             # Display hydrogen bonds
-            pymol.cmd.dist(f'{object_name}_hbonds', ligand_selection, neighboring_residues, cutoff=3.5, mode=2)
+            pymol.cmd.dist(f'{object_name}_hbonds', f'{object_name} and {ligand_selection}', neighboring_residues, cutoff=3.5, mode=2)
             pymol.cmd.set('dash_color', 'green', f'{object_name}_hbonds')
             pymol.cmd.set('dash_width', 2.0)
             
