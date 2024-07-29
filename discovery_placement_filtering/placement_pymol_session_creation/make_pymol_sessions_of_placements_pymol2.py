@@ -99,6 +99,7 @@ with pymol2.PyMOL() as pymol:
 
     # Create a selection for hydrogen bond objects
     all_objects = [obj for obj in pymol.cmd.get_names()]
+    print(all_objects)
     
     for obj in all_objects:
         if obj.endswith("_hbond") == False:
