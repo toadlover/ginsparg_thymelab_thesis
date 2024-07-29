@@ -97,6 +97,13 @@ with pymol2.PyMOL() as pymol:
     # Save the session for all proteins
     pymol.cmd.save('all_proteins_session.pse')  # Save the PyMOL session
 
+    # Save a new session containing only hydrogen bond objects
+    # Create a new session file for hydrogen bonds
+    pymol.cmd.delete('all')  # Remove all objects from the current session
+    
+    # Reload the original session
+    pymol.cmd.load('all_proteins_session.pse')
+
     # Create a selection for hydrogen bond objects
     all_objects = [obj for obj in pymol.cmd.get_names()]
     print(all_objects)
