@@ -74,14 +74,13 @@ with pymol2.PyMOL() as pymol:
             pymol.cmd.color('yellow', 'elem S')
 
             # Display hydrogen bonds
-            #pymol.cmd.dist(f'{object_name}_hbonds', f'{object_name} and {ligand_selection}', neighboring_residues, cutoff=3.5, mode=2)
-            #pymol.cmd.set('dash_color', 'green', f'{object_name}_hbonds')
-            #pymol.cmd.set('dash_width', 2.0)
-
-            pymol.cmd.dist(f'{object_name}', f'{object_name} and {ligand_selection}', neighboring_residues, cutoff=3.5, mode=2)
-            pymol.cmd.set('dash_color', 'green', f'{object_name}')
+            pymol.cmd.dist(f'{object_name}_hbonds', f'{object_name} and {ligand_selection}', neighboring_residues, cutoff=3.5, mode=2)
+            pymol.cmd.set('dash_color', 'green', f'{object_name}_hbonds')
             pymol.cmd.set('dash_width', 2.0)
             
+            #Add the ligand residue to the hydrogen bond object
+            pymol.cmd.create(f'{object_name}_hbonds', f'{object_name}_hbonds or ({ligand_selection} and {object_name})')
+
             """
             # Trace hydrogen bonds
             try:
