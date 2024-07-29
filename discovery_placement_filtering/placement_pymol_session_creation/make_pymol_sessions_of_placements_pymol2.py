@@ -74,13 +74,19 @@ with pymol2.PyMOL() as pymol:
             pymol.cmd.color('yellow', 'elem S')
 
             # Display hydrogen bonds
-            pymol.cmd.dist('hbonds_temp', ligand_selection, neighboring_residues, cutoff=3.5, mode=2)
-            pymol.cmd.set('dash_color', 'green', 'hbonds_temp')
+            pymol.cmd.dist(f'{object_name}_hbonds', ligand_selection, neighboring_residues, cutoff=3.5, mode=2)
+            pymol.cmd.set('dash_color', 'green', f'{object_name}_hbonds')
             pymol.cmd.set('dash_width', 2.0)
-            # Merge the hydrogen bonds into the protein-ligand object
-            try:
-                pymol.cmd.create(f'{object_name}', f'{object_name} or hbonds_temp')
-                pymol.cmd.delete('hbonds_temp')
+            
+            # Trace hydrogen bonds
+            print(f"Hydrogen bonds for {object_name}:")
+            hbonds = pymol.cmd.get_model(f'{object_name}_hbonds')
+            for bond in hbonds.bonds:
+                atom1, atom2 = bond.index
+                resi1 = pymol.cmd.get_model(f'id {atom1}').atom[0].resi
+                resi2 = pymol.cmd.get_model(f'id {atom2}').atom[0].resi
+                distance = pymol.cmd.get_distance(f'id {atom1}', f'id {atom2}')
+                print(f"  H-bond between residue {resi1} and residue {resi2}: {distance:.2f} Å")
 
     # Save the session for all proteins
     pymol.cmd.save('all_proteins_session.pse')  # Save the PyMOL session
