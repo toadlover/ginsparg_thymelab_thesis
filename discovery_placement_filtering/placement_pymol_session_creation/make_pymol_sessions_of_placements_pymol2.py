@@ -83,8 +83,8 @@ with pymol2.PyMOL() as pymol:
             #print(f"Active objects in the session: {active_objects}")
 
             #attempt to count the number of measurements om the hydrogen bond distance object
-            distance = pymol.cmd.get_distance(f'{object_name}_hbonds')
-            print(distance)
+            #distance = pymol.cmd.get_distance(f'{object_name}_hbonds')
+            #print(distance)
 
             # Group the molecule and the hydrogen bond distance objects together
             pymol.cmd.group(f'{object_name}_group', f'{object_name} {object_name}_hbonds')
