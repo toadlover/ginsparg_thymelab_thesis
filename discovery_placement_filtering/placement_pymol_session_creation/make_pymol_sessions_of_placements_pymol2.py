@@ -84,6 +84,8 @@ with pymol2.PyMOL() as pymol:
             #pymol.cmd.set('dash_color', 'green', f'{object_name}_hbonds')
             pymol.cmd.set('dash_width', 2.0)
 
+            print(f'{object_name}_hbonds')
+
              # Print names of all active objects
             active_objects = pymol.cmd.get_names()
             #print(f"Active objects in the session: {active_objects}")
@@ -99,7 +101,7 @@ with pymol2.PyMOL() as pymol:
     # Save the session for all proteins
     pymol.cmd.save('all_proteins_session.pse')  # Save the PyMOL session
 
-"""
+
 # Initialize PyMOL in headless mode for hbonds only
 with pymol2.PyMOL() as pymol:
     
@@ -168,5 +170,5 @@ with pymol2.PyMOL() as pymol:
 
 
     # Save the session for all proteins
-    pymol.cmd.save('all_proteins_session.pse')  # Save the PyMOL session
-    """
+    pymol.cmd.save('hbonds_only_session.pse')  # Save the PyMOL session
+    
