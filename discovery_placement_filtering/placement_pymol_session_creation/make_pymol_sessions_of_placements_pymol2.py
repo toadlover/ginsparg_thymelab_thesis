@@ -80,17 +80,10 @@ with pymol2.PyMOL() as pymol:
             # Display hydrogen bonds
             pymol.cmd.dist(f'{object_name}_hbonds', f'{object_name} and {ligand_selection}', neighboring_residues, cutoff=3.5, mode=2)
             pymol.cmd.set('dash_color', 'yellow', f'{object_name}_hbonds')
-            #pymol.cmd.dist(f'{object_name}_hbonds', f'{object_name} and {ligand_selection}', f'resi {highlight_residues}', cutoff=3.5, mode=2)
-            #pymol.cmd.set('dash_color', 'green', f'{object_name}_hbonds')
+            pymol.cmd.dist(f'{object_name}_hbonds', f'{object_name} and {ligand_selection}', f'resi {highlight_residues}', cutoff=3.5, mode=2)
+            pymol.cmd.set('dash_color', 'green', f'{object_name}_hbonds')
             pymol.cmd.set('dash_width', 2.0)
 
-            # Count the number of measurements (bonds) in the hydrogen bond object
-            try:
-                count = 0
-                pymol.cmd.iterate_state(1, f'{object_name}_hbonds', 'count += 1', space={'count': count})
-                print(f"Number of measurements (bonds) in {object_name}_hbonds: {count}")
-            except Exception as e:
-                print(f"Error counting bonds for {object_name}. Error: {e}")
 
              # Print names of all active objects
             active_objects = pymol.cmd.get_names()
