@@ -80,8 +80,8 @@ with pymol2.PyMOL() as pymol:
             # Display hydrogen bonds
             pymol.cmd.dist(f'{object_name}_hbonds', f'{object_name} and {ligand_selection}', neighboring_residues, cutoff=3.5, mode=2)
             pymol.cmd.set('dash_color', 'yellow', f'{object_name}_hbonds')
-            pymol.cmd.dist(f'{object_name}_hbonds', f'{object_name} and {ligand_selection}', f'resi {highlight_residues}', cutoff=3.5, mode=2)
-            pymol.cmd.set('dash_color', 'green', f'{object_name}_hbonds')
+            #pymol.cmd.dist(f'{object_name}_hbonds', f'{object_name} and {ligand_selection}', f'resi {highlight_residues}', cutoff=3.5, mode=2)
+            #pymol.cmd.set('dash_color', 'green', f'{object_name}_hbonds')
             pymol.cmd.set('dash_width', 2.0)
 
              # Print names of all active objects
@@ -99,7 +99,7 @@ with pymol2.PyMOL() as pymol:
     # Save the session for all proteins
     pymol.cmd.save('all_proteins_session.pse')  # Save the PyMOL session
 
-
+"""
 # Initialize PyMOL in headless mode for hbonds only
 with pymol2.PyMOL() as pymol:
     
@@ -169,3 +169,4 @@ with pymol2.PyMOL() as pymol:
 
     # Save the session for all proteins
     pymol.cmd.save('all_proteins_session.pse')  # Save the PyMOL session
+    """
