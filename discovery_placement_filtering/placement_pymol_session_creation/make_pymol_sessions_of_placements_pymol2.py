@@ -62,7 +62,7 @@ with pymol2.PyMOL() as pymol:
     pymol.cmd.set('internal_gui_width', 600)
 
     # Set the sphere scale to 0.25 for visualizing motifs
-    pymol.cmd.set('sphere_scale', 0.25)
+    pymol.cmd.set('sphere_scale', 0.5)
 
     # Loop through each file in the directory
     for filename in os.listdir(directory):
@@ -142,6 +142,7 @@ with pymol2.PyMOL() as pymol:
 
                 #show spheres for all motifs and then color the real motifs
                 pymol.cmd.show('spheres', f'{object_name} and {all_motifs_string}')
+                pymol.cmd.color('brown', f'{object_name} and {all_motifs_string} and elem C')
                 pymol.cmd.color('magenta', f'{object_name} and {real_motifs_string} and elem C')
 
             #color the ligands white
