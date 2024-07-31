@@ -22,6 +22,30 @@ ligand_residue = sys.argv[2]
 # Define the specific residues you want to highlight (e.g., 86, 227, 342)
 highlight_residues = sys.argv[3]
 
+#define the path to an optional residue index key csv file
+use_key = False
+
+#blank dictionary to hold residue index keys
+#this is needed because at the very least, the indexing of residues on motifs collected off of 7l1u (agonists collection) do not match the index of the residue in the produce pdb
+#this key helps to translate these mismatched residues (with the help of pdb 4s0v in this case)
+#translation was performed by hand before running this script
+#line structure is: res_type,original_index,translated_index,difference_in_index (optional)
+#mostly concerned with the original and translated indices, but the other 2 can be helpful when translating 
+residue_index_dict = {}
+if len(sys.argv) == 5:
+    use_key = True
+    #get the key file and read it
+    key_file = open(sys.argv[4],"r")
+
+    for line in key_file.readlines():
+        #skip the first line, starts with res_type
+        if line.startswith("res_type"):
+            continue
+
+        #seed the dictionary with the original and translated indices
+        residue_index_dict[line.split(",")[1]] = line.split(",")[2]
+
+
 # Define the color for the entire protein
 protein_color = 'cyan'
 
@@ -37,6 +61,9 @@ with pymol2.PyMOL() as pymol:
     #set the internal gui width
     pymol.cmd.set('internal_gui_width', 600)
 
+    # Set the sphere scale to 0.25 for visualizing motifs
+    pymol.cmd.set('sphere_scale', 0.25)
+
     # Loop through each file in the directory
     for filename in os.listdir(directory):
         if filename.endswith('.pdb'):  # Ensure only PDB files are processed
@@ -48,7 +75,9 @@ with pymol2.PyMOL() as pymol:
             # Get the object name (assumed to be the filename without the extension)
             object_name = os.path.splitext(filename)[0]
             print(object_name)
-            
+
+            #read the file for real motif data and determine which motifs are real and which are not and get their indices
+
             # Color the entire protein
             pymol.cmd.color(protein_color, object_name)
 
@@ -64,7 +93,58 @@ with pymol2.PyMOL() as pymol:
             #pymol.cmd.color('elem', f'{object_name} and resi {highlight_residues}')
             pymol.cmd.color('orange', f'{object_name} and resi {highlight_residues} and elem C')
 
-            #color the ligands magenta
+            #only do this if we should use the key
+            if use_key:
+                
+                #list to hold all motif indices
+                all_motifs = []
+
+                #list to hold real motif indices
+                real_motifs = []
+
+                #read the pdb file and get the real motif data
+                #make spheres for where all motifs are
+                #determine which motifs are considered real and color them magenta
+                pdb_file = open(filepath,"r")
+                for line in pdb_file.readlines():
+                    #real motif data lines
+                    if "Real motif check" in line:
+                            #determine if motif is real based on if "No real match" is in the line
+                            is_real = True
+                            if "No real match" in line:
+                                is_real = False
+
+                            #determine the index of the residue and translate it to add to the motif list(s)
+                            index = line.split("Hbond_score")[1].split("_")[1][3:]
+
+                            #translate the index
+                            translated_index = residue_index_dict[index]
+
+                            all_motifs.append(translated_index)
+
+                            if is_real:
+                                real_motifs.append(translated_index)
+
+                #once done getting all motifs, make spheres on the residues in all_motifs, and then color the real motifs residues magenta
+                #make selection strings for use with pymol
+                all_motifs_string = "resi "
+                for motif in all_motifs:
+                     all_motifs_string = all_motifs_string + motif + "+"
+
+                #remove + at end
+                all_motifs_string = all_motifs_string[:-1]
+
+                #repeat for real
+                real_motifs_string = "resi "
+                for motif in real_motifs:
+                    real_motifs_string = real_motifs_string + motif + "+"
+                real_motifs_string = real_motifs_string[:-1]
+
+                #show spheres for all motifs and then color the real motifs
+                pymol.cmd.show('spheres', f'{object_name} and {all_motifs_string}')
+                pymol.cmd.color('magenta', f'{object_name} and {real_motifs} and elem C')
+
+            #color the ligands white
             pymol.cmd.color('white', f'{ligand_selection} and elem C')
 
             #fixing element coloring:
@@ -76,6 +156,8 @@ with pymol2.PyMOL() as pymol:
             pymol.cmd.color('brown', 'elem Br')
             pymol.cmd.color('purple', 'elem I')
             pymol.cmd.color('yellow', 'elem S')
+
+            #
 
             # Display hydrogen bonds
             pymol.cmd.dist(f'{object_name}_hbonds', f'{object_name} and {ligand_selection}', neighboring_residues, cutoff=3.5, mode=2)
