@@ -142,7 +142,7 @@ with pymol2.PyMOL() as pymol:
 
                 #show spheres for all motifs and then color the real motifs
                 pymol.cmd.show('spheres', f'{object_name} and {all_motifs_string}')
-                pymol.cmd.color('magenta', f'{object_name} and {real_motifs} and elem C')
+                pymol.cmd.color('magenta', f'{object_name} and {real_motifs_string} and elem C')
 
             #color the ligands white
             pymol.cmd.color('white', f'{ligand_selection} and elem C')
