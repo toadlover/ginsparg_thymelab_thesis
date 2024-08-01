@@ -27,7 +27,7 @@ parser.add_argument(
 	'-a', '--autodock_script_path',
 	type=str,
 	required=False,
-	help='(Optional) Full path to the location where the run_autodock_on_placed_ligands.py script is located for attempting to recover Rosetta placements with AutoDock Vina. Recovery will not be attempted if this flag is not used or if the path to the AutoDock Vina Executable (-v, --vpath) is not used. This is designed and tested on Linux using AutoDock Vina version 1.1.2, and may not work on other platforms.'
+	help='(Optional) Full path to the location where the run_autodock_on_placed_ligands.py script is located for attempting to recover Rosetta placements with AutoDock Vina. Recovery will not be attempted if this flag is not used or if the path to the AutoDock Vina Executable (-v, --autodock_vina_path) is not used. This is designed and tested on Linux using AutoDock Vina version 1.1.2, and may not work on other platforms.'
 )
 
 # Add the AutoDock Vina executable path argument
@@ -37,7 +37,7 @@ parser.add_argument(
 	'-v', '--autodock_vina_path',
 	type=str,
 	required=False,
-	help='(Optional) Full path to the location where the AutoDock Vina "vina" executable is located for attempting to recover Rosetta placements with AutoDock Vina. Recovery will not be attempted if this flag is not used or if the path to the AutoDock Vina automation script run_autodock_on_placed_ligands.py (-a, --apath) is not used. This is designed and tested on Linux using AutoDock Vina version 1.1.2, and may not work on other platforms or versions.'
+	help='(Optional) Full path to the location where the AutoDock Vina "vina" executable is located for attempting to recover Rosetta placements with AutoDock Vina. Recovery will not be attempted if this flag is not used or if the path to the AutoDock Vina automation script run_autodock_on_placed_ligands.py (-a, --autodock_script_path) is not used. This is designed and tested on Linux using AutoDock Vina version 1.1.2, and may not work on other platforms or versions.'
 )
 
 # Add the tldr STRAIN executable path argument
@@ -47,7 +47,7 @@ parser.add_argument(
 	'-r', '--torsion_script_path',
 	type=str,
 	required=False,
-	help='(Optional) Full path to the location where the run_torsion_check_on_placed_ligands.py script is located for evaluating conformer strain energies. Will not be attempted if this flag is not used or if the path to the tldr strain automation script run_autodock_on_placed_ligands.py (-t, --tpath) is not used. This is designed and tested on Linux, and may not work on other platforms. The script requires a python or conda environment to have openbabel (obabel) to be installed.'
+	help='(Optional) Full path to the location where the run_torsion_check_on_placed_ligands.py script is located for evaluating conformer strain energies. Will not be attempted if this flag is not used or if the path to the tldr strain automation script run_autodock_on_placed_ligands.py (-t, --torsion_script_path) is not used. This is designed and tested on Linux, and may not work on other platforms. The script requires a python or conda environment to have openbabel (obabel) to be installed.'
 )
 
 # Add the tldr STRAIN executable path argument
@@ -57,7 +57,7 @@ parser.add_argument(
 	'-t', '--torsion_strain_path',
 	type=str,
 	required=False,
-	help='(Optional) Full path to the location where the tldr strain Torsion_Strain.py script is located for evaluating conformer strain energies. Will not be attempted if this flag is not used or if the path to the tldr strain automation script run_autodock_on_placed_ligands.py (-r, --rpath) is not used. This is designed and tested on Linux, and may not work on other platforms. The script requires a python or conda environment to have rdkit to be installed.'
+	help='(Optional) Full path to the location where the tldr strain Torsion_Strain.py script is located for evaluating conformer strain energies. Will not be attempted if this flag is not used or if the path to the tldr strain automation script run_autodock_on_placed_ligands.py (-r, --torsion_strain_path) is not used. This is designed and tested on Linux, and may not work on other platforms. The script requires a python or conda environment to have rdkit to be installed.'
 )
 
 # Add the score_weights file path argument
@@ -151,8 +151,8 @@ location = os.getcwd()
 
 #set up working path if -w or --wpath was used
 #if 'w' in vars(args) or 'wpath' in vars(args):
-if args.wpath != None:
-	working_path = args.wpath
+if args.working_location != None:
+	working_path = args.working_location
 
 	#remove backslash from end of working path if it is there
 	if working_path.endswith("/") == True:
@@ -169,16 +169,16 @@ autodock_automate_path = ""
 #default true, set to false if either relevant flag is not used
 attempt_autodock = True
 #autodock automate path
-#if 'v' in vars(args) or 'vpath' in vars(args):
-if args.vpath != None:
-	autodock_exec_path = args.vpath
+#if 'v' in vars(args) or 'autodock_vina_path' in vars(args):
+if args.autodock_vina_path != None:
+	autodock_exec_path = args.autodock_vina_path
 else:
 	attempt_autodock = False
 
 #autodock automate path
-#if 'a' in vars(args) or 'apath' in vars(args):
-if args.apath != None:
-	autodock_automate_path = args.apath
+#if 'a' in vars(args) or 'autodock_script_path' in vars(args):
+if args.autodock_script_path != None:
+	autodock_automate_path = args.autodock_script_path
 	#print(autodock_automate_path)
 	#add backslash to end of path if there is not one
 	if autodock_automate_path.endswith("/") == False:
@@ -187,8 +187,8 @@ if args.apath != None:
 else:
 	attempt_autodock = False
 
-#print('-v' in vars(args), '--vpath' in vars(args), '-v' in vars(args) or '--vpath' in vars(args), '-a' in vars(args), '--apath' in vars(args), '-a' in vars(args) or '--apath' in vars(args))
-#print('v' in vars(args), 'vpath' in vars(args), 'v' in vars(args) or 'vpath' in vars(args), 'a' in vars(args), 'apath' in vars(args), 'a' in vars(args) or 'apath' in vars(args))
+#print('-v' in vars(args), '--autodock_vina_path' in vars(args), '-v' in vars(args) or '--autodock_vina_path' in vars(args), '-a' in vars(args), '--autodock_script_path' in vars(args), '-a' in vars(args) or '--autodock_script_path' in vars(args))
+#print('v' in vars(args), 'autodock_vina_path' in vars(args), 'v' in vars(args) or 'autodock_vina_path' in vars(args), 'a' in vars(args), 'autodock_script_path' in vars(args), 'a' in vars(args) or 'autodock_script_path' in vars(args))
 
 #determine whether to use tldr strain and set up variables
 strain_exec_path = ""
@@ -196,9 +196,9 @@ strain_automate_path = ""
 #default true, set to false if either relevant flag is not used
 attempt_strain = True
 #strain torsion path
-#if 't' in vars(args) or 'tpath' in vars(args):
-if args.tpath != None:
-	strain_exec_path = args.tpath
+#if 't' in vars(args) or 'torsion_script_path' in vars(args):
+if args.torsion_script_path != None:
+	strain_exec_path = args.torsion_script_path
 
 	#add backslash to end of path if there is not one
 	if strain_exec_path.endswith("/") == False:
@@ -207,9 +207,9 @@ else:
 	attempt_strain = False
 
 #strain automate path
-#if 'r' in vars(args) or 'rpath' in vars(args):
-if args.rpath != None:
-	strain_automate_path = args.apath
+#if 'r' in vars(args) or 'torsion_strain_path' in vars(args):
+if args.torsion_strain_path != None:
+	strain_automate_path = args.autodock_script_path
 
 	#add backslash to end of path if there is not one
 	if strain_automate_path.endswith("/") == False:
