@@ -293,7 +293,7 @@ if args.get_motif_hbond_energies != None:
 #have an empty list, and fille the list if the option was used. the program won't do anything with the lsit if it is empty
 mandatory_motifs_list = []
 if args.mandatory_motif_residues != None:
-	mandatory_motifs_list = args.mandatory_motif_residues.split[","]
+	mandatory_motifs_list = args.mandatory_motif_residues.split(",")
 
 #get the maximum closest autodock recovery rmsd
 #set as high value of 100
