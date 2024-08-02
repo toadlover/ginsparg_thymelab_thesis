@@ -411,7 +411,7 @@ for r,d,f in os.walk(location):
 			if mandatory_motifs_list != []:
 				for res_id in mandatory_motifs_list:
 					if res_id not in found_motif_residues:
-						all_mandatory_residues_found == False
+						all_mandatory_residues_found = False
 
 			#if not all mandatory residues have been found, continue and skip this ligand placement
 			if all_mandatory_residues_found == False:
