@@ -31,7 +31,7 @@ for i in range(0,max_dir_num + 1):
 
 	#copy the created sessions to the central location
 	os.system("cp hbonds_only_session.pse " + working_dir + "/placement_pymol_sessions/" + str(i) + "_hbonds_only_session.pse")
-	os.system("cp all_proteins_session.pse " + working_dir + "../placement_pymol_sessions/" + str(i) + "_all_proteins_session.pse")
+	os.system("cp all_proteins_session.pse " + working_dir + "/placement_pymol_sessions/" + str(i) + "_all_proteins_session.pse")
 
 	#go up a level
 	os.chdir("..")
