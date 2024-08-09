@@ -15,6 +15,9 @@ for r,d,f in os.walk(working_location):
 	for file in f:
 		if file.endswith(".sdf") and r == working_location:
 			
+			#tracer
+			print(file)
+
 			#break up the file name to remove extension
 			file_prefix = file.split(".")[0]
 
