@@ -42,4 +42,4 @@ for r,d,f in os.walk(working_location):
 					write_file.close()
 
 					#write the temp over the original
-					os.system("mv " r2 + "/temp.sdf " + r2 + "/" + single_file)
+					os.system("mv " + r2 + "/temp.sdf " + r2 + "/" + single_file)
