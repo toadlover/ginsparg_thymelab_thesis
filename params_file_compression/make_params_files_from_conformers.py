@@ -53,3 +53,5 @@ for r,d,f in os.walk(working_location):
 
 			#close the write stream
 			res_types_file.close()
+
+			os.chdir("..")
