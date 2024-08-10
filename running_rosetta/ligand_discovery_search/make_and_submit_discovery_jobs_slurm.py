@@ -31,7 +31,7 @@ for r,d,f in os.walk(working_location):
 			os.system("cp " + args_file + " " + dire + "_args")
 
 			#append the path to test params to the args file
-			os.system("echo \"-params_directory_path " + r + "/" + dire + "/test_params/\" >> " + )
+			os.system("echo \"-params_directory_path " + r + "/" + dire + "/test_params/\" >> " + dire + "_args")
 
 			#make a slurm job file to run rosetta and then submit
 			#make medium partition for 3000 minutes to be safe
