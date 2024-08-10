@@ -43,7 +43,7 @@ for r,d,f in os.walk(working_location):
 						os.system("python " + molfile_to_params_path + " " + file + " -n " + file.split(".")[0] + " --keep-names --long-names --clobber --no-pdb")
 
 						#write the file to the residue_types file
-						res_types_file.write(file + "\n")
+						res_types_file.write(file.split(".")[0] + ".params\n")
 
 						#move the file to test_params
 						os.system("mv " + file.split(".")[0] + ".params test_params")
