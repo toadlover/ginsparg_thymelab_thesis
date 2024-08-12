@@ -80,5 +80,8 @@ for r,d,f in os.walk(working_location):
 							squeue_length = squeue_length + char
 				squeue_length = int(squeue_length)
 				squeue_length_file.close()
+
+			#clean up the slurm queue length file
+			os.system("squeue_file.txt")
 			#move back up at end
 			os.chdir("..")
