@@ -3,10 +3,10 @@
 #to run this program, the user needs the working location, the args template file, and the path to the rosetta build
 #This script uses slurm to run all discovery jobs in parallel
 
-import os,sys
+import os,sys,getpass
 
 #getthe username for use with slurm queue accession
-username = os.getlogin()
+username = getpass.getuser()
 
 #get the directory to work in
 working_location = sys.argv[1]
