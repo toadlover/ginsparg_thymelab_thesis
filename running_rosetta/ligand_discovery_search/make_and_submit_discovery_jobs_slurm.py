@@ -5,6 +5,9 @@
 
 import os,sys
 
+#getthe username for use with slurm queue accession
+username = os.getlogin()
+
 #get the directory to work in
 working_location = sys.argv[1]
 
@@ -52,5 +55,30 @@ for r,d,f in os.walk(working_location):
 			os.system("sleep 1")
 			os.system("sbatch discover.job")
 
+			#check the slurm queue and make sure that the slurm queue is not over 400 jobs (to avoid flooding the queue)
+			os.system("squeue -A " + username + " | wc -l  > squeue_file.txt")
+			squeue_length_file = open("squeue_file.txt", 'r')
+			squeue_length = ""
+			for line in squeue_length_file.readlines():
+				#rebuild squeue_length to ensure it is only numbers
+				for char in line:
+					if char.isnumeric():
+						squeue_length = squeue_length + char
+			squeue_length = int(squeue_length)
+
+			squeue_length_file.close()
+
+			#continually probe for squeue length, and keep cycling until queue dips below 400
+			while(squeue_length > 400):
+				os.system("squeue -A " + username + " | wc -l  > squeue_file.txt")
+				squeue_length_file = open("squeue_file.txt", 'r')
+				squeue_length = ""
+				for line in squeue_length_file.readlines():
+					#rebuild squeue_length to ensure it is only numbers
+					for char in line:
+						if char.isnumeric():
+							squeue_length = squeue_length + char
+				squeue_length = int(squeue_length)
+				squeue_length_file.close()
 			#move back up at end
 			os.chdir("..")
