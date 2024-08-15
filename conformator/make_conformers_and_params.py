@@ -8,7 +8,7 @@ license_key = sys.argv[2]
 
 #split name to remove extension
 #if there is a path, remove that too to work in the current location
-starting_file_no_ext = starting_file.split("/")[len(split("/")) - 1].split(".")[0]
+starting_file_no_ext = starting_file.split("/")[len(starting_file.split("/")) - 1].split(".")[0]
 
 #make a directory to perform all operations in and then move into it
 os.system("mkdir " + starting_file_no_ext)
