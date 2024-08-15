@@ -13,7 +13,7 @@ RUN apt-get install -y zlib1g-dev
 
 #install Rosetta from github
 #Anyone else using this needs to use their own login and token
-RUN git clone https://toadlover:[My personal access token]@github.com/RosettaCommons/rosetta.git
+RUN git clone https://github.com/RosettaCommons/rosetta.git
 
 #move to src to source to install
 WORKDIR rosetta/source
