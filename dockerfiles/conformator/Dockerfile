@@ -25,7 +25,8 @@ WORKDIR /conformator_for_container/conformator_1.2.1
 
 #activate conformator with license key 
 #register for conformator here: https://software.zbh.uni-hamburg.de/
-RUN ./conformator --license {conformator license key}
+#license activation is not necessary to use now, better to use in later steps
+#RUN ./conformator --license {conformator license key}
 
 #get wget to get anaconda
 RUN apt-get install wget
