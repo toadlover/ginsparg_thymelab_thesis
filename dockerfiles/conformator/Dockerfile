@@ -12,7 +12,7 @@ RUN apt-get install -y zlib1g-dev
 #get copy of conformator from conformator_for_container repo
 #this is a personal private repository, and anyone trying to use this should use other means to get their copy of conformator into the container
 #this repository also contains Rosetta python packages to use the molfile_to_params.py script to generate params files
-RUN git clone https://toadlover:{my personal access token}@github.com/toadlover/conformator_for_container.git
+RUN git clone https://github.com/toadlover/conformator_for_container.git
 
 #move into conformator_for_container repo
 WORKDIR /conformator_for_container
@@ -25,7 +25,8 @@ WORKDIR /conformator_for_container/conformator_1.2.1
 
 #activate conformator with license key 
 #register for conformator here: https://software.zbh.uni-hamburg.de/
-RUN ./conformator --license {conformator license key}
+#license activation is not necessary to use now, better to use in later steps
+#RUN ./conformator --license {conformator license key}
 
 #get wget to get anaconda
 RUN apt-get install wget
