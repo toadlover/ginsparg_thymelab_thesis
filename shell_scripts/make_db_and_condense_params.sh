@@ -30,6 +30,9 @@ tar -xzf $1
 #move into the directory
 cd $dirname
 
+pwd
+ls
+
 #delete the single sdf file folder (we don't need it)
 rm -drf single_conf_sdfs
 
