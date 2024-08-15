@@ -7,33 +7,31 @@
 # Save the current working directory
 
 original_dir=$(pwd)
-pwd
+
 # Get the directory where the script is located
 script_dir=$(dirname "$(realpath "$0")")
 
 # Change to the script's directory
 cd "$script_dir"
-pwd
+
 # Find the root of the GitHub repository
 repo_root=$(git rev-parse --show-toplevel)
 
 # Return to the original directory
 cd "$original_dir"
-pwd
+
 
 # Now `repo_root` holds the path to the root of the GitHub repository
 echo "The root of the GitHub repository is: $repo_root"
 
 #derive the base directory name without the .tar.gz
-dirname=$(basename "$tarfile" .tar.gz)
+dirname=$(basename "$1" .tar.gz)
 echo $dirname
 #untar the ligand confs directory that contains the conformers in sdf and params format, as well as the text file list containing the name of every conformer (lig name + conformer id number) to be used for searching
 tar -xzf $1
 #move into the directory
-cd $dirname
+cd "$dirname"
 
-pwd
-ls
 
 #delete the single sdf file folder (we don't need it)
 rm -drf single_conf_sdfs
