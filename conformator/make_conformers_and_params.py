@@ -12,14 +12,14 @@ starting_file_no_ext = starting_file.split("/")[len(starting_file.split("/")) - 
 
 #make a directory to perform all operations in and then move into it
 os.system("mkdir " + starting_file_no_ext)
-os.system("mv " + starting_file + " " + starting_file_no_ext)
+os.system("cp " + starting_file + " " + starting_file_no_ext)
 os.chdir(starting_file_no_ext)
 
 #activate conformator
 os.system("/conformator_for_container/conformator_1.2.1/conformator --license " + license_key)
 
 #run conformator on the starting file
-os.system("/conformator_for_container/conformator_1.2.1/conformator -i " + starting_file + " -o confs.sdf --keep3d --hydrogens -n 15 -v 0")
+os.system("/conformator_for_container/conformator_1.2.1/conformator -i " + starting_file_no_ext + ".sdf -o confs.sdf --keep3d --hydrogens -n 15 -v 0")
 
 #use babel to break the confs.sdf file into individual sdf files; also apply unique names to the ligand name (per conformer)
 os.system("babel confs.sdf individual_conf.sdf -m")
