@@ -1,0 +1,13 @@
+script order:
+
+#Make conformers and Rosetta params of ligands
+make_conformers_and_params.sh
+
+#Make ShapeDB database and condense Rosetta params files
+make_db_and_condense_params.sh
+
+#Run ShapeDB NNSearch on databases against target shape and get scores
+nnsearch.sh
+
+#Run Rosetta discovery algorithm on ligands against target protein
+discovery.sh
