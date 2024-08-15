@@ -26,7 +26,7 @@ echo "The root of the GitHub repository is: $repo_root"
 
 #derive the base directory name without the .tar.gz
 dirname=$(basename "$tarfile" .tar.gz)
-
+echo $dirname
 #untar the ligand confs directory that contains the conformers in sdf and params format, as well as the text file list containing the name of every conformer (lig name + conformer id number) to be used for searching
 tar -xzf $1
 #move into the directory
