@@ -5,19 +5,21 @@
 
 #get the absolute path to make_db_and_condense_params.sh for use in calling some other scripts in the github repo
 # Save the current working directory
-original_dir=$(pwd)
 
+original_dir=$(pwd)
+pwd
 # Get the directory where the script is located
 script_dir=$(dirname "$(realpath "$0")")
 
 # Change to the script's directory
 cd "$script_dir"
-
+pwd
 # Find the root of the GitHub repository
 repo_root=$(git rev-parse --show-toplevel)
 
 # Return to the original directory
 cd "$original_dir"
+pwd
 
 # Now `repo_root` holds the path to the root of the GitHub repository
 echo "The root of the GitHub repository is: $repo_root"
