@@ -33,7 +33,7 @@ tar -xzf $1
 cd "$dirname"
 #run python script to determine the number of lines in the list file (equal to the number of conformers) and then run the shapedb nnsearch
 
-python $repo_root/shapedb/run_nnsearch.py $dirname_lig_name_list.txt $2
+python $repo_root/shapedb/run_nnsearch.py ${dirname}_lig_name_list.txt $2
 
 #move the resulting text file up and then compress it
 #dir_and_sub + "_scored_confs_against_" + sdf_base + ".txt"
