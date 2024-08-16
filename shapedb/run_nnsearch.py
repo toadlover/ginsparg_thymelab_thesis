@@ -7,7 +7,7 @@ filebase = file.split("/")[len(file.split("/")) - 1]
 
 dir_and_sub = ""
 
-if len(file.split("/")[len(file.split("/")) - 1].split("_")) == 1:
+if len(file.split("/")[len(file.split("/")) - 1].split("_")) == 2:
 	dir_and_sub = str(filebase.split("_")[0]) + "_" + str(filebase.split("_")[1])
 else:
 	dir_and_sub = str(filebase)

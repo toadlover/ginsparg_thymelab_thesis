@@ -39,7 +39,7 @@ python $repo_root/shapedb/run_nnsearch.py $dirname_lig_name_list.txt $2
 #dir_and_sub + "_scored_confs_against_" + sdf_base + ".txt"
 
 # Search for multiple files containing "_scored_confs_against_"
-for file in $(find /path/to/search -type f -name "*_scored_confs_against_*"); do
+for file in $(find $original_dir/$dirname -type f -name "*_scored_confs_against_*"); do
     echo "Processing file: $file"
     # Do something with $file
 	
