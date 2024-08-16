@@ -47,10 +47,12 @@ for file in $(find $original_dir/$dirname -type f -name "*_scored_confs_against_
 
 	cd ..
 
-	#suvo_NN_$(sub_num)_$(directory).tar.gz
-	tar -czvf $file.tar.gz $file
+	filename=$(basename "$file")
 
-	rm  $file
+	#suvo_NN_$(sub_num)_$(directory).tar.gz
+	tar -cvf $filename.tar.gz $filename
+
+	rm  $filename
 
     cd "$dirname"
 done

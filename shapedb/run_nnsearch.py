@@ -27,5 +27,5 @@ for line in readfile.readlines():
 
 #run nnsearch
 #db.db should be located where you are
-print("/pharmit/src/build/shapedb -NNSearch -k " + str(line_counter) + " -ligand " + compare_sdf + " -db db.db -print > " + dir_and_sub + "_scored_confs_against_" + sdf_base + ".txt")
+#print("/pharmit/src/build/shapedb -NNSearch -k " + str(line_counter) + " -ligand " + compare_sdf + " -db db.db -print > " + dir_and_sub + "_scored_confs_against_" + sdf_base + ".txt")
 os.system("/pharmit/src/build/shapedb -NNSearch -k " + str(line_counter) + " -ligand " + compare_sdf + " -db db.db -print > " + dir_and_sub + "_scored_confs_against_" + sdf_base + ".txt")
