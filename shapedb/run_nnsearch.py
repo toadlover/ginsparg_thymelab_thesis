@@ -4,7 +4,13 @@ file = sys.argv[1]
 compare_sdf = sys.argv[2]
 #extract the file name for the output scores
 filebase = file.split("/")[len(file.split("/")) - 1]
-dir_and_sub = str(filebase.split("_")[0]) + "_" + str(filebase.split("_")[1])
+
+dir_and_sub = ""
+
+if len(file.split("/")[len(file.split("/")) - 1].split("_")) == 1:
+	dir_and_sub = str(filebase.split("_")[0]) + "_" + str(filebase.split("_")[1])
+else:
+	dir_and_sub = str(filebase)
 
 #extract the base filename from the compare sdf
 sdfbase = compare_sdf.split("/")[len(compare_sdf.split("/")) - 1]
