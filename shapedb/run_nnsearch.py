@@ -10,7 +10,7 @@ dir_and_sub = ""
 if len(file.split("/")[len(file.split("/")) - 1].split("_")) == 2:
 	dir_and_sub = str(filebase.split("_")[0]) + "_" + str(filebase.split("_")[1])
 else:
-	dir_and_sub = str(filebase)
+	dir_and_sub = str(filebase.split(".")[0])
 
 #extract the base filename from the compare sdf
 sdfbase = compare_sdf.split("/")[len(compare_sdf.split("/")) - 1]
