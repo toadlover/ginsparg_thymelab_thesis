@@ -50,7 +50,7 @@ for file in $(find $original_dir/$dirname -type f -name "*_scored_confs_against_
 	filename=$(basename "$file")
 
 	#suvo_NN_$(sub_num)_$(directory).tar.gz
-	tar -cvf $filename.tar.gz $filename
+	tar -czf $filename.tar.gz $filename
 
 	rm  $filename
 
