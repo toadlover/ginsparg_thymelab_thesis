@@ -37,10 +37,21 @@ python $repo_root/shapedb/run_nnsearch.py $dirname_lig_name_list.txt $2
 
 #move the resulting text file up and then compress it
 #dir_and_sub + "_scored_confs_against_" + sdf_base + ".txt"
-mv $4_$3_scored_confs_against_$5.txt ..
-cd ..
 
-#suvo_NN_$(sub_num)_$(directory).tar.gz
-tar -czvf $5_NN_$3_$4.tar.gz $4_$3_scored_confs_against_$5.txt
+# Search for multiple files containing "_scored_confs_against_"
+for file in $(find /path/to/search -type f -name "*_scored_confs_against_*"); do
+    echo "Processing file: $file"
+    # Do something with $file
+	
+    mv $file ..
 
-rm  $4_$3_scored_confs_against_$5.txt
+	cd ..
+
+	#suvo_NN_$(sub_num)_$(directory).tar.gz
+	tar -czvf $file.tar.gz $file
+
+	rm  $file
+
+    cd "$dirname"
+done
+
