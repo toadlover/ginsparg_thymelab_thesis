@@ -86,6 +86,7 @@ for line in placements_csv.readlines():
 		#extract the ligand name
 	#ligand name is the 3rd from last when splitting by underscores
 	lig_name = initial_conf_dict["file"].split("_")[len(initial_conf_dict["file"].split("_")) - 3]
+	print(lig_name)
 
 	#get the coordinates of the atoms in the initial conformer for an rmsd comparison
 	#ignore hydrogens
