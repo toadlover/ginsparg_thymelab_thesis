@@ -141,7 +141,7 @@ for line in placements_csv.readlines():
 		#set up dictionary for the score terms from the compare file
 		compare_conf_dict = {}
 		term_counter = 0
-		for item in line.split(","):
+		for item in compare_line.split(","):
 			score_term_names.append(item.strip())
 			#add the term to the dictionary
 			compare_conf_dict[score_term_names[term_counter]] = item.strip()
