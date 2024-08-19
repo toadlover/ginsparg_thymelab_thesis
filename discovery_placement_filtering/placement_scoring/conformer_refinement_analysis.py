@@ -24,6 +24,10 @@ placements_csv = open(sys.argv[1], "r")
 #get the location where palcements are
 conf_placements_locations = sys.argv[2]
 
+#add a slash to the location if one does not exist
+if conf_placements_locations.endswith("/") == False:
+	conf_placements_locations = conf_placements_locations + "/"
+
 #move to the conf_placement_locations
 os.chdir(conf_placements_locations)
 
@@ -112,6 +116,7 @@ for line in placements_csv.readlines():
 
 	initial_conf_pdb.close()
 
+	"""
 	#with data read in, now find the raw_scores csv that coorresponds to the conformer and read it to perform the comparison analysis
 	for r,d,f in os.walk(conf_placements_locations):
 		#iterate over files
@@ -119,75 +124,77 @@ for line in placements_csv.readlines():
 			#if the ligand name is in the root and the file is raw_scores.csv
 			if lig_name in r and file == "raw_scores.csv":
 				#read the file so we can compare
+	"""
 
-				#set up a variable to hold the best placement
-				best_placement = ""
+	#set up a variable to hold the best placement
+	best_placement = ""
 
-				compare_file = open(r + "/raw_scores.csv", "r")
+	#compare_file = open(r + "/raw_scores.csv", "r")
+	compare_file = open(conf_placements_locations + lig_name + "/placements/raw_scores.csv", "r")
 
-				for compare_line in compare_file.readlines():
-					
-					#skip the header line since the header should be the same as the initial file
-					if compare_line.startswith("file"):					
-						continue
+	for compare_line in compare_file.readlines():
+		
+		#skip the header line since the header should be the same as the initial file
+		if compare_line.startswith("file"):					
+			continue
 
-					#set up dictionary for the score terms from the compare file
-					compare_conf_dict = {}
-					term_counter = 0
-					for item in line.split(","):
-						score_term.append(item.strip())
-						#add the term to the dictionary
-						compare_conf_dict[score_term_names[term_counter]] = item.strip()
+		#set up dictionary for the score terms from the compare file
+		compare_conf_dict = {}
+		term_counter = 0
+		for item in line.split(","):
+			score_term.append(item.strip())
+			#add the term to the dictionary
+			compare_conf_dict[score_term_names[term_counter]] = item.strip()
 
-						term_counter = term_counter + 1
+			term_counter = term_counter + 1
 
-					#get the delta between like terms (besides file) for the initial and compare, and determine if the compare is an improvement
-					term_counter = 0
-					improved_term_counter = 0
+		#get the delta between like terms (besides file) for the initial and compare, and determine if the compare is an improvement
+		term_counter = 0
+		improved_term_counter = 0
 
-					for i in range(len(score_term_names_delta_write_file)):
-						#write the comparisons
-						#handle "file" differently since it is a string
-						if "file" in score_term_names_delta_write_file[i]:
-							#write the relevant file
-							if "initial" in score_term_names_delta_write_file[i]:
-								delta_data_file.write(initial_conf_dict["file"] + ",")
-							if "compare" in score_term_names_delta_write_file[i]:
-								delta_data_file.write(compare_conf_dict["file"] + ",")
+		for i in range(len(score_term_names_delta_write_file)):
+			#write the comparisons
+			#handle "file" differently since it is a string
+			if "file" in score_term_names_delta_write_file[i]:
+				#write the relevant file
+				if "initial" in score_term_names_delta_write_file[i]:
+					delta_data_file.write(initial_conf_dict["file"] + ",")
+				if "compare" in score_term_names_delta_write_file[i]:
+					delta_data_file.write(compare_conf_dict["file"] + ",")
 
-							continue
+				continue
 
-						#handle rmsd
-						if score_term_names_delta_write_file[i] == "rmsd":
-							#hard code to 0 for now for testing, will fix later
-							delta_data_file.write("0,")
-							continue
+			#handle rmsd
+			if score_term_names_delta_write_file[i] == "rmsd":
+				#hard code to 0 for now for testing, will fix later
+				delta_data_file.write("0,")
+				continue
 
-						#handle the improvement ratio
-						if score_term_names_delta_write_file[i] == "improvement_ratio":
-							#hard code to 0 for now, and we will implement later
-							delta_data_file.write("0,")
-							continue
+			#handle the improvement ratio
+			if score_term_names_delta_write_file[i] == "improvement_ratio":
+				#hard code to 0 for now, and we will implement later
+				delta_data_file.write("0,")
+				continue
 
-						#handle the other comparison terms
+			#handle the other comparison terms
 
-						#initial/compare/delta off the term for accessing in the corresponding dictionary
-						stripped_term = score_term_names_delta_write_file[i].split("_initial")[0].split("_compare")[0].split("_delta")[0]
+			#initial/compare/delta off the term for accessing in the corresponding dictionary
+			stripped_term = score_term_names_delta_write_file[i].split("_initial")[0].split("_compare")[0].split("_delta")[0]
 
-						if "initial" in score_term_names_delta_write_file[i]:
-							delta_data_file.write(str(initial_conf_dict[stripped_term]) + ",")
-						if "compare" in score_term_names_delta_write_file[i]:
-							delta_data_file.write(str(compare_conf_dict[stripped_term]) + ",")
-						#if delta
-						if "delta" in score_term_names_delta_write_file[i]:
+			if "initial" in score_term_names_delta_write_file[i]:
+				delta_data_file.write(str(initial_conf_dict[stripped_term]) + ",")
+			if "compare" in score_term_names_delta_write_file[i]:
+				delta_data_file.write(str(compare_conf_dict[stripped_term]) + ",")
+			#if delta
+			if "delta" in score_term_names_delta_write_file[i]:
 
-							#delta is initial minus compare
-							delta_value = float(initial_conf_dict[stripped_term]) - float(compare_conf_dict[stripped_term])
+				#delta is initial minus compare
+				delta_value = float(initial_conf_dict[stripped_term]) - float(compare_conf_dict[stripped_term])
 
-							delta_data_file.write(str(delta_value) + ",")
+				delta_data_file.write(str(delta_value) + ",")
 
-					#write a newline
-					delta_data_file.write("\n")
+		#write a newline
+		delta_data_file.write("\n")
 
 
 
