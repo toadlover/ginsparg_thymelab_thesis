@@ -164,17 +164,6 @@ for line in placements_csv.readlines():
 
 				continue
 
-			#handle rmsd
-			if score_term_names_delta_write_file[i] == "rmsd":
-				#hard code to 0 for now for testing, will fix later
-				delta_data_file.write("0,")
-				continue
-
-			#handle the improvement ratio
-			if score_term_names_delta_write_file[i] == "improvement_ratio":
-				#hard code to 0 for now, and we will implement later
-				delta_data_file.write("0,")
-				continue
 
 			#handle the other comparison terms
 
@@ -218,10 +207,57 @@ for line in placements_csv.readlines():
 					if delta_value < 0:
 						improved_term_counter = improved_term_counter + 1
 
-		#write the improvement ratio
-		improvement_ratio = improved_term_counter / term_counter
+			#improvement ratio
+			if "improvement_ratio" == score_term_names_delta_write_file[i]:
+				#write the improvement ratio
+				improvement_ratio = improved_term_counter / term_counter
 
-		delta_data_file.write(str(improvement_ratio) + ",")
+				delta_data_file.write(str(improvement_ratio) + ",")
+
+			#placement rmsd calc
+			if "rmsd" == score_term_names_delta_write_file[i]:
+				#open the compare placement pdb file, accessed with compare_conf_dict["file"]
+				compare_placement_file = open(compare_conf_dict["file"],"r")
+
+				#read the file and get the atom data
+				compare_conf_atom_coords = {}
+
+
+				for line2 in compare_placement_file.readlines():
+					#HETATM lines have the ligand data
+					if line2.startswith("HETATM "):
+						#3rd position (index value 2 by splitting)
+						unique_atom = line2.split()[2]
+
+						#continue if Hydrogen
+						#easy solution is if the first character is H, since n oother relevant element starts with H
+						if unique_atom[0] == "H":
+							continue
+
+						#otherwise add the atom to the dictionary with xyz values as list
+						compare_conf_atom_coords[unique_atom] = [float(line2.split()[6]),float(line2.split()[7]),float(line2.split()[8])]
+
+				compare_placement_file.close()
+
+				#iterate over the initial molecule atoms dict by keys and get the rmsd of heavy atoms
+
+				#hold the distance sum and number of atoms
+				distance_sum = 0
+				num_atoms = 0
+
+				for atom in initial_conf_atom_coords.keys():
+					num_atoms = num_atoms + 1
+					#get the distance between the two atoms
+					atom_atom_distance = ((initial_conf_atom_coords[atom][0]-compare_conf_atom_coords[atom][0])**2 + (initial_conf_atom_coords[atom][1]-compare_conf_atom_coords[atom][1])**2 + (initial_conf_atom_coords[atom][2]-compare_conf_atom_coords[atom][2])**2) ** 0.5
+
+					#apply the distance to the distance_sum
+					distance_sum = distance_sum + atom_atom_distance
+
+				#calculate the rmsd
+				rmsd = distance_sum / num_atoms
+
+				#write the rmsd
+				delta_data_file.write(str(rmsd) + ",")
 
 		#write a newline
 		delta_data_file.write("\n")
