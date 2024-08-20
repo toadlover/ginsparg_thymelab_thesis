@@ -283,7 +283,10 @@ for line in placements_csv.readlines():
 					distance_sum = distance_sum + atom_atom_distance
 
 				#calculate the rmsd
-				rmsd = distance_sum / num_atoms
+				if num_atoms > 0:
+					rmsd = distance_sum / num_atoms
+				else:
+					rmsd = 100
 
 				if mismatch:
 					rmsd = 100
