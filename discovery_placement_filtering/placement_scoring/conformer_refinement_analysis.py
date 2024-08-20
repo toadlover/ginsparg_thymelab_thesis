@@ -134,6 +134,11 @@ for line in placements_csv.readlines():
 	#hold the best improvement ratio value to help select which placements are the best
 	best_improvement_ratio = 0
 
+	#sanity check to make sure that the raw scores file exists
+	if os.path.exists(conf_placements_locations + lig_name + "/placements/raw_scores.csv") == False:
+		print("raw score file does not exist...")
+		continue
+
 	#compare_file = open(r + "/raw_scores.csv", "r")
 	compare_file = open(conf_placements_locations + lig_name + "/placements/raw_scores.csv", "r")
 
