@@ -261,7 +261,15 @@ for line in placements_csv.readlines():
 				distance_sum = 0
 				num_atoms = 0
 
+				#handling if for some reason atoms don't line up
+				mismatch = False
+
 				for atom in initial_conf_atom_coords.keys():
+					
+					if atom not in compare_conf_atom_coords.keys():
+						mismatch = True
+						break
+
 					num_atoms = num_atoms + 1
 					#get the distance between the two atoms
 					atom_atom_distance = ((initial_conf_atom_coords[atom][0]-compare_conf_atom_coords[atom][0])**2 + (initial_conf_atom_coords[atom][1]-compare_conf_atom_coords[atom][1])**2 + (initial_conf_atom_coords[atom][2]-compare_conf_atom_coords[atom][2])**2) ** 0.5
@@ -271,6 +279,9 @@ for line in placements_csv.readlines():
 
 				#calculate the rmsd
 				rmsd = distance_sum / num_atoms
+
+				if mismatch:
+					rmsd = 100
 
 				#write the rmsd
 				delta_data_file.write(str(rmsd) + ",")
