@@ -193,6 +193,36 @@ for line in placements_csv.readlines():
 
 				delta_data_file.write(str(delta_value) + ",")
 
+
+
+
+				#ddg,total_motifs,significant_motifs,real_motif_ratio,hbond_motif_count,hbond_motif_energy_sum,closest_autodock_recovery_rmsd,closest_autodock_recovery_ddg,strain_energy,total
+
+				#delta is initial - compare
+				#negative delta is improvements for: total_motifs,significant_motifs,real_motif_ratio,hbond_motif_count,
+				#positive delta is improvements for: ddg, hbond_motif_energy_sum,closest_autodock_recovery_rmsd,closest_autodock_recovery_ddg,strain_energy,total(?)
+
+				#we are primarily concerned with ddg, total_motifs, significant_motifs,real_motif_ratio, and hbond_motif_count
+				#since ddg is the only positve delta improvement, if we take the negative of the values, it aligns with negative
+				#could probably turn this into an argument at some point if we ever wanted to focus on other terms
+				terms_of_interest = ["ddg","total_motifs","significant_motifs","real_motif_ratio", "hbond_motif_count"]
+
+				if stripped_term == "ddg":
+					delta_value = delta_value * -1
+
+				#if the stripped term is one of the terms we want to focus on, increment the term counter and determine if the compare placement is an improvement
+				if stripped_term in terms_of_interest:
+					#increment the term counter and determine whether the compare placement is an improvement
+					term_counter = term_counter + 1
+
+					if delta_value < 0:
+						improved_term_counter = improved_term_counter + 1
+
+		#write the improvement ratio
+		improvement_ratio = improved_term_counter / term_counter
+
+		delta_data_file.write(str(improvement_ratio) + ",")
+
 		#write a newline
 		delta_data_file.write("\n")
 
