@@ -126,8 +126,13 @@ for line in placements_csv.readlines():
 				#read the file so we can compare
 	"""
 
-	#set up a variable to hold the best placement
-	best_placement = ""
+	#set up a list to hold the best placement(s) and all placements
+	#best_placements = []
+
+	all_placements = []
+
+	#hold the best improvement ratio value to help select which placements are the best
+	best_improvement_ratio = 0
 
 	#compare_file = open(r + "/raw_scores.csv", "r")
 	compare_file = open(conf_placements_locations + lig_name + "/placements/raw_scores.csv", "r")
@@ -152,6 +157,9 @@ for line in placements_csv.readlines():
 		term_counter = 0
 		improved_term_counter = 0
 
+		#store all data in a list to be held on to in case this is one of the best improvements upon the original
+		full_line_data = []
+
 		for i in range(len(score_term_names_delta_write_file)):
 			#write the comparisons
 			#handle "file" differently since it is a string
@@ -159,8 +167,10 @@ for line in placements_csv.readlines():
 				#write the relevant file
 				if "initial" in score_term_names_delta_write_file[i]:
 					delta_data_file.write(initial_conf_dict["file"] + ",")
+					full_line_data.append(initial_conf_dict["file"])
 				if "compare" in score_term_names_delta_write_file[i]:
 					delta_data_file.write(compare_conf_dict["file"] + ",")
+					full_line_data.append(compare_conf_dict["file"])
 
 				continue
 
@@ -172,15 +182,20 @@ for line in placements_csv.readlines():
 
 			if "initial" in score_term_names_delta_write_file[i]:
 				delta_data_file.write(str(initial_conf_dict[stripped_term]) + ",")
+				full_line_data.append(initial_conf_dict[stripped_term])
 			if "compare" in score_term_names_delta_write_file[i]:
 				delta_data_file.write(str(compare_conf_dict[stripped_term]) + ",")
+				full_line_data.append(compare_conf_dict[stripped_term])
 			#if delta
 			if "delta" in score_term_names_delta_write_file[i]:
 
 				#delta is initial minus compare
 				delta_value = float(initial_conf_dict[stripped_term]) - float(compare_conf_dict[stripped_term])
 
+
+
 				delta_data_file.write(str(delta_value) + ",")
+				full_line_data.append(delta_value)
 
 
 
@@ -213,6 +228,7 @@ for line in placements_csv.readlines():
 				improvement_ratio = improved_term_counter / term_counter
 
 				delta_data_file.write(str(improvement_ratio) + ",")
+				full_line_data.append(str(improvement_ratio))
 
 			#placement rmsd calc
 			if "rmsd" == score_term_names_delta_write_file[i]:
@@ -258,12 +274,29 @@ for line in placements_csv.readlines():
 
 				#write the rmsd
 				delta_data_file.write(str(rmsd) + ",")
+				full_line_data.append(str(rmsd))
 
 		#write a newline
 		delta_data_file.write("\n")
 
+		#add the full line data to the all data
+		all_placements.append(full_line_data)
+
+		#determine if the improvement has a better improvement ratio than what is previously recorded
+		if float(full_line_data[len(full_line_data) - 1]) > best_improvement_ratio:
+			best_improvement_ratio = float(full_line_data[len(full_line_data) - 1])
 
 
+
+	#look through all placements and write the ones with the best improvement ratio to the best file
+	for placement in all_placements:
+		if float(placement[len(placement) - 1]) >= best_improvement_ratio:
+			#write the placement information to the best file
+			for item in placement:
+				delta_data_file_most_improved.write(str(item) + ",")
+
+			#write newline
+			delta_data_file_most_improved.write("\n")
 
 
 
