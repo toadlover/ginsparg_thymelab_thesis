@@ -15,6 +15,7 @@ for r,d,f in os.walk(working_location):
 
 			#make a folder based on the name of the ligand (up to the first underscore)
 			file_prefix = file.split("_")[0]
+			os.system("rm -drf " + file_prefix)
 			os.system("mkdir " + file_prefix)
 
 			#run obabel to split the ligands
