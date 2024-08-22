@@ -25,7 +25,7 @@ for r,d,f in os.walk(working_location):
 			file_prefix = file.split(".")[0]
 
 			#derive the msiles string
-			supplier = Chem.SDMolSupplier(sdf_file)
+			supplier = Chem.SDMolSupplier(file)
 			for mol in supplier:
 				if mol is not None:  # Check for valid molecule
 					smiles = Chem.MolToSmiles(mol)
