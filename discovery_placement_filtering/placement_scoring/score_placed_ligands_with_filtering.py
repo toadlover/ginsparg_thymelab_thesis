@@ -198,7 +198,7 @@ attempt_strain = True
 #strain torsion path
 #if 't' in vars(args) or 'torsion_script_path' in vars(args):
 if args.torsion_script_path != None:
-	strain_exec_path = args.torsion_strain_path
+	strain_exec_path = args.torsion_script_path
 
 	#add backslash to end of path if there is not one
 	if strain_exec_path.endswith("/") == False:
@@ -209,7 +209,7 @@ else:
 #strain automate path
 #if 'r' in vars(args) or 'torsion_strain_path' in vars(args):
 if args.torsion_strain_path != None:
-	strain_automate_path = args.autodock_script_path
+	strain_automate_path = args.torsion_strain_path
 
 	#add backslash to end of path if there is not one
 	if strain_automate_path.endswith("/") == False:
