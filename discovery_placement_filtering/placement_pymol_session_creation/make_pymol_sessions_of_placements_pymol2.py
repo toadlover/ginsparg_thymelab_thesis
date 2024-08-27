@@ -64,8 +64,10 @@ with pymol2.PyMOL() as pymol:
     # Set the sphere scale to 0.25 for visualizing motifs
     pymol.cmd.set('sphere_scale', 0.5)
 
+    items = sorted(os.listdir(directory))
+
     # Loop through each file in the directory
-    for filename in os.listdir(directory):
+    for filename in items:
         if filename.endswith('.pdb'):  # Ensure only PDB files are processed
             filepath = os.path.join(directory, filename)
             
