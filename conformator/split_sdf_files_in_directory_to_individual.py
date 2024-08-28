@@ -10,7 +10,7 @@ os.chdir(working_location)
 #run through each sdf file in the working location
 for r,d,f in os.walk(working_location):
 	for file in f:
-		if file.endswith(".sdf") and r == working_location:
+		if file.endswith(".sdf") and r == working_location and "confs" in file:
 			print(file)
 
 			#make a folder based on the name of the ligand (up to the first underscore)
