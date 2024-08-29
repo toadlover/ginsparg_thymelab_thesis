@@ -161,6 +161,10 @@ for line in placements_csv.readlines():
 		if compare_line.startswith("file"):					
 			continue
 
+		#ensure that we are only comparing the placements of the same ligand
+		if lig_name not in compare_line:
+			continue
+
 		#set up dictionary for the score terms from the compare file
 		compare_conf_dict = {}
 		term_counter = 0
