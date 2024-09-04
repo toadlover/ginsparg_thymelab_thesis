@@ -164,7 +164,7 @@ for line in placements_csv.readlines():
 		#ensure that we are only comparing the placements of the same ligand
 		#break,
 		if lig_name not in compare_line:
-			continue
+			break
 
 		#set up dictionary for the score terms from the compare file
 		compare_conf_dict = {}

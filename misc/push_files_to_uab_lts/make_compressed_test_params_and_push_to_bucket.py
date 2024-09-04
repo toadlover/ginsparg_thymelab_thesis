@@ -11,6 +11,10 @@ working_location = sys.argv[1]
 #i.e. s3://ariosg/Ox_truncations_12M_chunk_sorted/
 bucket_address = sys.argv[2]
 
+#number to indicate the number of parallel jobs to allow in slurm queue
+#ideally, not higher than 400, but lower (30-100) could have better performance on system and reduce overall strain
+max_parallel_jobs = int(sys.argv[3])
+
 #make sure that the bucket address ends with a backslash
 if bucket_address.endswith("/") == False:
 	bucket_address = bucket_address + "/"
@@ -70,7 +74,7 @@ for r,d,f in os.walk(location):
 				squeue_length = int(line2.strip())
 				
 				#over 400 lines in file, we need to wait for jobs to finish
-				if squeue_length > 450:
+				if squeue_length > max_parallel_jobs:
 					wait = True
 					#sleep for 1 second to reduce pressure on slurm
 					os.system("sleep 1")
@@ -83,7 +87,7 @@ for r,d,f in os.walk(location):
 					squeue_length = int(line2.strip())
 					
 					#over 400 lines in file, we need to wait for jobs to finish
-					if squeue_length < 450:
+					if squeue_length < max_parallel_jobs:
 						wait = False
 					else:
 						#sleep for 1 second to reduce pressure on slurm
