@@ -1,0 +1,16 @@
+The purpose of this file is to allow for being able to convert residue indices in identified motifs from a Rosetta placed ligand PDB.
+It is possible that Rosetta gets different indexing for the residues in the generated PDB and the residues identified in motifs.
+This file serves as a means to convert from the the motif indexing to the pdb indexing.
+The example file was created by hand, converting residue indices from HCRTR2 PDB 4S0V to 7L1U.
+
+A script to automatically translate all residues could be made at some point if the need arose.
+
+The format of the residue index conversion key is as follows:
+
+Each line contains 4 entries with entries 2 and 3 being the most important and actually used.
+Entry 4 can technically be ignored
+
+Header line:
+residue type,source name,target name,change in index position
+
+
