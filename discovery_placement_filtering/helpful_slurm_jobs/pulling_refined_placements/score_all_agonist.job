@@ -1,0 +1,43 @@
+#!/bin/bash
+#SBATCH -p short # Partition to submit to
+#SBATCH -n 1 # Number of cores requested
+#SBATCH -N 1 # Ensure that all cores are on one machine
+#SBATCH -t 720 # Runtime in minutes
+#SBATCH --mem=10000 # Memory per cpu in MB (see also --mem-per-cpu)
+#SBATCH -o hostname_%A_%a.out # Standard out goes to this file
+#SBATCH -e hostname_%A_%a.err # Standard err goes to this filehostname
+#2996 entries
+#SBATCH --array=0-2995
+##SBATCH --array=0-10
+##SBATCH --array=11-2995
+
+# Load the file of ligand names into an array
+mapfile -t strings < placement_directories.txt
+
+# Get the string corresponding to the current array task ID
+unique_string="${strings[$SLURM_ARRAY_TASK_ID]}"
+
+# Print the selected string or use it in your job
+echo "Selected string: $unique_string"
+
+
+
+cd /scratch/abgvg9/discovery_results/top_1000_placement/confs_for_placements/conf_placements_for_analysis/real_and_hbonds
+
+#temporary for downloading and unzipping
+mkdir $unique_string
+cd $unique_string
+rm -drf placements*
+s3cmd get s3://ariosg/agonists_real_and_hbonds_for_discovery_placements/$unique_string/placements.tar.gz
+tar -xzf placements.tar.gz
+
+#without filtering
+#python /data/user/abgvg9/ginsparg_thymelab_thesis/discovery_placement_filtering/placement_scoring/score_placed_ligands_with_filtering.py --autodock_script_path /scratch/abgvg9/discovery_results/top_1000_placement/test/ --autodock_vina_path /data/user/abgvg9/autodock_vina_1_1_2_linux_x86/bin/vina --weights_path /scratch/abgvg9/discovery_results/top_1000_placement/test/scoring_testing --torsion_script_path /scratch/abgvg9/discovery_results/top_1000_placement/test/ --torsion_strain_path /scratch/abgvg9/STRAIN/STRAIN_FILTER --working_location /scratch/abgvg9/discovery_results/top_1000_placement/confs_for_placements/conf_placements_for_analysis/real_and_hbonds/$unique_string/placements/ --kill True --residue_correction_key_file /scratch/abgvg9/discovery_results/top_1000_placement/agonist_12M_passing_placements/4s0v_7l1u_key.csv
+python /data/user/abgvg9/ginsparg_thymelab_thesis/discovery_placement_filtering/placement_scoring/score_placed_ligands_with_filtering.py --weights_path /scratch/abgvg9/discovery_results/top_1000_placement/test/scoring_testing --working_location /scratch/abgvg9/discovery_results/top_1000_placement/confs_for_placements/conf_placements_for_analysis/real_and_hbonds/$unique_string/placements/ --residue_correction_key_file /scratch/abgvg9/discovery_results/top_1000_placement/agonist_12M_passing_placements/4s0v_7l1u_key.csv
+
+#with filtering
+#python /data/user/abgvg9/ginsparg_thymelab_thesis/discovery_placement_filtering/placement_scoring/score_placed_ligands_with_filtering.py --autodock_script_path /scratch/abgvg9/discovery_results/top_1000_placement/test/ --autodock_vina_path /data/user/abgvg9/autodock_vina_1_1_2_linux_x86/bin/vina --weights_path /scratch/abgvg9/discovery_results/top_1000_placement/test/scoring_testing --torsion_script_path /scratch/abgvg9/discovery_results/top_1000_placement/test/ --torsion_strain_path /scratch/abgvg9/STRAIN/STRAIN_FILTER --working_location /scratch/abgvg9/discovery_results/top_1000_placement/confs_for_placements/conf_placements_for_analysis/real_and_hbonds/$unique_string/placements/ --minimum_real_motif_ratio 0.25 --kill True --residue_correction_key_file /scratch/abgvg9/discovery_results/top_1000_placement/agonist_12M_passing_placements/4s0v_7l1u_key.csv --mandatory_motif_residues 86 --maximum_autodock_recovery_rmsd 3.5
+
+cd placements
+python /scratch/abgvg9/discovery_results/top_1000_placement/append_path_to_placement_file_name_in_score_files.py
+
