@@ -24,7 +24,7 @@ for r,d,f in os.walk(working_location):
 			#break up the file name to remove extension
 			file_prefix = file.split(".")[0]
 
-			#derive the msiles string
+			#derive the smiles string
 			supplier = Chem.SDMolSupplier(file)
 			for mol in supplier:
 				if mol is not None:  # Check for valid molecule
