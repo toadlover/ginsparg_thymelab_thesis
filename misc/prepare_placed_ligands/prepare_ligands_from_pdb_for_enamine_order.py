@@ -50,7 +50,7 @@ for line in input_file.readlines():
 	smiles = ""
 
 	#derive the smiles string
-	supplier = Chem.SDMolSupplier(file)
+	supplier = Chem.SDMolSupplier("temp.sdf")
 	for mol in supplier:
 		if mol is not None:  # Check for valid molecule
 			smiles = Chem.MolToSmiles(mol)
