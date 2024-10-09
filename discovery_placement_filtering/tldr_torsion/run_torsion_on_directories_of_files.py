@@ -2,7 +2,7 @@
 #this script takes in 3 arguments: argument 1 is for the location to operate from, argument 2 is for the path and script of run_torsion_check_on_placed_ligands.py, and argument 3 is for the paty to the tldr STRAIN script (just path, no script)
 #i.e.: python run_torsion_on_directories_of_files.py /scratch/abgvg9/discovery_results/antagonists/placements_for_refinement/expanded_conformer_set_placements/low_ddg_best_refined_placements/ /scratch/abgvg9/STRAIN/STRAIN_FILTER
 
-#this script requires an environment that has openbabel (obabel) and rdkit, since the torsion script calls for it
+#this script requires an environment that has openbabel (obabel) and rdkit, since the torsion script calls for it     
 
 import os,sys
 
