@@ -20,6 +20,13 @@ file_prefix = str(sys.argv[1])
 #currently using 8,000,000 when looking at 8 truncated shapes of OxA/OxB
 max_ligands_to_keep = int(sys.argv[2])
 
+#get the path to where get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py is (in case we are not working in ginsparg_thymelab_thesis)
+path_to_top_ligand_script = str(sys.argv[3])
+
+#if the path does not end with a /, make it end with a /
+if path_to_top_ligand_script.endswith("/") == False:
+	path_to_top_ligand_script = path_to_top_ligand_script + "/"
+
 #get your login for use with slurm queue monitoring
 username = os.getlogin()
 
@@ -77,7 +84,7 @@ for i in range(0,265):
 	write_file.write("#SBATCH -e hostname_%A_%a.err # Standard err goes to this filehostname\n")
 	write_file.write("\n")
 	#python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py OxB_7_shifted 8000000 45400_45499 45500_45599 merged
-	write_file.write("python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
+	write_file.write("python " + path_to_top_ligand_script + "get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
 	write_file.close()
 
 	#submit the file and collect the slurm job id
@@ -151,7 +158,7 @@ for i in range(0,int(len(prior_address_names)/2)):
 	write_file.write("#SBATCH -e hostname_%A_%a.err # Standard err goes to this filehostname\n")
 	write_file.write("\n")
 	#python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py OxB_7_shifted 8000000 45400_45499 45500_45599 merged
-	write_file.write("python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
+	write_file.write("python " + path_to_top_ligand_script + "get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
 	write_file.close()
 
 	#submit the file and collect the slurm job id
@@ -227,7 +234,7 @@ for i in range(0,int(len(prior_address_names)/2)):
 	write_file.write("#SBATCH -e hostname_%A_%a.err # Standard err goes to this filehostname\n")
 	write_file.write("\n")
 	#python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py OxB_7_shifted 8000000 45400_45499 45500_45599 merged
-	write_file.write("python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
+	write_file.write("python " + path_to_top_ligand_script + "get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
 	write_file.close()
 
 	#submit the file and collect the slurm job id
@@ -303,7 +310,7 @@ for i in range(0,int(len(prior_address_names)/2)):
 	write_file.write("#SBATCH -e hostname_%A_%a.err # Standard err goes to this filehostname\n")
 	write_file.write("\n")
 	#python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py OxB_7_shifted 8000000 45400_45499 45500_45599 merged
-	write_file.write("python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
+	write_file.write("python " + path_to_top_ligand_script + "get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
 	write_file.close()
 
 	#submit the file and collect the slurm job id
@@ -379,7 +386,7 @@ for i in range(0,int(len(prior_address_names)/2)):
 	write_file.write("#SBATCH -e hostname_%A_%a.err # Standard err goes to this filehostname\n")
 	write_file.write("\n")
 	#python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py OxB_7_shifted 8000000 45400_45499 45500_45599 merged
-	write_file.write("python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
+	write_file.write("python " + path_to_top_ligand_script + "get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
 	write_file.close()
 
 	#submit the file and collect the slurm job id
@@ -455,7 +462,7 @@ for i in range(0,int(len(prior_address_names)/2)):
 	write_file.write("#SBATCH -e hostname_%A_%a.err # Standard err goes to this filehostname\n")
 	write_file.write("\n")
 	#python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py OxB_7_shifted 8000000 45400_45499 45500_45599 merged
-	write_file.write("python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
+	write_file.write("python " + path_to_top_ligand_script + "get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
 	write_file.close()
 
 	#submit the file and collect the slurm job id
@@ -531,7 +538,7 @@ for i in range(0,int(len(prior_address_names)/2)):
 	write_file.write("#SBATCH -e hostname_%A_%a.err # Standard err goes to this filehostname\n")
 	write_file.write("\n")
 	#python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py OxB_7_shifted 8000000 45400_45499 45500_45599 merged
-	write_file.write("python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
+	write_file.write("python " + path_to_top_ligand_script + "get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
 	write_file.close()
 
 	#submit the file and collect the slurm job id
@@ -607,7 +614,7 @@ for i in range(0,int(len(prior_address_names)/2)):
 	write_file.write("#SBATCH -e hostname_%A_%a.err # Standard err goes to this filehostname\n")
 	write_file.write("\n")
 	#python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py OxB_7_shifted 8000000 45400_45499 45500_45599 merged
-	write_file.write("python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
+	write_file.write("python " + path_to_top_ligand_script + "get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
 	write_file.close()
 
 	#submit the file and collect the slurm job id
@@ -683,7 +690,7 @@ for i in range(0,int(len(prior_address_names)/2)):
 	write_file.write("#SBATCH -e hostname_%A_%a.err # Standard err goes to this filehostname\n")
 	write_file.write("\n")
 	#python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py OxB_7_shifted 8000000 45400_45499 45500_45599 merged
-	write_file.write("python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
+	write_file.write("python " + path_to_top_ligand_script + "get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
 	write_file.close()
 
 	#submit the file and collect the slurm job id
@@ -759,7 +766,7 @@ for i in range(0,int(len(prior_address_names)/2)):
 	write_file.write("#SBATCH -e hostname_%A_%a.err # Standard err goes to this filehostname\n")
 	write_file.write("\n")
 	#python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py OxB_7_shifted 8000000 45400_45499 45500_45599 merged
-	write_file.write("python get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
+	write_file.write("python " + path_to_top_ligand_script + "get_top_ligands_top_chunk_top_lists_between_2_super_chunk_lists.py " + file_prefix + " " + str(max_ligands_to_keep) + " " + f1_address + " " + f2_address + " " + new_address + "  \n")
 	write_file.close()
 
 	#submit the file and collect the slurm job id
