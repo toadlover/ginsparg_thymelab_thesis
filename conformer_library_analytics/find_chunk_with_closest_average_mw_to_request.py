@@ -15,7 +15,7 @@ closest_chunk_mw = ""
 closest_chunk_diff = ""
 
 #open and read through the average mw per chunk file
-average_chunk_file = open(os.path.dirname(os.path.abspath(__file__)) + "/" + average_mw_per_chunk.csv, "w")
+average_chunk_file = open(os.path.dirname(os.path.abspath(__file__)) + "/average_mw_per_chunk.csv", "w")
 
 for line in average_chunk_file.readlines():
 	#skip first line
