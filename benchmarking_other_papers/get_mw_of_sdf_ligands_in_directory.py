@@ -40,7 +40,7 @@ for r,d,f in os.walk(location):
 
 			for line in lig_file.readlines():
 				#check if the line has at least 4 entries when split by spaces
-				if len(line.split() > 4):
+				if len(line.split()) > 4:
 					#check if the entry at line.split()[3] is in the dictionary
 					element = line.split()[3]
 
