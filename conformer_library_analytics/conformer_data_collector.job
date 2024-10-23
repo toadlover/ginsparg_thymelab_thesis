@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH -p long # Partition to submit to
+#SBATCH -n 1 # Number of cores requested
+#SBATCH -N 1 # Ensure that all cores are on one machine
+#SBATCH -t 9000 # Runtime in minutes
+#SBATCH --mem=10000 # Memory per cpu in MB (see also --mem-per-cpu)
+#SBATCH -o hostname_%A_%a.out # Standard out goes to this file
+#SBATCH -e hostname_%A_%a.err # Standard err goes to this filehostname
+##SBATCH --array=0
+#SBATCH --array=0-530
+##SBATCH --array=1-530
+
+python super_chunk_conformer_data_collector.py  $SLURM_ARRAY_TASK_ID
