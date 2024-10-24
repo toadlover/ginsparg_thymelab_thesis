@@ -3,6 +3,8 @@
 #This script will put all conformers of all ligands in the subchunk into a test_params directories and will make directories of up to 100 conformers
 #This script takes an input subchunk location in the bucket (and will pull down with s3cmd), and an output location for all discovery directories
 
+#example call: python /data/user/abgvg9/ginsparg_thymelab_thesis/prepare_ligands_for_discovery/prepare_whole_subchunk_for_discovery.py s3://ariosg/ligand_library/00297/for_s3/condensed_params_and_db_0.tar.gz s3://ariosg/benchmarking_other_papers/ai_powered/ligand_inputs/
+
 #initial import
 import os,sys
 
@@ -122,10 +124,10 @@ for r,d,f in os.walk(subchunk_name + "/single_conf_params"):
 					os.system("tar -czf test_params.tar.gz test_params")
 
 					#push the directory to the bucket
-					os.system("s3cmd put test_params.tar.gz " + output_location + "/" + str(test_params_directory_count))
+					os.system("s3cmd put test_params.tar.gz " + output_location + "/" + str(test_params_directory_count) + "/test_params.tar.gz")
 
 					#write the test_params location to be outputted to
-					output_list.write(output_location + str(test_params_directory_count) + "/test_params.tar.gz")
+					output_list.write(output_location + str(test_params_directory_count) + "/test_params.tar.gz\n")
 
 					#increment the test_params counter
 					test_params_directory_count = test_params_directory_count + 1
@@ -154,7 +156,7 @@ residue_types_file.close()
 os.system("tar -czf test_params.tar.gz test_params")
 
 #push the directory to the bucket
-os.system("s3cmd put test_params.tar.gz " + output_location + "/" + str(test_params_directory_count))
+os.system("s3cmd put test_params.tar.gz " + output_location + "/" + str(test_params_directory_count) + "/test_params.tar.gz")
 
 #write the test_params location to be outputted to
 output_list.write(output_location + str(test_params_directory_count) + "/test_params.tar.gz")
