@@ -25,7 +25,10 @@ for r,d,f in os.walk(location):
 			real_motif_count = 0
 			real_motif_ratio = 0
 
-			for line in file.readlines():
+			#open file read stream
+			file_stream = open(file,"r")
+
+			for line in file_stream.readlines():
 				#ligand name
 				if line.startswith("Placement: Ligand name:"):
 					ligand_name = line.strip().split()[len(line.strip().split()) - 1]
