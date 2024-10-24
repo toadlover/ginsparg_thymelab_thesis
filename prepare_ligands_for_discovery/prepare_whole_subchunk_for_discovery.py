@@ -124,7 +124,7 @@ for r,d,f in os.walk(subchunk_name + "/single_conf_params"):
 					os.system("tar -czf test_params.tar.gz test_params")
 
 					#push the directory to the bucket
-					os.system("s3cmd put test_params.tar.gz " + output_location + "/" + str(test_params_directory_count) + "/test_params.tar.gz")
+					os.system("s3cmd put test_params.tar.gz " + output_location + str(test_params_directory_count) + "/test_params.tar.gz")
 
 					#write the test_params location to be outputted to
 					output_list.write(output_location + str(test_params_directory_count) + "/test_params.tar.gz\n")
@@ -156,7 +156,7 @@ residue_types_file.close()
 os.system("tar -czf test_params.tar.gz test_params")
 
 #push the directory to the bucket
-os.system("s3cmd put test_params.tar.gz " + output_location + "/" + str(test_params_directory_count) + "/test_params.tar.gz")
+os.system("s3cmd put test_params.tar.gz " + output_location + str(test_params_directory_count) + "/test_params.tar.gz")
 
 #write the test_params location to be outputted to
 output_list.write(output_location + str(test_params_directory_count) + "/test_params.tar.gz")
