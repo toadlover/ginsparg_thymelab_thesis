@@ -106,13 +106,13 @@ for r,d,f in os.walk(subchunk_name + "/single_conf_params"):
 				os.system("python " + fix_script + " " + ligconf + ".params")
 
 				#move the fixed file to the test_params directory
-				os.system("mv fixed_" + ligconf + ".params test_params")
+				os.system("mv fixed_" + ligconf + ".params test_params/" + ligconf + ".params")
 
 				#remove the created params file
 				os.system("rm " + ligconf + ".params")
 
 				#write the conformer to the residue_types file
-				residue_types_file.write(ligconf + "\n")
+				residue_types_file.write(ligconf + ".params\n")
 
 				#increment the conformer counter
 				conformer_counter = conformer_counter + 1
