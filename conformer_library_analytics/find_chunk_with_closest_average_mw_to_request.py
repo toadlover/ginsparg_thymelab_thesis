@@ -29,7 +29,7 @@ for line in average_chunk_file.readlines():
 
 	#extract the chunk name and average mw
 	cur_chunk_name = stripped_line.split(",")[0]
-	cur_chunk_mw = float(stripped_line.split(",")[0])
+	cur_chunk_mw = float(stripped_line.split(",")[1])
 
 	#get the absolute difference of the chunk mw and input mw
 	cur_chunk_diff = abs(cur_chunk_mw - mw_of_interest)
