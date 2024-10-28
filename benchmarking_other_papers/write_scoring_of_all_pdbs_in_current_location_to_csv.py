@@ -55,3 +55,6 @@ for r,d,f in os.walk(location):
 
 			#write the line
 			write_file.write(ligand_name + "," + file + "," + ddg + "," + interaction_count + "," + real_motif_count + "," + real_motif_ratio + "\n")
+
+			#test print of line as well:
+			print(ligand_name + "," + file + "," + ddg + "," + interaction_count + "," + real_motif_count + "," + real_motif_ratio)
