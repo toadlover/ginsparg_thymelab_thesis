@@ -1,0 +1,24 @@
+-constant_seed 1
+-params_directory_path test_params/
+-motif_filename FINAL_motifs_list_filtered_2_3_2023.motifs
+-constrain_relax_to_start_coords
+-fa_atr_cutoff = -2
+-fa_rep_cutoff = 150
+-ddg_cutoff = -9
+-best_pdbs_to_keep = 0
+-collect_motifs_from_placed_ligand true
+-minimum_ratio_of_real_motifs_from_ligand 0.01
+-check_if_ligand_motifs_match_real true
+-duplicate_dist_cutoff 1.2
+-duplicate_angle_cutoff 0.45
+-post_highresdock_fa_atr_rep_score true
+-highresdock_with_whole_score_fxn true
+-output_motifs_as_pdb false
+
+#help deal with any potential repeats
+-in::file::override_database_params true
+
+#change these per system!
+-s 4zzi_receptor_only.pdb
+-protein_discovery_locus 163,80,82,84,179
+
