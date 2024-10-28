@@ -19,6 +19,6 @@
 -in::file::override_database_params true
 
 #change these per system!
--s XXXXXXX.pdb
--protein_discovery_locus 0,1,2,3,4,5,6
+-s 7n0b_receptor_only.pdb
+-protein_discovery_locus 347,81,297,353,338,536,423,388
 
