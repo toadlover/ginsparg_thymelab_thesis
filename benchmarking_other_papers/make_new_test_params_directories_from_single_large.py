@@ -7,7 +7,7 @@ import os,sys
 test_params_location = sys.argv[1]
 
 #make sure that we actually have a test_params directory
-if test_params_location.endswith("test_params") == False or test_params_location.endswith("test_params/") == False:
+if test_params_location.endswith("test_params") == False and test_params_location.endswith("test_params/") == False:
 	print("Input of: " + test_params_location + " is bad.")
 	quit()
 
