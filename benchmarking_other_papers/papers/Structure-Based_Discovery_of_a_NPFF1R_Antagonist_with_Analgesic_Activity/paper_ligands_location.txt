@@ -1,0 +1,1 @@
+s3cmd put test_params.tar.gz s3://ariosg/benchmarking_other_papers/npff1r/ligand_inputs/paper_ligands/test_params.tar.gz

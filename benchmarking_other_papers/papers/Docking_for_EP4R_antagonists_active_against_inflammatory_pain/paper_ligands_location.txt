@@ -1,0 +1,1 @@
+s3://ariosg/benchmarking_other_papers/ep4r/ligand_inputs/paper_ligands/test_params.tar.gz

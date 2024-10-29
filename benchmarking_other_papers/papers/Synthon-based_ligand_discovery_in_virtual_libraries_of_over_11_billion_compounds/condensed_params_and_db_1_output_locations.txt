@@ -1,0 +1,1 @@
+s3://ariosg/benchmarking_other_papers/synthon/ligand_inputs/condensed_params_and_db_1/0/test_params.tar.gz

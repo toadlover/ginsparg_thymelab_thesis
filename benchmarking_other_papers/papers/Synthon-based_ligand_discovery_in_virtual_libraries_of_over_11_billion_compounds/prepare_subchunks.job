@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH -p medium # Partition to submit to\n")
+#SBATCH -n 1 # Number of cores requested\n")
+#SBATCH -N 1 # Ensure that all cores are on one machine\n")
+#SBATCH -t 3000 # Runtime in minutes\n")
+#SBATCH --mem=128000 # Memory per cpu in MB (see also --mem-per-cpu)\n")
+#SBATCH -o hostname_%A_%a.out # Standard out goes to this file\n")
+#SBATCH -e hostname_%A_%a.err # Standard err goes to this filehostname\n")
+
+rm -drf condense* test_params*
+
+mkdir condensed_params_and_db_0
+cd condensed_params_and_db_0
+python /data/user/abgvg9/ginsparg_thymelab_thesis/prepare_ligands_for_discovery/prepare_whole_subchunk_for_discovery.py s3://ariosg/ligand_library/50503/for_s3/condensed_params_and_db_0.tar.gz s3://ariosg/benchmarking_other_papers/synthon/ligand_inputs/
+
+cd ..
+mkdir condensed_params_and_db_1
+cd condensed_params_and_db_1
+python /data/user/abgvg9/ginsparg_thymelab_thesis/prepare_ligands_for_discovery/prepare_whole_subchunk_for_discovery.py s3://ariosg/ligand_library/50503/for_s3/condensed_params_and_db_1.tar.gz s3://ariosg/benchmarking_other_papers/synthon/ligand_inputs/

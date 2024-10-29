@@ -1,0 +1,1 @@
+s3://ariosg/benchmarking_other_papers/nsp14_7n0b/ligand_inputs/paper_ligands/test_params.tar.gz

@@ -1,0 +1,7 @@
+s3://ariosg/benchmarking_other_papers/sigma2/ligand_inputs/paper_ligands/1/test_params.tar.gz
+s3://ariosg/benchmarking_other_papers/sigma2/ligand_inputs/paper_ligands/2/test_params.tar.gz
+s3://ariosg/benchmarking_other_papers/sigma2/ligand_inputs/paper_ligands/3/test_params.tar.gz
+s3://ariosg/benchmarking_other_papers/sigma2/ligand_inputs/paper_ligands/4/test_params.tar.gz
+s3://ariosg/benchmarking_other_papers/sigma2/ligand_inputs/paper_ligands/5/test_params.tar.gz
+s3://ariosg/benchmarking_other_papers/sigma2/ligand_inputs/paper_ligands/6/test_params.tar.gz
+s3://ariosg/benchmarking_other_papers/sigma2/ligand_inputs/paper_ligands/7/test_params.tar.gz
