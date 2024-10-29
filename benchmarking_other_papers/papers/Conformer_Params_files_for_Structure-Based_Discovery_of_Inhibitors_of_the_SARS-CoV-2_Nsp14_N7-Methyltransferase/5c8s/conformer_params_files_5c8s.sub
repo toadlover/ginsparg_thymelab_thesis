@@ -1,0 +1,50 @@
+executable = discovery_on_prepared_test_params_directory.sh
+
+arguments = $(Process) $(Cluster) $(arg_file)
+
+s3_access_key_id_file = /home/abgvg9/conformator_and_params/access_key
+s3_secret_access_key_file = /home/abgvg9/conformator_and_params/secret_key
+
+max_idle=5000
+
+#define location of output directory
+
+#i.e. to reach s3://ariosg/Ox_truncations_12M_cheaha/0/test_params/
+
+input_source=s3://s3.lts.rc.uab.edu/ariosg/benchmarking_other_papers/
+
+output_dir=s3://s3.lts.rc.uab.edu/ariosg/benchmarking_other_papers/
+
+repo_path=/home/abgvg9/ginsparg_thymelab_thesis/benchmarking_other_papers/papers/Conformer_Params_files_for_Structure-Based_Discovery_of_Inhibitors_of_the_SARS-CoV-2_Nsp14_N7-Methyltransferase/5c8s
+pdb_name=5c8s
+
+arg_file=$(repo_path)/$(pdb_name)_args
+pdb_file=$(repo_path)/$(pdb_name)_receptor_only.pdb
+
+#needed inputs: compressed directory that contains the params and conformers in sdf format, script that can uncondense the params data, motifs file, arg file
+transfer_input_files = $(input_source)$(in_dir)/test_params.tar.gz, /home/abgvg9/rosetta_discovery/FINAL_motifs_list_filtered_2_3_2023.motifs, $(arg_file), $(pdb_file), /home/abgvg9/ginsparg_thymelab_thesis/benchmarking_other_papers/write_scoring_of_all_pdbs_in_current_location_to_csv.py
+
+#s3://ariosg/Ox_truncations_12M_cheaha/0/test_params/
+
+#main output
+transfer_output_remaps = "placement_score_data.csv = $(output_dir)$(out_dir)/placement_score_data.csv;job_times.txt = $(output_dir)$(out_dir)/job_times.txt"
+
+#log = log/rep.log
+
+#easier to work with
+output = output/discovery.$(Process).$(Cluster).out
+error = error/discovery.$(Process).$(Cluster).err
+log = log/discovery.$(Process).$(Cluster).log
+
+
+#updated image with space fill method and ability to select multiple residues for motif searching in a single Rosetta call
++SingularityImage = "osdf:///ospool/ap21/data/abgvg9/rosetta_condensed_6_25_2024.sif"
+
+request_memory = 10GB
+request_disk = 5GB
+request_cpus = 1
+
+periodic_release =  (((HoldReasonCode == 12 || HoldReasonCode == 13) && HoldReasonSubCode == 256) || (HoldReasonSubCode == 42))
+
+#use this one for whole
+queue in_dir,out_dir from $(repo_path)/file_location_data.csv
