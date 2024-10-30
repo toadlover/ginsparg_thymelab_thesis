@@ -1,6 +1,6 @@
 executable = discovery_on_prepared_test_params_directory.sh
 
-arguments = $(Process) $(Cluster) $(arg_file)
+arguments = $(Process) $(Cluster) 5ek0_args
 
 s3_access_key_id_file = /home/abgvg9/conformator_and_params/access_key
 s3_secret_access_key_file = /home/abgvg9/conformator_and_params/secret_key
