@@ -1,5 +1,5 @@
 -constant_seed 1
--params_directory_path test_params/
+-params_directory_path test_params/ 
 -motif_filename FINAL_motifs_list_filtered_2_3_2023.motifs
 -constrain_relax_to_start_coords
 -fa_atr_cutoff = -2
@@ -19,6 +19,12 @@
 -in::file::override_database_params true
 
 #change these per system!
+
+#space fill
+-binding_pocket_center_sf 8,36,-5
+-binding_pocket_dimensions_sf 5,5,5
+-space_fill_cutoff_differential_score_sub 0.1
+
 -s 4zzi_receptor_only.pdb
 -protein_discovery_locus 163,80,82,84,179
-
+#-protein_discovery_locus 163

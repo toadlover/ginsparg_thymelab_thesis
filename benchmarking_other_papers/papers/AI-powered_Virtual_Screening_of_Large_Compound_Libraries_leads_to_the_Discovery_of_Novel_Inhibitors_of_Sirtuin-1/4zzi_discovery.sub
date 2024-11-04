@@ -47,10 +47,10 @@ log = log/discovery.$(Process).$(Cluster).log
 
 #request_memory = 12GB
 #request_memory = 2GB
-request_memory = 10GB
+request_memory = 30GB
 #request_memory = 10GB
 #request_disk = 12GB
-request_disk = 5GB
+request_disk = 50GB
 request_cpus = 1
 
 #preiodic release due to shadow hold
