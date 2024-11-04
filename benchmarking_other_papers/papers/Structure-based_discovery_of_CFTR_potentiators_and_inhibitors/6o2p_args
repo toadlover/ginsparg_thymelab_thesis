@@ -19,6 +19,11 @@
 -in::file::override_database_params true
 
 #change these per system!
+#space fill
+-binding_pocket_center_sf 128,131,149
+-binding_pocket_dimensions_sf 5,5,5
+-space_fill_cutoff_differential_score_sub 0.1
+
 -s 6o2p_receptor_only.pdb
--protein_discovery_locus 928,312,308,305,304,931,932,933,930
+-protein_discovery_locus 525,522,976,947,978
 
