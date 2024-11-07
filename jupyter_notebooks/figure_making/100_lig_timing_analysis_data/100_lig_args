@@ -1,0 +1,38 @@
+-constant_seed 1
+-s 7l1u_receptor_only.pdb
+-params_directory_path test_params/
+
+-motif_filename  /data/user/abgvg9/FINAL_motifs_list_filtered_2_3_2023.motifs
+-protein_discovery_locus 86
+-constrain_relax_to_start_coords
+-fa_atr_cutoff = -2
+-fa_rep_cutoff = 150
+-ddg_cutoff = -9
+-best_pdbs_to_keep = 0
+
+#space fill
+-binding_pocket_center_sf 122,125,160
+-binding_pocket_dimensions_sf 4,5,5
+-space_fill_cutoff_differential_score_sub 0.15
+
+#placement motifs collection
+-collect_motifs_from_placed_ligand true
+-significant_residues_for_motifs 227,86,253,63,257
+
+#check real motifs
+-check_if_ligand_motifs_match_real true
+-duplicate_dist_cutoff 1.5
+-duplicate_angle_cutoff 0.6
+
+
+#get additional scores (atr, rep, atr_rep, whole)
+-post_highresdock_fa_atr_rep_score true
+
+#use whole score function for highresdock
+-highresdock_with_whole_score_fxn true
+
+#do not output generated ligand motifs as pdbs
+-output_motifs_as_pdb false
+
+#safety check to prevent crashing in case 2 ligands with the same name are inputted
+-in::file::override_database_params true
