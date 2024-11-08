@@ -47,7 +47,7 @@ for line in locations_file.readlines():
 	for data_line in small_file.readlines():
 
 		#pull the first entry of the data_line to extract just the ligand name (everything before the first underscore) so that we can find the best placement for a metric across all conformers
-		lig_name = data_line.split("_")
+		lig_name = data_line.split("_")[0]
 
 		all_csv.write(is_paper_ligand + "," + lig_name + "," + data_line)
 
