@@ -210,49 +210,122 @@ paper_ligands_ranked = {}
 num_ligands = len(best_ddg_list_sorted)
 
 #iterate by index so that we also have a counter
+
+#variable to hold the preivous index rank to help better deal with ties (so that list order is not affected by ties)
+previous_rank = 0
+previous_value = ""
+
 #ddg
 for i in range(len(best_ddg_list_sorted)):
+	
+	#assign first instance of the previous value
+	if previous_value == "":
+		previous_value = float(best_ddg_list_sorted[i][4])
+	#check to potentially assign previous value and rank to handle ties
+	else:
+		#check if the previous value is equal the the current
+		if previous_value == float(best_ddg_list_sorted[i][4]):
+			#if the same, a tie, do not adjust previous rank or previous value
+			previous_rank = previous_rank
+		else:
+			previous_rank = i
+			previous_value = float(best_ddg_list_sorted[i][4])
+
+
 	#process if the ligand iterated upon is a paper ligand
 	if best_ddg_list_sorted[i][0] == "1":
 		#add the information for the ligand to the paper_ligands_ranked dictionary
 		if best_ddg_list_sorted[i][1] not in paper_ligands_ranked.keys():
-			paper_ligands_ranked[best_ddg_list_sorted[i][1]] = [best_ddg_list_sorted[i][1], i + 1, (i + 1) / num_ligands]
+			paper_ligands_ranked[best_ddg_list_sorted[i][1]] = [best_ddg_list_sorted[i][1], previous_rank + 1, (previous_rank + 1) / num_ligands]
 		else:
-			paper_ligands_ranked[best_ddg_list_sorted[i][1]].append(i + 1)
-			paper_ligands_ranked[best_ddg_list_sorted[i][1]].append((i + 1) / num_ligands)
+			paper_ligands_ranked[best_ddg_list_sorted[i][1]].append(previous_rank + 1)
+			paper_ligands_ranked[best_ddg_list_sorted[i][1]].append((previous_rank + 1) / num_ligands)
+
+#variable to hold the preivous index rank to help better deal with ties (so that list order is not affected by ties)
+previous_rank = 0
+previous_value = ""
 
 #interactions
 for i in range(len(best_interactions_list_sorted)):
+	#assign first instance of the previous value
+	if previous_value == "":
+		previous_value = float(best_interactions_list_sorted[i][5])
+	#check to potentially assign previous value and rank to handle ties
+	else:
+		#check if the previous value is equal the the current
+		if previous_value == float(best_interactions_list_sorted[i][5]):
+			#if the same, a tie, do not adjust previous rank or previous value
+			previous_rank = previous_rank
+		else:
+			previous_rank = i
+			previous_value = float(best_interactions_list_sorted[i][5])
+
 	#process if the ligand iterated upon is a paper ligand
 	if best_interactions_list_sorted[i][0] == "1":
 		#add the information for the ligand to the paper_ligands_ranked dictionary
 		if best_interactions_list_sorted[i][1] not in paper_ligands_ranked.keys():
-			paper_ligands_ranked[best_interactions_list_sorted[i][1]] = [best_interactions_list_sorted[i][1], i + 1, (i + 1) / num_ligands]
+			paper_ligands_ranked[best_interactions_list_sorted[i][1]] = [best_interactions_list_sorted[i][1], previous_rank + 1, (previous_rank + 1) / num_ligands]
 		else:
-			paper_ligands_ranked[best_interactions_list_sorted[i][1]].append(i + 1)
-			paper_ligands_ranked[best_interactions_list_sorted[i][1]].append((i + 1) / num_ligands)
+			paper_ligands_ranked[best_interactions_list_sorted[i][1]].append(previous_rank + 1)
+			paper_ligands_ranked[best_interactions_list_sorted[i][1]].append((previous_rank + 1) / num_ligands)
+
+#variable to hold the preivous index rank to help better deal with ties (so that list order is not affected by ties)
+previous_rank = 0
+previous_value = ""
 
 #real count
 for i in range(len(best_real_count_list_sorted)):
+	
+	#assign first instance of the previous value
+	if previous_value == "":
+		previous_value = float(best_real_count_list_sorted[i][6])
+	#check to potentially assign previous value and rank to handle ties
+	else:
+		#check if the previous value is equal the the current
+		if previous_value == float(best_real_count_list_sorted[i][6]):
+			#if the same, a tie, do not adjust previous rank or previous value
+			previous_rank = previous_rank
+		else:
+			previous_rank = i
+			previous_value = float(best_real_count_list_sorted[i][6])
+
 	#process if the ligand iterated upon is a paper ligand
 	if best_real_count_list_sorted[i][0] == "1":
 		#add the information for the ligand to the paper_ligands_ranked dictionary
 		if best_real_count_list_sorted[i][1] not in paper_ligands_ranked.keys():
-			paper_ligands_ranked[best_real_count_list_sorted[i][1]] = [best_real_count_list_sorted[i][1], i + 1, (i + 1) / num_ligands]
+			paper_ligands_ranked[best_real_count_list_sorted[i][1]] = [best_real_count_list_sorted[i][1], previous_rank + 1, (previous_rank + 1) / num_ligands]
 		else:
-			paper_ligands_ranked[best_real_count_list_sorted[i][1]].append(i + 1)
-			paper_ligands_ranked[best_real_count_list_sorted[i][1]].append((i + 1) / num_ligands)
+			paper_ligands_ranked[best_real_count_list_sorted[i][1]].append(previous_rank + 1)
+			paper_ligands_ranked[best_real_count_list_sorted[i][1]].append((previous_rank + 1) / num_ligands)
+
+#variable to hold the preivous index rank to help better deal with ties (so that list order is not affected by ties)
+previous_rank = 0
+previous_value = ""
 
 #real ratio
 for i in range(len(best_real_ratio_list_sorted)):
+	
+	#assign first instance of the previous value
+	if previous_value == "":
+		previous_value = float(best_real_ratio_list_sorted[i][7])
+	#check to potentially assign previous value and rank to handle ties
+	else:
+		#check if the previous value is equal the the current
+		if previous_value == float(best_real_ratio_list_sorted[i][7]):
+			#if the same, a tie, do not adjust previous rank or previous value
+			previous_rank = previous_rank
+		else:
+			previous_rank = i
+			previous_value = float(best_real_ratio_list_sorted[i][7])
+
 	#process if the ligand iterated upon is a paper ligand
 	if best_real_ratio_list_sorted[i][0] == "1":
 		#add the information for the ligand to the paper_ligands_ranked dictionary
 		if best_real_ratio_list_sorted[i][1] not in paper_ligands_ranked.keys():
-			paper_ligands_ranked[best_real_ratio_list_sorted[i][1]] = [best_real_ratio_list_sorted[i][1], i + 1, (i + 1) / num_ligands]
+			paper_ligands_ranked[best_real_ratio_list_sorted[i][1]] = [best_real_ratio_list_sorted[i][1], previous_rank + 1, (previous_rank + 1) / num_ligands]
 		else:
-			paper_ligands_ranked[best_real_ratio_list_sorted[i][1]].append(i + 1)
-			paper_ligands_ranked[best_real_ratio_list_sorted[i][1]].append((i + 1) / num_ligands)
+			paper_ligands_ranked[best_real_ratio_list_sorted[i][1]].append(previous_rank + 1)
+			paper_ligands_ranked[best_real_ratio_list_sorted[i][1]].append((previous_rank + 1) / num_ligands)
 
 #finally, run through paper_ligands_ranked and print out where the paper ligands rank
 #make a file to print the ranks
