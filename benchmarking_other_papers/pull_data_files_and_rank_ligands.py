@@ -99,7 +99,7 @@ for line in all_csv.readlines():
 		best_ddg[split_line[1]] = split_line
 	#if instance in dictionary, see if new instance is better and replace in dictionary if better
 	else:
-		if float(best_ddg[split_line[1]][4]) > flost(split_line[4]):
+		if float(best_ddg[split_line[1]][4]) > float(split_line[4]):
 			#replace with better
 			best_ddg[split_line[1]] = split_line
 
