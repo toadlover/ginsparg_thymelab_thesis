@@ -25,7 +25,7 @@ locations_file = open("csv_file_locations.txt", "r")
 all_csv = open("all_paper_data.csv", "w")
 
 #write a header line to the csv file
-all_csv.write("is_paper_ligand,ligand,ligand_conf,placement_pdb,ddg,interactions,real_motifs_count,real_motifs_ratio")
+all_csv.write("is_paper_ligand,ligand,ligand_conf,placement_pdb,ddg,interactions,real_motifs_count,real_motifs_ratio\n")
 
 for line in locations_file.readlines():
 	#strip the newline and then get the file
