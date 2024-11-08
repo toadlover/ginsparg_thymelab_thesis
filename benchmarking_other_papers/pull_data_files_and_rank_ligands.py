@@ -177,28 +177,28 @@ best_real_ratio_list_sorted = sorted(best_real_ratio_list, key=lambda x: float(x
 best_ddg_file = open("best_ddg.csv", "w")
 for placement in best_ddg_list_sorted:
 	for item in placement:
-		best_ddg_file.write(str(item) + ",")
+		best_ddg_file.write(str(item).strip() + ",")
 	best_ddg_file.write("\n")
 
 #interaction
 best_interactions_file = open("best_interactions.csv", "w")
 for placement in best_interactions_list_sorted:
 	for item in placement:
-		best_interactions_file.write(str(item) + ",")
+		best_interactions_file.write(str(item).strip() + ",")
 	best_interactions_file.write("\n")
 
 #real count
 best_real_count_file = open("best_real_count.csv", "w")
 for placement in best_real_count_list_sorted:
 	for item in placement:
-		best_real_count_file.write(str(item) + ",")
+		best_real_count_file.write(str(item).strip() + ",")
 	best_real_count_file.write("\n")
 
 #real ratio
 best_real_ratio_file = open("best_real_ratio.csv", "w")
 for placement in best_real_ratio_list_sorted:
 	for item in placement:
-		best_real_ratio_file.write(str(item) + ",")
+		best_real_ratio_file.write(str(item).strip() + ",")
 	best_real_ratio_file.write("\n")
 
 #finally, run through each list and identify where the paper ligands rank, and output that data
@@ -262,7 +262,7 @@ paper_ligands_file = open("paper_ligands_rank.csv", "w")
 paper_ligands_file.write("ligand,ddg_rank,ddg_percentile,interaction_rank,interaction_percentile,real_motif_count_rank,real_motif_count_percentile,real_motif_ratio_rank,real_motif_ratio_percentile,\n")
 
 for ligand in paper_ligands_ranked.keys():
-	for item in ligand:
+	for item in paper_ligands_ranked[ligand]:
 		paper_ligands_file.write(str(item) + ",")
 
 	paper_ligands_file.write("\n")
