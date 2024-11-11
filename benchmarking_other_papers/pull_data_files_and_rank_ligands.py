@@ -236,8 +236,9 @@ for i in range(len(best_ddg_list_sorted)):
 	if best_ddg_list_sorted[i][0] == "1":
 		#add the information for the ligand to the paper_ligands_ranked dictionary
 		if best_ddg_list_sorted[i][1] not in paper_ligands_ranked.keys():
-			paper_ligands_ranked[best_ddg_list_sorted[i][1]] = [best_ddg_list_sorted[i][1], previous_rank + 1, (previous_rank + 1) / num_ligands]
+			paper_ligands_ranked[best_ddg_list_sorted[i][1]] = [best_ddg_list_sorted[i][1], float(best_ddg_list_sorted[i][4]), previous_rank + 1, (previous_rank + 1) / num_ligands]
 		else:
+			paper_ligands_ranked[best_ddg_list_sorted[i][1]].append(float(best_ddg_list_sorted[i][4]))
 			paper_ligands_ranked[best_ddg_list_sorted[i][1]].append(previous_rank + 1)
 			paper_ligands_ranked[best_ddg_list_sorted[i][1]].append((previous_rank + 1) / num_ligands)
 
@@ -264,8 +265,9 @@ for i in range(len(best_interactions_list_sorted)):
 	if best_interactions_list_sorted[i][0] == "1":
 		#add the information for the ligand to the paper_ligands_ranked dictionary
 		if best_interactions_list_sorted[i][1] not in paper_ligands_ranked.keys():
-			paper_ligands_ranked[best_interactions_list_sorted[i][1]] = [best_interactions_list_sorted[i][1], previous_rank + 1, (previous_rank + 1) / num_ligands]
+			paper_ligands_ranked[best_interactions_list_sorted[i][1]] = [best_interactions_list_sorted[i][1], float(best_interactions_list_sorted[i][5]), previous_rank + 1, (previous_rank + 1) / num_ligands]
 		else:
+			paper_ligands_ranked[best_interactions_list_sorted[i][1]].append(float(best_interactions_list_sorted[i][5]))
 			paper_ligands_ranked[best_interactions_list_sorted[i][1]].append(previous_rank + 1)
 			paper_ligands_ranked[best_interactions_list_sorted[i][1]].append((previous_rank + 1) / num_ligands)
 
@@ -293,8 +295,9 @@ for i in range(len(best_real_count_list_sorted)):
 	if best_real_count_list_sorted[i][0] == "1":
 		#add the information for the ligand to the paper_ligands_ranked dictionary
 		if best_real_count_list_sorted[i][1] not in paper_ligands_ranked.keys():
-			paper_ligands_ranked[best_real_count_list_sorted[i][1]] = [best_real_count_list_sorted[i][1], previous_rank + 1, (previous_rank + 1) / num_ligands]
+			paper_ligands_ranked[best_real_count_list_sorted[i][1]] = [best_real_count_list_sorted[i][1], float(best_real_count_list_sorted[i][6]), previous_rank + 1, (previous_rank + 1) / num_ligands]
 		else:
+			paper_ligands_ranked[best_real_count_list_sorted[i][1]].append(float(best_real_count_list_sorted[i][6]))
 			paper_ligands_ranked[best_real_count_list_sorted[i][1]].append(previous_rank + 1)
 			paper_ligands_ranked[best_real_count_list_sorted[i][1]].append((previous_rank + 1) / num_ligands)
 
@@ -322,8 +325,9 @@ for i in range(len(best_real_ratio_list_sorted)):
 	if best_real_ratio_list_sorted[i][0] == "1":
 		#add the information for the ligand to the paper_ligands_ranked dictionary
 		if best_real_ratio_list_sorted[i][1] not in paper_ligands_ranked.keys():
-			paper_ligands_ranked[best_real_ratio_list_sorted[i][1]] = [best_real_ratio_list_sorted[i][1], previous_rank + 1, (previous_rank + 1) / num_ligands]
+			paper_ligands_ranked[best_real_ratio_list_sorted[i][1]] = [best_real_ratio_list_sorted[i][1], float(best_real_ratio_list_sorted[i][7]), previous_rank + 1, (previous_rank + 1) / num_ligands]
 		else:
+			paper_ligands_ranked[best_real_ratio_list_sorted[i][1]].append(float(best_real_ratio_list_sorted[i][7]))
 			paper_ligands_ranked[best_real_ratio_list_sorted[i][1]].append(previous_rank + 1)
 			paper_ligands_ranked[best_real_ratio_list_sorted[i][1]].append((previous_rank + 1) / num_ligands)
 
@@ -332,7 +336,7 @@ for i in range(len(best_real_ratio_list_sorted)):
 paper_ligands_file = open("paper_ligands_rank.csv", "w")
 
 #write a header for the file
-paper_ligands_file.write("ligand,ddg_rank,ddg_percentile,interaction_rank,interaction_percentile,real_motif_count_rank,real_motif_count_percentile,real_motif_ratio_rank,real_motif_ratio_percentile,\n")
+paper_ligands_file.write("ligand,best_ddg,ddg_rank,ddg_percentile,best_interaction,interaction_rank,interaction_percentile,best_real_motif_count,real_motif_count_rank,real_motif_count_percentile,best_real_motif_ratio,real_motif_ratio_rank,real_motif_ratio_percentile,\n")
 
 for ligand in paper_ligands_ranked.keys():
 	for item in paper_ligands_ranked[ligand]:
