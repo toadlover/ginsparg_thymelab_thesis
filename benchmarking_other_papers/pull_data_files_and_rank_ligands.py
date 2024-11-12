@@ -78,6 +78,10 @@ for line in all_csv.readlines():
 	#strip the line first to remove the newline
 	stripped_line = line.strip()
 
+	#skip any placements that have nan values
+	if ",nan" in stripped_line:
+		continue
+
 	#use split to split the line by the data values
 	split_line = line.split(",")
 
@@ -343,3 +347,4 @@ for ligand in paper_ligands_ranked.keys():
 		paper_ligands_file.write(str(item) + ",")
 
 	paper_ligands_file.write("\n")
+
