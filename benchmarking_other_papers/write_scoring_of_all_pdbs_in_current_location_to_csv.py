@@ -24,6 +24,7 @@ for r,d,f in os.walk(location):
 			interaction_count = 0
 			real_motif_count = 0
 			real_motif_ratio = 0
+			placement_motif_remark = ""
 
 			#open file read stream
 			file_stream = open(file,"r")
@@ -49,12 +50,16 @@ for r,d,f in os.walk(location):
 				if line.startswith("Placement motifs: Real motif ratio:"):
 					real_motif_ratio = str(float(line.strip().split()[len(line.strip().split()) - 1]))
 
+				#placement motif remark
+				if line.startswith("Placement: Placed motif remark:"):
+					placement_motif_remark = str(float(line.strip().split()[len(line.strip().split()) - 1]))
+
 			#once the file is read, make sure we got data and then if we did, write a line to teh csv
 			if ligand_name == "":
 				continue
 
 			#write the line
-			write_file.write(ligand_name + "," + file + "," + ddg + "," + interaction_count + "," + real_motif_count + "," + real_motif_ratio + "\n")
+			write_file.write(ligand_name + "," + file + "," + ddg + "," + interaction_count + "," + real_motif_count + "," + real_motif_ratio + "," + placement_motif_remark +  "\n")
 
 			#test print of line as well:
-			print(ligand_name + "," + file + "," + ddg + "," + interaction_count + "," + real_motif_count + "," + real_motif_ratio)
+			print(ligand_name + "," + file + "," + ddg + "," + interaction_count + "," + real_motif_count + "," + real_motif_ratio + "," + placement_motif_remark)
