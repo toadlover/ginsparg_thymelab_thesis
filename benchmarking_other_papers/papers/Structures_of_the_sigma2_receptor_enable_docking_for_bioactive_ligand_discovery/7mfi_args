@@ -20,10 +20,10 @@
 
 #change these per system!
 #space fill
--binding_pocket_center_sf 1,-45,29
+-binding_pocket_center_sf 1,-47,29
 -binding_pocket_dimensions_sf 5,5,5
 -space_fill_cutoff_differential_score_sub 0.1
 
--s 7mfi_receptor_only.pdb
--protein_discovery_locus 395,399,432,354,346,469,463
+-s 7mfi_receptor_only_trimmed.pdb
+-protein_discovery_locus 141,74,107,18,138,26,70
 
