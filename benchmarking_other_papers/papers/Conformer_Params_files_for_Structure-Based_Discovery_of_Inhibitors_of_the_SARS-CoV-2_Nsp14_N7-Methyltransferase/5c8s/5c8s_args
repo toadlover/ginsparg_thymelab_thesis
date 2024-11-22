@@ -24,6 +24,6 @@
 -binding_pocket_dimensions_sf 5,5,5
 -space_fill_cutoff_differential_score_sub 0.1
 
--s 5c8s_receptor_only.pdb
--protein_discovery_locus 500,591,487,486,501,527,485,488,467,417
+-s 5c8s_receptor_only_trimmed.pdb
+-protein_discovery_locus 101,19,99,139
 
