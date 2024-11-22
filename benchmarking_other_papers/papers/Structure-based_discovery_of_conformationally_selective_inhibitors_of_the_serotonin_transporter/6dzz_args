@@ -25,5 +25,5 @@
 -space_fill_cutoff_differential_score_sub 0.1
 
 -s 6dzz_receptor_only.pdb
--protein_discovery_locus 598,258,349,508,513,349
+-protein_discovery_locus 396,95,258,99
 
