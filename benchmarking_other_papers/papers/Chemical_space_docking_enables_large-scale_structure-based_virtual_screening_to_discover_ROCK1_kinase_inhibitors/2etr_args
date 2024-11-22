@@ -25,5 +25,5 @@
 -space_fill_cutoff_differential_score_sub 0.1
 
 -s 2etr_receptor_only.pdb
--protein_discovery_locus 149,151,109,150,134
+-protein_discovery_locus 198,211,148,100,85
 
