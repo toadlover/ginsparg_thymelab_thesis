@@ -24,6 +24,6 @@
 -binding_pocket_dimensions_sf 5,5,5
 -space_fill_cutoff_differential_score_sub 0.1
 
--s 5ywy_receptor_only.pdb
--protein_discovery_locus 151,63,59,52,253,250
+-s 5ywy_receptor_only_trimmed.pdb
+-protein_discovery_locus 63,59,250,82
 
