@@ -24,6 +24,6 @@
 -binding_pocket_dimensions_sf 5,5,5
 -space_fill_cutoff_differential_score_sub 0.1
 
--s 6dpx_receptor_only.pdb
--protein_discovery_locus 567,425,507,339,253,61,572,314,61,252,321
+-s 6dpx_receptor_only_trimmed.pdb
+-protein_discovery_locus 312,313,61,315,218,64,147
 
