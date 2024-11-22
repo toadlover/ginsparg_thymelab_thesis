@@ -52,7 +52,7 @@ for r,d,f in os.walk(location):
 
 				#placement motif remark
 				if line.startswith("Placement: Placed motif remark:"):
-					placement_motif_remark = str(float(line.strip().split()[len(line.strip().split()) - 1]))
+					placement_motif_remark = str(line.strip().split()[len(line.strip().split()) - 1])
 
 			#once the file is read, make sure we got data and then if we did, write a line to teh csv
 			if ligand_name == "":
