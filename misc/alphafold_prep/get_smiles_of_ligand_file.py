@@ -25,7 +25,14 @@ if len(sys.argv) >= 3:
 		output_path = output_path + "/"
 
 #derive the smiles string
-supplier = Chem.SDMolSupplier(input_file)
+
+supplier = ""
+
+if input_file.endswith(".sdf"):
+	supplier = Chem.SDMolSupplier(input_file)
+if input_file.endswith(".mol2"):
+	supplier = Chem.MolFromMol2File(input_file)
+
 for mol in supplier:
 	if mol is not None:  # Check for valid molecule
 		smiles = Chem.MolToSmiles(mol)
