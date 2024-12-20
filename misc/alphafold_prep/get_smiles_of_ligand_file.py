@@ -9,8 +9,8 @@ from rdkit import Chem
 input_file = sys.argv[1]
 
 #sanity check for file type
-if input_file.endswith(".sdf") == False and input_file.endswith(".mol2") == False:
-	print("File input of " + input_file + " is not of type sdf or mol2, and we will not mess with it")
+if input_file.endswith(".sdf") == False and input_file.endswith(".mol2") == False and input_file.endswith(".pdb") == False:
+	print("File input of " + input_file + " is not of type pdb, sdf, or mol2, and we will not mess with it")
 	quit()
 
 file_prefix = input_file.split("/")[len(input_file.split("/")) - 1].split(".")[0]
@@ -32,6 +32,9 @@ if input_file.endswith(".sdf"):
 	mol = Chem.SDMolSupplier(input_file)
 if input_file.endswith(".mol2"):
 	mol = Chem.MolFromMol2File(input_file)
+if input_file.endswith(".pdb"):
+	mol = Chem.MolFromPDBFile(input_file)
+
 
 if mol is not None:  # Check for valid molecule
 	smiles = Chem.MolToSmiles(mol)
