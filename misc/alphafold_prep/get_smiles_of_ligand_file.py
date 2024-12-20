@@ -24,6 +24,10 @@ if len(sys.argv) >= 3:
 	if output_path.endswith("/") == False:
 		output_path = output_path + "/"
 
+#optional, replace the file prefix with custom as 3rd argument
+if len(sys.argv) >= 4:
+	file_prefix = sys.argv[3]
+
 #derive the smiles string
 
 mol = ""
@@ -40,7 +44,7 @@ if mol is not None:  # Check for valid molecule
 	smiles = Chem.MolToSmiles(mol)
 
 	#write the smiles to a new file
-	print(output_path + file_prefix + ".smi",smiles)
+	#print(output_path + file_prefix + ".smi",smiles)
 	write_file = open(output_path + file_prefix + ".smi","w")
 	write_file.write(smiles)
 	write_file.close()
