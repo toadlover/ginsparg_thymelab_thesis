@@ -37,6 +37,7 @@ if mol is not None:  # Check for valid molecule
 	smiles = Chem.MolToSmiles(mol)
 
 	#write the smiles to a new file
+	print(output_path + file_prefix + ".smi",smiles)
 	write_file = open(output_path + file_prefix + ".smi","w")
 	write_file.write(smiles)
 	write_file.close()
