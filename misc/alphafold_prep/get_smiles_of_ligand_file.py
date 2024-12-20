@@ -17,7 +17,7 @@ file_prefix = input_file.split(".")[0]
 
 #optional, location to write the smiles file to. otherwise default to writing to current location
 output_path = ""
-if len(sys.argv) >=2:
+if len(sys.argv) >= 3:
 	output_path = sys.argv[2]
 
 	#append a slash to output_path if it does not end with one
