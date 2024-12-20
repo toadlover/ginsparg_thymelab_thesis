@@ -26,18 +26,17 @@ if len(sys.argv) >= 3:
 
 #derive the smiles string
 
-supplier = ""
+mol = ""
 
 if input_file.endswith(".sdf"):
-	supplier = Chem.SDMolSupplier(input_file)
+	mol = Chem.SDMolSupplier(input_file)
 if input_file.endswith(".mol2"):
-	supplier = Chem.MolFromMol2File(input_file)
+	mol = Chem.MolFromMol2File(input_file)
 
-for mol in supplier:
-	if mol is not None:  # Check for valid molecule
-		smiles = Chem.MolToSmiles(mol)
+if mol is not None:  # Check for valid molecule
+	smiles = Chem.MolToSmiles(mol)
 
-		#write the smiles to a new file
-		write_file = open(output_path + file_prefix + ".smi","w")
-		write_file.write(smiles)
-		write_file.close()
+	#write the smiles to a new file
+	write_file = open(output_path + file_prefix + ".smi","w")
+	write_file.write(smiles)
+	write_file.close()
