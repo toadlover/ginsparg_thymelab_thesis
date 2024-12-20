@@ -2,6 +2,7 @@
 #note, most of this code was written by ChatGPT as a quick way to get this logic, and was then adapted to suit my needs
 from rdkit import Chem
 from rdkit.Chem import rdmolfiles
+import os,sys
 
 def extract_chains_from_pdb(pdb_file):
     mol = Chem.MolFromPDBFile(pdb_file)
