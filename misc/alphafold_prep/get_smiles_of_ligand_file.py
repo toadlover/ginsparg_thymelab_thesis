@@ -13,7 +13,7 @@ if input_file.endswith(".sdf") == False and input_file.endswith(".mol2") == Fals
 	print("File input of " + input_file + " is not of type sdf or mol2, and we will not mess with it")
 	quit()
 
-file_prefix = input_file.split(".")[0]
+file_prefix = input_file.split("/")[len(input_file.split("/")) - 1].split(".")[0]
 
 #optional, location to write the smiles file to. otherwise default to writing to current location
 output_path = ""
