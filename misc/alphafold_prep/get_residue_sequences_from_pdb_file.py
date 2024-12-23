@@ -53,8 +53,8 @@ for line in read_file.readlines():
 
         #extract the chain, 3 letter code, and residue index
         chain_id = line[21]
-        residue_3_code = line[16] + line[17] + line[18]
-        residue_index = int(str(line[22] + line[23] + line[24]).strip())
+        residue_3_code = line[17] + line[18] + line[19]
+        residue_index = int(str(line[23] + line[24] + line[25]).strip())
 
         print(chain_id,residue_3_code,residue_index)
 
