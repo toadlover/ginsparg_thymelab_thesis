@@ -73,18 +73,16 @@ for line in read_file.readlines():
             #this is a new chain, make a new entry in the chains dictionary that has the chain id as a key
             chains[chain_id] = []
 
-        #check if we have already seen this index for the chain
-        if residue_index in chains[chain_id].keys():
-            #if we have seen it, then we just continue
-            residue_exists = False
-            for residue in chains[chain_id]:
-                #index 0 is the index, check if we have a match
-                if residue_index == residue[0]:
-                    residue_exists = True
-                    continue
-
-            if residue_exists:
+        #if we have seen it, then we just continue
+        residue_exists = False
+        for residue in chains[chain_id]:
+            #index 0 is the index, check if we have a match
+            if residue_index == residue[0]:
+                residue_exists = True
                 continue
+
+        if residue_exists:
+            continue
 
         #if we made it this far, add the new residue to the chain list
         #derive the 1 letter code
