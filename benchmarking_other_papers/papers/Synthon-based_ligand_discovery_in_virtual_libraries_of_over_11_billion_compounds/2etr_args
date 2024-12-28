@@ -24,6 +24,6 @@
 -binding_pocket_dimensions_sf 5,5,5
 -space_fill_cutoff_differential_score_sub 0.1
 
--s 2etr_receptor_only.pdb
+-s 2etr_receptor_only_trimmed.pdb
 -protein_discovery_locus 198,211,148,100,85
 
