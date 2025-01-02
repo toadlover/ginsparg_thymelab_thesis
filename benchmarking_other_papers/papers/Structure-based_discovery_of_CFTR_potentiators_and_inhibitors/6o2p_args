@@ -24,6 +24,6 @@
 -binding_pocket_dimensions_sf 5,5,5
 -space_fill_cutoff_differential_score_sub 0.1
 
--s 6o2p_receptor_only.pdb
+-s 6o2p_receptor_only_single_chain.pdb
 -protein_discovery_locus 308,309,312
 
