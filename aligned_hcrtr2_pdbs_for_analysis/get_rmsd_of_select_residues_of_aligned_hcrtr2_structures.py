@@ -139,4 +139,43 @@ for key in systems_atom_data.keys():
 
 		#with the distance sum, incorporate it into the rmsd dictionary
 		rmsd_dict[key][index_key] = distance_sum/atom_count
-		print(key,index_key,distance_sum/atom_count)
+		#print(key,index_key,distance_sum/atom_count)
+
+#write the rmsd dictionary to a csv file
+
+#open write file
+out_file = open("4s0v_pocket_residue_distances.csv", "w")
+
+#lead with empty entry so first column can be indices
+out_file.write("\n")
+
+#write header line of systems to first line
+for key in rmsd_dict.keys():
+	out_file.write(key + ",")
+
+#cap first line
+out_file.write("\n")
+
+#iterate over keys
+for key in rmsd_dict.keys():
+
+	#variable to determine if the index has been written already
+	index_written = False
+
+	for index_key in rmsd_dict[key].keys():
+		#first try to write index if it has not been written yet
+		if index_written == False:
+			index_written = True
+			#pull the index from residues_of_interest_single_entry
+			for index in residues_of_interest_single_entry:
+				split_index = index.split("_")[1]
+				#write the matching index that also notes the residue
+				if index_key == split_index:
+					out_file.write(index + ",")
+
+
+		#now, write the corresponding rmsd for the residue at the index for the system
+		out_file.write(str(rmsd_dict[key][index_key]) + ",")
+
+	#cap line with newline
+	out_file.write("\n")
