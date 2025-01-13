@@ -78,6 +78,12 @@ for r,d,f in os.walk(os.getcwd()):
 				if is_intersting == False:
 					continue
 
+				#skip if hydrogen (easy check is last character when splitting)
+				stripped_line = line.strip()
+				element = stripped_line.split()[len(stripped_line.split()) - 1]
+				if element == "H":
+					continue
+
 				#print(line)
 
 				#get the residue data
