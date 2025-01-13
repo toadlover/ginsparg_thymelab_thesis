@@ -76,6 +76,8 @@ for r,d,f in os.walk(os.getcwd()):
 				if is_intersting == False:
 					continue
 
+				print(line)
+
 				#get the residue data
 				#if this is the first atom, create a new dictionary entry
 				if curr_index not in systems_atom_data[file_base_name].keys():
