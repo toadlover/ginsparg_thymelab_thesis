@@ -124,7 +124,7 @@ for key in systems_atom_data.keys():
 		for atom_key in systems_atom_data[key][index_key].keys():
 			#calculate the atom-atom distance
 			#square root of sum of differences in x y z
-			atom_atom_distance = ((systems_atom_data[key][index_key][atom_key][0] - systems_atom_data["4s0v"][index_key][atom_key][0])^2 + (systems_atom_data[key][index_key][atom_key][1] - systems_atom_data["4s0v"][index_key][atom_key][1])^2 + (systems_atom_data[key][index_key][atom_key][2] - systems_atom_data["4s0v"][index_key][atom_key][2])^2)^0.5
+			atom_atom_distance = ((systems_atom_data[key][index_key][atom_key][0] - systems_atom_data["4s0v"][index_key][atom_key][0])**2 + (systems_atom_data[key][index_key][atom_key][1] - systems_atom_data["4s0v"][index_key][atom_key][1])**2 + (systems_atom_data[key][index_key][atom_key][2] - systems_atom_data["4s0v"][index_key][atom_key][2])**2)**0.5
 
 			#add the distance to the distance sum
 			distance_sum = distance_sum + atom_atom_distance
