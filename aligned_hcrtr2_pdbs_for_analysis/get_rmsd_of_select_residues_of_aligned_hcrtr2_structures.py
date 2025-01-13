@@ -21,8 +21,9 @@ for line in pocket_residue_file.readlines():
 
 		residue = stripped_line.split()[2]
 		index = stripped_line.split()[3]
-		residues_of_interest = [residue,index]
+		residues_of_interest.append([residue,index])
 
 #sanity check print of the residues of interest
 for index in residues_of_interest:
 	print(index)
+
