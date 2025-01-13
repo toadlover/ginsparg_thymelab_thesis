@@ -139,7 +139,7 @@ for key in systems_atom_data.keys():
 
 		#with the distance sum, incorporate it into the rmsd dictionary
 		rmsd_dict[key][index_key] = distance_sum/atom_count
-		#print(key,index_key,distance_sum/atom_count)
+		print(key,index_key,distance_sum/atom_count)
 
 #write the rmsd dictionary to a csv file
 
@@ -147,7 +147,7 @@ for key in systems_atom_data.keys():
 out_file = open("4s0v_pocket_residue_distances.csv", "w")
 
 #lead with empty entry so first column can be indices
-out_file.write("\n")
+out_file.write(",")
 
 #write header line of systems to first line
 #hardcoding to just use 6tpj
