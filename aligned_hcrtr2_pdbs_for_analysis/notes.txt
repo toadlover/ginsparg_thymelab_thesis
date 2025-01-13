@@ -1,0 +1,14 @@
+Methodology:
+
+11 HCRTR2 PDB files taken from RCSB. 7 antagonist and 4 agonist.
+
+Antagonist:
+4s0v, 6tpg, 6tpj, 7xrr, 5ws3, 5wqc, 6tpn
+
+Agonist
+7l1v, 7sr8, 7sqo, 7l1u
+
+Aligned all structures against 4s0v PDB using pymol align function
+Exported aligned chain to new pdb file
+
+Selected all residues within 7 angstroms of 4s0v suvorexant to investigate RMSD difference of binding pocket residues across systems
