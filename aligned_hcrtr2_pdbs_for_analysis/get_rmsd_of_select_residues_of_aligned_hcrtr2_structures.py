@@ -65,11 +65,11 @@ for r,d,f in os.walk(os.getcwd()):
 				#for this specific study, this easier method will work, but would need to be reworked if dealing with indices this high
 				curr_index = line.split()[5]
 
-				print(line,curr_index)
+				#print(line,curr_index)
 
 				is_intersting = False
 				#look through indices of interest
-				for this_ind in residues_of_interest_single_entry:
+				for this_ind in residues_of_interest:
 					if curr_index == this_ind[1]:
 						#note is interesting and we will process
 						is_intersting = True
