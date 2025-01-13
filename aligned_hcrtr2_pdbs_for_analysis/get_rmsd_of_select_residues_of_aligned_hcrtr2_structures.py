@@ -150,7 +150,8 @@ out_file = open("4s0v_pocket_residue_distances.csv", "w")
 out_file.write("\n")
 
 #write header line of systems to first line
-for key in rmsd_dict["4s0v"].keys():
+#hardcoding to just use 6tpj
+for key in rmsd_dict["6tpj"].keys():
 	out_file.write(key + ",")
 
 #cap first line
