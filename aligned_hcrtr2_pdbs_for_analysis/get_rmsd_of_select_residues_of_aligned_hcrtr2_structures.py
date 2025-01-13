@@ -65,6 +65,8 @@ for r,d,f in os.walk(os.getcwd()):
 				#for this specific study, this easier method will work, but would need to be reworked if dealing with indices this high
 				curr_index = line.split()[5]
 
+				print(line,curr_index)
+
 				is_intersting = False
 				#look through indices of interest
 				for this_ind in residues_of_interest_single_entry:
@@ -76,7 +78,7 @@ for r,d,f in os.walk(os.getcwd()):
 				if is_intersting == False:
 					continue
 
-				print(line)
+				#print(line)
 
 				#get the residue data
 				#if this is the first atom, create a new dictionary entry
