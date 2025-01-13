@@ -152,7 +152,12 @@ out_file.write(",")
 #write header line of systems to first line
 #hardcoding to just use 6tpj
 for key in rmsd_dict["6tpj"].keys():
-	out_file.write(key + ",")
+	
+	for index in residues_of_interest_single_entry:
+		split_index = index.split("_")[1]
+		#write the matching index that also notes the residue
+		if key == split_index:
+			out_file.write(index + ",")
 
 #cap first line
 out_file.write("\n")
@@ -171,11 +176,7 @@ for key in rmsd_dict.keys():
 		if index_written == False:
 			index_written = True
 			#pull the index from residues_of_interest_single_entry
-			for index in residues_of_interest_single_entry:
-				split_index = index.split("_")[1]
-				#write the matching index that also notes the residue
-				if index_key == split_index:
-					out_file.write(index + ",")
+
 		"""
 
 		#now, write the corresponding rmsd for the residue at the index for the system
