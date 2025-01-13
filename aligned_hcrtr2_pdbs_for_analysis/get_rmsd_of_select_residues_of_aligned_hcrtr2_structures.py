@@ -105,7 +105,7 @@ for key in systems_atom_data.keys():
 	#print(len(systems_atom_data))
 
 	#skip 4s0v to not compare against self
-	if key = "4s0v":
+	if key == "4s0v":
 		continue
 
 	#add system dictionary to rmsd dictionary if it is not already present
