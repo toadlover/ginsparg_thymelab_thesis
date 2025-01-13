@@ -94,11 +94,43 @@ for r,d,f in os.walk(os.getcwd()):
 				systems_atom_data[file_base_name][curr_index][atom_name] = [float(atom_x),float(atom_y),float(atom_z)]
 
 #system atom data should be filled now
-#test print
+
+#make a 2d dictionary that holds the rmsd between 4s0v and other systems that is the system on 1 dimension and the residue indices on the other
+rmsd_dict = {}
+
+#compare distances
 for key in systems_atom_data.keys():
-	print(systems_atom_data[key])
-	print(len(systems_atom_data))
+	#test print
+	#print(systems_atom_data[key])
+	#print(len(systems_atom_data))
 
+	#skip 4s0v to not compare against self
+	if key = "4s0v":
+		continue
 
+	#add system dictionary to rmsd dictionary if it is not already present
+	if key not in rmsd_dict.keys():
+		rmsd_dict[key] = {}
 
-		
+	#iterate over each residue
+	for index_key in systems_atom_data[key].keys():
+		#variable to hold the distance sum
+		distance_sum = 0
+
+		#variable to hold the atom count (to get a mean to normalize for atom count)
+		atom_count = 0
+
+		#iterate over each atom for the given index for current system and 4s0v
+		for atom_key in systems_atom_data[key][index_key].keys():
+			#calculate the atom-atom distance
+			#square root of sum of differences in x y z
+			atom_atom_distance = ((systems_atom_data[key][index_key][atom_key][0] - systems_atom_data["4s0v"][index_key][atom_key][0])^2 + (systems_atom_data[key][index_key][atom_key][1] - systems_atom_data["4s0v"][index_key][atom_key][1])^2 + (systems_atom_data[key][index_key][atom_key][2] - systems_atom_data["4s0v"][index_key][atom_key][2])^2)^0.5
+
+			#add the distance to the distance sum
+			distance_sum = distance_sum + atom_atom_distance
+
+			atom_count = atom_count + 1
+
+		#with the distance sum, incorporate it into the rmsd dictionary
+		rmsd_dict[key][index_key] = distance_sum/atom_count
+		print(key,index_key,distance_sum/atom_count)
