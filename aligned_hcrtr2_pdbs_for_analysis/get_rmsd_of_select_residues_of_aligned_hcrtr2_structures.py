@@ -150,7 +150,7 @@ out_file = open("4s0v_pocket_residue_distances.csv", "w")
 out_file.write("\n")
 
 #write header line of systems to first line
-for key in rmsd_dict.keys():
+for key in rmsd_dict["4s0v"].keys():
 	out_file.write(key + ",")
 
 #cap first line
@@ -160,9 +160,12 @@ out_file.write("\n")
 for key in rmsd_dict.keys():
 
 	#variable to determine if the index has been written already
-	index_written = False
+	#index_written = False
+
+	out_file.write(key + ",")
 
 	for index_key in rmsd_dict[key].keys():
+		"""
 		#first try to write index if it has not been written yet
 		if index_written == False:
 			index_written = True
@@ -172,7 +175,7 @@ for key in rmsd_dict.keys():
 				#write the matching index that also notes the residue
 				if index_key == split_index:
 					out_file.write(index + ",")
-
+		"""
 
 		#now, write the corresponding rmsd for the residue at the index for the system
 		out_file.write(str(rmsd_dict[key][index_key]) + ",")
