@@ -1,0 +1,24 @@
+-constant_seed 1
+-params_directory_path test_params/
+-motif_filename /data/user/abgvg9/FINAL_motifs_list_filtered_2_3_2023.motifs
+-constrain_relax_to_start_coords
+-fa_atr_cutoff = 100
+-fa_rep_cutoff = 150
+-ddg_cutoff = 100
+-best_pdbs_to_keep = 0
+-post_highresdock_fa_atr_rep_score true
+-highresdock_with_whole_score_fxn true
+-output_motifs_as_pdb false
+
+#help deal with any potential repeats
+-in::file::override_database_params true
+
+#change these per system!
+#space fill
+#-binding_pocket_center_sf -10,-38,-5
+#-binding_pocket_dimensions_sf 5,5,5
+#-space_fill_cutoff_differential_score_sub 0.1
+
+-s 5c8s_receptor_only_trimmed.pdb
+-protein_discovery_locus 1
+

@@ -1,0 +1,200 @@
+##############################################################################################################
+#
+# Rosetta crash log. Please submit the contents of this file to http://crash.rosettacommons.org/
+# or use the script Rosetta/main/source/scripts/python/public/report_crashes.py
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2024.19.post.dev+287.updatedliganddiscoverysearchcodeagmay2024.4452410
+[COMMIT_DATE]: 2024-11-06T13:09:12
+[APPLICATION]: /data/user/abgvg9/rosetta_LDS_time_profiling/source/bin/ligand_discovery_search_protocol.linuxgccrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: GNU/Linux
+[COMPILER]: GCC version "4.8.5 20150623 (Red Hat 4.8.5-44)"
+[STDLIB]: libstdc++ version 20150623
+[START_OPTIONS]
+ -in:file:s=2etr_receptor_only_trimmed.pdb -in:file:override_database_params -run:constant_seed -motifs:motif_filename=/data/user/abgvg9/FINAL_motifs_list_filtered_2_3_2023.motifs -motifs:params_directory_path=test_params/ -motifs:protein_discovery_locus=1 -motifs:fa_rep_cutoff=150 -motifs:fa_atr_cutoff=100 -motifs:post_highresdock_fa_atr_rep_score -motifs:ddg_cutoff=100 -motifs:best_pdbs_to_keep=0 -motifs:output_motifs_as_pdb=false -motifs:highresdock_with_whole_score_fxn -relax:constrain_relax_to_start_coords
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libutility.so(backtrace_string(int)+0x3a) [0x2aaabae62c4a]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libutility.so(utility::excn::Exception::Exception(char const*, int, std::string const&)+0x51) [0x2aaabaea0981]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libutility.so(utility::exit(char const*, int, std::string const&, int)+0xa5) [0x2aaabae67d35]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libcore.2.so(core::chemical::GlobalResidueTypeSet::init_restypes_from_database()+0xc13) [0x2aaab9672ae3]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libcore.2.so(core::chemical::GlobalResidueTypeSet::GlobalResidueTypeSet(std::string const&, std::string const&)+0x199) [0x2aaab967f969]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/bin/ligand_discovery_search_protocol.linuxgccrelease() [0x409f89]
+/lib64/libc.so.6(__libc_start_main+0xf5) [0x2aaabdff2555]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/bin/ligand_discovery_search_protocol.linuxgccrelease() [0x40aeed]
+
+[END_BACKTRACE]
+
+[FILE]: src/core/chemical/GlobalResidueTypeSet.cc
+[LINE]: 147
+[START_MESSAGE]
+[ ERROR ] UtilityExitException
+ERROR: Unable to open file: test_params/residue_types.txt
+
+
+
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. Please submit the contents of this file to http://crash.rosettacommons.org/
+# or use the script Rosetta/main/source/scripts/python/public/report_crashes.py
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2024.19.post.dev+287.updatedliganddiscoverysearchcodeagmay2024.4452410
+[COMMIT_DATE]: 2024-11-06T13:09:12
+[APPLICATION]: /data/user/abgvg9/rosetta_LDS_time_profiling/source/bin/ligand_discovery_search_protocol.linuxgccrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: GNU/Linux
+[COMPILER]: GCC version "4.8.5 20150623 (Red Hat 4.8.5-44)"
+[STDLIB]: libstdc++ version 20150623
+[START_OPTIONS]
+ -in:file:s=2etr_receptor_only_trimmed.pdb -in:file:override_database_params -run:constant_seed -motifs:motif_filename=/data/user/abgvg9/FINAL_motifs_list_filtered_2_3_2023.motifs -motifs:params_directory_path=1/test_params/ -motifs:protein_discovery_locus=1 -motifs:fa_rep_cutoff=150 -motifs:fa_atr_cutoff=100 -motifs:post_highresdock_fa_atr_rep_score -motifs:ddg_cutoff=100 -motifs:best_pdbs_to_keep=0 -motifs:output_motifs_as_pdb=false -motifs:highresdock_with_whole_score_fxn -relax:constrain_relax_to_start_coords
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libutility.so(utility::save_crash_report(char const*, std::string const&, int)+0x25) [0x2aaabae656d5]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libutility.so(utility::signal_handler(int)+0xaa) [0x2aaabae6580a]
+/lib64/libc.so.6(+0x36400) [0x2aaabe006400]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libprotocols_b.6.so(LigandDiscoverySearch::discover(std::string)+0xb8f) [0x2aaaae2f244f]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/bin/ligand_discovery_search_protocol.linuxgccrelease() [0x408fb6]
+/lib64/libc.so.6(__libc_start_main+0xf5) [0x2aaabdff2555]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/bin/ligand_discovery_search_protocol.linuxgccrelease() [0x40aeed]
+
+[END_BACKTRACE]
+
+[FILE]: SIGSEGV
+[LINE]: 11
+[START_MESSAGE]
+Segmentation Fault
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. Please submit the contents of this file to http://crash.rosettacommons.org/
+# or use the script Rosetta/main/source/scripts/python/public/report_crashes.py
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2024.19.post.dev+287.updatedliganddiscoverysearchcodeagmay2024.4452410
+[COMMIT_DATE]: 2024-11-06T13:09:12
+[APPLICATION]: /data/user/abgvg9/rosetta_LDS_time_profiling/source/bin/ligand_discovery_search_protocol.linuxgccrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: GNU/Linux
+[COMPILER]: GCC version "4.8.5 20150623 (Red Hat 4.8.5-44)"
+[STDLIB]: libstdc++ version 20150623
+[START_OPTIONS]
+ -in:file:s=2etr_receptor_only_trimmed.pdb -in:file:override_database_params -run:constant_seed -motifs:motif_filename=/data/user/abgvg9/FINAL_motifs_list_filtered_2_3_2023.motifs -motifs:params_directory_path=1/test_params/ -motifs:protein_discovery_locus=10 -motifs:fa_rep_cutoff=150 -motifs:fa_atr_cutoff=100 -motifs:post_highresdock_fa_atr_rep_score -motifs:ddg_cutoff=100 -motifs:best_pdbs_to_keep=0 -motifs:output_motifs_as_pdb=false -motifs:highresdock_with_whole_score_fxn -relax:constrain_relax_to_start_coords
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libutility.so(utility::save_crash_report(char const*, std::string const&, int)+0x25) [0x2aaabae656d5]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libutility.so(utility::signal_handler(int)+0xaa) [0x2aaabae6580a]
+/lib64/libc.so.6(+0x36400) [0x2aaabe006400]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libprotocols_b.6.so(LigandDiscoverySearch::discover(std::string)+0xb8f) [0x2aaaae2f244f]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/bin/ligand_discovery_search_protocol.linuxgccrelease() [0x408fb6]
+/lib64/libc.so.6(__libc_start_main+0xf5) [0x2aaabdff2555]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/bin/ligand_discovery_search_protocol.linuxgccrelease() [0x40aeed]
+
+[END_BACKTRACE]
+
+[FILE]: SIGSEGV
+[LINE]: 11
+[START_MESSAGE]
+Segmentation Fault
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. Please submit the contents of this file to http://crash.rosettacommons.org/
+# or use the script Rosetta/main/source/scripts/python/public/report_crashes.py
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2024.19.post.dev+287.updatedliganddiscoverysearchcodeagmay2024.4452410
+[COMMIT_DATE]: 2024-11-06T13:09:12
+[APPLICATION]: /data/user/abgvg9/rosetta_LDS_time_profiling/source/bin/ligand_discovery_search_protocol.linuxgccrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: GNU/Linux
+[COMPILER]: GCC version "4.8.5 20150623 (Red Hat 4.8.5-44)"
+[STDLIB]: libstdc++ version 20150623
+[START_OPTIONS]
+ -in:file:s=2etr_receptor_only.pdb -in:file:override_database_params -run:constant_seed -motifs:motif_filename=/data/user/abgvg9/FINAL_motifs_list_filtered_2_3_2023.motifs -motifs:params_directory_path=1/test_params/ -motifs:protein_discovery_locus=10 -motifs:fa_rep_cutoff=150 -motifs:fa_atr_cutoff=100 -motifs:post_highresdock_fa_atr_rep_score -motifs:ddg_cutoff=100 -motifs:best_pdbs_to_keep=0 -motifs:output_motifs_as_pdb=false -motifs:highresdock_with_whole_score_fxn -relax:constrain_relax_to_start_coords
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libutility.so(utility::save_crash_report(char const*, std::string const&, int)+0x25) [0x2aaabae656d5]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libutility.so(utility::signal_handler(int)+0xaa) [0x2aaabae6580a]
+/lib64/libc.so.6(+0x36400) [0x2aaabe006400]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libprotocols_b.6.so(LigandDiscoverySearch::discover(std::string)+0xb8f) [0x2aaaae2f244f]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/bin/ligand_discovery_search_protocol.linuxgccrelease() [0x408fb6]
+/lib64/libc.so.6(__libc_start_main+0xf5) [0x2aaabdff2555]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/bin/ligand_discovery_search_protocol.linuxgccrelease() [0x40aeed]
+
+[END_BACKTRACE]
+
+[FILE]: SIGSEGV
+[LINE]: 11
+[START_MESSAGE]
+Segmentation Fault
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. Please submit the contents of this file to http://crash.rosettacommons.org/
+# or use the script Rosetta/main/source/scripts/python/public/report_crashes.py
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2024.19.post.dev+287.updatedliganddiscoverysearchcodeagmay2024.4452410
+[COMMIT_DATE]: 2024-11-06T13:09:12
+[APPLICATION]: /data/user/abgvg9/rosetta_LDS_time_profiling/source/bin/ligand_discovery_search_protocol.linuxgccrelease
+[MODE]: Release
+[EXTRAS]: default
+[OS]: GNU/Linux
+[COMPILER]: GCC version "4.8.5 20150623 (Red Hat 4.8.5-44)"
+[STDLIB]: libstdc++ version 20150623
+[START_OPTIONS]
+ -in:file:s=2etr_receptor_only_trimmed.pdb -in:file:override_database_params -run:constant_seed -motifs:motif_filename=/data/user/abgvg9/FINAL_motifs_list_filtered_2_3_2023.motifs -motifs:params_directory_path=1/test_params/ -motifs:protein_discovery_locus=100 -motifs:fa_rep_cutoff=150 -motifs:fa_atr_cutoff=100 -motifs:post_highresdock_fa_atr_rep_score -motifs:ddg_cutoff=100 -motifs:best_pdbs_to_keep=0 -motifs:output_motifs_as_pdb=false -motifs:highresdock_with_whole_score_fxn -relax:constrain_relax_to_start_coords
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libutility.so(utility::save_crash_report(char const*, std::string const&, int)+0x25) [0x2aaabae656d5]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libutility.so(utility::signal_handler(int)+0xaa) [0x2aaabae6580a]
+/lib64/libc.so.6(+0x36400) [0x2aaabe006400]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/build/src/release/linux/3.10/64/x86/gcc/8.2/default/libprotocols_b.6.so(LigandDiscoverySearch::discover(std::string)+0xb8f) [0x2aaaae2f244f]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/bin/ligand_discovery_search_protocol.linuxgccrelease() [0x408fb6]
+/lib64/libc.so.6(__libc_start_main+0xf5) [0x2aaabdff2555]
+/data/user/abgvg9/rosetta_LDS_time_profiling/source/bin/ligand_discovery_search_protocol.linuxgccrelease() [0x40aeed]
+
+[END_BACKTRACE]
+
+[FILE]: SIGSEGV
+[LINE]: 11
+[START_MESSAGE]
+Segmentation Fault
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+

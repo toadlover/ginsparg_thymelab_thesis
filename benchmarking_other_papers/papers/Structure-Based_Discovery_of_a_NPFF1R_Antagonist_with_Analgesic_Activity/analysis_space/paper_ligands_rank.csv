@@ -1,0 +1,3 @@
+ligand,best_ddg,ddg_rank,ddg_percentile,best_interaction,interaction_rank,interaction_percentile,best_real_motif_count,real_motif_count_rank,real_motif_count_percentile,best_real_motif_ratio,real_motif_ratio_rank,real_motif_ratio_percentile,
+Z5075636300,-17.178043,283,0.02954070981210856,10.0,5403,0.5639874739039666,3.0,3004,0.3135699373695198,1.0,1,0.00010438413361169103,
+ZINC000725343470,-9.257123,9481,0.9896659707724426,5.0,9506,0.9922755741127348,1.0,8621,0.8998956158663883,0.2,8955,0.9347599164926931,

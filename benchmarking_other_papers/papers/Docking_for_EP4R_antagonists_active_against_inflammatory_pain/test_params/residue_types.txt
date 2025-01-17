@@ -1,0 +1,81 @@
+## the atom_type_set and mm-atom_type_set to be used for the subsequent parameter
+TYPE_SET_MODE full_atom
+ATOM_TYPE_SET fa_standard
+ELEMENT_SET default
+MM_ATOM_TYPE_SET fa_standard
+ORBITAL_TYPE_SET fa_standard
+## Test params files
+Z4361714947_confs.params
+Z4361714947_conf1.params
+Z4361714947_conf2.params
+Z4361714947_conf3.params
+Z4361714947_conf4.params
+Z4361714947_conf5.params
+Z4361714947_conf6.params
+Z4361714947_conf7.params
+Z4361714947_conf8.params
+Z4361714947_conf9.params
+Z4361714947_conf10.params
+Z4361714947_conf11.params
+Z4361714947_conf12.params
+Z4361714947_conf13.params
+Z4361714947_conf14.params
+Z4647716479_confs.params
+Z4647716479_conf1.params
+Z4647716479_conf2.params
+Z4647716479_conf3.params
+Z4647716479_conf4.params
+Z4647716479_conf5.params
+Z4647716479_conf6.params
+Z4647716479_conf7.params
+Z4647716479_conf8.params
+Z4647716479_conf9.params
+Z4647716479_conf10.params
+Z4647716479_conf11.params
+Z4647716479_conf12.params
+Z4647716479_conf13.params
+Z4647716479_conf14.params
+Z4875089799_confs.params
+Z4875089799_conf1.params
+Z4875089799_conf2.params
+Z4875089799_conf3.params
+Z4875089799_conf4.params
+Z4875089799_conf5.params
+Z4875089799_conf6.params
+Z4875089799_conf7.params
+Z4875089799_conf8.params
+Z4875089799_conf9.params
+Z4875089799_conf10.params
+Z4875089799_conf11.params
+Z4875089799_conf12.params
+Z4875089799_conf13.params
+Z4647716459_confs.params
+Z4647716459_conf1.params
+Z4647716459_conf2.params
+Z4647716459_conf3.params
+Z4647716459_conf4.params
+Z4647716459_conf5.params
+Z4647716459_conf6.params
+Z4647716459_conf7.params
+Z4647716459_conf8.params
+Z4647716459_conf9.params
+Z4647716459_conf10.params
+Z4647716459_conf11.params
+Z4647716459_conf12.params
+Z4647716459_conf13.params
+Z4647716459_conf14.params
+Z4361714899_confs.params
+Z4361714899_conf1.params
+Z4361714899_conf2.params
+Z4361714899_conf3.params
+Z4361714899_conf4.params
+Z4361714899_conf5.params
+Z4361714899_conf6.params
+Z4361714899_conf7.params
+Z4361714899_conf8.params
+Z4361714899_conf9.params
+Z4361714899_conf10.params
+Z4361714899_conf11.params
+Z4361714899_conf12.params
+Z4361714899_conf13.params
+Z4361714899_conf14.params

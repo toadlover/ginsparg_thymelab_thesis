@@ -1,0 +1,19 @@
+-constant_seed 1
+-params_directory_path ../An_artificial_intelligence_accelerated_virtual_screening_platform_for_drug_discovery/test_params/
+-motif_filename /data/user/abgvg9/FINAL_motifs_list_filtered_2_3_2023.motifs
+-constrain_relax_to_start_coords
+-fa_atr_cutoff = 100000
+-fa_rep_cutoff = 150000
+-ddg_cutoff = 100000
+-best_pdbs_to_keep = 0
+-post_highresdock_fa_atr_rep_score true
+-highresdock_with_whole_score_fxn true
+-output_motifs_as_pdb false
+
+#help deal with any potential repeats
+-in::file::override_database_params true
+
+
+-s 2etr_receptor_only_trimmed.pdb
+-protein_discovery_locus 400
+

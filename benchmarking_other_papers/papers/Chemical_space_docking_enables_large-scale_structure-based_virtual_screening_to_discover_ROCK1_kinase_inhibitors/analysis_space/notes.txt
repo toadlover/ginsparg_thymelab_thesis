@@ -1,0 +1,1 @@
+Rock1 systems (this paper and the synthon paper; PDB 2etr) seem to really struggle with Rosetta, and I have not gotten placements when trying to probe the binding pocket region. It looks like the ligands are just too big and Rosetta lacks a good motif for a placement.

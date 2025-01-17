@@ -1,0 +1,55 @@
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    An unexpected error has occurred.
+  Please try reproducing the error using
+  the latest s3cmd code from the git master
+  branch found at:
+    https://github.com/s3tools/s3cmd
+  and have a look at the known issues list:
+    https://github.com/s3tools/s3cmd/wiki/Common-known-issues-and-their-solutions-(FAQ)
+  If the error persists, please report the
+  following lines (removing any private
+  info as necessary) to:
+   s3tools-bugs@lists.sourceforge.net
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Invoked as: /home/abgvg9/.conda/envs/lts_s3_env/bin/s3cmd get s3://ariosg/benchmarking_other_papers/synthon/output_data/condensed_params_and_db_0/0/placement_score_data.csv
+Problem: <class 'KeyError: 'content-length'
+S3cmd:   2.3.0
+python:   3.9.13 | packaged by conda-forge | (main, May 27 2022, 16:56:21) 
+[GCC 10.3.0]
+environment LANG=en_US.UTF-8
+
+Traceback (most recent call last):
+  File "/home/abgvg9/.conda/envs/lts_s3_env/bin/s3cmd", line 3286, in <module>
+    rc = main()
+  File "/home/abgvg9/.conda/envs/lts_s3_env/bin/s3cmd", line 3183, in main
+    rc = cmd_func(args)
+  File "/home/abgvg9/.conda/envs/lts_s3_env/bin/s3cmd", line 538, in cmd_object_get
+    remote_list, exclude_list, remote_total_size = fetch_remote_list(
+  File "/home/abgvg9/.conda/envs/lts_s3_env/lib/python3.9/site-packages/S3/FileLists.py", line 508, in fetch_remote_list
+    _get_remote_attribs(uri, remote_item)
+  File "/home/abgvg9/.conda/envs/lts_s3_env/lib/python3.9/site-packages/S3/FileLists.py", line 378, in _get_remote_attribs
+    'size': int(response['headers']['content-length']),
+KeyError: 'content-length'
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    An unexpected error has occurred.
+  Please try reproducing the error using
+  the latest s3cmd code from the git master
+  branch found at:
+    https://github.com/s3tools/s3cmd
+  and have a look at the known issues list:
+    https://github.com/s3tools/s3cmd/wiki/Common-known-issues-and-their-solutions-(FAQ)
+  If the error persists, please report the
+  above lines (removing any private
+  info as necessary) to:
+   s3tools-bugs@lists.sourceforge.net
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Traceback (most recent call last):
+  File "/home/abgvg9/ginsparg_thymelab_thesis/benchmarking_other_papers/pull_data_files_and_rank_ligands.py", line 37, in <module>
+    small_file = open("placement_score_data.csv", "r")
+FileNotFoundError: [Errno 2] No such file or directory: 'placement_score_data.csv'
