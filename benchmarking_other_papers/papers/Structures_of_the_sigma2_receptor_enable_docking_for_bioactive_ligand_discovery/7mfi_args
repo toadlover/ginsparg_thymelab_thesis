@@ -25,5 +25,6 @@
 -space_fill_cutoff_differential_score_sub 0.1
 
 -s 7mfi_receptor_only_trimmed.pdb
--protein_discovery_locus 141,74,107,18,138,26,70
+#-protein_discovery_locus 141,74,107,18,138,26,70
 
+-protein_discovery_locus 26,107,63,66,138,21,141
