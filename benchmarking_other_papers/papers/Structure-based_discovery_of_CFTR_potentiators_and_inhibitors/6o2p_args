@@ -25,5 +25,5 @@
 -space_fill_cutoff_differential_score_sub 0
 
 -s 6o2p_receptor_only_single_chain.pdb
--protein_discovery_locus 308,309,312
+-protein_discovery_locus 312,687,236
 
