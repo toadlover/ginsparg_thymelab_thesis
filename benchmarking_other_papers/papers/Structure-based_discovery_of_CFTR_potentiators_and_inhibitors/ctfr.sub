@@ -20,7 +20,7 @@ output_dir=s3://s3.lts.rc.uab.edu/ariosg/benchmarking_other_papers/
 repo_path=/home/abgvg9/ginsparg_thymelab_thesis/benchmarking_other_papers/papers/Structure-based_discovery_of_CFTR_potentiators_and_inhibitors
 
 arg_file=$(repo_path)/$(pdb_name)_args
-pdb_file=$(repo_path)/$(pdb_name)_receptor_only.pdb
+pdb_file=$(repo_path)/$(pdb_name)_receptor_only_single_chain.pdb
 
 #needed inputs: compressed directory that contains the params and conformers in sdf format, script that can uncondense the params data, motifs file, arg file
 transfer_input_files = $(input_source)$(in_dir)/test_params.tar.gz, /home/abgvg9/rosetta_discovery/FINAL_motifs_list_filtered_2_3_2023.motifs, $(arg_file), $(pdb_file), /home/abgvg9/ginsparg_thymelab_thesis/benchmarking_other_papers/write_scoring_of_all_pdbs_in_current_location_to_csv.py
