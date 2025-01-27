@@ -62,15 +62,21 @@ for curr_ref_lig in reference_ligands.keys():
 	#make the output csv
 	write_file = open(curr_ref_lig + "_smiles_similarity.csv","w")
 
+	#push smiles back into a mol object
+	ref_mol_smiles = Chem.MolFromSmiles(reference_ligands[curr_ref_lig])
+
 	#get the fingerprints of the reference
-	ref_fp = AllChem.GetMorganFingerprintAsBitVect(reference_ligands[curr_ref_lig], radius=2)
+	ref_fp = AllChem.GetMorganFingerprintAsBitVect(ref_mol_smiles, radius=2)
 
 	#iterate over each compare ligand
 	for curr_comp_lig in compare_ligands.keys():
 		#compare the current compar ligand against the current reference ligand
 
+		#push smiles back into a mol object
+		comp_mol_smiles = Chem.MolFromSmiles(compare_ligands[curr_comp_lig])
+
 		#get the compare ligand fingerprints
-		comp_fp = AllChem.GetMorganFingerprintAsBitVect(compare_ligands[curr_comp_lig], radius=2)
+		comp_fp = AllChem.GetMorganFingerprintAsBitVect(comp_mol_smiles, radius=2)
 	    
 		#get the tanimoto similarity by fingerprints
 		similarity = DataStructs.TanimotoSimilarity(ref_fp, comp_fp)
