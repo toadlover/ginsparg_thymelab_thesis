@@ -35,6 +35,7 @@ for mol in supplier:
         
         #add the reference ligand to the dictionary
         reference_ligands[lig_name] = smiles
+print("Got reference ligands.")
 
 #repeat for compare ligands file
 #get the supplier of the sdf file
@@ -50,11 +51,14 @@ for mol in supplier:
         
         #add the reference ligand to the dictionary
         compare_ligands[lig_name] = smiles
-
+print("Got compare ligands.")
 
 #iterate over each reference ligand
 #for each ligand, prepare a csv file that is named after the reference ligand, and then lists each compare ligand
 for curr_ref_lig in reference_ligands.keys():
+	
+	print("On reference ligand " + curr_ref_lig + ": " + reference_ligands[curr_ref_lig])
+
 	#make the output csv
 	write_file = open(curr_ref_lig + "_smiles_similarity.csv","w")
 
