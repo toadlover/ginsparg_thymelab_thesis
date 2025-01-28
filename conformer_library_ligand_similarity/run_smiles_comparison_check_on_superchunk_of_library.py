@@ -69,7 +69,7 @@ for i in range(min_chunk,max_chunk):
 	#iterate over the chunk for each subchunk from 0-9
 	for j in range(0,10):
 		#attempt to pull the subchunk down
-		os.system("s3cmd get s3://ariosg/ligand_library/" + chunk + "/for_s3/split_new_named_" + str(j) + ".sdf.tar.gz")
+		os.system("s3cmd get --quiet s3://ariosg/ligand_library/" + chunk + "/for_s3/split_new_named_" + str(j) + ".sdf.tar.gz")
 
 		#unzip the file
 		os.system("tar -xzf split_new_named_" + str(j) + ".sdf.tar.gz")
@@ -141,4 +141,4 @@ print("Done collecting all data, writing top " + str(top_ligand_amount) + " clos
 sorted_top_ligands = [heapq.heappop(top_ligands) for _ in range(len(top_ligands))]
 
 for lig in sorted_top_ligands:
-	best_ligs_file.write(str(lig[0]) + "," + str(lig[1]) + "," + str(lig[2]) + "," + str(float(lig[3])) + "," + str(lig[4]) + "\n")
+	best_ligs_file.write(str(lig[1][0]) + "," + str(lig[1][1]) + "," + str(lig[1][2]) + "," + str(float(lig[1][3])) + "," + str(lig[1][4]) + "\n")
