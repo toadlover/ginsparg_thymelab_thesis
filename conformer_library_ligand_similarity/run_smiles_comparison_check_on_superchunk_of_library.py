@@ -45,7 +45,8 @@ os.chdir(str(superchunk))
 #derive the minimum and maximum chunk based on the superchunk
 #min is superchunk * 100, max is min + 100 (will drop by 1 when using the range operator)
 min_chunk = superchunk * 100
-max_chunk = min_chunk + 100
+#max_chunk = min_chunk + 100
+max_chunk = min_chunk + 1
 
 #now, iterate from 0-99 and iterate over each chunk and get the similarity of each ligand in each subchunk from each chunk
 for i in range(min_chunk,max_chunk):
@@ -101,11 +102,11 @@ for i in range(min_chunk,max_chunk):
 
 			#append the ligand name, similarity score (take the negative for use with heap), and smiles string
 			line_tuple.append(str(stripped_line.split(",")[0]))
-			line_tuple.append(str(float(stripped_line.split(",")[1]) * -1))
+			line_tuple.append(str(float(stripped_line.split(",")[1])))
 			line_tuple.append(str(stripped_line.split(",")[2]))
 
 			#we now have the line tuple, attempt to integrate it into the top x heap
-			heapq.heappush(top_ligands, (float(stripped_line.split(",")[1]) * -1,line_tuple))
+			heapq.heappush(top_ligands, (float(stripped_line.split(",")[1]),line_tuple))
 
 			#if the length of the heap is above the top x, pop off the worst element
 			if len(top_ligands) > top_ligand_amount:
@@ -137,4 +138,4 @@ best_ligs_file = open("superchunk_top_" + str(top_ligand_amount) + ".csv", "w")
 print("Done collecting all data, writing top " + str(top_ligand_amount) + " closest matching ligands from this superchunk")
 
 for lig in top_ligands:
-	best_ligs_file.write(str(lig[0]) + "," + str(lig[1]) + "," + str(lig[2]) + "," + str(float(lig[3]) * -1) + "," + str(lig[4]) + "\n")
+	best_ligs_file.write(str(lig[1][0]) + "," + str(lig[1][1]) + "," + str(lig[1][2]) + "," + str(float(lig[1][3])) + "," + str(lig[1][4]) + "\n")
