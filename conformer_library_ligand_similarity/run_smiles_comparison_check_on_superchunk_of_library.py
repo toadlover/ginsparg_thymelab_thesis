@@ -106,7 +106,7 @@ for i in range(min_chunk,max_chunk):
 			line_tuple.append(str(stripped_line.split(",")[2]))
 
 			#we now have the line tuple, attempt to integrate it into the top x heap
-			heapq.heappush(top_ligands, (float(stripped_line.split(",")[1]),line_tuple))
+			heapq.heappush(top_ligands, (float(stripped_line.split(",")[1]) * -1 ,line_tuple))
 
 			#if the length of the heap is above the top x, pop off the worst element
 			if len(top_ligands) > top_ligand_amount:
