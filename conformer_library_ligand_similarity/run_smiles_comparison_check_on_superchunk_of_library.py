@@ -45,8 +45,8 @@ os.chdir(str(superchunk))
 #derive the minimum and maximum chunk based on the superchunk
 #min is superchunk * 100, max is min + 100 (will drop by 1 when using the range operator)
 min_chunk = superchunk * 100
-#max_chunk = min_chunk + 100
-max_chunk = min_chunk + 1
+max_chunk = min_chunk + 100
+#max_chunk = min_chunk + 1
 
 #now, iterate from 0-99 and iterate over each chunk and get the similarity of each ligand in each subchunk from each chunk
 for i in range(min_chunk,max_chunk):
@@ -120,13 +120,14 @@ for i in range(min_chunk,max_chunk):
 
 	#we are now done with all subchunks
 	#temporary test print of the top 10 in the heap (will likely remove later)
-	print("Current top 10 closest ligands from this search: ")
-	counter = 0
-	for lig in top_ligands:
-		print(lig)
-		counter = counter + 1
-		if counter >= 10:
-			break
+	#removing print because it is not good anyway because the heap isn't internally sorted and I don't want to spend effort sorting
+	#print("Current top 10 closest ligands from this search: ")
+	#counter = 0
+	#for lig in top_ligands:
+	#	print(lig)
+	#	counter = counter + 1
+	#	if counter >= 10:
+	#		break
 
 	#move up one level so that we can move to the next chunk (or move into program end behavior)
 	os.chdir("..")
