@@ -137,8 +137,8 @@ best_ligs_file = open("superchunk_top_" + str(top_ligand_amount) + ".csv", "w")
 
 print("Done collecting all data, writing top " + str(top_ligand_amount) + " closest matching ligands from this superchunk")
 
-#sort the heap to new list
-sorted_top_ligands = [heapq.heappop(top_ligands) for _ in range(len(top_ligands))]
+#sort the heap to new list and reverse it so the highest values are on top
+sorted_top_ligands = [heapq.heappop(top_ligands) for _ in range(len(top_ligands))][::-1]
 
 for lig in sorted_top_ligands:
 	best_ligs_file.write(str(lig[1][0]) + "," + str(lig[1][1]) + "," + str(lig[1][2]) + "," + str(float(lig[1][3])) + "," + str(lig[1][4]) + "\n")
