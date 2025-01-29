@@ -15,6 +15,12 @@ superchunk = int(sys.argv[1])
 #give the absolute path to the ligand file!
 reference_ligand = sys.argv[2]
 
+#add optional argument for using chirality in tanimoto score determination
+chirality_usage = ""
+if len(sys.argv) >= 4:
+	chirality_usage = sys.argv[3]
+
+
 #derive the reference ligand name for later use
 reference_ligand_name = ""
 reference_ligand_file = open(reference_ligand,"r")
@@ -83,7 +89,7 @@ for i in range(min_chunk,max_chunk):
 			continue
 
 		#run the comparison script on the reference file and the newly acquired file
-		os.system("python " + compare_script + " " + reference_ligand + " split_new_named_" + str(j) + ".sdf")
+		os.system("python " + compare_script + " " + reference_ligand + " split_new_named_" + str(j) + ".sdf " + chirality_usage)
 
 		#we now have the comparison csv data, read it and rewrite the file
 		compare_file_in = open(reference_ligand_name + "_smiles_similarity.csv", "r")

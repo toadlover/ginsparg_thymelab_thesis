@@ -13,6 +13,12 @@ reference_ligands_file = sys.argv[1]
 #get the other ligands list (such as split_new_named_0.sdf)
 compare_ligands_list_file = sys.argv[2]
 
+#add optional argument for using chirality in tanimoto score determination
+chirality_usage = False
+if len(sys.argv) >= 4:
+	if sys.argv[3] == "useChirality":
+		chirality_usage = True
+
 #make a dictionary to hold the reference ligand(s) with the key as the ligand name (pulled from sdf) and value as the smiles string
 reference_ligands = {}
 
@@ -79,7 +85,7 @@ for curr_ref_lig in reference_ligands.keys():
 		comp_fp = AllChem.GetMorganFingerprintAsBitVect(comp_mol_smiles, radius=2)
 	    
 		#get the tanimoto similarity by fingerprints
-		similarity = DataStructs.TanimotoSimilarity(ref_fp, comp_fp)
+		similarity = DataStructs.TanimotoSimilarity(ref_fp, comp_fp, useChirality = chirality_usage)
 
 		#write the data to the csv
 		write_file.write(curr_comp_lig + "," + str(similarity) + "," + compare_ligands[curr_comp_lig] + "\n")
