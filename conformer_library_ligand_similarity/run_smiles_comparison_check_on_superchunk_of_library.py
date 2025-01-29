@@ -71,8 +71,16 @@ for i in range(min_chunk,max_chunk):
 		#attempt to pull the subchunk down
 		os.system("s3cmd get --quiet s3://ariosg/ligand_library/" + chunk + "/for_s3/split_new_named_" + str(j) + ".sdf.tar.gz")
 
+		#check for ensuring the sdf file exists, continue if not (this may be the case for a handful of later chunks, and hot having this check breaks things)
+		if os.path.exists("split_new_named_" + str(j) + ".sdf.tar.gz") == False:
+			continue
+
 		#unzip the file
 		os.system("tar -xzf split_new_named_" + str(j) + ".sdf.tar.gz")
+
+		#check for ensuring the sdf file exists, continue if not (this may be the case for a handful of later chunks, and hot having this check breaks things)
+		if os.path.exists("split_new_named_" + str(j) + ".sdf") == False:
+			continue
 
 		#run the comparison script on the reference file and the newly acquired file
 		os.system("python " + compare_script + " " + reference_ligand + " split_new_named_" + str(j) + ".sdf")
