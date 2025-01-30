@@ -116,7 +116,7 @@ for line in read_file.readlines():
 	res_types_file.write("ORBITAL_TYPE_SET fa_standard\n")
 	res_types_file.write("## Test params files\n")
 	#write all params file names to this file
-	for r,d,f in is.walk(os.getcwd()):
+	for r,d,f in os.walk(os.getcwd()):
 		for file in f:
 			res_types_file.write(file + "\n")
 
