@@ -99,7 +99,7 @@ for line in read_file.readlines():
 	os.system("rm *sdf")
 	os.system("rm -drf test_params")
 	os.system("mkdir test_params")
-	os.system("mv *params test_params")
+	os.system("mv *.params test_params")
 
 	#move into the test_params folder and set it up
 	os.chdir("test_params")
