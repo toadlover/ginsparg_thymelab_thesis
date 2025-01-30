@@ -90,7 +90,7 @@ for line in read_file.readlines():
 			write_file.close()
 
 			#write the temp over the original
-			os.system("mv temp.sdf " single_file)
+			os.system("mv temp.sdf " + single_file)
 
 			#make a params file
 			os.system("python " + m_to_p_executable + " " + single_file + " -n " + single_file.split(".")[0] + " --keep-names --long-names --clobber --no-pdb")
@@ -104,3 +104,4 @@ for line in read_file.readlines():
 
 	#53079,9,PV-006710095263,1.0,CC1CN(C(=O)CCc2ccc3ccccc3c2O)CCN1C(=O)c1cc[nH]n1
 	#
+#python /pi/summer.thyme-umw/2024_intern_lab_space/ari_work/ginsparg_thymelab_thesis/conformer_library_ligand_similarity/prepare_conformers_and_params_from_smiles_comparison_csv.py /pi/summer.thyme-umw/2024_intern_lab_space/ari_work/10k_drug_27_ligands/test 0_drug_27_best_sorted_test_chiral.csv /pi/summer.thyme-umw/2024_intern_lab_space/conformator_1.2.1/conformator /pi/summer.thyme-umw/2024_intern_lab_space/rosetta/source/scripts/python/public/molfile_to_params.py
