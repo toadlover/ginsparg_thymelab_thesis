@@ -73,7 +73,7 @@ for line in read_file.readlines():
 		for single_file in f2:
 			#read the file and write to a temporary copy
 			read_file = open(single_file,"r")
-			write_file = open(temp.sdf, "w")
+			write_file = open("temp.sdf", "w")
 
 			#line counter, we are only interested in line 1
 			line_counter = 0
