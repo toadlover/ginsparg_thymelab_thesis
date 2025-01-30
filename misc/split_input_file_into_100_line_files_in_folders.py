@@ -19,7 +19,7 @@ os.system("mkdir " + str(file_counter))
 write_file = open(str(file_counter) + "/" + str(file_counter) + "_" + sys.argv[1], "w")
 
 for line in read_file.readlines():
-    write_file.write_file(line)
+    write_file.write(line)
 
     #increment the line counter
     line_counter = line_counter + 1
@@ -31,4 +31,3 @@ for line in read_file.readlines():
 
         #open write stream for first file
         write_file = open(str(file_counter) + "/" + str(file_counter) + "_" + sys.argv[1], "w")
-                
