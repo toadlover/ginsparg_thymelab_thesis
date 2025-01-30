@@ -62,7 +62,7 @@ for line in read_file.readlines():
 	os.chdir(lig_name)
 
 	#use obabel from command line to split the file
-	os.system("obabel " + lig_name + ".confs -O " + lig_name + "_.sdf -m")
+	os.system("obabel " + lig_name + "_confs.sdf -O " + lig_name + "_.sdf -m")
 
 	#delete the original
 	os.system("rm " + lig_name + "_confs.sdf ")
