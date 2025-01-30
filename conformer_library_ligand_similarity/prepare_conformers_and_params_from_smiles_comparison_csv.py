@@ -130,9 +130,12 @@ for line in read_file.readlines():
 	#compress the directory and toss the original
 	os.system("tar -czf  test_params.tar.gz test_params")
 
+	os.system("rm -drf test_params")
+
 	#end behavior, go back up a directory
 	os.chdir("..")
 
+	os.system("rm temp.smi")
 
 	#53079,9,PV-006710095263,1.0,CC1CN(C(=O)CCc2ccc3ccccc3c2O)CCN1C(=O)c1cc[nH]n1
 	#
