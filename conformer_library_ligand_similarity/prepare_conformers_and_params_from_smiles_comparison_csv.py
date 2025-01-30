@@ -95,11 +95,39 @@ for line in read_file.readlines():
 			#make a params file
 			os.system("python " + m_to_p_executable + " " + single_file + " -n " + single_file.split(".")[0] + " --keep-names --long-names --clobber --no-pdb")
 
-	#end behavior, go back up a directory
+	#now, remove the sdf files and make a compressed test_params folder
+	os.system("rm *sdf")
+	os.system("mkdir test_params")
+	os.system("mv *params test_params")
+
+	#move into the test_params folder and set it up
+	os.chdir("test_params")
+
+	#touch necessary files
+	os.system("touch exclude_pdb_component_list.txt patches.txt")
+
+	#make the residue_types file
+	res_types_file = open("residue_types.txt", "w")
+	res_types_file.write("## the atom_type_set and mm-atom_type_set to be used for the subsequent parameter\n")
+	res_types_file.write("TYPE_SET_MODE full_atom\n")
+	res_types_file.write("ATOM_TYPE_SET fa_standard\n")
+	res_types_file.write("ELEMENT_SET default\n")
+	res_types_file.write("MM_ATOM_TYPE_SET fa_standard\n")
+	res_types_file.write("ORBITAL_TYPE_SET fa_standard\n")
+	res_types_file.write("## Test params files\n")
+	#write all params file names to this file
+	for r,d,f in is.walk(os.getcwd()):
+		for file in f:
+			res_types_file.write(file + "\n")
+
+	#go back up
 	os.chdir("..")
 
-	#we should now have all individual sdf files of the conformer set
-	#now convert them to params
+	#compress the directory and toss the original
+	os.system("tar -czf  test_params.tar.gz test_params")
+
+	#end behavior, go back up a directory
+	os.chdir("..")
 
 
 	#53079,9,PV-006710095263,1.0,CC1CN(C(=O)CCc2ccc3ccccc3c2O)CCN1C(=O)c1cc[nH]n1
