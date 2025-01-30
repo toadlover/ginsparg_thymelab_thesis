@@ -97,6 +97,7 @@ for line in read_file.readlines():
 
 	#now, remove the sdf files and make a compressed test_params folder
 	os.system("rm *sdf")
+	os.system("rm -drf test_params")
 	os.system("mkdir test_params")
 	os.system("mv *params test_params")
 
@@ -118,7 +119,10 @@ for line in read_file.readlines():
 	#write all params file names to this file
 	for r,d,f in os.walk(os.getcwd()):
 		for file in f:
-			res_types_file.write(file + "\n")
+			if file.endswith(".params"):
+				res_types_file.write(file + "\n")
+
+	res_types_file.close()
 
 	#go back up
 	os.chdir("..")
