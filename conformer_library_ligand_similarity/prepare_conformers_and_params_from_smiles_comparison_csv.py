@@ -13,17 +13,94 @@
 
 #package imports
 #this utilizes rdkit, as well as having conformator, Rosetta, and s3cmd
+#actually, I don't think we need rdkit
 import os,sys
-from rdkit import Chem
-from rdkit.Chem import AllChem
+#from rdkit import Chem
+#from rdkit.Chem import AllChem
 
 #read in mandatory inputs in order
 
+#working location
+working_location = sys.argv[1]
+
 #results csv file, can include path
-csv_file = sys.argv[1]
+csv_file = sys.argv[2]
 
 #conformator executable
-#
-conformator_executable = sys.argv[2]
+#path to and conformator executable, i.e. /pi/summer.thyme-umw/2024_intern_lab_space/conformator_1.2.1/conformator
+conformator_executable = sys.argv[3]
 
-#
+#molfile_to_params executable/python script path and name
+m_to_p_executable = sys.argv[4]
+
+#move to the working location
+os.chdir(working_location)
+
+#open the csv file and begin to process the data
+read_file = open(csv_file,"r")
+
+#iterate through each line in the file and process each respective ligand
+for line in read_file.readlines():
+	#extract the ligand name and smiles string, and write a smiles file
+	lig_name = line.split(",")[2]
+	smiles = line.split(",")[4].strip()
+
+	smiles_file = open("temp.smi", "w")
+	smiles_file.write(smiles)
+	smiles_file.close()
+
+	#run conformator on the temp smiles file
+	os.system(conformator_executable + " -i temp.smi" + " -o " + lig_name + "_confs.sdf --keep3d --hydrogens -v 0")
+
+	#now make a directory for the conformers
+	os.system("mkdir " + lig_name)
+
+	#move the new conformers file into the directory
+	os.system("mv " + lig_name + "_confs.sdf " + lig_name)
+
+	#enter the directory and process this file
+	os.chdir(lig_name)
+
+	#use obabel from command line to split the file
+	os.system("obabel " + lig_name + ".confs -O " + lig_name + "_.sdf -m")
+
+	#delete the original
+	os.system("rm " + lig_name + "_confs.sdf ")
+
+	#run through each file and fix the name line, since it would be blank by default
+	#run through each newly made file and adjust the ligand name in the file
+	for r2,d2,f2 in os.walk(os.getcwd()):
+		for single_file in f2:
+			#read the file and write to a temporary copy
+			read_file = open(single_file,"r")
+			write_file = open(temp.sdf, "w")
+
+			#line counter, we are only interested in line 1
+			line_counter = 0
+
+			for line2 in read_file.readlines():
+				if line_counter == 0:
+					write_file.write(single_file.split(".")[0] + "\n")
+				else:
+					write_file.write(line2)
+
+				line_counter = line_counter + 1
+
+			read_file.close()
+			write_file.close()
+
+			#write the temp over the original
+			os.system("mv temp.sdf " single_file)
+
+			#make a params file
+			os.system("python " + m_to_p_executable + " " + single_file + " -n " + single_file.split(".")[0] + " --keep-names --long-names --clobber --no-pdb")
+
+	#end behavior, go back up a directory
+	os.chdir("..")
+
+	#we should now have all individual sdf files of the conformer set
+	#now convert them to params
+
+
+	#53079,9,PV-006710095263,1.0,CC1CN(C(=O)CCc2ccc3ccccc3c2O)CCN1C(=O)c1cc[nH]n1
+	#
