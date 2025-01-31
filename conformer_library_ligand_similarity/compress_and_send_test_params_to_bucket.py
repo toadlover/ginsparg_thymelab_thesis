@@ -24,7 +24,9 @@ os.chdir(working_location)
 for r,d,f in os.walk(working_location):
 	for dire in d:
 		#enter the directory
+		print(os.getcwd())
 		os.chdir(dire)
+		print(os.getcwd())
 
 		#check if there is a prepared test_params directory
 		if os.path.exists("test_params.tar.gz"):
@@ -53,8 +55,8 @@ for r,d,f in os.walk(working_location):
 			res_types_file.write("ORBITAL_TYPE_SET fa_standard\n")
 			res_types_file.write("## Test params files\n")
 			#write all params file names to this file
-			for r,d,f in os.walk(os.getcwd()):
-				for file in f:
+			for r2,d2,f2 in os.walk(os.getcwd()):
+				for file in f2:
 					if file.endswith(".params"):
 						res_types_file.write(file + "\n")
 
