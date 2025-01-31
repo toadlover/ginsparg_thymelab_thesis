@@ -14,7 +14,7 @@ working_location = sys.argv[1]
 #location in bucket to send each individual directory to
 bucket_location = sys.argv[2]
 #if the bucket location does not end with a /, make it end with a /
-if bucket_location.endswith("/"):
+if bucket_location.endswith("/") == False:
 	bucket_location = bucket_location + "/"
 
 #move into the working location
