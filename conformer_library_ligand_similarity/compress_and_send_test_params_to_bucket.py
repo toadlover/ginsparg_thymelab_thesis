@@ -23,6 +23,10 @@ os.chdir(working_location)
 #iterate over each directory and push compressed test_params to the directory
 for r,d,f in os.walk(working_location):
 	for dire in d:
+
+		if r != working_location:
+			continue
+
 		#enter the directory
 		print(os.getcwd())
 		os.chdir(dire)
@@ -70,7 +74,7 @@ for r,d,f in os.walk(working_location):
 
 			#os.system("rm -drf test_params")
 			#send the directory up to the bucket
-			os.system("s3cmd put test_params.tar.gz " + bucket_location + dire)
+			os.system("s3cmd put test_params.tar.gz " + bucket_location + dire + "/test_params.tar.gz")
 
 		os.chdir("..")
 
