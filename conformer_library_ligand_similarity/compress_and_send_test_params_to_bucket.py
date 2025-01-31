@@ -1,6 +1,8 @@
 #the purpose of this script is to look at a directory of directories of params and/or test_params files and send them to a bucket location
 
 
+#example call: python compress_and_send_test_params_to_bucket.py /data/project/thymelab/smiles_similarity_of_hits_analysis_space/drug_27/drug_27_best_sorted_test_chiral_splits/receiving/0 s3://ariosg/drug27_closest_ligands/
+
 #imports
 import os,sys
 
@@ -27,7 +29,7 @@ for r,d,f in os.walk(working_location):
 		#check if there is a prepared test_params directory
 		if os.path.exists("test_params.tar.gz"):
 			#send the directory up to the bucket
-			os.system("s3cmd put test_params.tar.gz " + bucket_location + dire)
+			os.system("s3cmd put test_params.tar.gz " + bucket_location + dire + "/test_params.tar.gz")
 
 		#otherwise, take the existing params, prepare a test_params directory, compress it, and then push it
 		else:
@@ -68,5 +70,7 @@ for r,d,f in os.walk(working_location):
 			#send the directory up to the bucket
 			os.system("s3cmd put test_params.tar.gz " + bucket_location + dire)
 
-		
+			os.chdir("..")
+
+
 
