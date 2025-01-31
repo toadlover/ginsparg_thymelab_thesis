@@ -72,7 +72,7 @@ for r,d,f in os.walk(working_location):
 			#send the directory up to the bucket
 			os.system("s3cmd put test_params.tar.gz " + bucket_location + dire)
 
-			os.chdir("..")
+		os.chdir("..")
 
 
 
