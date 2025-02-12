@@ -53,6 +53,9 @@ for r,d,f in os.walk(library_location + str(subchunk)):
 	for file in f:
 		#only look at relevant csv files
 		if file.endswith("_smiles_similarity.csv"):
+			
+			print(r + "/" + file)
+
 			#read the file and see if the fragment exists in each ligand smiles
 			read_file = open(r + "/" + file, "r")
 
@@ -76,4 +79,4 @@ for r,d,f in os.walk(library_location + str(subchunk)):
 					#if true, the fragment exists within
 					#write the ligand to the output file
 					output_file.write(str(line.strip().split(",")[0]) + "," + str(line.strip().split(",")[1]) + "," + str(line.strip().split(",")[2]) + "," + str(line.strip().split(",")[4]) + "\n")
-					
+					print(str(line.strip().split(",")[0]) + "," + str(line.strip().split(",")[1]) + "," + str(line.strip().split(",")[2]) + "," + str(line.strip().split(",")[4]))
