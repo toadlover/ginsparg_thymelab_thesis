@@ -20,7 +20,7 @@ smiles_list = []
 #iterate over the sdf files in the folder to get the smiles string
 for file in os.listdir(sdf_folder):
     if file.endswith(".sdf"):
-        sdf_path = os.path.join(folder_path, file)
+        sdf_path = os.path.join(sdf_folder, file)
         suppl = Chem.SDMolSupplier(sdf_path)
         
         for mol in suppl:
