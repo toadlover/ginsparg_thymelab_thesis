@@ -33,3 +33,4 @@ for r,d,f in os.walk(working_location):
 			write_file.write(ligand + "\n")
 
 			print("s3cmd put " + r + "/test_params.tar.gz " + bucket_location + ligand + "/")
+			os.system("s3cmd put " + r + "/test_params.tar.gz " + bucket_location + ligand + "/")
