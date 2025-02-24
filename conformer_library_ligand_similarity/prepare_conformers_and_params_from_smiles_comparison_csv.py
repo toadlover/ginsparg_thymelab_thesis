@@ -52,10 +52,6 @@ for line in read_file.readlines():
 	#run conformator on the temp smiles file
 	os.system(conformator_executable + " -i temp.smi" + " -o " + lig_name + "_confs.sdf --keep3d --hydrogens -v 0")
 
-	#delete ecisting conformer directory if ther eis one
-	#now make a directory for the conformers
-	os.system("rm -drf " + lig_name)	
-
 	#now make a directory for the conformers
 	os.system("mkdir " + lig_name)
 
@@ -76,22 +72,22 @@ for line in read_file.readlines():
 	for r2,d2,f2 in os.walk(os.getcwd()):
 		for single_file in f2:
 			#read the file and write to a temporary copy
-			with open(single_file, "r", encoding="utf-8", errors="replace") as read_file:
-				write_file = open("temp.sdf", "w")
+			read_file = open(single_file,"r")
+			write_file = open("temp.sdf", "w")
 
-				#line counter, we are only interested in line 1
-				line_counter = 0
+			#line counter, we are only interested in line 1
+			line_counter = 0
 
-				for line2 in read_file:
-					if line_counter == 0:
-						write_file.write(single_file.split(".")[0] + "\n")
-					else:
-						write_file.write(line2)
+			for line2 in read_file.readlines():
+				if line_counter == 0:
+					write_file.write(single_file.split(".")[0] + "\n")
+				else:
+					write_file.write(line2)
 
-					line_counter = line_counter + 1
+				line_counter = line_counter + 1
 
-				read_file.close()
-				write_file.close()
+			read_file.close()
+			write_file.close()
 
 			#write the temp over the original
 			os.system("mv temp.sdf " + single_file)
