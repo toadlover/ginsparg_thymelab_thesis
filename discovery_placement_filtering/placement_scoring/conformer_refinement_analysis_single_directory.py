@@ -119,6 +119,8 @@ for line in placements_csv.readlines():
 	#open the pdb, which is under the file keyname
 	initial_conf_pdb = open(initial_conf_dict["file"],"r")
 
+	print(initial_conf_dict["file"])
+
 	for line2 in initial_conf_pdb.readlines():
 		#HETATM lines have the ligand data
 		if line2.startswith("HETATM "):
