@@ -48,11 +48,11 @@ output_file = open(output_location + "ligands_containing_fragment_" + str(subchu
 fragment_molecule = Chem.MolFromSmiles(fragment_smiles)
 
 #extract query parameters
-params = AdjustQuery.AdjustQueryParameters()
+params = AdjustQueryParameters()
 #set makedummiesqueries to true to help make matching more flexible, as matches will be lost otherwise
 params.makeDummiesQueries = True 
 #set this parameter to the fragment molecule
-fragment_molecule = AdjustQuery.AdjustQueryProperties(fragment_molecule, params)
+fragment_molecule = AdjustQueryProperties(fragment_molecule, params)
 
 #remove chirality
 Chem.RemoveStereochemistry(fragment_molecule)
@@ -84,7 +84,7 @@ for r,d,f in os.walk(library_location + str(subchunk)):
 				Chem.RemoveStereochemistry(lig_smiles)
 
 				#add the makedummies params to the full ligand being investigated
-				lig_smiles = AdjustQuery.AdjustQueryProperties(lig_smiles, params)
+				lig_smiles = AdjustQueryProperties(lig_smiles, params)
 
 				#run the match of the fragment in the full ligand
 				if lig_smiles.HasSubstructMatch(fragment_molecule):
