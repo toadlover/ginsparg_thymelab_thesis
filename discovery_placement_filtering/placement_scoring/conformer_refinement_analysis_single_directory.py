@@ -58,6 +58,10 @@ for line in placements_csv.readlines():
 			score_term_names.append(item.strip())
 
 
+		#if we have a ligand column, we can just directly add it to the delta terms and not do initial or compare, since it should come out the same
+		if item == "ligand":
+			score_term_names_delta_write_file.append(item)
+
 		#write header lines for the delta data file
 		#delta_data_file.write("initial_file,compare_file,initial_ddg,compare_ddg,delta_ddg,initial_total_motifs,compare_total_motifs,delta_total_motifs,initial_significant_motifs,compare_significant_motifs,delta_significant_motifs,initial_real_motif_ratio,hbond_motif_count,hbond_motif_energy_sum,closest_autodock_recovery_rmsd,closest_autodock_recovery_ddg,strain_energy,total")
 		for item in score_term_names:
@@ -194,6 +198,15 @@ for line in placements_csv.readlines():
 				if "compare" in score_term_names_delta_write_file[i]:
 					delta_data_file.write(compare_conf_dict["file"] + ",")
 					full_line_data.append(compare_conf_dict["file"])
+
+				continue
+
+			#likewise, handle "ligand" differently since it is a string (and may only exist in one file, if any)
+			if "ligand" in score_term_names_delta_write_file[i]:
+				#write the relevant ligand
+
+				delta_data_file.write(initial_conf_dict["file"] + ",")
+				full_line_data.append(initial_conf_dict["file"])
 
 				continue
 
