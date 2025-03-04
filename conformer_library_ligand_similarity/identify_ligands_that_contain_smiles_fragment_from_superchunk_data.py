@@ -21,7 +21,8 @@
 #imports
 import os,sys
 from rdkit import Chem
-from rdkit.Chem import AdjustQuery
+from rdkit.Chem import AdjustQueryParameters, AdjustQueryProperties, AdjustQueryWhichFlags
+
 
 #read in and process the arguments
 library_location = sys.argv[1]
