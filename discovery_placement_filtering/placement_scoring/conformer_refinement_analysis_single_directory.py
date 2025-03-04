@@ -50,8 +50,14 @@ delta_data_file_most_improved = open("delta_scores_most_improved.csv","w")
 score_term_names = []
 score_term_names_delta_write_file = []
 
+#placement counter for tracking
+placement_counter = 0
+
 #read placements csv
 for line in placements_csv.readlines():
+	
+	placement_counter = placement_counter + 1
+
 	#handle the header and create score term lines
 	if line.startswith("file,"):
 		for item in line.split(","):
@@ -103,7 +109,7 @@ for line in placements_csv.readlines():
 		#extract the ligand name
 	#ligand name is the 3rd from last when splitting by underscores
 	lig_name = initial_conf_dict["file"].split("_")[len(initial_conf_dict["file"].split("_")) - 3]
-	print(lig_name)
+	print(lig_name, placement_counter)
 
 	#get the coordinates of the atoms in the initial conformer for an rmsd comparison
 	#ignore hydrogens
