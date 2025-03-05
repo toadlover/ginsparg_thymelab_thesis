@@ -47,6 +47,7 @@ output_file = open(output_location + "ligands_containing_fragment_" + str(subchu
 #load in the fragment as smiles
 fragment_molecule = Chem.MolFromSmiles(fragment_smiles)
 
+"""
 #extract query parameters
 params = AdjustQueryParameters()
 #set makedummiesqueries to true to help make matching more flexible, as matches will be lost otherwise
@@ -55,6 +56,8 @@ params.aromatizeIfPossible = True
 
 #set this parameter to the fragment molecule
 fragment_molecule = AdjustQueryProperties(fragment_molecule, params)
+
+"""
 
 #make SMARTS of the fragment molecule to pass into the substruct match
 fragment_molecule_smarts = Chem.MolToSmarts(fragment_molecule)
