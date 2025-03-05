@@ -52,7 +52,6 @@ params = AdjustQueryParameters()
 #set makedummiesqueries to true to help make matching more flexible, as matches will be lost otherwise
 params.makeDummiesQueries = True
 params.aromatizeIfPossible = True
-params.adjustHeavyAtomFlags = AdjustQueryWhichFlags.All  # Apply all flexibility options
 
 #set this parameter to the fragment molecule
 fragment_molecule = AdjustQueryProperties(fragment_molecule, params)
@@ -90,7 +89,7 @@ for r,d,f in os.walk(library_location + str(subchunk)):
 				#lig_smiles = AdjustQueryProperties(lig_smiles, params)
 
 				#run the match of the fragment in the full ligand
-				if lig_smiles.HasSubstructMatch(fragment_molecule):
+				if lig_smiles.HasSubstructMatch(fragment_molecule, useChirality=False, useQueryQueryMatches=True):
 					#if true, the fragment exists within
 					#write the ligand to the output file
 					output_file.write(str(line.strip().split(",")[0]) + "," + str(line.strip().split(",")[1]) + "," + str(line.strip().split(",")[2]) + "," + str(line.strip().split(",")[4]) + "\n")
