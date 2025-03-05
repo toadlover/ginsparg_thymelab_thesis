@@ -56,6 +56,11 @@ params.aromatizeIfPossible = True
 #set this parameter to the fragment molecule
 fragment_molecule = AdjustQueryProperties(fragment_molecule, params)
 
+#make SMARTS of the fragment molecule to pass into the substruct match
+fragment_molecule_smarts = Chem.MolToSmarts(fragment_molecule)
+
+fragment_query = Chem.MolFromSmarts(fragment_molecule_smarts)
+
 #remove chirality
 Chem.RemoveStereochemistry(fragment_molecule)
 
