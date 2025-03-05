@@ -52,8 +52,8 @@ params = AdjustQueryParameters()
 #set makedummiesqueries to true to help make matching more flexible, as matches will be lost otherwise
 params.makeDummiesQueries = True
 params.aromatizeIfPossible = True
-params.adjustStereoFlags = AdjustQueryWhichFlags.IgnoreChirality  # Ignore chirality explicitly
-params.adjustRingFlags = AdjustQueryWhichFlags.IgnoreRingFusion  # Allow partial ring matches
+params.adjustHeavyAtomFlags = AdjustQueryWhichFlags.All  # Apply all flexibility options
+
 #set this parameter to the fragment molecule
 fragment_molecule = AdjustQueryProperties(fragment_molecule, params)
 
