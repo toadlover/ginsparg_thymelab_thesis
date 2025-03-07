@@ -27,11 +27,11 @@ for item in residue_list:
 	residue_checklist.append([item,False])
 
 #make a copy of the list that can be used to quickly revert the working checklist
-residue_checklist_copy = residue_checklist
+#residue_checklist_copy = residue_checklist
 
 print("starting checklists")
 print("original: ", residue_checklist)
-print("copy: ", residue_checklist_copy)
+#print("copy: ", residue_checklist_copy)
 
 #build a string for the write file that has all requested indices listed in the name (used to differentiate between runs on the same folder if needed)
 write_file_name = "real_motif_files"
@@ -55,11 +55,14 @@ for r,d,f in os.walk(working_location):
 			print("on file: " + file)
 
 			#wipe the checklist
-			residue_checklist = residue_checklist_copy
+			#residue_checklist = residue_checklist_copy
+
+			for i in range(len(residue_checklist)):
+				residue_checklist[i][1] = False
 
 			print("Pre:")
 			print("original: ", residue_checklist)
-			print("copy: ", residue_checklist_copy)
+			#print("copy: ", residue_checklist_copy)
 
 			#begin to read the file
 			read_file = open(r + "/" + file,"r")
@@ -91,7 +94,7 @@ for r,d,f in os.walk(working_location):
 
 			print("Post:")
 			print("original: ", residue_checklist)
-			print("copy: ", residue_checklist_copy)
+			#print("copy: ", residue_checklist_copy)
 
 			#bool to determine whether to keep the placement
 			keep_placement = True
