@@ -48,6 +48,8 @@ for r,d,f in os.walk(working_location):
 		#confirm the file is what we want
 		if file.endswith(".pdb") and r == working_location:
 
+			print("on file: " + file)
+
 			#wipe the checklist
 			residue_checklist = residue_checklist_copy
 
@@ -72,6 +74,8 @@ for r,d,f in os.walk(working_location):
 				#extract the index number, cut off the first 3 characters from residue, which is the residue 3 letter code
 				current_index = residue[3:]
 
+				print(current_index)
+
 				#iterate over the checklist and see if the index exists, and label true if so
 				for i in range(len(residue_checklist)):
 					if residue_checklist[i][0] == current_index:
@@ -90,4 +94,5 @@ for r,d,f in os.walk(working_location):
 			#write the placement if we want to keep it
 			if keep_placement:
 				write_file.write(r + "/" + file + "\n")
+				print("File has all desired real motifs!")
 
