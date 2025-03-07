@@ -53,6 +53,9 @@ for r,d,f in os.walk(working_location):
 			#wipe the checklist
 			residue_checklist = residue_checklist_copy
 
+			print("Pre:")
+			print(residue_checklist)
+
 			#begin to read the file
 			read_file = open(r + "/" + file,"r")
 
@@ -80,6 +83,9 @@ for r,d,f in os.walk(working_location):
 				for i in range(len(residue_checklist)):
 					if residue_checklist[i][0] == current_index:
 						residue_checklist[i][1] = True
+
+			print("Post:")
+			print(residue_checklist)
 
 			#bool to determine whether to keep the placement
 			keep_placement = True
