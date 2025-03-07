@@ -67,7 +67,7 @@ for r,d,f in os.walk(working_location):
 				motif_str = line.split()[6]
 
 				#extract the residue, which is 6th from the back when splitting by underscores
-				residue = motif_str.split("_")[motif_str.split("_") - 6]
+				residue = motif_str.split("_")[len(motif_str.split("_")) - 6]
 
 				#extract the index number, cut off the first 3 characters from residue, which is the residue 3 letter code
 				current_index = residue[3:]
