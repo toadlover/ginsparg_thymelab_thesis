@@ -169,6 +169,7 @@ for r,d,f in os.walk(placements_directory):
 			#space compare
 			#need to compare target vs compare and then compare vs target
 			#difference = sum of voxels that do not overlap from either
+			"""
 			for voxel in target_ligand_voxels_space:
 				if voxel not in compare_ligand_voxels_space:
 					space_difference = space_difference + 1
@@ -178,6 +179,32 @@ for r,d,f in os.walk(placements_directory):
 				if voxel not in target_ligand_voxels_space:
 					space_difference = space_difference + 1
 					space_diff_list_compare.append(voxel)
+			"""
+
+			#adjusting logic to be more tolerant and counting overlap if complete overlap or 1 angstrom away (in any direction including corners, so adjacent 26 voxels)
+			for voxel in target_ligand_voxels_space:
+				
+				voxel_overlaps = False
+
+				for voxel2 in compare_ligand_voxels_space:
+					if (voxel[0] == voxel2[0] or voxel[0] == voxel2[0] - 1 or voxel[0] == voxel2[0] + 1) and (voxel[1] == voxel2[1] or voxel[1] == voxel2[1] - 1 or voxel[1] == voxel2[1] + 1) and (voxel[2] == voxel2[2] or voxel[2] == voxel2[2] - 1 or voxel[2] == voxel2[2] + 1):
+						voxel_overlaps = True
+
+				if voxel_overlaps == False:
+					space_difference = space_difference + 1
+					space_diff_list_target.append(voxel)
+
+			for voxel in compare_ligand_voxels_space:
+				
+				voxel_overlaps = False
+
+				for voxel2 in target_ligand_voxels_space:
+					if (voxel[0] == voxel2[0] or voxel[0] == voxel2[0] - 1 or voxel[0] == voxel2[0] + 1) and (voxel[1] == voxel2[1] or voxel[1] == voxel2[1] - 1 or voxel[1] == voxel2[1] + 1) and (voxel[2] == voxel2[2] or voxel[2] == voxel2[2] - 1 or voxel[2] == voxel2[2] + 1):
+						voxel_overlaps = True
+
+				if voxel_overlaps == False:
+					space_difference = space_difference + 1
+					space_diff_list_compare.append(voxel)	
 
 			print(space_diff_list_target)
 			print(space_diff_list_compare)
