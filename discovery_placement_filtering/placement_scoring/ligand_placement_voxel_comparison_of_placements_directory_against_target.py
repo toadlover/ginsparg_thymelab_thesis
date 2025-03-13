@@ -165,12 +165,12 @@ for r,d,f in os.walk(placements_directory):
 			for voxel in target_ligand_voxels_space:
 				if voxel not in compare_ligand_voxels_space:
 					space_difference = space_difference + 1
-					space_difference.append(voxel)
+					space_diff_list.append(voxel)
 
 			for voxel in compare_ligand_voxels_space:
 				if voxel not in target_ligand_voxels_space:
 					space_difference = space_difference + 1
-					space_difference.append(voxel)
+					space_diff_list.append(voxel)
 
 			print(space_diff_list)
 
