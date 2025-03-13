@@ -18,6 +18,9 @@ target_placement = sys.argv[1]
 
 placements_directory = sys.argv[2]
 
+if placements_directory.ensdwith("/") == False:
+	placements_directory = placements_directory + "/"
+
 #if the length of args is 4, grab the top x argument
 top_x_to_keep = 1
 
@@ -87,9 +90,146 @@ for line in target_placement_file.readlines():
 			target_ligand_voxels_weight.append([x,y,z,atomic_weights[element]])
 
 #test print of lists
-for line in target_ligand_voxels_space:
-	print(line)
+#for line in target_ligand_voxels_space:
+#	print(line)
 
-for line in target_ligand_voxels_weight:
-	print(line)
+#for line in target_ligand_voxels_weight:
+#	print(line)
 
+#now, run through each file in the placements directory and determine the similarity of each file
+for r,d,f in os.walk(placements_directory):
+	for file in f:
+		#only look at files at the top level and only pdbs
+		if file.endswith(".pdb") and r + "/" == placements_directory:
+			#read the file and get the data
+			#hold the lignd name too
+			lig_name = ""
+
+			#open the file
+			placement_file = open(r + "/" + file, "r")
+
+			#create lists for the placement
+			compare_ligand_voxels_space = []
+
+			compare_ligand_voxels_weight = []
+
+			for line in placement_file.readlines():
+				if line.startswith("HETNAM"):
+					#extract the ligand name
+					lig_name = line[12:].strip().split("_")[0]
+
+				#if the line starts with HETATM, we can collect the data
+				if line.startswith("HETATM"):
+					#collect the coordinates and element
+					x = int(float(line[30:38].strip()))
+					y = int(float(line[38:46].strip()))
+					z = int(float(line[46:54].strip()))
+					element = line[76:78].strip().upper()
+
+					#check if the voxel exists in the target space list, and add if not
+					if [x,y,z] not in compare_ligand_voxels_space:
+						compare_ligand_voxels_space.append([x,y,z])
+
+					#add to weight list
+
+					#bool to determine whether the voxel coordinates are in the weight vector (harder to line up because the tuple also contains weight)
+					#if the value is false after running through all previously recorded voxels, we add a new voxel with the weight of the corresponding element
+					weight_voxel_exists = False
+
+					for i in range(len(compare_ligand_voxels_weight)):
+						#if we get a match from having the voxel exist already, add the element weight to the existing element weight value
+						if compare_ligand_voxels_weight[i][0] == x and compare_ligand_voxels_weight[i][1] == y and compare_ligand_voxels_weight[i][2] == z:
+							compare_ligand_voxels_weight[i][3] = compare_ligand_voxels_weight[i][3] + atomic_weights[element]
+							weight_voxel_exists = True
+
+					#if we did not find an existing voxel, add it to the list
+					if weight_voxel_exists == False:
+						compare_ligand_voxels_weight.append([x,y,z,atomic_weights[element]])
+
+			#we now have the voxel data of the element
+			#compare the voxels against the target
+
+			#initialize scores to start at 0
+			space_difference = 0
+			weight_difference = 0
+
+			#space compare
+			#need to compare target vs compare and then compare vs target
+			#difference = sum of voxels that do not overlap from either
+			for voxel in target_ligand_voxels_space:
+				if voxel not in compare_ligand_voxels_space:
+					space_difference = space_difference + 1
+
+			for voxel in compare_ligand_voxels_space:
+				if voxel not in target_ligand_voxels_space:
+					space_difference = space_difference + 1
+
+			#weighted compare
+			#similar to space method, but do need to take the absolute difference in weights; need to compare t vs c and then c vs t
+			#also need to ensure we do not double dip in weight differences for voxels that do overlap, so we need to hold overlapped voxels in a list to ensure they are not counted twice
+			
+			#overlapped voxels list
+			overlapped_voxels = []
+
+			for voxel in target_ligand_voxels_weight:
+				#bool to hold if we overlap the voxel or not
+				overlaps = False
+
+				#hold the overlap voxel weight (or the value will be 0 if no overlap)
+				overlap_voxel_weight = 0
+
+				#check if the voxel exists in opposite set
+				#need to check by iterating over the other set since there may not be an exact match if weight is different
+				for voxel2 in compare_ligand_voxels_weight:
+					if voxel[0] == voxel2[0] and voxel[1] == voxel2[1] and voxel[2] == voxel2[2]:
+						overlaps = True
+						overlap_voxel_weight = voxel2[3]
+
+				weight_difference = weight_difference + abs(voxel[3] - overlap_voxel_weight)
+
+				#if we overlap, add the voxel to the list of overlapped voxels
+				if overlaps:
+					overlap_voxel_weight.append(voxel)
+
+			#now repeat reverse compare
+			for voxel in compare_ligand_voxels_weight:
+
+				is_overlapped = False
+
+				#check if the voxel is in the overlap set
+				for overlap_voxel in overlapped_voxels:
+					if voxel[0] == overlap_voxel[0] and voxel[1] == overlap_voxel[1] and voxel[2] == overlap_voxel[2]:
+						is_overlapped = True
+
+				#continue if overlapped
+				if is_overlapped:
+					continue
+
+				#hold the overlap voxel weight (or the value will be 0 if no overlap)
+				overlap_voxel_weight = 0
+
+				#check if the voxel exists in opposite set
+				#need to check by iterating over the other set since there may not be an exact match if weight is different
+				for voxel2 in target_ligand_voxels_weight:
+					if voxel[0] == voxel2[0] and voxel[1] == voxel2[1] and voxel[2] == voxel2[2]:
+						overlap_voxel_weight = voxel2[3]
+
+				weight_difference = weight_difference + abs(voxel[3] - overlap_voxel_weight)
+		
+				
+			#we now have our differences, assign them to the dictionary
+			#behavior for if the dictionary already has a key for the ligand
+			if lig_name in placed_ligands_data_dict.keys():
+				#append
+				placed_ligands_data_dict[lig_name].append([r + "/" + file, space_difference, weight_difference])
+			else:
+				#declare new list
+				placed_ligands_data_dict[lig_name] = [[r + "/" + file, space_difference, weight_difference]]
+
+#temp print of all placements for testing
+for lig in placed_ligands_data_dict.keys():
+	print(lig)
+	for placement in placed_ligands_data_dict[lig]:
+		print(placement)
+
+#now, go through the dictionary and pick out the best
