@@ -18,7 +18,7 @@ target_placement = sys.argv[1]
 
 placements_directory = sys.argv[2]
 
-if placements_directory.ensdwith("/") == False:
+if placements_directory.endswith("/") == False:
 	placements_directory = placements_directory + "/"
 
 #if the length of args is 4, grab the top x argument
