@@ -101,6 +101,8 @@ for r,d,f in os.walk(placements_directory):
 	for file in f:
 		#only look at files at the top level and only pdbs
 		if file.endswith(".pdb") and r + "/" == placements_directory:
+			print(file)
+
 			#read the file and get the data
 			#hold the lignd name too
 			lig_name = ""
