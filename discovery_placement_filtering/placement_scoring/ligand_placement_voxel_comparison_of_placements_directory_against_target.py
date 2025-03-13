@@ -163,7 +163,8 @@ for r,d,f in os.walk(placements_directory):
 			weight_difference = 0
 
 			#list to hold voxels with space differences
-			space_diff_list = []
+			space_diff_list_target = []
+			space_diff_list_compare = []
 
 			#space compare
 			#need to compare target vs compare and then compare vs target
@@ -171,14 +172,15 @@ for r,d,f in os.walk(placements_directory):
 			for voxel in target_ligand_voxels_space:
 				if voxel not in compare_ligand_voxels_space:
 					space_difference = space_difference + 1
-					space_diff_list.append(voxel)
+					space_diff_list_target.append(voxel)
 
 			for voxel in compare_ligand_voxels_space:
 				if voxel not in target_ligand_voxels_space:
 					space_difference = space_difference + 1
-					space_diff_list.append(voxel)
+					space_diff_list_compare.append(voxel)
 
-			print(space_diff_list)
+			print(space_diff_list_target)
+			print(space_diff_list_compare)
 
 			#weighted compare
 			#similar to space method, but do need to take the absolute difference in weights; need to compare t vs c and then c vs t
