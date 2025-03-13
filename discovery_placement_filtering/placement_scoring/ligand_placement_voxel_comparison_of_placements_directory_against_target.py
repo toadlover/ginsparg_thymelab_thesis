@@ -130,7 +130,7 @@ for r,d,f in os.walk(placements_directory):
 
 					#adjust rounding logic so that it goes to the closest int, not rounding down
 					x = round(float(line[30:38].strip()))
-					y = found(float(line[38:46].strip()))
+					y = round(float(line[38:46].strip()))
 					z = round(float(line[46:54].strip()))
 
 					element = line[76:78].strip().upper()
