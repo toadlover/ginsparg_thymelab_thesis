@@ -69,6 +69,10 @@ for line in target_placement_file.readlines():
 		z = round(float(line[46:54].strip()))
 		element = line[76:78].strip().upper()
 
+		#ignore hydrogens
+		if element == "H":
+			continue
+
 		#check if the voxel exists in the target space list, and add if not
 		if [x,y,z] not in target_ligand_voxels_space:
 			target_ligand_voxels_space.append([x,y,z])
@@ -134,6 +138,10 @@ for r,d,f in os.walk(placements_directory):
 					z = round(float(line[46:54].strip()))
 
 					element = line[76:78].strip().upper()
+
+					#ignore hydrogens
+					if element == "H":
+						continue
 
 					#check if the voxel exists in the target space list, and add if not
 					if [x,y,z] not in compare_ligand_voxels_space:
@@ -271,11 +279,10 @@ for r,d,f in os.walk(placements_directory):
 				#declare new list
 				placed_ligands_data_dict[lig_name] = [[r + "/" + file, space_difference, weight_difference]]
 
-#sort all ligand lists
-#temp print of all placements for testing
+#sort all ligand lists by space overlap
 for lig in placed_ligands_data_dict.keys():
 	for placement in placed_ligands_data_dict[lig]:
-		temp = sorted(placed_ligands_data_dict[lig], key=lambda x: x[2])
+		temp = sorted(placed_ligands_data_dict[lig], key=lambda x: x[1])
 		placed_ligands_data_dict[lig] = temp
 
 #temp print of all placements for testing
