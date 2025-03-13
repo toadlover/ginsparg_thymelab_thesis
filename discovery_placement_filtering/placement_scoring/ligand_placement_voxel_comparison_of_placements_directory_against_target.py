@@ -192,7 +192,7 @@ for r,d,f in os.walk(placements_directory):
 
 				#if we overlap, add the voxel to the list of overlapped voxels
 				if overlaps:
-					overlap_voxel_weight.append(voxel)
+					overlapped_voxels.append(voxel)
 
 			#now repeat reverse compare
 			for voxel in compare_ligand_voxels_weight:
