@@ -8,7 +8,7 @@
 #this script can return either the single top placement (default) or the top x placements per ligand
 #ligand is determined by the HETNAM line of the placements pdb
 
-#run as: python ligand_placement_voxel_comparison_of_placements_directory_against_target.py target_protein.pdb /path/to/placements_directory/ top_x_integer(optional)
+#run as: python ligand_placement_voxel_comparison_of_placements_directory_against_target.py target_protein.pdb /path/to/placements_directory/  top_x_integer mismatch_threshold
 
 #imports
 import os,sys
@@ -22,10 +22,11 @@ if placements_directory.endswith("/") == False:
 	placements_directory = placements_directory + "/"
 
 #if the length of args is 4, grab the top x argument
-top_x_to_keep = 1
+top_x_to_keep = int(sys.argv[3])
 
-if len(sys.argv) == 4:
-	top_x_to_keep = int(sys.argv[3])
+#mismatch threshold of values (column 2) for placements to consider keeping at end
+#value based on the the space match value
+mismatch_space_threshold = int(sys.argv[4])
 
 #create lists and dictionaries to hold ligand data
 
@@ -214,8 +215,8 @@ for r,d,f in os.walk(placements_directory):
 					space_difference = space_difference + 1
 					space_diff_list_compare.append(voxel)	
 
-			print(space_diff_list_target)
-			print(space_diff_list_compare)
+			#print(space_diff_list_target)
+			#print(space_diff_list_compare)
 
 			#weighted compare
 			#similar to space method, but do need to take the absolute difference in weights; need to compare t vs c and then c vs t
@@ -282,13 +283,31 @@ for r,d,f in os.walk(placements_directory):
 #sort all ligand lists by space overlap
 for lig in placed_ligands_data_dict.keys():
 	for placement in placed_ligands_data_dict[lig]:
-		temp = sorted(placed_ligands_data_dict[lig], key=lambda x: x[1])
+		temp = sorted(placed_ligands_data_dict[lig], key=lambda x: (x[1],x[2]))
 		placed_ligands_data_dict[lig] = temp
 
-#temp print of all placements for testing
-for lig in placed_ligands_data_dict.keys():
-	print(lig)
-	for placement in placed_ligands_data_dict[lig]:
-		print(placement)
+#create a directory to put the best placements within the top x threshold
+os.system("rm -drf closest_" + top_x_to_keep + "_placements")
+os.system("mkdir closest_" + top_x_to_keep + "_placements")
 
-#now, go through the dictionary and pick out the best
+#print a csv file for each ligand containing the similarity data
+for lig in placed_ligands_data_dict.keys():
+	
+	write_file = open(lig + "_placement_similarity_scoring.csv", "w")
+
+	write_file.write("file,space_score,weight_score\n")
+
+	#counter to track the number of placements addedto the closest folder
+	placements_copied = 0
+
+	#print(lig)
+	for placement in placed_ligands_data_dict[lig]:
+		#print(placement)
+		write_file.write(str(placement[0]) + "," + str(placement[1]) + "," + str(placement[2]) + "\n")
+
+		if placements_copied < top_x_to_keep:
+			placements_copied = placements_copied + 1
+
+			if placement[1] <= mismatch_space_threshold:
+				os.system("cp " + placement[0] + " closest_" + top_x_to_keep + "_placements")
+
