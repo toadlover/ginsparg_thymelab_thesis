@@ -57,7 +57,7 @@ atomic_weights = {
 #read through the target placement and derive the voxel lists for it
 target_placement_file = open(target_placement, "r")
 
-for line in target_placement.readlines():
+for line in target_placement_file.readlines():
 	#if the line starts with HETATM, we can collect the data
 	if line.startswith("HETATM"):
 		#collect the coordinates and element
