@@ -309,5 +309,5 @@ for lig in placed_ligands_data_dict.keys():
 			placements_copied = placements_copied + 1
 
 			if placement[1] <= mismatch_space_threshold:
-				os.system("cp " + placement[0] + " closest_" + top_x_to_keep + "_placements")
+				os.system("cp " + placement[0] + " closest_" + str(top_x_to_keep) + "_placements")
 
