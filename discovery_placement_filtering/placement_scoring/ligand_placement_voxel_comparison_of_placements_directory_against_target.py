@@ -234,7 +234,7 @@ for r,d,f in os.walk(placements_directory):
 				#check if the voxel exists in opposite set
 				#need to check by iterating over the other set since there may not be an exact match if weight is different
 				for voxel2 in compare_ligand_voxels_weight:
-					if voxel[0] == voxel2[0] and voxel[1] == voxel2[1] and voxel[2] == voxel2[2]:
+					if (voxel[0] == voxel2[0] or voxel[0] == voxel2[0] - 1 or voxel[0] == voxel2[0] + 1) and (voxel[1] == voxel2[1] or voxel[1] == voxel2[1] - 1 or voxel[1] == voxel2[1] + 1) and (voxel[2] == voxel2[2] or voxel[2] == voxel2[2] - 1 or voxel[2] == voxel2[2] + 1):
 						overlaps = True
 						overlap_voxel_weight = voxel2[3]
 
@@ -251,7 +251,7 @@ for r,d,f in os.walk(placements_directory):
 
 				#check if the voxel is in the overlap set
 				for overlap_voxel in overlapped_voxels:
-					if voxel[0] == overlap_voxel[0] and voxel[1] == overlap_voxel[1] and voxel[2] == overlap_voxel[2]:
+					if (voxel[0] == overlap_voxel[0] or voxel[0] == overlap_voxel[0] - 1 or voxel[0] == overlap_voxel[0] + 1) and (voxel[1] == overlap_voxel[1] or voxel[1] == overlap_voxel[1] - 1 or voxel[1] == overlap_voxel[1] + 1) and (voxel[2] == overlap_voxel[2] or voxel[2] == overlap_voxel[2] - 1 or voxel[2] == overlap_voxel[2] + 1):
 						is_overlapped = True
 
 				#continue if overlapped
