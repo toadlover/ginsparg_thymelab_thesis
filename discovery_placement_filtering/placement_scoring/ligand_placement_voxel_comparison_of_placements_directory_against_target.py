@@ -99,10 +99,10 @@ for line in target_placement_file.readlines():
 #now, run through each file in the placements directory and determine the similarity of each file
 for r,d,f in os.walk(placements_directory):
 	for file in f:
-		print(r + "/" + file)
+		#print(r + "/" + file)
 		#only look at files at the top level and only pdbs
-		if file.endswith(".pdb") and r + "/" == placements_directory:
-			print(file)
+		if file.endswith(".pdb") and r == placements_directory:
+			#print(file)
 
 			#read the file and get the data
 			#hold the lignd name too
