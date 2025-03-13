@@ -102,7 +102,7 @@ for r,d,f in os.walk(placements_directory):
 		#print(r + "/" + file)
 		#only look at files at the top level and only pdbs
 		if file.endswith(".pdb") and r == placements_directory:
-			#print(file)
+			print(file)
 
 			#read the file and get the data
 			#hold the lignd name too
@@ -156,16 +156,23 @@ for r,d,f in os.walk(placements_directory):
 			space_difference = 0
 			weight_difference = 0
 
+			#list to hold voxels with space differences
+			space_diff_list = []
+
 			#space compare
 			#need to compare target vs compare and then compare vs target
 			#difference = sum of voxels that do not overlap from either
 			for voxel in target_ligand_voxels_space:
 				if voxel not in compare_ligand_voxels_space:
 					space_difference = space_difference + 1
+					space_difference.append(voxel)
 
 			for voxel in compare_ligand_voxels_space:
 				if voxel not in target_ligand_voxels_space:
 					space_difference = space_difference + 1
+					space_difference.append(voxel)
+
+			print(space_diff_list)
 
 			#weighted compare
 			#similar to space method, but do need to take the absolute difference in weights; need to compare t vs c and then c vs t
@@ -228,6 +235,13 @@ for r,d,f in os.walk(placements_directory):
 			else:
 				#declare new list
 				placed_ligands_data_dict[lig_name] = [[r + "/" + file, space_difference, weight_difference]]
+
+#sort all ligand lists
+#temp print of all placements for testing
+for lig in placed_ligands_data_dict.keys():
+	for placement in placed_ligands_data_dict[lig]:
+		temp = sorted(placed_ligands_data_dict[lig], key=lambda x: x[2])
+		placed_ligands_data_dict[lig] = temp
 
 #temp print of all placements for testing
 for lig in placed_ligands_data_dict.keys():
