@@ -287,8 +287,8 @@ for lig in placed_ligands_data_dict.keys():
 		placed_ligands_data_dict[lig] = temp
 
 #create a directory to put the best placements within the top x threshold
-os.system("rm -drf closest_" + top_x_to_keep + "_placements")
-os.system("mkdir closest_" + top_x_to_keep + "_placements")
+os.system("rm -drf closest_" + str(top_x_to_keep) + "_placements")
+os.system("mkdir closest_" + str(top_x_to_keep) + "_placements")
 
 #print a csv file for each ligand containing the similarity data
 for lig in placed_ligands_data_dict.keys():
