@@ -64,9 +64,9 @@ for line in target_placement_file.readlines():
 	#if the line starts with HETATM, we can collect the data
 	if line.startswith("HETATM"):
 		#collect the coordinates and element
-		x = int(float(line[30:38].strip()))
-		y = int(float(line[38:46].strip()))
-		z = int(float(line[46:54].strip()))
+		x = round(float(line[30:38].strip()))
+		y = round(float(line[38:46].strip()))
+		z = round(float(line[46:54].strip()))
 		element = line[76:78].strip().upper()
 
 		#check if the voxel exists in the target space list, and add if not
