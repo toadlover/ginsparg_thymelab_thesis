@@ -65,7 +65,7 @@ read_file = open(library_location, "r")
 #iterate over the file
 for line in read_file.readlines():
 	#extract the smiles string, which is at index 0
-	lig = str(line.strip().split(",")[0])
+	lig = str(line.strip().split()[0])
 
 	#convert the string to smiles
 	lig_smiles = Chem.MolFromSmiles(lig)
@@ -84,7 +84,14 @@ for line in read_file.readlines():
 	#run the match of the fragment in the full ligand
 	if lig_smiles.HasSubstructMatch(fragment_query, useChirality=False, useQueryQueryMatches=True):
 		#if true, the fragment exists within
-		#write the ligand to the output file
-		output_file.write(str(line.strip().split()[0]) + "," + str(line.strip().split()[1]) + "," + library_location + "\n")
 
-		print(str(line.strip().split()[0]) + "," + str(line.strip().split()[1]) + "," + library_location + "\n")
+		#get the ligand name code from the database
+		#the name code is either the split index 1 or 2, depending on if stereochemistry is listed
+		lig_code = str(line.strip().split()[1])
+		if "|" in lig_code:
+			lig_code = str(line.strip().split()[2])
+
+		#write the ligand to the output file
+		output_file.write(str(line.strip().split()[0]) + "," + lig_code + "," + library_location + "\n")
+
+		print(str(line.strip().split()[0]) + "," + lig_code + "," + library_location + "\n")
