@@ -22,7 +22,7 @@ from rdkit.Chem import AdjustQueryParameters, AdjustQueryProperties, AdjustQuery
 library_location = sys.argv[1]
 
 #derive the file name and use it as an extension
-extension = library_location.split("/")[len(library_location.split("/")) - 1].split(".")[0]
+extension = library_location.split("/")[len(library_location.split("/")) - 1].split(".csv")[0]
 
 fragment_smiles = sys.argv[2]
 
