@@ -24,10 +24,6 @@ library_location = sys.argv[1]
 #derive the file name and use it as an extension
 extension = library_location.split("/")[len(library_location.split("/")) - 1].split(".")[0]
 
-#modify location to make sure it ends with a /
-if library_location.endswith("/") == False:
-	library_location = library_location + "/"
-
 fragment_smiles = sys.argv[2]
 
 
