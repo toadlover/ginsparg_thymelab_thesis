@@ -65,7 +65,7 @@ Chem.RemoveStereochemistry(fragment_molecule)
 read_file = open(library_location, "r")
 
 #iterate over the compressed bz2 file
-with bz2.open(file_path, 'rt') as file:
+with bz2.open(library_location, 'rt') as file:
 	for line in file:
 		#extract the smiles string, which is at index 0
 		lig = str(line.strip().split()[0])
