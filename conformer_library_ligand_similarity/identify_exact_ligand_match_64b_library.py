@@ -62,9 +62,9 @@ fragment_molecule = AdjustQueryProperties(fragment_molecule, params)
 print(Chem.MolToSmiles(fragment_molecule))
 
 #remove chirality
-frag_removed_chirality = Chem.RemoveStereochemistry(fragment_molecule)
+Chem.RemoveStereochemistry(fragment_molecule)
 
-print(Chem.MolToSmiles(frag_removed_chirality))
+print(Chem.MolToSmiles(fragment_molecule))
 
 ref_fp = AllChem.GetMorganFingerprintAsBitVect(fragment_molecule, radius=2)
 
