@@ -1,13 +1,13 @@
 #the purpose of this script is for it to be run on a single short file from the 64b library; there are 
-#this script returns a csv list of ligands that contain the input fragment smiles string (agnostic of chirality)
-#this looks for .bz files sinze the 64b ligand library is too large to reasonably work with uncompressed
+#this script returns a csv list of ligand(s) that exactly match the input smiles string along with the chunk location
+#this is mostly just a sanity check to make sure that the ligand of interest is actually present in the full library/library chunk
 
 #script arguments:
 #1 subchunk library data location
 #i.e. /data/project/thymelab/smiles_similarity_of_hits_analysis_space/drug_27/
 
 
-#3 fragment smiles string
+#3 full smiles string
 #i.e. CC(C)c1cc(NC(=O)N2Cc3cccc(C#N)c3C2)n(-c2ncccn2)n1
 
 #4 output location for the result list file
@@ -53,15 +53,13 @@ fragment_molecule = AdjustQueryProperties(fragment_molecule, params)
 
 """
 
-#remove chirality
-Chem.RemoveStereochemistry(fragment_molecule)
-
 #make SMARTS of the fragment molecule to pass into the substruct match
 fragment_molecule_smarts = Chem.MolToSmarts(fragment_molecule)
 
 fragment_query = Chem.MolFromSmarts(fragment_molecule_smarts)
 
-
+#remove chirality
+Chem.RemoveStereochemistry(fragment_molecule)
 
 #open the library file
 read_file = open(library_location, "r")
