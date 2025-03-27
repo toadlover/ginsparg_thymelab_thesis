@@ -1,5 +1,5 @@
 #the purpose of this script is for it to be run on a single short file from the 64b library; there are 
-#this script returns a csv list of ligand(s) that exactly match the input smiles string along with the chunk location
+#this script returns a csv list of ligand(s) that have at least a 70% match to the input smiles string along with the chunk location
 #this is mostly just a sanity check to make sure that the ligand of interest is actually present in the full library/library chunk
 
 #script arguments:
@@ -54,12 +54,14 @@ fragment_molecule = AdjustQueryProperties(fragment_molecule, params)
 """
 
 #make SMARTS of the fragment molecule to pass into the substruct match
-fragment_molecule_smarts = Chem.MolToSmarts(fragment_molecule)
+#fragment_molecule_smarts = Chem.MolToSmarts(fragment_molecule)
 
-fragment_query = Chem.MolFromSmarts(fragment_molecule_smarts)
+#fragment_query = Chem.MolFromSmarts(fragment_molecule_smarts)
 
 #remove chirality
 Chem.RemoveStereochemistry(fragment_molecule)
+
+ref_fp = AllChem.GetMorganFingerprintAsBitVect(fragment_molecule, radius=2)
 
 #open the library file
 read_file = open(library_location, "r")
@@ -84,8 +86,14 @@ with bz2.open(library_location, 'rt') as file:
 		#add the makedummies params to the full ligand being investigated
 		#lig_smiles = AdjustQueryProperties(lig_smiles, params)
 
+		#get the compare ligand fingerprints
+		comp_fp = AllChem.GetMorganFingerprintAsBitVect(lig_smiles, radius=2)
+	    
+		#get the tanimoto similarity by fingerprints
+		similarity = DataStructs.TanimotoSimilarity(ref_fp, comp_fp)
+
 		#run the match of the fragment in the full ligand
-		if lig_smiles.HasSubstructMatch(fragment_query, useChirality=False, useQueryQueryMatches=True):
+		if similarity >= 0.7:
 			#if true, the fragment exists within
 
 			#get the ligand name code from the database
@@ -95,6 +103,6 @@ with bz2.open(library_location, 'rt') as file:
 				lig_code = str(line.strip().split()[2])
 
 			#write the ligand to the output file
-			output_file.write(str(line.strip().split()[0]) + "," + lig_code + "," + library_location + "\n")
+			output_file.write(str(line.strip().split()[0]) + "," + str(similarity) + "," + lig_code + "," + library_location + "\n")
 
-			print(str(line.strip().split()[0]) + "," + lig_code + "," + library_location + "\n")
+			print(str(line.strip().split()[0]) + "," + str(similarity) + "," + lig_code + "," + library_location + "\n")
