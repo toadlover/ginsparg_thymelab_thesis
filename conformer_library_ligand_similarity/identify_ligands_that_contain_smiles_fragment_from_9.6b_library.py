@@ -50,14 +50,15 @@ params.aromatizeIfPossible = True
 fragment_molecule = AdjustQueryProperties(fragment_molecule, params)
 
 """
+#remove chirality
+Chem.RemoveStereochemistry(fragment_molecule)
 
 #make SMARTS of the fragment molecule to pass into the substruct match
 fragment_molecule_smarts = Chem.MolToSmarts(fragment_molecule)
 
 fragment_query = Chem.MolFromSmarts(fragment_molecule_smarts)
 
-#remove chirality
-Chem.RemoveStereochemistry(fragment_molecule)
+
 
 #open the library file
 read_file = open(library_location, "r")
