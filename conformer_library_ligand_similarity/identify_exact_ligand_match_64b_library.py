@@ -17,6 +17,7 @@
 import os,sys
 from rdkit import Chem
 from rdkit.Chem import AdjustQueryParameters, AdjustQueryProperties, AdjustQueryWhichFlags
+from rdkit.Chem import AllChem, DataStructs
 import bz2
 
 
