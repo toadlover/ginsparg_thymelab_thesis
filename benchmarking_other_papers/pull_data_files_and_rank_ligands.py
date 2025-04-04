@@ -31,6 +31,11 @@ for line in locations_file.readlines():
 	#strip the newline and then get the file
 	os.system("s3cmd get " + line.strip())
 
+	#safety check to continue if we don't have a placement_score_data file for some reason
+	if os.path.isfile("placement_score_data.csv") == False:
+		print("No placement data file found for " + line.strip())
+		continue
+
 	#write the file contents to the compiled csv
 	#os.system("cat placement_score_data.csv >> all_paper_data.csv")
 	#open file stream to read the csv file (we want to add additional data to indicate which are the paper ligands, which is derivable in the path that the file came from)
