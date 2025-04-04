@@ -1,0 +1,10 @@
+#!/bin/bash
+#SBATCH -p short # Partition to submit to\n")
+#SBATCH -n 1 # Number of cores requested\n")
+#SBATCH -N 1 # Ensure that all cores are on one machine\n")
+#SBATCH -t 720 # Runtime in minutes\n")
+#SBATCH --mem=12800 # Memory per cpu in MB (see also --mem-per-cpu)\n")
+#SBATCH -o hostname_%A_%a.out # Standard out goes to this file\n")
+#SBATCH -e hostname_%A_%a.err # Standard err goes to this filehostname\n")
+
+python /data/user/abgvg9/ginsparg_thymelab_thesis/benchmarking_other_papers/pull_data_files_and_rank_ligands.py s3://ariosg/benchmarking_other_papers/sigma2/
