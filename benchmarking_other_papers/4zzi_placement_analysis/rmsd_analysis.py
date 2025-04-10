@@ -54,9 +54,11 @@ for r,d,f in os.walk("lig_only_Z26395438_placements"):
 			rmsd = total_distance / atom_counter
 
 			#add the rmsd to the rmsd list
-			rmsds_list.append([file,str(rmsd)])
+			rmsds_list.append([file,rmsd])
 
-for item in rmsds_list:
+sorted_list = sorted(rmsds_list, key=lambda x: x[1])
+
+for item in sorted_list:
 	print(item)
 
 #end cleanup
