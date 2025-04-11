@@ -1,6 +1,8 @@
 #simple specific script that looks at the reference Gryniukova_Z26395438_placement_atoms_remapped.pdb (has atom names mapped to Rosetta palcements for RMSD comparison), and compares the reference to Rosetta palcements
 #an output written with the ranked rmsd of placements
 
+#run as: python rmsd_analysis.py
+
 #imports
 import os,sys
 
@@ -60,6 +62,14 @@ sorted_list = sorted(rmsds_list, key=lambda x: x[1])
 
 for item in sorted_list:
 	print(item)
+
+#write the sorted list to a file
+write_file = open("Z26395438_rosetta_placement_rmsds.csv","w")
+for item in sorted_list:
+	print(item)
+	write_file.write(str(item[0]) + "," + str(item[1]) + "\n")
+
+
 
 #end cleanup
 os.system("rm -drf lig_only_Z26395438_placements")
