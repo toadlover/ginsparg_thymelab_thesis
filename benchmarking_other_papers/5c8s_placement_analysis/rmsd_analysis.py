@@ -25,9 +25,9 @@ for r,d,f in os.walk("5c8s_publication_placements"):
 			ref_in = open(r + "/" + file, "r")
 			for line in ref_in.readlines():
 				atom_name = line.strip().split()[2]
-				x = float(line.strip().split()[6])
-				y = float(line.strip().split()[7])
-				z = float(line.strip().split()[8])
+				x = float(line.strip().split()[5])
+				y = float(line.strip().split()[6])
+				z = float(line.strip().split()[7])
 				ref_atoms[atom_name] = [x,y,z]
 			ref_in.close()
 
