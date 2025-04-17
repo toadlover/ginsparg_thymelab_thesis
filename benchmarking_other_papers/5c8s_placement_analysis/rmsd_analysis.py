@@ -49,14 +49,14 @@ for r,d,f in os.walk("5c8s_publication_placements"):
 						#get the molecule atom coordinates, and then compare to the reference
 						test_in = open(r2 + "/" + file2,"r")
 						
-						print(r2 + "/" + file2)
+						#print(r2 + "/" + file2)
 
 						#skip if not a placement pdb (since the original empty pdb is also present)
 						if "_conf" not in file2:
 							continue
 
 						for line in test_in.readlines():
-							print(line)
+							#print(line)
 
 							#extract the atom name and coordinates
 							atom_name = line.strip().split()[2]
@@ -79,8 +79,8 @@ for r,d,f in os.walk("5c8s_publication_placements"):
 							total_distance = total_distance + a_a_distance
 							atom_counter = atom_counter + 1
 
-							print(ref_atoms[atom_name])
-							print(a_a_distance,atom_counter)
+							#print(ref_atoms[atom_name])
+							#print(a_a_distance,atom_counter)
 
 
 						#derive the rmsd as the total over the atom count
