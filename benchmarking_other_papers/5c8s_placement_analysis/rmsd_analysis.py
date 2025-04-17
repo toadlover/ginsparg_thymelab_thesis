@@ -52,6 +52,15 @@ for r,d,f in os.walk("5c8s_publication_placements"):
 						for line in test_in.readlines():
 							#extract the atom name and coordinates
 							atom_name = line.strip().split()[2]
+
+							#if atom is hydrogen, skip
+							if atom_name.startswith("H"):
+								continue
+
+							#if the atom is otherwise not in, print out the issue (it means I messed up remapping)
+							if atom_name not in ref_atoms.keys():
+								print(atom_name,file2)
+
 							x = float(line.strip().split()[6])
 							y = float(line.strip().split()[7])
 							z = float(line.strip().split()[8])
