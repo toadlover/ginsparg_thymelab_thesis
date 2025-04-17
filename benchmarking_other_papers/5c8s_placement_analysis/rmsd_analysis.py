@@ -50,6 +50,8 @@ for r,d,f in os.walk("5c8s_publication_placements"):
 						test_in = open(r2 + "/" + file2,"r")
 						
 						for line in test_in.readlines():
+							print(line)
+
 							#extract the atom name and coordinates
 							atom_name = line.strip().split()[2]
 
