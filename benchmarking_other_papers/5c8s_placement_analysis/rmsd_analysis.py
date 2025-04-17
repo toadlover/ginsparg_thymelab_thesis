@@ -79,7 +79,9 @@ for r,d,f in os.walk("5c8s_publication_placements"):
 							total_distance = total_distance + a_a_distance
 							atom_counter = atom_counter + 1
 
+							print(ref_atoms[atom_name])
 							print(a_a_distance,atom_counter)
+
 
 						#derive the rmsd as the total over the atom count
 						rmsd = total_distance / atom_counter
