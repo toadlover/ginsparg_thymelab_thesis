@@ -32,7 +32,7 @@ for r,d,f in os.walk("5c8s_publication_placements"):
 			ref_in.close()
 
 			#unzip the corresponding tar
-			os.chdir(file)
+			os.chdir(lig_name)
 			os.system("tar -xzf lig_only.tar.gz")
 			os.chdir("..")
 
@@ -66,7 +66,7 @@ for r,d,f in os.walk("5c8s_publication_placements"):
 						rmsd = total_distance / atom_counter
 
 						#add the rmsd to the rmsd list
-						rmsds_list.append([file,rmsd])
+						rmsds_list.append([file2,rmsd])
 
 			sorted_list = sorted(rmsds_list, key=lambda x: x[1])
 
@@ -74,7 +74,7 @@ for r,d,f in os.walk("5c8s_publication_placements"):
 			#	print(item)
 
 			#write the sorted list to a file
-			write_file = open(file + "_rosetta_placement_rmsds.csv","w")
+			write_file = open(lig_name + "_rosetta_placement_rmsds.csv","w")
 			for item in sorted_list:
 				print(item)
 				write_file.write(str(item[0]) + "," + str(item[1]) + "\n")
@@ -82,4 +82,4 @@ for r,d,f in os.walk("5c8s_publication_placements"):
 
 
 			#end cleanup
-			os.system("rm -drf " + file + "/lig_only")
+			os.system("rm -drf " + lig_name + "/lig_only")
