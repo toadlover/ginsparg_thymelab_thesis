@@ -51,6 +51,10 @@ for r,d,f in os.walk("5c8s_publication_placements"):
 						
 						print(r2 + "/" + file2)
 
+						#skip if not a placement pdb (since the original empty pdb is also present)
+						if "_conf" not in file2:
+							continue
+
 						for line in test_in.readlines():
 							print(line)
 
