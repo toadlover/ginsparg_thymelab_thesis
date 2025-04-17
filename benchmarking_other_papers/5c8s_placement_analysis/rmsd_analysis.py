@@ -49,6 +49,8 @@ for r,d,f in os.walk("5c8s_publication_placements"):
 						#get the molecule atom coordinates, and then compare to the reference
 						test_in = open(r2 + "/" + file2,"r")
 						
+						print(r2 + "/" + file2)
+
 						for line in test_in.readlines():
 							print(line)
 
