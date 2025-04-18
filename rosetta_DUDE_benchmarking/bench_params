@@ -1,0 +1,7 @@
+-l /data/user/abgvg9/FINAL_motifs_list_filtered_2_3_2023.motifs #/data/user/abgvg9/benchmark/files/discovery_files/motifs_list_November_2022.motifs #Library location
+-b /scratch/abgvg9/rosetta_may_for_checkin/rosetta/  #/data/scratch/abgvg9/rosetta/main #Discovery script location
+-r 100 #fa_rep_cutoff
+-a -5 #fa_atr_cutoff
+-s 0.8 #space fill sub area score cutoff
+-m false #print the space fill matrix using the output_space_fill_matrix_pdbs flag
+-d 0.3 #space fill sub area differential score cutoff
