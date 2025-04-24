@@ -1,1 +1,0 @@
-/data/project/thymelab/rosetta_copy_cleaning_for_pr/rosetta/source/bin/ligand_discovery_search_protocol.linuxgccrelease @make_sub_area_args_pocket1
