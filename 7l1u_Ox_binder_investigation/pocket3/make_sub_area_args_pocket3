@@ -37,7 +37,7 @@
 #N   ILE L  25     121.300 124.220 166.246
 -binding_pocket_center_sf 121,124,166
 #integer dimensions to investigate about binding pocket center coordinate (in angstroms)
--binding_pocket_dimensions_sf 7,7,7
+-binding_pocket_dimensions_sf 7,4,7
 #minimum occupied-empty ratio that ligand must fill binding pocket beyond what is already filled by receptor residues
 -space_fill_cutoff_differential_score_sub 0.15
 
