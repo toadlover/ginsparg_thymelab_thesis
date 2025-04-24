@@ -1,0 +1,43 @@
+#use constant random seed
+-constant_seed 1
+
+#input receptor pdb file (with binding pocket empty)
+-s ../7l1u_receptor_and_orexin.pdb
+
+#path to directory named "test_params" that contains ligand params files, exclude_pdb_component_list.txt, patches.txt, and residue_types.txt
+#residue_types.txt file must list all params files to be used. patches.txt and exclude_pdb_component_list.txt can be empty, but must exist.
+#include trailing forward slash
+-params_directory_path ../test_params/
+
+#filed of protein-ligand motifs
+-motif_filename ../motif_list.motifs
+
+#index/indices of residues to be used as anchors for relevant motifs in motifs library to place ligands against
+#multiple indices can be listed, separated by commas with no spaces
+-protein_discovery_locus 86
+
+#apply constrain in high_res_dock step
+-constrain_relax_to_start_coords
+
+#scoring cutoffs
+-fa_atr_cutoff = -2
+-fa_rep_cutoff = 150
+-ddg_cutoff = -9
+
+#indicate number of placement pdbs to keep, based on ddG score
+#if set to 0, will keep all placements that pass all other cutoffs
+-best_pdbs_to_keep = 0
+
+-output_space_fill_matrix_pdbs true
+-output_empty_space true
+
+#space fill
+#integer coordinates of user-defined center of receptor binding pocket
+#center around
+#N   ILE L  25     121.300 124.220 166.246
+-binding_pocket_center_sf 121,124,166
+#integer dimensions to investigate about binding pocket center coordinate (in angstroms)
+-binding_pocket_dimensions_sf 7,7,7
+#minimum occupied-empty ratio that ligand must fill binding pocket beyond what is already filled by receptor residues
+-space_fill_cutoff_differential_score_sub 0.15
+

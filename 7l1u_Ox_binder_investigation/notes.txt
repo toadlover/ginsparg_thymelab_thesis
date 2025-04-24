@@ -1,0 +1,10 @@
+Pockets were determined by utilizing the ProteinGrid sub area functionality in Rosetta to create voxelized areas around select regions around HCRTR2 with Ox in it.
+
+We are looking at 2 main pockets, and a large pocket that encompasses the first 2, all located at the top of the pocket to attempt to identify ligands that could stabilize holding Ox in the HCRTR2 pocket.
+
+Pocket 1 is surrounded by notable residues like Receptor GLU118 and ARG339 and Ligand ALA23.
+Pocket 2 is surrounded by notable residues like Receptor LYS327, ARG328, and ASP211 and Ligand ILE25.
+
+Pocket cavities are leveraged by having Rosetta print the entire protein grid, and then using grep to only select exmpty space, which is represented by oxygen atoms.
+
+From there, the cavity is shifted to be in line with other shapedb inputs (empa_shifted.mol2 is used as the reference), and then the cavity is converted into mol2 and sdf formats so that shapedb can use the cavity.
