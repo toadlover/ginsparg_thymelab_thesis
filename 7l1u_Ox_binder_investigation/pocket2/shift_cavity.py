@@ -9,8 +9,8 @@ def get_center(mol):
     return arr.mean(axis=0)
 
 # Load molecules
-drug = Chem.MolFromMol2File("../shapedb/shapedb_inputs/antagonists/empa_shifted.mol2", removeHs=False)
-cavity = Chem.MolFromPDBFile("7l1u_receptor_and_orexin_empty_pocket_1_empty_space.pdb", removeHs=False, sanitize=False)
+drug = Chem.MolFromMol2File("../../shapedb/shapedb_inputs/antagonists/empa_shifted.mol2", removeHs=False)
+cavity = Chem.MolFromPDBFile("7l1u_receptor_and_orexin_empty_pocket_2_empty_space.pdb", removeHs=False, sanitize=False)
 
 # Check load success
 if drug is None:
@@ -33,5 +33,5 @@ for i in range(cavity.GetNumAtoms()):
     conf.SetAtomPosition(i, new_pos)
 
 # Save new aligned cavity
-Chem.MolToPDBFile(cavity, "7l1u_receptor_and_orexin_empty_pocket_1_empty_space_aligned.pdb")
+Chem.MolToPDBFile(cavity, "7l1u_receptor_and_orexin_empty_pocket_2_empty_space_aligned.pdb")
 
