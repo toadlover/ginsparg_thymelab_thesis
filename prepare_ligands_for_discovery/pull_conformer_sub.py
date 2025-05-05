@@ -105,4 +105,4 @@ for line in lig_file.readlines():
 os.system("tar -czf test_params.tar.gz test_params")
 
 #push the test_param directory to the LTS output location
-os.system("s3cmd put -r --no-progress test_params test_params.tar.gz" + output_location)
+os.system("s3cmd put -r --no-progress test_params" + output_location  +  "test_params.tar.gz")
