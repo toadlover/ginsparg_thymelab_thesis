@@ -1,4 +1,4 @@
-executable = discovery_on_select_ligands_from_subchunk.sh
+executable =  /home/abgvg9/ginsparg_thymelab_thesis/osg_condor/rosetta_ligand_discovery/discovery_on_select_ligands_from_subchunk.sh
 
 #arguments = $(Process) $(Cluster) $(ligname) $(confnum) $(chunknum) $(subchunknum) $(shapedblig) $(shapedbscore) $(arg_file)
 arguments = $(Process) $(Cluster) $(superchunk_file) $(chunk) $(subchunk) $(arg_file)
@@ -15,7 +15,7 @@ max_idle=5000
 
 #i.e. to reach s3://ariosg/Ox_truncations_12M_cheaha/0/test_params/
 
-input_source=s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(chunk)/for_s3/
+#input_source=s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(chunk)/for_s3/
 
 output_dir=s3://s3.lts.rc.uab.edu/ariosg/7sr8_discovery_agonist_placements_may_2025/
 
