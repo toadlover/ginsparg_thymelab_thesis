@@ -19,7 +19,9 @@ max_idle=5000
 
 output_dir=s3://s3.lts.rc.uab.edu/ariosg/7sr8_discovery_agonist_placements_may_2025/
 
-arg_file=/home/abgvg9/ginsparg_thymelab_thesis/7sr8_investigation/args_sf_single_PRO_cutoffs_7sr8
+arg_path=/home/abgvg9/ginsparg_thymelab_thesis/7sr8_investigation/
+
+arg_file=args_sf_single_PRO_cutoffs_7sr8
 
 pdb_file=/home/abgvg9/ginsparg_thymelab_thesis/7sr8_investigation/7sr8_receptor_only.pdb
 
@@ -27,7 +29,7 @@ motifs_file=/home/abgvg9/ginsparg_thymelab_thesis/7sr8_investigation/7sr8_pro_ta
 
 superchunk_file=ligands_containing_fragment_$(superchunk)_above_350.0.csv
 
-transfer_input_files = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(chunk)/for_s3/condensed_params_and_db_$(subchunk).tar.gz, $(arg_file), $(pdb_file), $(motifs_file), /home/abgvg9/ginsparg_thymelab_thesis/params_file_compression/extract_single_param_from_condensed_file.py, /home/abgvg9/ginsparg_thymelab_thesis/params_file_compression/fix_condensed_param_file_spacing.py, /home/abgvg9/ginsparg_thymelab_thesis/osg_condor/rosetta_ligand_discovery/prepare_test_params_of_subchunk_ligands_from_list.py, s3://s3.lts.rc.uab.edu/ariosg/sulfonamide_ligands_to_use/$(superchunk_file)
+transfer_input_files = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(chunk)/for_s3/condensed_params_and_db_$(subchunk).tar.gz, $(arg_path)$(arg_file), $(pdb_file), $(motifs_file), /home/abgvg9/ginsparg_thymelab_thesis/params_file_compression/extract_single_param_from_condensed_file.py, /home/abgvg9/ginsparg_thymelab_thesis/params_file_compression/fix_condensed_param_file_spacing.py, /home/abgvg9/ginsparg_thymelab_thesis/osg_condor/rosetta_ligand_discovery/prepare_test_params_of_subchunk_ligands_from_list.py, s3://s3.lts.rc.uab.edu/ariosg/sulfonamide_ligands_to_use/$(superchunk_file)
 
 
 
