@@ -47,7 +47,7 @@ for line in read_file.readlines():
 	num_confs = 0
 
 	#read the corresponding condensed params file to identify how many conformers exist for this ligand (up to 15), ideally do not want to overflow
-	lig_file = open(working_subchunk + "/single_conf_params/" + ligand + "_shorthand_params.txt", "r")
+	lig_file = open("condensed_params_and_db_" + working_subchunk + "/single_conf_params/" + ligand + "_shorthand_params.txt", "r")
 
 	for line2 in lig_file.readlines():
 		#we can derive the conformer count from the number of commas in the line starting with "_a:", which defines all conformer names
