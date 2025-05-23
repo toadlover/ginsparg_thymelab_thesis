@@ -23,4 +23,4 @@ for i in range(53085):
 		subchunk = str(j)
 
 		#write the line to the csv for the chunk
-		out_file.write(superchunk + "," + chunk + "," + subchunk)
+		out_file.write(superchunk + "," + chunk + "," + subchunk + "\n")
