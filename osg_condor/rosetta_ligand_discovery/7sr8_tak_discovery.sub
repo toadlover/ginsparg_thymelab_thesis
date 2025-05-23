@@ -31,7 +31,6 @@ transfer_input_files = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(chunk)/for
 
 
 
-7l1u_receptor_only.pdb
 #transfer_input_files = $(input_source)$(directory)/test_params.tar.gz, FINAL_motifs_list_filtered_2_3_2023.motifs, $(arg_file), $(pdb_file)
 
 
