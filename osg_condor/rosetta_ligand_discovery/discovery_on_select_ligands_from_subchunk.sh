@@ -1,18 +1,35 @@
 #!/bin/bash
 
-#$3 is the arg file name
+#$3 is the superchunk file name
+#$4 is the chunk number
+#$5 is the subchunk number
+#$6 is the arg file name
+
+
 
 begin_time="$(date +%s.%N)"
 echo $begin_time
 
+echo $3 $4 $5 $6
+
+#unzip the condensed_params_and_db_#.tar.gz
+tar -xzf condensed_params_and_db_$5.tar.gz
+
+echo "post-decompress ls"
+ls
+
 chmod -R 777 *
 
-tar -xzf test_params.tar.gz
+echo "extracting all conformer params for specified ligands"
+
+python prepare_test_params_of_subchunk_ligands_from_list.py $3 $4 $5
 
 ls
 
 echo "File count in unzipped test params"
 ls test_params | wc -l
+
+cat test_params/residue_types.txt
 
 setup_operations_end="$(date +%s.%N)"
 echo $setup_operations_end
@@ -20,7 +37,7 @@ echo $setup_operations_end
 echo running rosetta
 
 #/rosetta/source/bin/ligand_discovery_search_protocol.linuxgccrelease @$3 > rosetta_output.txt
-/rosetta/source/bin/ligand_discovery_search_protocol.linuxgccrelease @$3
+/rosetta/source/bin/ligand_discovery_search_protocol.linuxgccrelease @$6
 
 rosetta_end="$(date +%s.%N)"
 echo $rosetta_end

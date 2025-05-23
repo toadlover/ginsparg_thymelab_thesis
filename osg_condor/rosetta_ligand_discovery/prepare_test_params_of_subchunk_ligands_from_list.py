@@ -15,6 +15,7 @@ working_chunk = str(sys.argv[2])
 working_subchunk = str(sys.argv[3])
 
 #make a test_params folder
+os.system("rm -drf test_params")
 os.system("mkdir test_params")
 
 #prepare test_params files
@@ -59,6 +60,12 @@ for line in read_file.readlines():
 	#iterate from 1-15 to run the extract_single_param_from_condensed_file.py script to extract all conformers of this ligand
 	for i in range(1,num_confs):
 		os.system("python extract_single_param_from_condensed_file.py condensed_params_and_db_" + working_subchunk + "/single_conf_params/" + ligand + "_shorthand_params.txt " + str(i) + " " + ligand + "_" + str(i))
+
+		#run the params spacing fixer script on the created file
+		os.system("python fix_condensed_param_file_spacing.py " + ligand + "_" + str(i) + ".params")
+
+		#overwrite the old with the fixed
+		os.system("mv fixed_" + ligand + "_" + str(i) + ".params " + ligand + "_" + str(i) + ".params")
 
 		#write the newly made params file to the residue_types file and then move it to test_params
 		os.system("ls *.params >> test_params/residue_types.txt")

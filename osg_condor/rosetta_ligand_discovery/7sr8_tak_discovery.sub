@@ -1,0 +1,88 @@
+executable = discovery_on_select_ligands_from_subchunk.sh
+
+#arguments = $(Process) $(Cluster) $(ligname) $(confnum) $(chunknum) $(subchunknum) $(shapedblig) $(shapedbscore) $(arg_file)
+arguments = $(Process) $(Cluster) $(superchunk_file) $(chunk) $(subchunk) $(arg_file)
+
+s3_access_key_id_file = /home/abgvg9/conformator_and_params/access_key
+s3_secret_access_key_file = /home/abgvg9/conformator_and_params/secret_key
+
+
+#max_idle=2000
+#max_idle=10000
+max_idle=5000
+
+#define location of output directory
+
+#i.e. to reach s3://ariosg/Ox_truncations_12M_cheaha/0/test_params/
+
+input_source=s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(chunk)/for_s3/
+
+output_dir=s3://s3.lts.rc.uab.edu/ariosg/7sr8_discovery_agonist_placements_may_2025/
+
+arg_file=/home/abgvg9/ginsparg_thymelab_thesis/7sr8_investigation/args_sf_single_PRO_cutoffs_7sr8
+
+pdb_file=/home/abgvg9/ginsparg_thymelab_thesis/7sr8_investigation/7sr8_receptor_only.pdb
+
+transfer_input_files = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(chunk)/for_s3/condensed_params_and_db_$(subchunk).tar.gz, $(arg_file), $(pdb_file), /home/abgvg9/ginsparg_thymelab_thesis/7sr8_investigation/7sr8_pro_tak925_motif.motifs, /home/abgvg9/ginsparg_thymelab_thesis/params_file_compression/extract_single_param_from_condensed_file.py, /home/abgvg9/ginsparg_thymelab_thesis/params_file_compression/fix_condensed_param_file_spacing.py, 
+
+#needed inputs: compressed directory that contains the params and conformers in sdf format, script that can uncondense the params data, motifs file, arg file
+#transfer_input_files = s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(chunknum)/for_s3/condensed_params_and_db_$(subchunknum).tar.gz, /home/abgvg9/rosetta_runs/extract_single_param_from_condensed_file.py, /home/abgvg9/rosetta_runs/FINAL_motifs_list_filtered_2_3_2023.motifs, /home/abgvg9/rosetta_runs/argsASN227, /home/abgvg9/rosetta_runs/argsGLN86, /home/abgvg9/rosetta_runs/argsHIS253, /home/abgvg9/rosetta_runs/argsTHR63, /home/abgvg9/rosetta_runs/argsTYR257, /home/abgvg9/rosetta_runs/fix_condensed_param_file_spacing.py, /home/abgvg9/rosetta_runs/7l1u_receptor_only.pdb, initial_score_breakdown_from_rosetta_output.py, /home/abgvg9/rosetta_runs/$(arg_file)
+
+#transfer_input_files = $(input_source)$(directory)/test_params, FINAL_motifs_list_filtered_2_3_2023.motifs, initial_score_breakdown_from_rosetta_output.py, $(arg_file)
+#transfer_input_files = $(input_source)$(directory)/test_params.tar.gz, FINAL_motifs_list_filtered_2_3_2023.motifs, $(arg_file), 7l1u_receptor_only.pdb
+transfer_input_files = $(input_source)$(directory)/test_params.tar.gz, FINAL_motifs_list_filtered_2_3_2023.motifs, $(arg_file), $(pdb_file)
+
+#s3://ariosg/Ox_truncations_12M_cheaha/0/test_params/
+
+#main output
+#transfer_output_remaps = "$(ligname)_$(confnum)_$(shapedblig).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/discovery_outputs/$(shapedblig)/$(ligname)/$(confnum)/$(ligname)_$(confnum)_$(shapedblig).tar.gz"
+
+#test for representative ligands by shapedb score
+#transfer_output_remaps = "$(ligname)_$(confnum)_$(shapedblig).tar.gz = s3://s3.lts.rc.uab.edu/ariosg/discovery_outputs/$(output_dir)/$(shapedblig)/$(ligname)/$(confnum)/$(ligname)_$(confnum)_$(shapedblig).tar.gz;score_file.csv = s3://s3.lts.rc.uab.edu/ariosg/discovery_outputs/$(output_dir)/$(shapedblig)/$(ligname)/$(confnum)/score_file.csv;count_file.csv = s3://s3.lts.rc.uab.edu/ariosg/discovery_outputs/$(output_dir)/$(shapedblig)/$(ligname)/$(confnum)/count_file.csv;job_times.txt = s3://s3.lts.rc.uab.edu/ariosg/discovery_outputs/$(output_dir)/$(shapedblig)/$(ligname)/$(confnum)/job_times.txt;rosetta_output.txt = s3://s3.lts.rc.uab.edu/ariosg/discovery_outputs/$(output_dir)/$(shapedblig)/$(ligname)/$(confnum)/rosetta_output.txt" 
+
+#transfer_output_remaps = "placements.tar.gz = $(output_dir)$(directory)/placements.tar.gz;score_file.csv = $(output_dir)$(directory)/score_file.csv;count_file.csv = $(output_dir)$(directory)/count_file.csv;job_times.txt = $(output_dir)$(directory)/job_times.txt"
+transfer_output_remaps = "placements.tar.gz = $(output_dir)$(directory)/placements.tar.gz;job_times.txt = $(output_dir)$(directory)/job_times.txt"
+
+#log = log/rep.log
+
+#easier to work with
+#output = output/discovery_$(directory).$(Process).$(Cluster).out
+#error = error/discovery_$(directory).$(Process).$(Cluster).err
+log = log/discovery_$(directory).$(Process).$(Cluster).log
+
+#output = /ospool/ap21/data/abgvg9/discovery_output/discovery_$(directory).$(Process).$(Cluster).out
+error = /ospool/ap21/data/abgvg9/discovery_error/discovery_$(directory).$(Process).$(Cluster).err
+#log = /ospool/ap21/data/abgvg9/discovery_log/discovery_$(directory).$(Process).$(Cluster).log
+
+
+#updated image with space fill method and ability to select multiple residues for motif searching in a single Rosetta call
++SingularityImage = "osdf:///ospool/ap21/data/abgvg9/rosetta_condensed_6_25_2024.sif"
+
+#request_memory = 12GB
+#request_memory = 2GB
+#request_memory = 10GB
+request_memory = 10GB
+#request_disk = 12GB
+request_disk = 5GB
+request_cpus = 1
+
+#preiodic release due to shadow hold
+#periodic_release =  (NumJobStarts < 3) && (((HoldReasonCode == 12 || HoldReasonCode == 13) && HoldReasonSubCode == 256) || (HoldReasonSubCode == 42))
+periodic_release =  (((HoldReasonCode == 12 || HoldReasonCode == 13) && HoldReasonSubCode == 256) || (HoldReasonSubCode == 42))
+#periodic_hold = (JobStatus == 2) && (time() - EnteredCurrentStatus) > (2 * 3600)
+#periodic_hold_reason = "Job ran for more than two hours"
+#periodic_hold_subcode = 42
+#periodic_release = (HoldReasonSubCode == 42)
+#periodic_release_interval = 120
+
+#use this one for whole
+queue directory from all_discovery_directories.txt
+#queue directory from test.txt
+
+#queue directory from rerun_chunks.txt
+#queue directory from 10_directories_to_run.txt
+#redo of directories that segfaulted due to filling up osg storage
+#queue directory from redo_dires_6_5_2024.txt
+
+#10 dir  test
+#queue directory from 10_directories_to_run.txt
