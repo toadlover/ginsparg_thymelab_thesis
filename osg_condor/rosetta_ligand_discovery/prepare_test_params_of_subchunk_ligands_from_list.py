@@ -34,7 +34,7 @@ os.system("touch test_params/patches.txt")
 #now, read through the list file and extract all conformer params for all ligands in the given chunk and subchunk
 read_file = open(list_file,"r")
 
-for line in list_file.readlines():
+for line in read_file.readlines():
 	#extract the chunk, subchunk, and ligand name
 	chunk = line.split(",")[0].strip()
 	subchunk = line.split(",")[1].strip()
