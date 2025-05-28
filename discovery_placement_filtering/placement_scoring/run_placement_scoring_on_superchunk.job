@@ -89,4 +89,4 @@ done
 
 #at the end, make a compiled csv file of the raw scores
 echo "file,ddg,total_motifs,significant_motifs,real_motif_ratio,hbond_motif_count,hbond_motif_energy_sum,closest_autodock_recovery_rmsd,closest_autodock_recovery_ddg,strain_energy,total" > all_raw_scores.csv
-grep -v real_motif_ratio */raw_scores.csv >> all_raw_scores.csv
+cat */raw_scores.csv | grep -v real_motif_ratio  >> all_raw_scores.csv
