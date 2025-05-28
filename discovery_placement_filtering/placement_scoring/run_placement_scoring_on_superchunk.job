@@ -1,0 +1,85 @@
+#!/bin/bash
+#SBATCH -p short # Partition to submit to
+#SBATCH -n 1 # Number of cores requested
+#SBATCH -N 1 # Ensure that all cores are on one machine
+#SBATCH -t 720 # Runtime in minutes
+#SBATCH --mem=10000 # Memory per cpu in MB (see also --mem-per-cpu)
+#SBATCH -o hostname_%A_%a.out # Standard out goes to this file
+#SBATCH -e hostname_%A_%a.err # Standard err goes to this filehostname
+#SBATCH --array=0-531%200
+
+
+#this script is a slurm array script that is intended to run on a whole superchunk of placement data, pulle from long term storage
+
+# Base bucket path
+BUCKET_PREFIX="s3://ariosg/7sr8_discovery_agonist_placements_may_2025"
+
+# Superchunk index from job array
+SUPERCHUNK_ID=${SLURM_ARRAY_TASK_ID}
+
+# Compute the starting and ending chunk indices for this superchunk
+START_CHUNK=$((SUPERCHUNK_ID * 100))
+END_CHUNK=$((START_CHUNK + 99))
+
+# Format chunk numbers to 5-digit strings (e.g., 00000)
+printf -v START_CHUNK_PADDED "%05d" "$START_CHUNK"
+printf -v END_CHUNK_PADDED "%05d" "$END_CHUNK"
+
+# Create working directory for this superchunk
+WORKDIR="superchunk_${SUPERCHUNK_ID}"
+mkdir -p "$WORKDIR"
+cd "$WORKDIR" || exit 1
+
+echo "Processing Superchunk $SUPERCHUNK_ID (Chunks $START_CHUNK_PADDED to $END_CHUNK_PADDED)"
+
+
+
+# Loop over chunks and subchunks
+for ((chunk=$START_CHUNK; chunk<=$END_CHUNK; chunk++)); do
+    printf -v CHUNK_PADDED "%05d" "$chunk"
+    for subchunk in {0..9}; do
+        S3_PATH="${BUCKET_PREFIX}/${CHUNK_PADDED}/${subchunk}/placements.tar.gz"
+        echo "On: $S3_PATH"
+        
+        #clear any existing placements file/directory
+        rm -drf placements.tar.gz placements
+
+        #grab the current data
+        s3cmd get "$S3_PATH"
+
+        #unzip the directory
+        tar -xzf placements.tar.gz
+
+        #rename the folder based on the chunk ahd subchunk
+        mv placements placements_${CHUNK_PADDED}_${subchunk}
+
+        #derive the working location
+        PLACEMENTS_PATH="${PWD}/placements_${CHUNK_PADDED}_${subchunk}"
+
+        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#
+        #run the scoring script with user-specified parameters (this line will need to be edited for usage)
+        python /home/abgvg9/ginsparg_thymelab_thesis/discovery_placement_filtering/placement_scoring/score_placed_ligands_with_filtering.py --working_location $PLACEMENTS_PATH --residue_correction_key_file /home/abgvg9/ginsparg_thymelab_thesis/7sr8_investigation/4s0v_7sr8_key.csv  --mandatory_motif_residues 85,82
+		#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#
+
+
+
+        #enter the directory
+        cd placements_${CHUNK_PADDED}_${subchunk}
+
+        #run the path appending script
+        python /home/abgvg9/ginsparg_thymelab_thesis/discovery_placement_filtering/placement_scoring/append_path_to_placement_file_name_in_score_files.py
+
+        #go back up
+        cd ..
+
+        #secondary clean
+        rm -drf placements.tar.gz placements
+
+        # Example command to download (uncomment and adjust if using AWS CLI)
+        # aws s3 cp "$S3_PATH" .
+        
+        # Example processing step
+        # tar -xzf placements.tar.gz
+        # process_placement_data "${CHUNK_PADDED}_${subchunk}"  # hypothetical function
+    done
+done
