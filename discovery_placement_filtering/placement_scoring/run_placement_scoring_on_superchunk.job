@@ -27,6 +27,8 @@ printf -v END_CHUNK_PADDED "%05d" "$END_CHUNK"
 
 # Create working directory for this superchunk
 WORKDIR="superchunk_${SUPERCHUNK_ID}"
+#clobber existing workdir if one exists
+rm -drf "$WORKDIR"
 mkdir -p "$WORKDIR"
 cd "$WORKDIR" || exit 1
 
