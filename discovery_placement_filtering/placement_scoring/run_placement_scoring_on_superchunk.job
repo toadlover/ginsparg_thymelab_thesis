@@ -55,6 +55,7 @@ for ((chunk=$START_CHUNK; chunk<=$END_CHUNK; chunk++)); do
 
         #derive the working location
         PLACEMENTS_PATH="${PWD}/placements_${CHUNK_PADDED}_${subchunk}"
+        UPPER_PATH="${PWD}"
 
         #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#
         #run the scoring script with user-specified parameters (this line will need to be edited for usage)
@@ -70,7 +71,7 @@ for ((chunk=$START_CHUNK; chunk<=$END_CHUNK; chunk++)); do
         python /home/abgvg9/ginsparg_thymelab_thesis/discovery_placement_filtering/placement_scoring/append_path_to_placement_file_name_in_score_files.py
 
         #go back up
-        cd ..
+        cd ${UPPER_PATH}
 
         #secondary clean
         rm -drf placements.tar.gz placements
