@@ -1,0 +1,24 @@
+﻿,OxA
+log(agonist) vs. response -- Variable slope (four parameters),
+Best-fit values,
+     Bottom,-570.6
+     Top,1045806
+     LogEC50,-7.127
+     HillSlope,0.6948
+     EC50,7.457e-008
+     Span,1046376
+95% CI (profile likelihood),
+     Bottom,-67437 to 58480
+     Top,813459 to 4160395
+     LogEC50,-7.595 to -4.354
+     HillSlope,0.3103 to 1.236
+     EC50,2.541e-008 to 4.425e-005
+Goodness of Fit,
+     Degrees of Freedom,28
+     R squared,0.8940
+     Sum of Squares,381504734576
+     Sy.x,116727
+,
+Number of points,
+     # of X values,32
+     # Y values analyzed,32
