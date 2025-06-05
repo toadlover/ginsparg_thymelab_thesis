@@ -40,7 +40,7 @@ for line in smiles_csv.readlines():
 
 	#iterate over each conformer sdf and make params for it
 	for r,d,f in os.walk(os.getcwd()):
-		for file in if:
+		for file in f:
 			#if it is a ligand conformer sdf
 			if lig_name in file and file.endswith(".sdf"):
 				#run molfile to params
