@@ -1,0 +1,57 @@
+-constant_seed 1
+-s 7sr8_receptor_only.pdb
+-params_directory_path test_params/
+#this uses the single proline motif from 7sr8
+-motif_filename 7sr8_pro_tak925_motif.motifs
+-protein_discovery_locus 82
+-constrain_relax_to_start_coords
+-fa_atr_cutoff = -2
+-fa_rep_cutoff = 150
+#-fa_atr_cutoff = 10000
+#-fa_rep_cutoff = 10000
+-ddg_cutoff = -9
+#-ddg_cutoff = 10000
+-best_pdbs_to_keep = 0
+#-jran = 1294695101
+
+#space fill
+-binding_pocket_center_sf 122,125,160
+-binding_pocket_dimensions_sf 4,5,5
+#-space_fill_cutoff_differential_score_sub 0.15
+-space_fill_cutoff_differential_score_sub 0.10
+#-space_fill_cutoff_score_sub 0
+
+#placement motifs collection
+-collect_motifs_from_placed_ligand true
+#GLN85,PRO82,THR62
+-significant_residues_for_motifs 85,82,62
+-minimum_motifs_formed_cutoff 6
+-minimum_significant_motifs_formed_cutoff 1
+#mandatory at least 1 real motif
+-minimum_ratio_of_real_motifs_from_ligand 0.01
+
+#must form a motif with GLN88 and PRO82
+-mandatory_residues_for_motifs 85,82
+
+#check real motifs
+-check_if_ligand_motifs_match_real true
+#-duplicate_dist_cutoff 0.8
+#-duplicate_angle_cutoff 0.3
+-duplicate_dist_cutoff 1.2
+-duplicate_angle_cutoff 0.45
+
+
+#get additional scores (atr, rep, atr_rep, whole)
+-post_highresdock_fa_atr_rep_score true
+#-score_with_ligand_wts_function true
+
+#use whole score function for highresdock
+-highresdock_with_whole_score_fxn true
+
+#do not output generated ligand motifs as pdbs
+-output_motifs_as_pdb false
+
+#remove verbosity, because the version pushed to release cut the verbosity feature
+#high verbosity to collect space fill ratio of all placements (3) and pre highresdock scores (2)
+#-motifs:verbose 1
+#-motifs:verbose 4
