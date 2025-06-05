@@ -17,7 +17,7 @@ starting_file_no_ext = starting_file.split("/")[len(starting_file.split("/")) - 
 #make a test_params directory to perform all operations in and then move into it
 os.system("mkdir test_params" )
 os.system("cp " + starting_file + " test_params")
-os.chdir(test_params)
+os.chdir("test_params")
 
 #activate conformator
 os.system("/conformator_for_container/conformator_1.2.1/conformator --license " + license_key)
