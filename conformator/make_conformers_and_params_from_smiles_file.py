@@ -23,7 +23,7 @@ os.chdir("test_params")
 os.system("/conformator_for_container/conformator_1.2.1/conformator --license " + license_key)
 
 #iterate over each line of the csv file to make conformers and params
-smiles_csv = open(starting_file_no_ext,"r")
+smiles_csv = open(starting_file,"r")
 for line in smiles_csv.readlines():
 	#extract the smiles string and ligand name
 	smiles_string = line.split(",")[0].strip()
