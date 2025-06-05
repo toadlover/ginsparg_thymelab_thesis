@@ -1,0 +1,62 @@
+executable =  /home/abgvg9/ginsparg_thymelab_thesis/osg_condor/rosetta_ligand_discovery/conformer_generation_and_discovery.sh
+
+
+arguments = $(Process) $(Cluster) $(conformator_license) $(arg_file) $(pdb_file)
+
+s3_access_key_id_file = /home/abgvg9/conformator_and_params/access_key
+s3_secret_access_key_file = /home/abgvg9/conformator_and_params/secret_key
+
+
+#max_idle=2000
+#max_idle=10000
+max_idle=5000
+
+#define location of output directory
+
+#i.e. to reach s3://ariosg/Ox_truncations_12M_cheaha/0/test_params/
+
+#input_source=s3://s3.lts.rc.uab.edu/ariosg/ligand_library/$(chunk)/for_s3/
+
+output_dir=s3://s3.lts.rc.uab.edu/ariosg/7sr8_discovery_agonist_placements_june_2025_64b/
+
+arg_path=/home/abgvg9/ginsparg_thymelab_thesis/7sr8_investigation/
+
+arg_file=args_sf_single_PRO_cutoffs_7sr8
+
+pdb_path=/home/abgvg9/ginsparg_thymelab_thesis/7sr8_investigation/
+
+pdb_file=7sr8_receptor_only.pdb
+
+motifs_file=/home/abgvg9/ginsparg_thymelab_thesis/7sr8_investigation/7sr8_pro_tak925_motif.motifs
+
+#change this to actual license string locally (DO NOT POST OUR LICENSE ON GITHUB!)
+conformator_license=XXXXXXXXX
+
+transfer_input_files = $(csv_file), $(arg_path)$(arg_file), $(pdb_path)$(pdb_file), $(motifs_file), /home/abgvg9/ginsparg_thymelab_thesis/conformator/make_conformers_and_params_from_smiles_file.py
+
+#main output
+
+transfer_output_remaps = "placements.tar.gz = $(output_dir)$(out_dir_num)/placements.tar.gz;job_times.txt = $(output_dir)$(out_dir_num)/job_times.txt"
+
+#log = log/rep.log
+
+#easier to work with
+
+log = log/discovery_$(directory).$(Process).$(Cluster).log
+
+#likely want to comment these for full run
+output = /ospool/ap21/data/abgvg9/discovery_output/discovery_$(directory).$(Process).$(Cluster).out
+error = /ospool/ap21/data/abgvg9/discovery_error/discovery_$(directory).$(Process).$(Cluster).err
+
+
+#updated image with space fill method and ability to select multiple residues for motif searching in a single Rosetta call
++SingularityImage = "osdf:///ospool/ap21/data/abgvg9/rosetta_and_conformator.sif"
+
+request_memory = 10GB
+request_disk = 12GB
+request_cpus = 1
+
+periodic_release =  (((HoldReasonCode == 12 || HoldReasonCode == 13) && HoldReasonSubCode == 256) || (HoldReasonSubCode == 42))
+
+#queue csv_file,out_dir_num from all_locations_with_files_for_condor.txt
+queue csv_file,out_dir_num from testing_input_list.txt
