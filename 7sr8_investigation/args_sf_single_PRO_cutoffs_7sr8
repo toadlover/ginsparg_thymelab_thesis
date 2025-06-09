@@ -2,7 +2,7 @@
 -s 7sr8_receptor_only.pdb
 -params_directory_path test_params/
 #this uses the single proline motif from 7sr8
--motif_filename 7sr8_pro_tak925_motif.motifs
+-motif_filename 7sr8_pro_tak925_motif_S_O_N.motifs
 -protein_discovery_locus 82
 -constrain_relax_to_start_coords
 -fa_atr_cutoff = -2
