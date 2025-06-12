@@ -1,0 +1,1 @@
+python /home/ari.ginsparg-umw/ginsparg_thymelab_thesis/zebrafish_behavior_analysis_files/extract_behavior_data_across_experiments_for_heatmap.py /pi/summer.thyme-umw/behaviordata/ ari_data ari_data_6_6_25/Box11_SB_6_6_25/PlotParameters
