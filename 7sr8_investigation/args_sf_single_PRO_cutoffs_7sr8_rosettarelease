@@ -2,7 +2,8 @@
 -s 7sr8_receptor_only.pdb
 -params_directory_path test_params/
 #this uses the single proline motif from 7sr8
--motif_filename 7sr8_pro_tak925_motif.motifs
+#-motif_filename 7sr8_pro_tak925_motif.motifs
+-motif_filename 7sr8_pro_tak925_motif_S_O_N.motifs
 -protein_discovery_locus 82
 -constrain_relax_to_start_coords
 -fa_atr_cutoff = -2
@@ -28,7 +29,8 @@
 -minimum_motifs_formed_cutoff 6
 -minimum_significant_motifs_formed_cutoff 1
 #mandatory at least 1 real motif
--minimum_ratio_of_real_motifs_from_ligand 0.01
+#we actually can not use this because we are using a single modified motif that can not be recognized by the real motifs code. We will get no placements under these conditions
+#-minimum_ratio_of_real_motifs_from_ligand 0.01
 
 #must form a motif with GLN88 and PRO82
 -mandatory_residues_for_motifs 85,82
