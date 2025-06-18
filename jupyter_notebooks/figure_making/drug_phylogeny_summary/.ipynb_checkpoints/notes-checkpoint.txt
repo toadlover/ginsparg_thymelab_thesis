@@ -1,0 +1,10 @@
+Group number meanings:
+0-predicted agonists specifically targeting GLN
+1-predicted antagonists selected for h-bonds
+2-specific PV-006710095262 (D27) knockout drugs
+3-predicted agonists targeting GLN and GLU
+4-predicted agonists targeting GLN and TYR+PRO/VAL/PHE triad
+5-predicted antagonists selected for few hbonds
+6-published antagonists
+7-published agonists
+8-predicted agonists that utilie sulfonamide like TAK drugs
