@@ -17,6 +17,10 @@ df = pd.read_csv('drug_summary_data.csv')
 df['mol'] = df['smiles'].apply(lambda x: Chem.MolFromSmiles(x))
 df = df[df['mol'].notnull()].copy()  # drop invalid molecules
 
+#initial print
+print("Initial print")
+print(df)
+
 # Step 2: Calculate Morgan Fingerprints
 def get_morgan_fp(mol, radius=2, nBits=1024):
     fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius, nBits=nBits)
@@ -24,7 +28,10 @@ def get_morgan_fp(mol, radius=2, nBits=1024):
     DataStructs.ConvertToNumpyArray(fp, arr)
     return arr
 
+
 df['fingerprint'] = df['mol'].apply(get_morgan_fp)
+print("Fingerprint print")
+print(df)
 
 # Step 3: Calculate SSMD vs DMSO group
 # Assumes "group" column contains a label like 'DMSO', 'Drug A', etc.
