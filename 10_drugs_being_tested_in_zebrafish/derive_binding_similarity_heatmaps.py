@@ -62,4 +62,7 @@ for r,d,f in os.walk(starting_location):
 
 			os.system("/pi/summer.thyme-umw/2024_intern_lab_space/rosetta/source/bin/identify_ligand_motifs.linuxgccrelease @" + r + "/" + dire + "/args")
 
+			#at end, reset and move back up to the starting location
+			os.chdir(starting_location)
+
 
