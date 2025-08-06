@@ -43,3 +43,23 @@ for r,d,f in os.walk(starting_location):
 		#check if there is a pdb file in the directory that matches. If so, we can work here
 		if r == starting_location and os.path.exists(r + "/" + dire + "/" + dire + ".pdb"):
 			print(r + "/" + dire + "/" + dire + ".pdb")
+
+			#now, write an args file for the system and run Rosetta's identify_ligand_motifs
+			arg_file = open(r + "/" + dire + "/args", "w")
+			arg_file.write("-ignore_unrecognized_res\n")
+			arg_file.write("-s " + r + "/" + dire + "/" + dire + ".pdb\n")
+			arg_file.write("-hb_score_cutoff -0.3\n")
+			arg_file.write("-water_score_cutoff -0.3\n")
+			arg_file.write("-pack_score_cutoff -0.5\n")
+			arg_file.close()
+
+			#now, move into the directory, create another directory within to have the motifs pdbs and file be generated, and then run Rosetta
+			#if there is an existing motifs folder, delete it
+			os.chdir(dire)
+			os.system("rm -drf motifs")
+			os.system("mkdir motifs")
+			os.chdir("motifs")
+
+			os.system("/pi/summer.thyme-umw/2024_intern_lab_space/rosetta/source/bin/identify_ligand_motifs.linuxgccrelease @" + r + "/" + dire + "/args")
+
+
