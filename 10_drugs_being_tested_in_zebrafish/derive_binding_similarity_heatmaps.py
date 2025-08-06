@@ -157,7 +157,7 @@ for r,d,f in os.walk(starting_location):
 
 						#derive the residue code and residue number
 						motif_residue_code = motif_pdb[0:3]
-						motif_residue_number = motif_pdb[3:6]
+						motif_residue_number = motif_pdb[3:6].strip("_")
 
 						#prepare a list to hold atom coordinates so that the center of mass can be determined
 						motif_residue_atom_coords = []
