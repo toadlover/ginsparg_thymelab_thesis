@@ -242,6 +242,101 @@ for r,d,f in os.walk(starting_location):
 			#at end, reset and move back up to the starting location
 			os.chdir(starting_location)
 
-			#now at end, test print of dictionary to confirm it looks good
-			for key in system_residue_energies_dict.keys():
-				print(system_residue_energies_dict[key])
+
+
+#now, we need to go through each system and figure out which reference residues are used at least once
+#we will make a list for each residue for an order
+#from there, we will go through each system and make a new list which includes the missing residues, listed in constant order
+#this will be used so we can make a constant size 2D matrix, which we can write to csv
+
+#test print of dictionary to confirm it looks good
+#also grab each unique residue from reference
+
+unique_reference_residues = []
+
+for key in system_residue_energies_dict.keys():
+	print(system_residue_energies_dict[key])
+	for residue in system_residue_energies_dict[key]:
+		if residue[0] not in unique_reference_residues:
+			unique_reference_residues.append(residue[0])
+
+#now, sort unique_reference_residues by residue index
+sorted_residues = sorted(unique_reference_residues, key=lambda x: int(''.join(filter(str.isdigit, x))))
+
+print(sorted_residues)
+
+#create 2d list
+system_residue_energies_list = []
+
+#make a version of sorted_residues to be a header of the 2d matrix, adding an extra blank item at the front to be in the same column as the system names
+sorted_residues_header = ['']
+for item in sorted_residues:
+	sorted_residues_header.append(item)
+
+#append the sorted residues list to be a header line
+system_residue_energies_list.append(sorted_residues_header)
+
+
+#now with the sorted full residues list, go through each system and create a list to append to the main system_residue_energies_list
+for key in system_residue_energies_dict.keys():
+	#make working list
+	working_list = []
+	#append the system first for a column header
+	working_list.append(key)
+
+	#now, iterate over the sorted_residues list and add data for each residue
+	for item in sorted_residues:
+		energy = "0"
+
+		#see if the current residue has a motif for this system
+		for motif in system_residue_energies_dict[key]:
+			if item == motif[0]:
+				energy = str(motif[1])
+
+		#now that we have the energy, add it to the working list
+		working_list.append(energy)
+
+	#after iterating over all items, add the finished working list to the system energies list
+	system_residue_energies_list.append(working_list)
+
+#we have now composed the full 2d matrix, print it to a csv file both with the raw energy values and as 0/1 values for jaccard similarity
+
+#open write streams for both files
+system_motif_energy_file = open("system_energies.csv", "w")
+system_motif_energy_file_binary = open("system_energies_binary.csv", "w")
+
+#iterate over the system_residue_energies_list to write
+
+#have a row counter to note the header
+row_count = 0
+
+for row in system_residue_energies_list:
+	#just raw print the header
+	if row_count == 0:
+		for value in row:
+			system_motif_energy_file.write(str(value) + ",")
+			system_motif_energy_file_binary.write(str(value) + ",")
+
+	else:
+		#track the entry in the row so row header is handled differently
+		column_count = 0
+		for value in row:
+			if column_count == 0:
+				system_motif_energy_file.write(str(value) + ",")
+				system_motif_energy_file_binary.write(str(value) + ",")
+			else:
+				#here we will need to see about writing binary values to the binary csv
+				system_motif_energy_file.write(str(value) + ",")
+
+				if float(value) != 0:
+					system_motif_energy_file_binary.write(str("1") + ",")
+				else:
+					system_motif_energy_file_binary.write(str("0") + ",")
+
+			#increment the column count
+			column_count = column_count + 1
+
+	#increment the row count and cap line with newline
+	row_count = row_count + 1
+	system_motif_energy_file.write("\n")
+	system_motif_energy_file_binary.write("\n")
