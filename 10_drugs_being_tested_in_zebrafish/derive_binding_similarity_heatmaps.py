@@ -44,6 +44,8 @@ for r,d,f in os.walk(starting_location):
 		if r == starting_location and os.path.exists(r + "/" + dire + "/" + dire + ".pdb"):
 			print(r + "/" + dire + "/" + dire + ".pdb")
 
+
+
 			#now, write an args file for the system and run Rosetta's identify_ligand_motifs
 			arg_file = open(r + "/" + dire + "/args", "w")
 			arg_file.write("-ignore_unrecognized_res\n")
@@ -56,6 +58,12 @@ for r,d,f in os.walk(starting_location):
 			#now, move into the directory, create another directory within to have the motifs pdbs and file be generated, and then run Rosetta
 			#if there is an existing motifs folder, delete it
 			os.chdir(dire)
+
+			#check and sanitize the 3 letter code of the file if needed
+			#Rosetta can not handle ligands with 3 letter codes that contain a -, so replace - with X
+			#should be as simple as calling sed on the file
+			os.system("sed -i 's/PV-/PVX/g' " + r + "/" + dire + "/" + dire + ".pdb")
+
 			os.system("rm -drf motifs")
 			os.system("mkdir motifs")
 			os.chdir("motifs")
