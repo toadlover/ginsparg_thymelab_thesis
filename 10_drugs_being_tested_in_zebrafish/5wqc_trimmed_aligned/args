@@ -1,0 +1,5 @@
+-ignore_unrecognized_res
+-s /home/ari.ginsparg-umw/ginsparg_thymelab_thesis/10_drugs_being_tested_in_zebrafish/5wqc_trimmed_aligned/5wqc_trimmed_aligned.pdb
+-hb_score_cutoff -0.3
+-water_score_cutoff -0.3
+-pack_score_cutoff -0.5

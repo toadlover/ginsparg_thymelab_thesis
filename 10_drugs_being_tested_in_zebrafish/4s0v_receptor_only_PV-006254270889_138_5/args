@@ -1,0 +1,5 @@
+-ignore_unrecognized_res
+-s /home/ari.ginsparg-umw/ginsparg_thymelab_thesis/10_drugs_being_tested_in_zebrafish/4s0v_receptor_only_PV-006254270889_138_5/4s0v_receptor_only_PV-006254270889_138_5.pdb
+-hb_score_cutoff -0.3
+-water_score_cutoff -0.3
+-pack_score_cutoff -0.5

@@ -1,0 +1,39 @@
+#allow ligands in system to exist and not have to worry about having params files of them included
+
+-ignore_unrecognized_res
+
+
+
+#Inputted PDB file
+
+#-s 4s0v_receptor_only_Z741186566_180_0.pdb
+-s 7xrr_trimmed_aligned.pdb
+
+
+#minimum cutoff for hydrogen bond score
+
+-hb_score_cutoff -0.3
+
+
+
+#minimum cutoff for water score
+
+-water_score_cutoff -0.3
+
+
+
+#minimum cutoff for packing score
+
+-pack_score_cutoff -0.5
+
+
+
+#optional flag to not print out generated motifs as pdb files
+
+#Default value is true, and visualization can be good for debugging
+
+#For large scale runs, it is worth including this flag and keeping it set as false
+
+#-output_motifs_as_pdb false
+
+
