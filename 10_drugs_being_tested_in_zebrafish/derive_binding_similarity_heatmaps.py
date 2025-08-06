@@ -32,6 +32,84 @@ for r,d,f in os.walk(starting_location):
 			os.system("mkdir " + file_base)
 			os.system("mv " + file + " " + file_base)
 
+#run over the 4s0v_aligned.pdb to get the center of mass of each residue. this will be used to map residues from motifs from other systems 
+#make a list of 2 entry lists, with the first entry being the residue and the second being the coordinates of its center of mass (not including hydrogens)
+reference_residues_com_list = []
+
+#open the reference file
+#again, this is hard-coded for HCRTR2 with a pre-aligned 4s0v
+reference_file = open("../aligned_hcrtr2_pdbs_for_analysis/4s0v_aligned.pdb", "r")
+
+#read the reference file
+#hold the working residue
+working_residue = -1
+working_residue_name = ""
+working_residue_atom_coords = []
+
+#hold the list of atoms for the working residue
+
+for line in reference_file.readlines():
+	if line.startswith("ATOM"):
+		residue_name = line[17:20].strip()
+		residue_number = line[22:26].strip()
+
+		#write over the default
+		if working_residue == -1 and working_residue_name == "":
+			working_residue = residue_number
+			working_residue_name = residue_name
+
+		#determine if we are on a new residue, and if so, we need to conclude the previous residue
+		#conclude if there is a mismatch
+		if residue_number != working_residue:
+			#hold the sum of x,y,z coordinates and atom count, and derive the average of each for the residue center of mass
+			x_sum = 0
+			y_sum = 0
+			z_sum = 0
+			n_atoms = len(working_residue_atom_coords)
+
+			for atom in working_residue_atom_coords:
+				x_sum = x_sum + atom[0]
+				y_sum = y_sum + atom[1]
+				z_sum = z_sum + atom[2]
+
+			#compose the list to add to the reference_residues_com_list
+			residue_list = [residue_name + residue_number, [x_sum/n_atoms,y_sum/n_atoms,z_sum/n_atoms]]
+			reference_residues_com_list.append(residue_list)
+
+			print(residue_name + residue_number, [x_sum/n_atoms,y_sum/n_atoms,z_sum/n_atoms])
+
+			#wipe the working residue list
+			working_residue_atom_coords = []
+
+			#assign the working residue number and name to the current
+			working_residue = residue_number
+			working_residue_name = residue_name
+
+
+		x = float(line[30:38].strip())
+		y = float(line[38:46].strip())
+		z = float(line[46:54].strip())
+
+		#add the coordinates as a list to working_residue_atom_coords
+		working_residue_atom_coords.append([x,y,z])
+
+#conclude the final residue after concluding the loop
+#hold the sum of x,y,z coordinates and atom count, and derive the average of each for the residue center of mass
+x_sum = 0
+y_sum = 0
+z_sum = 0
+n_atoms = len(working_residue_atom_coords)
+
+for atom in working_residue_atom_coords:
+	x_sum = x_sum + atom[0]
+	y_sum = y_sum + atom[1]
+	z_sum = z_sum + atom[2]
+
+#compose the list to add to the reference_residues_com_list
+residue_list = [working_residue_name + working_residue, [x_sum/n_atoms,y_sum/n_atoms,z_sum/n_atoms]]
+reference_residues_com_list.append(residue_list)
+print(working_residue_name + working_residue, [x_sum/n_atoms,y_sum/n_atoms,z_sum/n_atoms])
+
 
 #create a dictionary where each key is a system and the contents are a list with the mapped residue relative to 4s0v and the energy sum
 system_residue_energies_dict = {}
@@ -69,6 +147,8 @@ for r,d,f in os.walk(starting_location):
 			os.chdir("motifs")
 
 			os.system("/pi/summer.thyme-umw/2024_intern_lab_space/rosetta/source/bin/identify_ligand_motifs.linuxgccrelease @" + r + "/" + dire + "/args")
+
+			#now, we can map the motif residues to the reference
 
 			#at end, reset and move back up to the starting location
 			os.chdir(starting_location)
