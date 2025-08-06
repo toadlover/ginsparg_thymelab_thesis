@@ -166,6 +166,9 @@ for r,d,f in os.walk(starting_location):
 						read_motif_pdb = open(motif_pdb,"r")
 						for line in read_motif_pdb:
 							if line.startswith("ATOM"):
+								#skip hydrogens
+								if line.strip().endswith("H"):
+									continue
 								residue_name = line[17:20].strip()
 								residue_number = line[22:26].strip()
 
@@ -201,7 +204,7 @@ for r,d,f in os.walk(starting_location):
 							#determine if the working residue is the same kind of residue, continue if not
 							if residue[0].startswith(motif_residue_code):
 								#derive the distance of COM
-								distance = ((residue_com[0] - residue[1][0])**2+(residue_com[1] - residue[1][1])**2+(residue_com[2] - residue[1][2])**2)**0.5
+								distance = (((residue_com[0] - residue[1][0])**2)+((residue_com[1] - residue[1][1])**2)+((residue_com[2] - residue[1][2])**2))**0.5
 
 								#if the distance is smaller than the current closest_residue distance, replace with current
 								if distance < closest_residue[1]:
