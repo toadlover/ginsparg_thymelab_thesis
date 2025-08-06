@@ -149,6 +149,69 @@ for r,d,f in os.walk(starting_location):
 			os.system("/pi/summer.thyme-umw/2024_intern_lab_space/rosetta/source/bin/identify_ligand_motifs.linuxgccrelease @" + r + "/" + dire + "/args")
 
 			#now, we can map the motif residues to the reference
+			#iterate over each motif pdb that was derived, will be in the current location
+			for r2,d2,f2 in os.walk(os.getcwd()):
+				for motif_pdb in f2:
+					if "_Ligatoms_" in motif_pdb and motif_pdb.endswith(".pdb"):
+						print(motif_pdb)
+
+						#derive the residue code and residue number
+						motif_residue_code = motif_pdb[0:3]
+						motif_residue_number = motif_pdb[3:6]
+
+						#prepare a list to hold atom coordinates so that the center of mass can be determined
+						motif_residue_atom_coords = []
+
+						#read the file to get the residue atom coordinate data
+						read_motif_pdb = open(motif_pdb,"r")
+						for line in read_motif_pdb:
+							if line.startswith("ATOM"):
+								residue_name = line[17:20].strip()
+								residue_number = line[22:26].strip()
+
+								if residue_name != motif_residue_code:
+									print("Warning, we somehow have a residue mismatch in the motif! " + motif_residue_code + " " + residue_name)
+									continue
+
+								x = float(line[30:38].strip())
+								y = float(line[38:46].strip())
+								z = float(line[46:54].strip())
+
+								#add the coordinates as a list to working_residue_atom_coords
+								motif_residue_atom_coords.append([x,y,z])
+
+						#now that we have all atom coordinates, derive the center of mass
+						x_sum = 0
+						y_sum = 0
+						z_sum = 0
+						n_atoms = len(motif_residue_atom_coords)
+						for atom in motif_residue_atom_coords:
+							x_sum = x_sum + atom[0]
+							y_sum = y_sum + atom[1]
+							z_sum = z_sum + atom[2]
+
+						#compose the list to add to the reference_residues_com_list
+						residue_com = [x_sum/n_atoms,y_sum/n_atoms,z_sum/n_atoms]
+
+						#now, iterate over all residues in the reference to determine which residue (of the same type) is the closest by COM distance
+						#hold the closest residue as a list of the reference residue code+index and the distance
+						closest_residue = ["XXXXXX",100000]
+
+						for residue in reference_residues_com_list:
+							#determine if the working residue is the same kind of residue, continue if not
+							if residue[0].startswith(motif_residue_code):
+								#derive the distance of COM
+								distance = ((residue_com[0] - residue[1][0])**2+(residue_com[1] - residue[1][1])**2+(residue_com[2] - residue[1][2])**2)**0.5
+
+								#if the distance is smaller than the current closest_residue distance, replace with current
+								if distance < closest_residue[1]:
+									closest_residue = [residue[0],distance]
+
+						print(closest_residue)
+
+						#finally, extract the sum of packing and hbond scores from the motifs file
+
+
 
 			#at end, reset and move back up to the starting location
 			os.chdir(starting_location)
