@@ -212,11 +212,34 @@ for r,d,f in os.walk(starting_location):
 
 						print(closest_residue)
 
+						motif_energy_sum = 0
+
 						#finally, extract the sum of packing and hbond scores from the motifs file
+						motifs_file = open("AllMattMotifs.motifs","r")
+						for line in motifs_file:
+							#line must start with single
+							if line.startswith("SINGLE"):
+								#line must have the original (not mapped) residue name and code
+								if (motif_residue_code + motif_residue_number) in line:
+									#extract the packing and hydrogen bond scores
+									packing_score = float(line.strip().split()[len(line.split()) - 1].split("Packing_score:")[1].split("_")[0])
+									hbond_score = float(line.strip().split()[len(line.split()) - 1].split("Hbond_score:")[1])
+									motif_energy_sum = packing_score + hbond_score
+
+						#now, add the mapped residue with the motif energy sum to the system dictionary
+						#if this is the first entry for this key, make a new list at the entry
+						if dire not in system_residue_energies_dict.keys():
+							system_residue_energies_dict[dire] = []
+
+						#append the mapped residue and energy tuple to the list at the key
+						system_residue_energies_dict[dire].append([closest_residue[0],motif_energy_sum])
+
 
 
 
 			#at end, reset and move back up to the starting location
 			os.chdir(starting_location)
 
-
+			#now at end, test print of dictionary to confirm it looks good
+			for key in system_residue_energies_dict.keys():
+				print(system_residue_energies_dict[key])
