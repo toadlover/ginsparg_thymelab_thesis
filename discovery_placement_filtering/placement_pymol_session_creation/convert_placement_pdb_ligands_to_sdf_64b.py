@@ -15,7 +15,7 @@ for r,d,f in os.walk(location):
 
 			#pull the HETATM data into a new file based on the placement info (the 3rd to last, second to last, and last sections when splitting the file name by underscores)
 			#lig_pdb = file.split("_")[len(file.split("_")) - 3] + "_" + file.split("_")[len(file.split("_")) - 2] + "_" + file.split("_")[len(file.split("_")) - 1]
-			lig_pdb = file.split("only_")[1].split(".pdb")[0]
+			lig_pdb = file.split("only_")[1]
 
 			#write the HETATM lines to this file
 			os.system("grep HETATM " + file + " > " + lig_pdb)
