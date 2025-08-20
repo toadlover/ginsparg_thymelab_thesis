@@ -11,6 +11,7 @@ for r,d,f in os.walk(os.getcwd()):
 			#work with the pdb
 
 			file_base = file.split(".pdb")[0]
+			lig_base = file_base.split("only_")[1]
 
 			#extract the ligand and make params of it
 			ligand_pdb = file_base + "_lig.pdb"
@@ -22,8 +23,9 @@ for r,d,f in os.walk(os.getcwd()):
 			os.system("obabel -i pdb " + ligand_pdb + " -O " + ligand_mol2)
 
 			#convert the mol2 to params
-			os.system("python /data/project/thymelab/rosetta_copy_cleaning_for_pr/rosetta/source/scripts/python/public/molfile_to_params.py " + ligand_mol2 + " -n " + file_base + " --keep-names --long-names --clobber --no-pdb")
-			os.system("mv " + file_base + ".params " + ligand_params)
+			#os.system("python /data/project/thymelab/rosetta_copy_cleaning_for_pr/rosetta/source/scripts/python/public/molfile_to_params.py " + ligand_mol2 + " -n " + file_base + " --keep-names --long-names --clobber --no-pdb")
+			os.system("python /data/project/thymelab/rosetta_copy_cleaning_for_pr/rosetta/source/scripts/python/public/molfile_to_params.py " + ligand_mol2 + " -n " + lig_base + " --clobber --no-pdb")
+			#os.system("mv " + file_base + ".params " + ligand_params)
 
 			#write an args file
 			arg_file = open(file_base + "_args", "w")
@@ -37,7 +39,7 @@ for r,d,f in os.walk(os.getcwd()):
 			arg_file.write("-duplicate_dist_cutoff 1.2\n")
 			arg_file.write("-duplicate_angle_cutoff 0.45\n")
 			arg_file.write("-output_motifs_as_pdb false\n")
-			arg_file.write("-extra_res_fa " + ligand_params + "\n")
+			arg_file.write("-extra_res_fa " + lig_base + ".params\n")
 			#arg_file.write("-in::ignore_unrecognized_res true\n")
 
 			arg_file.close()
