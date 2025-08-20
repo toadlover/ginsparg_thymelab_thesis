@@ -23,6 +23,7 @@ for r,d,f in os.walk(os.getcwd()):
 
 			#convert the mol2 to params
 			os.system("python /data/project/thymelab/rosetta_copy_cleaning_for_pr/rosetta/source/scripts/python/public/molfile_to_params.py " + ligand_mol2 + " -n " + file_base + " --keep-names --long-names --clobber --no-pdb")
+			os.system("mv " + file_base + ".params " + ligand_params)
 
 			#write an args file
 			arg_file = open(file_base + "_args", "w")
