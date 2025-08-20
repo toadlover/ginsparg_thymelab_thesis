@@ -13,6 +13,10 @@ for r,d,f in os.walk(os.getcwd()):
 			file_base = file.split(".pdb")[0]
 			lig_base = file_base.split("only_")[1]
 
+			#scrub the pdb file
+			os.system("grep 'ATOM  ' " + file + " > " + file_base + "_trimmed.pdb")
+			os.system("grep 'HETATM ' " + file + " >> " + file_base + "_trimmed.pdb")
+
 			#extract the ligand and make params of it
 			ligand_pdb = file_base + "_lig.pdb"
 			ligand_mol2 = file_base + "_lig.mol2"
@@ -30,7 +34,7 @@ for r,d,f in os.walk(os.getcwd()):
 			#write an args file
 			arg_file = open(file_base + "_args", "w")
 			arg_file.write("-constant_seed 1\n")
-			arg_file.write("-s " + file +" \n")
+			arg_file.write("-s " + file_base +"_trimmed.pdb \n")
 			arg_file.write("-motif_filename /data/user/abgvg9/FINAL_motifs_list_filtered_2_3_2023.motifs\n")
 			arg_file.write("-collect_motifs_from_placed_ligand true\n")
 			arg_file.write("-minimum_motifs_formed_cutoff 6\n")
