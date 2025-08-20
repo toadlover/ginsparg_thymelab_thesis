@@ -12,11 +12,20 @@ for r,d,f in os.walk(os.getcwd()):
 
 			file_base = file.split(".pdb")[0]
 
+			#extract the ligand and make params of it
+			ligand_pdb = file_base + "_lig.pdb"
+			ligand_mol2 = file_base + "_lig.mol2"
+			ligand_params = file_base + "_lig.params"
+			os.system("grep HETATM " + file + " > " + ligand_pdb)
+
+			#convert the ligand pdb to ligand mol2 using obabel (need to have in your working environment)
+			os.system("obabel -i pdb " + ligand_pdb + " -O " + ligand_mol2)
+
+			#convert the mol2 to params
+			os.system("python /data/project/thymelab/rosetta_copy_cleaning_for_pr/rosetta/source/scripts/python/public/molfile_to_params.py " + ligand_mol2 + " -n " + file_base + " --keep-names --long-names --clobber --no-pdb")
+
 			#write an args file
 			arg_file = open(file_base + "_args", "w")
-
-
-
 			arg_file.write("-constant_seed 1\n")
 			arg_file.write("-s " + file +" \n")
 			arg_file.write("-motif_filename /data/user/abgvg9/FINAL_motifs_list_filtered_2_3_2023.motifs\n")
@@ -27,7 +36,8 @@ for r,d,f in os.walk(os.getcwd()):
 			arg_file.write("-duplicate_dist_cutoff 1.2\n")
 			arg_file.write("-duplicate_angle_cutoff 0.45\n")
 			arg_file.write("-output_motifs_as_pdb false\n")
-			arg_file.write("-in::ignore_unrecognized_res true\n")
+			arg_file.write("-extra_res_fa " + ligand_params + "\n")
+			#arg_file.write("-in::ignore_unrecognized_res true\n")
 
 			arg_file.close()
 
