@@ -146,7 +146,7 @@ for key in systems_atom_data.keys():
 #write the rmsd dictionary to a csv file
 
 #open write file
-out_file = open("4s0v_pocket_residue_distances.csv", "w")
+out_file = open("hcrtr2_pocket_residue_key.csv", "w")
 
 #lead with empty entry so first column can be indices
 out_file.write(",")
