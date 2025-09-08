@@ -1,0 +1,10 @@
+residue,4S0V,7L1U/7SR8/Uniprot,Notes
+GLN,134,187,Main agonist discovery anchor
+PRO,82,131,Agonist discovery anchor for sulfonamide
+ASN,423,324,Antagonist discovery anchor
+TYR,416,317,Agonist anchor residue for triad shift
+PHE,412,313,Non-polar triad residue
+VAL,93,142,Non-polar triad residue
+PRO,177,235,Non-polar triad residue
+GLU,69,118,Agonist anchor residue for salt bridge disruption
+ARG,436,339,Forms salt bridge with GLU
