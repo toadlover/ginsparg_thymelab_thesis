@@ -63,11 +63,11 @@ for line in arg_file.readlines():
 	#control group
 	if line.startswith("control_group:"):
 		my_item = line.split("control_group:")[1].strip()
-		control_group.append(my_item)
+		control_group = my_item
 	#experiment group
 	if line.startswith("experimental_group:"):
 		my_item = line.split("experimental_group:")[1].strip()
-		experimental_group.append(my_item)
+		experimental_group = my_item
 
 #make a working directory in the working location named after the arguments file that will copy all of the needed data into the folder so the figure can be made and an organized record kept
 #name a directory based on what is before the first period in the argument file name, and add "_graphs" to the end
