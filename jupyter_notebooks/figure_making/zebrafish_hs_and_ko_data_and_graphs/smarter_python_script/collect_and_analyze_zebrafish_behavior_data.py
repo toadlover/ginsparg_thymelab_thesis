@@ -103,7 +103,7 @@ for expt in experiment_paths:
 				for r,d,f in os.walk(expt[0]):
 					for dire in d:
 						if control_group in dire and experimental_group in dire:
-							os.system("cp " + r + "/" + d + "/ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png .")
-							os.system("cp " + r + "/" + d + "/boxgraph_ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png_data.csv .")
+							os.system("cp " + r + "/" + dire + "/ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png .")
+							os.system("cp " + r + "/" + dire + "/boxgraph_ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png_data.csv .")
 
 	#at end, go up so we can do another directory or move onto the analysis
