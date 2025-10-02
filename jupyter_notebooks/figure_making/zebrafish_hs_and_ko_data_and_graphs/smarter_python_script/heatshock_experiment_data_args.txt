@@ -1,6 +1,10 @@
 bins:60
 bins:600
 bins:3600
+bins:1over3600
+bins:1over60
+bins:60over600
+bins:60over3600
 time_sections:time_combo
 time_sections:time_day0night
 time_sections:time_day1day
