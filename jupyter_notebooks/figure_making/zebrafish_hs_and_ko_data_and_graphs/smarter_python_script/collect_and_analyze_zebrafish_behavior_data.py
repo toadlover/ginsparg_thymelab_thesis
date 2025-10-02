@@ -102,8 +102,9 @@ for expt in experiment_paths:
 				#copy the csv and line plot files that match the metric, section, and bin
 				for r,d,f in os.walk(expt[0]):
 					for dire in d:
-						if control_group in dire and experimental_group in dire:
+						if control_group in dire and experimental_group in dire and r == expt[0]:
 							os.system("cp " + r + "/" + dire + "/ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png .")
 							os.system("cp " + r + "/" + dire + "/boxgraph_ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png_data.csv .")
 
 	#at end, go up so we can do another directory or move onto the analysis
+	os.chdir("..")
