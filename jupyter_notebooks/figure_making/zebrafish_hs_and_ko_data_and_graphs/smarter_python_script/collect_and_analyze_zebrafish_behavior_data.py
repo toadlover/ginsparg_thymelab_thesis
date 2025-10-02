@@ -39,8 +39,9 @@ experimental_group = ""
 #argument file name can include the path, as is passed as the only command line argument for this
 #order of arguments in the file does not matter
 arg_file_name = sys.argv[1]
+arg_file = open(arg_file_name,"r")
 
-for line in arg_file_name.readlines():
+for line in arg_file.readlines():
 	#experiment paths
 	if line.startswith("experiment_paths:"):
 		my_item = line.split("experiment_paths:")[1].strip()
