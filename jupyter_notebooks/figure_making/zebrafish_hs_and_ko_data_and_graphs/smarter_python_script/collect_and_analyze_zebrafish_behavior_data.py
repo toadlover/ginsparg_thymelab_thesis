@@ -85,3 +85,25 @@ print("time_sections",time_sections)
 print("experiment_metrics",experiment_metrics)
 print("control_group",control_group)
 print("experimental_group",experimental_group)
+
+#now, for each experiment, make a sub-folder in the newly made folder and then work on copying all relevant data files (and images)
+for expt in experiment_paths:
+	#make a folder based on the name
+	os.system("mkdir " + expt[1])
+	#enter the folder
+	os.chdir(expt[1])
+
+	#for each experiment metric
+	for metric in experiment_metrics:
+		#for each time section:
+		for section in time_sections:
+			#for each bin
+			for my_bin in bins:
+				#copy the csv and line plot files that match the metric, section, and bin
+				for r,d,f in os.walk(expt[0]):
+					for dire in d:
+						if control_group in dire and experimental_group in dire:
+							os.system("cp " r + "/" + d + "/ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png .")
+							os.system("cp " r + "/" + d + "/boxgraph_ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png_data.csv .")
+
+	#at end, go up so we can do another directory or move onto the analysis
