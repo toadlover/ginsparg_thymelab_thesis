@@ -115,6 +115,10 @@ for expt in experiment_paths:
 							if control_group in dire.split("_vs_")[1]:
 								control_is_first = False
 
+							#check if the file was suffessfully, and if not, continue so we do not break the script
+							if os.path.exists("boxgraph_ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png_data.csv"):
+								continue
+
 							#now, read through the file and modify it appropriately
 							#write the modified file, and then copy it over the original
 							orig_file = open("boxgraph_ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png_data.csv", "r")
