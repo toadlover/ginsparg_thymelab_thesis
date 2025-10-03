@@ -160,4 +160,162 @@ for expt in experiment_paths:
 	#at end, go up so we can do another directory or move onto the analysis
 	os.chdir("..")
 
-#RUN ANALYSES AND MAKE FIGURES
+#Run analyses for each permutation of metric, section, and bins to make figures
+#for each experiment metric
+for metric in experiment_metrics:
+	#for each time section:
+	for section in time_sections:
+		#for each bin
+		for my_bin in bins:
+
+			#this section was made with the help of chatgpt for figure wrangling
+			# -----------------------------
+			# Load and normalize data
+			# -----------------------------
+			base_dir = os.getcwd()
+			pattern = os.path.join(base_dir, "*",  
+			                       "boxgraph_ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png_data.csv")
+			files = glob.glob(pattern)
+			print(f"Found {len(files)} data files.")
+
+			all_data = []
+			for file in files:
+			    df = pd.read_csv(file, sep="\t")
+			    
+			    # Normalize relative to DMSO mean per experiment
+			    dmso_mean = df[control_group].mean()
+			    df[control_group] = df[control_group] / dmso_mean
+			    df[experimental_group] = df[experimental_group] / dmso_mean
+			    
+			    # Add experiment metadata
+			    experiment_id = os.path.basename(os.path.dirname(os.path.dirname(file)))
+			    
+			    #if len(experiment_id.split("_")) > 1:
+			    #    experiment_id = experiment_id.split("_")[1]
+			    
+			    df["experiment"] = experiment_id
+			    
+			    all_data.append(df[["experiment", "dmso_wt", "dmso_het"]])
+
+			merged_df = pd.concat(all_data, ignore_index=True)
+
+			# Sort merged_df alphabetically by experiment name
+			merged_df = merged_df.sort_values(by="experiment").reset_index(drop=True)
+
+			# -----------------------------
+			# Convert to long format
+			# -----------------------------
+			plot_df = merged_df.melt(
+			    id_vars="experiment", 
+			    value_vars=[control_group, experimental_group],
+			    var_name="treatment",
+			    value_name="normalized_response"
+			)
+			plot_df["treatment"] = plot_df["treatment"].str.replace("_norm", "")
+
+			# -----------------------------
+			# Mann–Whitney U test per experiment
+			# -----------------------------
+			pvals = {}
+			for exp in plot_df["experiment"].unique():
+			    data_exp = plot_df[plot_df["experiment"] == exp]
+			    dmso_vals = data_exp[data_exp["treatment"] == "dmso_wt"]["normalized_response"].dropna()
+			    drug_vals = data_exp[data_exp["treatment"] == "dmso_het"]["normalized_response"].dropna()
+			    
+			    if len(dmso_vals) >= 2 and len(drug_vals) >= 2:
+			        _, p_val = mannwhitneyu(dmso_vals, drug_vals, alternative='two-sided')
+			    else:
+			        p_val = np.nan
+			    pvals[exp] = p_val
+			    
+			# Print p-values
+			for exp, p in pvals.items():
+			    print(f"{exp}: p = {p}")
+
+			# -----------------------------
+			# Helper: p-value to stars
+			# -----------------------------
+			def p_to_stars(p):
+			    if p < 0.001:
+			        return "***"
+			    elif p < 0.01:
+			        return "**"
+			    elif p < 0.05:
+			        return "*"
+			    else:
+			        return "ns"
+
+			# -----------------------------
+			# Plot
+			# -----------------------------
+			plt.figure(figsize=(12,6))
+
+			# Stripplot (points) with legend
+			sns.stripplot(
+			    data=plot_df,
+			    x="experiment",
+			    y="normalized_response",
+			    hue="treatment",
+			    dodge=True,
+			    alpha=0.7,
+			    palette={control_group: "black", experimental_group: "red"},
+			    legend=False
+			)
+
+			# Barplot (mean ± SEM, outlined)
+			sns.barplot(
+			    data=plot_df,
+			    x="experiment",
+			    y="normalized_response",
+			    hue="treatment",
+			    estimator=np.mean,
+			    errorbar=("se", 1),
+			    dodge=True,
+			    alpha=0,
+			    fill=False,
+			    palette={control_group: "black", experimental_group: "red"},
+			    linewidth=2,
+			    capsize=0.2,
+			    errwidth=2,
+			    legend=False
+			)
+
+			# Remove top/right spines
+			sns.despine(trim=True)
+
+			# Legend in top right
+			plt.legend(title="Treatment", loc="upper left")
+
+			plt.xticks(rotation=45)
+			plt.ylabel("Normalized Number Of Bouts (dpix) / Hour")
+			plt.xlabel("")
+
+			# Determine y positions for significance stars/brackets
+			y_max_global = plot_df["normalized_response"].max()
+			offset = 0.05  # vertical space above bars for bracket start
+
+			for i, exp in enumerate(plot_df["experiment"].unique()):
+			    p_val = pvals[exp]
+			    stars = p_to_stars(p_val)
+			    
+			    if stars != "ns":
+			        # Draw bracket line
+			        bar_width = 0.2  # horizontal extent of bracket
+			        x1 = i - bar_width
+			        x2 = i + bar_width
+			        y = y_max_global + 0.05
+			        plt.plot([x1, x1, x2, x2], [y, y+0.02, y+0.02, y], color="black", lw=1.5)
+			        
+			        # Add stars above bracket
+			        plt.text(i, y + 0.025, stars, ha='center', va='bottom', fontsize=14)
+
+			# Move title below the plot
+			plt.figtext(0.5, 0.01, "Day 1",
+			            ha="center", fontsize=14)
+
+			plt.tight_layout()
+			#plt.show()
+
+			#write the image
+			plt.savefig(section + "_" + metric + "_" + my_bin + ".png", dpi=300, bbox_inches='tight', transparent=True)
+			plt.close()
