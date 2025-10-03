@@ -106,5 +106,54 @@ for expt in experiment_paths:
 							os.system("cp " + r + "/" + dire + "/ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png .")
 							os.system("cp " + r + "/" + dire + "/boxgraph_ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png_data.csv .")
 
+							#modify the csv file so that the control group column is always listed first (since it is possible that it could be swapped)
+							#also change column labels so that they are exact matches of the experimental and control groups
+
+							#first, determine if the control group is listed first or not
+							#determine via seeing if the control group is before or after "_vs_" in the directory
+							control_is_first = True
+							if control_group in dire.split("_vs_")[1]:
+								control_is_first = False
+
+							#now, read through the file and modify it appropriately
+							#write the modified file, and then copy it over the original
+							orig_file = open("boxgraph_ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png_data.csv", "r")
+							write_file = open("temp.csv","w")
+
+							#line counter
+							line_counter = 0
+
+							#read over the original and adjust the file
+							for line in orig_file.readlines():
+								#handle the header line
+								if line_counter == 0:
+									#write new header line
+									write_file.write("\t" + control_group + "\t" + experimental_group + "\n")
+								else:
+									#other lines
+
+									#break up the line by tabs
+									split_line = line.split("\t")
+
+									#reverse the data order if the control is listed second
+									if control_is_first == False:
+										flipped_line = [split_line[0], split_line[2], split_line[1]]
+										split_line = flipped_line
+
+									#print the potentially flipped line to the file
+									write_file.write(split_line[0].strip() + "\t" + split_line[1].strip() + "\t" + split_line[2].strip() + "\n")
+
+								#increment the line counter
+								line_counter = line_counter + 1
+
+
+
+							#close both files and then replace the original with the modded
+							orig_file.close()
+							write_file.close()
+							os.system("mv temp.csv boxgraph_ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png_data.csv")
+
 	#at end, go up so we can do another directory or move onto the analysis
 	os.chdir("..")
+
+#RUN ANALYSES AND MAKE FIGURES
