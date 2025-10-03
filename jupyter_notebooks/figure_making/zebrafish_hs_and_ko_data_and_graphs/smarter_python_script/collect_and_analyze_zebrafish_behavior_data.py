@@ -195,7 +195,7 @@ for metric in experiment_metrics:
 			    
 			    df["experiment"] = experiment_id
 			    
-			    all_data.append(df[["experiment", "dmso_wt", "dmso_het"]])
+			    all_data.append(df[["experiment", control_group, experimental_group]])
 
 			merged_df = pd.concat(all_data, ignore_index=True)
 
