@@ -220,8 +220,8 @@ for metric in experiment_metrics:
 			pvals = {}
 			for exp in plot_df["experiment"].unique():
 			    data_exp = plot_df[plot_df["experiment"] == exp]
-			    dmso_vals = data_exp[data_exp["treatment"] == "dmso_wt"]["normalized_response"].dropna()
-			    drug_vals = data_exp[data_exp["treatment"] == "dmso_het"]["normalized_response"].dropna()
+			    dmso_vals = data_exp[data_exp["treatment"] == control_group]["normalized_response"].dropna()
+			    drug_vals = data_exp[data_exp["treatment"] == experimental_group]["normalized_response"].dropna()
 			    
 			    if len(dmso_vals) >= 2 and len(drug_vals) >= 2:
 			        _, p_val = mannwhitneyu(dmso_vals, drug_vals, alternative='two-sided')
@@ -288,7 +288,7 @@ for metric in experiment_metrics:
 			plt.legend(title="Treatment", loc="upper left")
 
 			plt.xticks(rotation=45)
-			plt.ylabel("Normalized Number Of Bouts (dpix) / Hour")
+			plt.ylabel("Normalized " + metric + ": Binned - " + my_bin)
 			plt.xlabel("")
 
 			# Determine y positions for significance stars/brackets
@@ -311,7 +311,7 @@ for metric in experiment_metrics:
 			        plt.text(i, y + 0.025, stars, ha='center', va='bottom', fontsize=14)
 
 			# Move title below the plot
-			plt.figtext(0.5, 0.01, "Day 1",
+			plt.figtext(0.5, 0.01, section,
 			            ha="center", fontsize=14)
 
 			plt.tight_layout()
