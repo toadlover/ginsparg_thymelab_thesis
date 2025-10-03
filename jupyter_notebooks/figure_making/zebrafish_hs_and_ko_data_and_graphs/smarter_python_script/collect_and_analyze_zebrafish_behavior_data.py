@@ -258,7 +258,7 @@ for metric in experiment_metrics:
 			    y="normalized_response",
 			    hue="treatment",
 			    dodge=True,
-			    alpha=0.7,
+			    alpha=0.3,
 			    palette={control_group: "black", experimental_group: "red"},
 			    legend=False
 			)
@@ -285,7 +285,7 @@ for metric in experiment_metrics:
 			sns.despine(trim=True)
 
 			# Legend in top right
-			plt.legend(title="Treatment", loc="upper left")
+			#plt.legend(title="Treatment", loc="upper left")
 
 			plt.xticks(rotation=45)
 			plt.ylabel("Normalized " + metric + ": Binned - " + my_bin)
