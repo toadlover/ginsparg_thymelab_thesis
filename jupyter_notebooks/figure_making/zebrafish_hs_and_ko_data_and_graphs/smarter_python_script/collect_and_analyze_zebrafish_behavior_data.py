@@ -188,7 +188,8 @@ for metric in experiment_metrics:
 			    df[experimental_group] = df[experimental_group] / dmso_mean
 			    
 			    # Add experiment metadata
-			    experiment_id = os.path.basename(os.path.dirname(os.path.dirname(file)))
+#			    experiment_id = os.path.basename(os.path.dirname(os.path.dirname(file)))
+			    experiment_id = os.path.basename(os.path.dirname(file))
 			    
 			    #if len(experiment_id.split("_")) > 1:
 			    #    experiment_id = experiment_id.split("_")[1]
