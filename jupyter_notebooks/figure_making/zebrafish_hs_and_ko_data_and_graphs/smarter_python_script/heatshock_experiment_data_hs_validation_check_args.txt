@@ -17,8 +17,8 @@ time_sections:time_day1lateday
 experiment_metrics:dpix_numberofbouts
 #experiment_metrics:dpix_active
 #experiment_metrics:dpix_numberofboutsSLEEP
-control_group:dmso-het
-experimental_group:drug-het
+control_group:dmso-wt
+experimental_group:dmso-het
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_8_25/Box8_hshcrt_seltorexant,Seltorexant_9_8_25
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_25_25/Box6_hsphcrtr_fishD_d42,6566_8_25_25
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_15_25/Box8_hsphcrtr_d40_fishD,5299_8_15_25

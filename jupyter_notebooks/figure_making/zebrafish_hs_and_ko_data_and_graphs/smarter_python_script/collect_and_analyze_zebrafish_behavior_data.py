@@ -168,6 +168,8 @@ for metric in experiment_metrics:
 		#for each bin
 		for my_bin in bins:
 
+			print(section + "_" + metric + "_" + my_bin)
+
 			#this section was made with the help of chatgpt for figure wrangling
 			# -----------------------------
 			# Load and normalize data
@@ -229,9 +231,16 @@ for metric in experiment_metrics:
 			        p_val = np.nan
 			    pvals[exp] = p_val
 			    
-			# Print p-values
+			# Print p-values and write them to a text file for later accession
+
+			pval_file = (section + "_" + metric + "_" + my_bin + "_pvals.txt", "w")
+
 			for exp, p in pvals.items():
 			    print(f"{exp}: p = {p}")
+			    pval_file.write(f"{exp}: p = {p}")
+			    pval_file.write("\n")
+
+			pval_file.close()
 
 			# -----------------------------
 			# Helper: p-value to stars
