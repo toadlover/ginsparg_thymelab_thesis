@@ -233,7 +233,7 @@ for metric in experiment_metrics:
 			    
 			# Print p-values and write them to a text file for later accession
 
-			pval_file = (section + "_" + metric + "_" + my_bin + "_pvals.txt", "w")
+			pval_file = open(section + "_" + metric + "_" + my_bin + "_pvals.txt", "w")
 
 			for exp, p in pvals.items():
 			    print(f"{exp}: p = {p}")
