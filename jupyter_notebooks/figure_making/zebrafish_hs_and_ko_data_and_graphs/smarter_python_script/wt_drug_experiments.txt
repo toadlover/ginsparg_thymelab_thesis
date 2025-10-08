@@ -21,7 +21,7 @@ experiment_metrics:dpix_numberofbouts
 control_group:dmso
 experimental_group:drug
 #experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_22_25/Box1_hsphcrtr_fishD_selt,Seltorexant_9_22_25
-experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_3_1_25/EMPAdrug_Box10_03_01_25_AG,EMPA_3_1_25
+#experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_3_1_25/EMPAdrug_Box10_03_01_25_AG,EMPA_3_1_25
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_3_11_25/Box11TCS,TCS-1102_3_11_25
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_3_11_25/Box10SB,SB-674042_3_11_25
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_3_28_25/Box5_d27,5262_3_28_25
