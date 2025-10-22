@@ -34,4 +34,5 @@ experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_22_25/Box8_hsphcrt
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_22_25/Box11_hsphcrtr_fishD_d48_9_22_25,0889_9_22_25
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_22_25/Box3_hsphcrtr_fishA_d46,8519_9_22_25
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_22_25/Box1_hsphcrtr_fishD_selt,Seltorexant_9_22_25
-#experiment_paths:
+experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_10_10_25/Box2_hs_hcrt_fishD_d40_10_10_25,5299_10_7_25
+experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_29_25/Box11_hsphcrtr_fishA_d46_9_29_25,8519_9_29_25
