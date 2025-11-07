@@ -35,3 +35,4 @@ experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_4_25_25/Box5_SB_hcrt
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_10_3_25/Box8_hcrtrmxh_d48_10_3_25,0889_10_3_25
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_26_25/Box11_hcrtr_mutxhet_d42_9_26_25,6566_9_26_25
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_10_10_25/Box8_hcrtrmxh_d48_10_10_25,0889_10_10_25
+experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_10_24_25/Box2_hcrtr_ko_mutxhet_d42_10_24_25,6566_10_24_25
