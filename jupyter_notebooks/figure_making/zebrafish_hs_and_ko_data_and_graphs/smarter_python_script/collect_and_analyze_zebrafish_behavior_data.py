@@ -33,8 +33,11 @@ experiment_metrics = []
 control_group = ""
 experimental_group = ""
 
-#rotation of x label on plots, default is 45 degrees
-x_label_rotation = 45
+#rotation of x label on plots, default is 90 degrees
+x_label_rotation = 90
+
+#test type for significance, defauly mannwhitney, but allow welch_t  if and only if "welch_t" is inputted
+test_type = "mannwhitney"
 
 #read in the arguments file
 #each line in the arguments file must start with the corresponding variable name followed by a colon for proper read-in
@@ -76,6 +79,14 @@ for line in arg_file.readlines():
 	if line.startswith("x_label_rotation:"):
 		my_item = line.split("x_label_rotation:")[1].strip()
 		x_label_rotation = int(my_item)
+
+	#test type, only allow mannwhitney or welch_t, throw warning and set to mannwhitney otherwise
+	if line.startswith("test_type:"):
+		my_item = line.split("test_type:")[1].strip()
+		if my_item == "mannwhitney" or my_item == "welch_t":
+			test_type = int(my_item)
+		else:
+			print("Warning, inputted test_type \"" + my_item + "\" is not recognized. Only allowed values are mannwhitney or welch_t. Defaulting to mannwhitney")
 
 #make a working directory in the working location named after the arguments file that will copy all of the needed data into the folder so the figure can be made and an organized record kept
 #name a directory based on what is before the first period in the argument file name, and add "_graphs" to the end
@@ -239,7 +250,12 @@ for metric in experiment_metrics:
 			    drug_vals = data_exp[data_exp["treatment"] == experimental_group]["normalized_response"].dropna()
 			    
 			    if len(dmso_vals) >= 2 and len(drug_vals) >= 2:
-			        _, p_val = mannwhitneyu(dmso_vals, drug_vals, alternative='two-sided')
+			        if test_type == "mannwhitney":
+			            _, p_val = mannwhitneyu(dmso_vals, drug_vals, alternative='two-sided')
+			        elif test_type == "welch_t":
+			            _, p_val = ttest_ind(dmso_vals, drug_vals, equal_var=False)  # Welch’s t-test
+			        else:
+			            p_val = np.nan
 			    else:
 			        p_val = np.nan
 			    pvals[exp] = p_val
