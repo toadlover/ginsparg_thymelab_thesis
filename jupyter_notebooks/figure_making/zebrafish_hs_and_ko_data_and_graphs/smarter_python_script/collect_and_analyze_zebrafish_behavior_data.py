@@ -84,7 +84,7 @@ for line in arg_file.readlines():
 	if line.startswith("test_type:"):
 		my_item = line.split("test_type:")[1].strip()
 		if my_item == "mannwhitney" or my_item == "welch_t":
-			test_type = int(my_item)
+			test_type = my_item
 		else:
 			print("Warning, inputted test_type \"" + my_item + "\" is not recognized. Only allowed values are mannwhitney or welch_t. Defaulting to mannwhitney")
 
