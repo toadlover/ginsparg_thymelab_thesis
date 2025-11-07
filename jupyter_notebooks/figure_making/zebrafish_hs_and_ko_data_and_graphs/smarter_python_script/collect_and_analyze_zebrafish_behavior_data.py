@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from scipy.stats import mannwhitneyu
+from scipy.stats import mannwhitneyu, ttest_ind
 
 #make variables to hold the arguments to run this
 
