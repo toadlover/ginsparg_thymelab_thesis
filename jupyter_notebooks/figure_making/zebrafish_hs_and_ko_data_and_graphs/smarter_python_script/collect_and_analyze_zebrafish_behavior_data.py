@@ -224,10 +224,10 @@ for metric in experiment_metrics:
 			    
 			    all_data.append(df[["experiment", control_group, experimental_group]])
 
-		   #continue if all_data is empty
-		    if len(all_data) == 0:
-		   		print("all_data is empty", my_bin, section, metric)
-		   		continue
+		    #continue if all_data is empty
+			if len(all_data) == 0:
+				print("all_data is empty", my_bin, section, metric)
+				continue
 
 			merged_df = pd.concat(all_data, ignore_index=True)
 
