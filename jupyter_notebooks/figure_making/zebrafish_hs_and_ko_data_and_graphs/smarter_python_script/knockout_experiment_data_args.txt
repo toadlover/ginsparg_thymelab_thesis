@@ -19,10 +19,10 @@ experiment_metrics:dpix_numberofbouts
 #experiment_metrics:dpix_numberofboutsSLEEP
 control_group:dmso-mut
 experimental_group:drug-mut
-experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_22_25/Box1_hsphcrtr_fishD_selt,Seltorexant_9_22_25
+#experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_22_25/Box1_hsphcrtr_fishD_selt,Seltorexant_9_22_25
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_5_25/Box8_d36_hcrtr_ko_9_5_25,5682_9_5_25
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_5_25/Box11_d42_hcrtr_ko_9_5_25,6566_9_5_25
-experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_29_25/Box2_hcrtrko_d36,5682_8_29_25
+#experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_29_25/Box2_hcrtrko_d36,5682_8_29_25
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_29_25/Box6_hcrtrko_d40,5299_8_29_25
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_29_25/Box8_hcrtrko_seltorexant,Seltorexant_8_29_25
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_25_25/Box10_hcrtrko_d46,8519_8_25_25

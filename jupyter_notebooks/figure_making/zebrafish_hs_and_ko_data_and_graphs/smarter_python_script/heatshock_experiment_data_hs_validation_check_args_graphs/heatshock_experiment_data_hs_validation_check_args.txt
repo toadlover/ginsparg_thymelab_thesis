@@ -1,6 +1,7 @@
 #bins:60
 bins:600
 bins:3600
+test_type:welch_t
 #bins:1over3600
 #bins:1over60
 #bins:60over600
