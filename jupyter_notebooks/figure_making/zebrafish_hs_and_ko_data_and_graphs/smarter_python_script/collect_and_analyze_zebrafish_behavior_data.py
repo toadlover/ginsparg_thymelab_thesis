@@ -44,6 +44,12 @@ test_type = "mannwhitney"
 #will only break alphabetizing if the following string value get set from the args: "False", "false", "No", "no"
 alphabetize = ""
 
+#determine whether to show p values
+#will show p value and then significance stars
+#will not show pvals unless any of these values are used to set: "True", "true", "Yes", "yes"
+show_pvals = ""
+
+
 #read in the arguments file
 #each line in the arguments file must start with the corresponding variable name followed by a colon for proper read-in
 #for list variables, list an individual value on its own line, the experiment_paths tuple must be listed as comma-separated values for path,name
@@ -85,6 +91,11 @@ for line in arg_file.readlines():
 		my_item = line.split("alphabetize:")[1].strip()
 		alphabetize = my_item
 
+	#show pvals
+	if line.startswith("show_pvals:"):
+		my_item = line.split("show_pvals:")[1].strip()
+		show_pvals = my_item
+
 	#x label rotation
 	if line.startswith("x_label_rotation:"):
 		my_item = line.split("x_label_rotation:")[1].strip()
@@ -97,6 +108,11 @@ for line in arg_file.readlines():
 			test_type = my_item
 		else:
 			print("Warning, inputted test_type \"" + my_item + "\" is not recognized. Only allowed values are mannwhitney or welch_t. Defaulting to mannwhitney")
+
+#show pvals handling
+show_pvals_bool = False
+if show_pvals == "True" or show_pvals == "true" or show_pvals == "Yes" or show_pvals == "yes":
+	show_pvals_bool = True
 
 #make a working directory in the working location named after the arguments file that will copy all of the needed data into the folder so the figure can be made and an organized record kept
 #name a directory based on what is before the first period in the argument file name, and add "_graphs" to the end
@@ -354,8 +370,12 @@ for metric in experiment_metrics:
 			for i, exp in enumerate(plot_df["experiment"].unique()):
 			    p_val = pvals[exp]
 			    stars = p_to_stars(p_val)
+
+			    #add the pval string to stars if we want to show pvals
+			    if show_pvals_bool:
+			    	stars = str(p_val) + "\n" + stars
 			    
-			    if stars != "ns":
+			    if stars != "ns" or show_pvals_bool:
 			        # Draw bracket line
 			        bar_width = 0.2  # horizontal extent of bracket
 			        x1 = i - bar_width
