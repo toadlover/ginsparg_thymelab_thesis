@@ -373,7 +373,19 @@ for metric in experiment_metrics:
 
 			    #add the pval string to stars if we want to show pvals
 			    if show_pvals_bool:
-			    	stars = str(p_val) + "\n" + stars
+
+			    	pval_str = ""
+
+			    	#truncate teh p value to 3 decimal places or make 0.001 if below 
+			    	if p_val < 0.001:
+			    		pval_str = "<0.001"
+			    	else:
+			    		if "." in str(p_val):
+			    			integer, decimal = str(p_val).split(".",1)
+			    			decimal = decimal[:3]
+			    			pval_str = integer + "." + decimal
+
+			    	stars = str(pval_str) + "\n" + stars
 			    
 			    if stars != "ns" or show_pvals_bool:
 			        # Draw bracket line
