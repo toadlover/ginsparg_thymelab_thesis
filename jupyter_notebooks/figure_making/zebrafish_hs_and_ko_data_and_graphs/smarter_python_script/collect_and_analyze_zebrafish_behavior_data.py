@@ -39,6 +39,11 @@ x_label_rotation = 90
 #test type for significance, defauly mannwhitney, but allow welch_t  if and only if "welch_t" is inputted
 test_type = "mannwhitney"
 
+#determine whether to alphabetize samples by user-given sample name
+#default will be to alphabetize (since that is typically what is wanted. if not alphabetizing, simply display samples in the order they are presented in the arg file
+#will only break alphabetizing if the following string value get set from the args: "False", "false", "No", "no"
+alphabetize = ""
+
 #read in the arguments file
 #each line in the arguments file must start with the corresponding variable name followed by a colon for proper read-in
 #for list variables, list an individual value on its own line, the experiment_paths tuple must be listed as comma-separated values for path,name
@@ -74,6 +79,11 @@ for line in arg_file.readlines():
 	if line.startswith("experimental_group:"):
 		my_item = line.split("experimental_group:")[1].strip()
 		experimental_group = my_item
+
+	#alphabetize
+	if line.startswith("alphabetize:"):
+		my_item = line.split("alphabetize:")[1].strip()
+		alphabetize = my_item
 
 	#x label rotation
 	if line.startswith("x_label_rotation:"):
@@ -232,7 +242,9 @@ for metric in experiment_metrics:
 			merged_df = pd.concat(all_data, ignore_index=True)
 
 			# Sort merged_df alphabetically by experiment name
-			merged_df = merged_df.sort_values(by="experiment").reset_index(drop=True)
+			#sort unless arg with keyword is called in arg file to present
+			if alphabetize != "False" and alphabetize != "false" and alphabetize != "No" and alphabetize != "no":
+				merged_df = merged_df.sort_values(by="experiment").reset_index(drop=True)
 
 			# -----------------------------
 			# Convert to long format
