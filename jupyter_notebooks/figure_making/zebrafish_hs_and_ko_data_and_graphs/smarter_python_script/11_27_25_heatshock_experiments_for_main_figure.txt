@@ -1,0 +1,59 @@
+show_pvals:True
+#bins:60
+bins:600
+bins:3600
+#bins:1over3600
+#bins:1over60
+#bins:60over600
+#bins:60over3600
+time_sections:time_combo
+#time_sections:time_day0night
+time_sections:time_day1day
+time_sections:time_day1earlyday
+time_sections:time_day1lateday
+#time_sections:time_day1night
+#time_sections:time_day2day
+#time_sections:time_day2earlyday
+#time_sections:time_day2lateday
+experiment_metrics:dpix_numberofbouts
+#experiment_metrics:dpix_active
+#experiment_metrics:dpix_numberofboutsSLEEP
+control_group:dmso-het
+experimental_group:drug-het
+experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_11_25/Box8_hsphcrtr_d27_8_11_25,5262
+#experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_8_25/Box5_hsphcrtr_d27_fishd,5262_8_8_25
+
+#experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_11_25/Box11_hsphcrtr_d34_8_11_25,3547
+#experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_8_25/Box6_hsphcrtr_d34_dish6,3547_8_8_25
+experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_10_27_25/Box11_hsphcrtr_fishA_d34_10_27_25,3547
+
+#this was the experiment that was in the figure, and we want to keep it for publishing, just remove from main figure
+experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_15_25/Box8_hsphcrtr_fishA_d36_9_15_25,5682
+
+#experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_10_27_25/Box6_hsphcrtr_d36_fishA_10_27_25,5682_10_27_25
+
+#experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_15_25/Box8_hsphcrtr_d40_fishD,5299_8_15_25
+experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_10_10_25/Box2_hs_hcrt_fishD_d40_10_10_25,5299
+
+
+experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_25_25/Box6_hsphcrtr_fishD_d42,6566
+#maybe cut 9/22
+#experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_22_25/Box8_hsphcrtr_fishA_d42_9_22_25,6566_9_22_25
+#experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_10_27_25/Box8_hsphcrtr_fishD_d42_10_27_25,6566_10_27_25
+
+
+#cut out 9/22 and 9/29, bad tracking
+experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_11_25/Box10_hsphcrtr_d46_8_14_25,8519
+#experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_10_27_25/Box2_hsphcrtr_fishD_d46_10_27_25,8519
+
+
+#need another d48 for sure!!!!!!!
+experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_22_25/Box11_hsphcrtr_fishD_d48_9_22_25,0889
+
+
+#experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_22_25/Box1_hsphcrtr_fishD_selt,Seltorexant_9_22_25
+experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_8_25/Box8_hshcrt_seltorexant,Seltorexant
+
+#add 2 dummy entries at end to align with ko figure
+experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_8_25/Box8_hshcrt_seltorexant,YSeltorexant_CROPOUT
+#experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_8_25/Box8_hshcrt_seltorexant,ZSeltorexant_CROPOUT

@@ -1,3 +1,4 @@
+show_pvals:True
 #bins:60
 bins:600
 bins:3600
@@ -42,9 +43,10 @@ experimental_group:dmso-het
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_11_25/Box8_hsphcrtr_d27_8_11_25,5262-1
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_8_25/Box5_hsphcrtr_d27_fishd,5262-2
 
-experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_11_25/Box11_hsphcrtr_d34_8_11_25,3547-2placeholder
+#experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_11_25/Box11_hsphcrtr_d34_8_11_25,3547-2placeholder
 #experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_8_8_25/Box6_hsphcrtr_d34_dish6,3547_8_8_25
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_10_27_25/Box11_hsphcrtr_fishA_d34_10_27_25,3547-1
+experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_11_26_25/Box2_hs_hcrt_fishD_d34_11_26_25,3547-2
 
 #cut 8/8. too few fish, bad expt
 experiment_paths:/pi/summer.thyme-umw/behaviordata/ari_data_9_15_25/Box8_hsphcrtr_fishA_d36_9_15_25,5682-1potentialplaceholder

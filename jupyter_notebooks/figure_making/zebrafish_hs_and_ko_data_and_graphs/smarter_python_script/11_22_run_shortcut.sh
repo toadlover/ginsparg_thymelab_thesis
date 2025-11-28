@@ -1,0 +1,5 @@
+python collect_and_analyze_zebrafish_behavior_data.py 11_22_25_new_ko_expt_pulldown.txt
+python collect_and_analyze_zebrafish_behavior_data.py 11_22_25_new_hs_expt_validation_pulldown.txt
+python collect_and_analyze_zebrafish_behavior_data.py 11_22_25_new_hs_expt_pulldown.txt
+
+#11_22_25_new_hs_expt_pulldown.txt  11_22_25_new_hs_expt_validation_pulldown.txt  11_22_25_new_ko_expt_pulldown.txt
