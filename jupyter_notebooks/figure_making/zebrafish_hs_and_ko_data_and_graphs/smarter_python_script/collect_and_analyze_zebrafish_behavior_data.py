@@ -153,6 +153,7 @@ for expt in experiment_paths:
 				for r,d,f in os.walk(expt[0]):
 					for dire in d:
 						if control_group in dire and experimental_group in dire and r == expt[0]:
+							os.system("cp " + r + "/" + dire + "/../linear*out .")
 							os.system("cp " + r + "/" + dire + "/ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png .")
 							os.system("cp " + r + "/" + dire + "/boxgraph_ribgraph_mean_" + section + "_" + metric + "_" + my_bin + ".png_data.csv .")
 
@@ -407,4 +408,5 @@ for metric in experiment_metrics:
 
 			#write the image
 			plt.savefig(section + "_" + metric + "_" + my_bin + ".png", dpi=300, bbox_inches='tight', transparent=True)
+			plt.savefig(section + "_" + metric + "_" + my_bin + ".svg", dpi=300, bbox_inches='tight', transparent=True)
 			plt.close()

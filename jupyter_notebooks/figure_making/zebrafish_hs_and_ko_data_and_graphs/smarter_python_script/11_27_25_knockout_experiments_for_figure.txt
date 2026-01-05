@@ -17,6 +17,7 @@ time_sections:time_day1earlyday
 #time_sections:time_day2earlyday
 #time_sections:time_day2lateday
 experiment_metrics:dpix_numberofbouts
+experiment_metrics:numberofbouts
 #experiment_metrics:dpix_active
 #experiment_metrics:dpix_numberofboutsSLEEP
 control_group:dmso-mut
