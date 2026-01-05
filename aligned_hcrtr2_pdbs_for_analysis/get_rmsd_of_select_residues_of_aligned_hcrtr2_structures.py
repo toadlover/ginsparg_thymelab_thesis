@@ -64,6 +64,11 @@ for r,d,f in os.walk(os.getcwd()):
 				#note, this method has potential to fail if the residue indices are 1000 or more, as chain id and residue index are no longer separated by a space
 				#for this specific study, this easier method will work, but would need to be reworked if dealing with indices this high
 				curr_index = line.split()[5]
+				curr_index_temp = curr_index
+
+				#if this is the alphafold file from Ji, add 49 to the index due to an index shift
+				if file_base_name == "af":
+					curr_index = str(int(curr_index_temp) + 49)
 
 				#print(line,curr_index)
 
