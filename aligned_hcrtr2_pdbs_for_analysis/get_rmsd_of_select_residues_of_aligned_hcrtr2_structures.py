@@ -66,9 +66,13 @@ for r,d,f in os.walk(os.getcwd()):
 				curr_index = line.split()[5]
 				curr_index_temp = curr_index
 
-				#if this is the alphafold file from Ji, add 49 to the index due to an index shift
+				#if this is the alphafold file from Ji, add 49 or 80 to the index due to an index shift
 				if file_base_name == "af":
 					curr_index = str(int(curr_index_temp) + 49)
+
+					#if the index is past the intracellular domain section, add another 31
+					if int(curr_index) >= 250:
+						curr_index = str(int(curr_index) + 31)
 
 				#print(line,curr_index)
 
