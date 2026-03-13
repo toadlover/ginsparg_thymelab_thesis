@@ -28,7 +28,8 @@ for r,d,f in os.walk(disc_out):
 			#pdb
 			os.system("cp ../../../../files/all/" + sys_name + "/" + sys_name +  ".pdb . ")
 			#motifs file
-			os.system("cp ../../../../files/" + sys_name + "_ignorechain_FINAL_motifs_list_filtered_2_3_2023.motifs . ")
+			#os.system("cp ../../../../files/" + sys_name + "_ignorechain_FINAL_motifs_list_filtered_2_3_2023.motifs . ")
+			os.system("cp ../../../../files/FINAL_motifs_list_filtered_2_3_2023.motifs . ")
 			#test_params
 			os.system("cp -drf ../../../../files/all/" + sys_name + "/test_params . ")
 
