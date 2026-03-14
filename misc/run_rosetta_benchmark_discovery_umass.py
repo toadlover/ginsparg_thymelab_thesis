@@ -21,15 +21,15 @@ for r,d,f in os.walk(disc_out):
 			#move into the directory
 			os.chdir(dire)
 
-			#housekeeping, remove existing pdbs
-			os.system("rm -drf *pdb RO* *motifs *test_params*")
+			#housekeeping, remove existing pdbs and other lingering files 
+			os.system("rm -drf *pdb RO* *motifs *lig* *test_params* *txt")
 
 			#copy the important files to the space (and just not have to deal with binding in the container execution)
 			#pdb
 			os.system("cp ../../../../files/all/" + sys_name + "/" + sys_name +  ".pdb . ")
 			#motifs file
-			#os.system("cp ../../../../files/" + sys_name + "_ignorechain_FINAL_motifs_list_filtered_2_3_2023.motifs . ")
-			os.system("cp ../../../../files/FINAL_motifs_list_filtered_2_3_2023.motifs . ")
+			os.system("cp ../../../../files/motifs_files/" + sys_name + "_ignorechain_FINAL_motifs_list_filtered_2_3_2023.motifs . ")
+			#os.system("cp ../../../../files/FINAL_motifs_list_filtered_2_3_2023.motifs . ")
 			#test_params
 			os.system("cp -drf ../../../../files/all/" + sys_name + "/test_params . ")
 
@@ -42,6 +42,7 @@ for r,d,f in os.walk(disc_out):
 			arg_file.write("-fa_atr_rep_cutoff 10000000\n")
 			arg_file.write("-fa_rep_cutoff 100\n")
 			arg_file.write("-fa_atr_cutoff -5\n")
+			arg_file.write("-ddg_cutoff 0\n")
 			#arg_file.write("-motif_filename " + sys_name + "_ignorechain_FINAL_motifs_list_filtered_2_3_2023.motifs\n")
 			arg_file.write("-motif_filename FINAL_motifs_list_filtered_2_3_2023.motifs\n")
 			arg_file.write("-protein_discovery_locus " + locus + "\n")
@@ -50,4 +51,4 @@ for r,d,f in os.walk(disc_out):
 			arg_file.close()
 
 			#run rosetta in a bsub job
-			os.system("bsub -q short -W 8:00 -u \"\" -R \"rusage[mem=10000]\" \"singularity exec /pi/summer.thyme-umw/enamine-REAL-2.6billion/rosetta_condensed_6_25_2024.sif /rosetta/source/bin/ligand_discovery_search_protocol.linuxgccrelease @args\"")
+			os.system("bsub -q short -W 8:00 -u \"\" -R \"rusage[mem=10000]\" \"singularity exec /pi/summer.thyme-umw/enamine-REAL-2.6billion/rosetta_condensed_6_25_2024.sif /rosetta/source/bin/ligand_discovery_search_protocol.linuxgccrelease @args && rm " + sys_name + ".pdb\"")
