@@ -1,0 +1,10 @@
+#Manual commands:
+#center sdf of ligands to origin (0,0,0) (makes new sdf files named with "_centered" come before the .sdf
+python center_sdf.py 7sr8_64b_library_ligs.sdf
+python center_sdf.py tak925_aligned.sdf
+#open shaped container
+singularity shell /pi/summer.thyme-umw/enamine-REAL-2.6billion/shapedb_container.sif
+#make database
+/pharmit/src/build/shapedb -Create -in 7sr8_64b_library_ligs_centered.sdf -db 7sr8_64b_library_ligs_centered.db -v
+#compare database to tak925
+/pharmit/src/build/shapedb -NNSearch -k 40 -ligand tak925_aligned_centered.sdf -db 7sr8_64b_library_ligs_centered.db/ -print -v > 7sr8_64b_library_ligs_centered_vs_tak_scores.tsv
