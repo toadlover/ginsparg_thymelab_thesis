@@ -37,5 +37,6 @@ data = get_cas_data(cas)
 
 if data:
     print("Name:", data.get("name"))
-    print("SMILES:", data.get("smile"))   # sometimes 'smile' or 'canonicalSmile'
+    print("smile:", data.get("smile"))
+    print("canonicalSmile:", data.get("canonicalSmile"))   # sometimes 'smile' or 'canonicalSmile'
     print("InChI:", data.get("inchi"))
