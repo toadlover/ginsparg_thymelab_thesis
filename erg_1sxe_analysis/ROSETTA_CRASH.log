@@ -1,0 +1,90 @@
+##############################################################################################################
+#
+# Rosetta crash log. Please submit the contents of this file to http://crash.rosettacommons.org/
+# or use the script Rosetta/main/source/scripts/python/public/report_crashes.py
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2024.19.post.dev+67.updatedliganddiscoverysearchcodeagmay2024.2a7dbfaff1
+[COMMIT_DATE]: 2024-06-25T13:02:00
+[APPLICATION]: UNKNOWN APPLICATION
+[MODE]: Release
+[EXTRAS]: default
+[OS]: GNU/Linux
+[COMPILER]: GCC version "7.5.0"
+[STDLIB]: libstdc++ version 20191114
+[START_OPTIONS]
+NO OPTIONS SPECIFIED
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(backtrace_string[abi:cxx11](int)+0x56) [0x14b5328bbf26]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(utility::excn::Exception::Exception(char const*, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)+0xe3) [0x14b532900153]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(utility::options::OptionCollection::find_key_cl(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool)+0x84d) [0x14b5329e731d]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(utility::options::OptionCollection::load_option_file(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::list<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, bool)+0x1e0) [0x14b5329e82d0]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(utility::options::OptionCollection::load_options_from_stream(std::istream&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool)+0xf9d) [0x14b5329eac0d]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(utility::options::OptionCollection::load_options_from_file_exception(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)+0x1bd) [0x14b5329eb81d]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(utility::options::OptionCollection::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::list<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&, bool)+0x49a) [0x14b5329ebe8a]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(utility::options::OptionCollection::load(int, char* const*, bool)+0x14a) [0x14b5329ec5ba]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libcore.6.so(core::init::init_options(int, char**)+0x1f) [0x14b5368738df]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libcore.6.so(core::init::init(int, char**)+0x27) [0x14b536877a17]
+/rosetta/source/bin/ligand_discovery_search_protocol.linuxgccrelease(+0x8b52) [0x562f9e594b52]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xe7) [0x14b531dadc87]
+/rosetta/source/bin/ligand_discovery_search_protocol.linuxgccrelease(+0xf18a) [0x562f9e59b18a]
+
+[END_BACKTRACE]
+
+[FILE]: src/utility/options/OptionCollection.cc
+[LINE]: 1467
+[START_MESSAGE]
+Option matching -output_empty_space not found in command line top-level context
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+
+##############################################################################################################
+#
+# Rosetta crash log. Please submit the contents of this file to http://crash.rosettacommons.org/
+# or use the script Rosetta/main/source/scripts/python/public/report_crashes.py
+#
+
+[START_CRASH_REPORT]
+[ROSETTA_VERSION]: 2024.19.post.dev+67.updatedliganddiscoverysearchcodeagmay2024.2a7dbfaff1
+[COMMIT_DATE]: 2024-06-25T13:02:00
+[APPLICATION]: UNKNOWN APPLICATION
+[MODE]: Release
+[EXTRAS]: default
+[OS]: GNU/Linux
+[COMPILER]: GCC version "7.5.0"
+[STDLIB]: libstdc++ version 20191114
+[START_OPTIONS]
+NO OPTIONS SPECIFIED
+
+[END_OPTIONS]
+
+[START_BACKTRACE]: RAW_LIBC
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(backtrace_string[abi:cxx11](int)+0x56) [0x151435a39f26]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(utility::excn::Exception::Exception(char const*, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)+0xe3) [0x151435a7e153]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(utility::options::OptionCollection::find_key_cl(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool)+0x84d) [0x151435b6531d]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(utility::options::OptionCollection::load_option_file(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::list<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, bool)+0x1e0) [0x151435b662d0]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(utility::options::OptionCollection::load_options_from_stream(std::istream&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool)+0xf9d) [0x151435b68c0d]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(utility::options::OptionCollection::load_options_from_file_exception(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)+0x1bd) [0x151435b6981d]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(utility::options::OptionCollection::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::list<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&, bool)+0x49a) [0x151435b69e8a]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libutility.so(utility::options::OptionCollection::load(int, char* const*, bool)+0x14a) [0x151435b6a5ba]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libcore.6.so(core::init::init_options(int, char**)+0x1f) [0x1514399f18df]
+/rosetta/source/build/src/release/linux/5.4/64/x86/gcc/7/default/libcore.6.so(core::init::init(int, char**)+0x27) [0x1514399f5a17]
+/rosetta/source/bin/ligand_discovery_search_protocol.linuxgccrelease(+0x8b52) [0x5570cdd7db52]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xe7) [0x151434f2bc87]
+/rosetta/source/bin/ligand_discovery_search_protocol.linuxgccrelease(+0xf18a) [0x5570cdd8418a]
+
+[END_BACKTRACE]
+
+[FILE]: src/utility/options/OptionCollection.cc
+[LINE]: 1467
+[START_MESSAGE]
+Option matching -protein_grid:output_empty_space not found in command line top-level context
+
+[END_MESSAGE]
+[END_CRASH_REPORT]
+

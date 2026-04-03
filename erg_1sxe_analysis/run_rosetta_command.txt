@@ -1,0 +1,1 @@
+singularity exec --bind /pi/summer.thyme-umw/2024_intern_lab_space/FINAL_motifs_list_filtered_2_3_2023.motifs:/input/FINAL_motifs_list_filtered_2_3_2023.motifs /pi/summer.thyme-umw/enamine-REAL-2.6billion/rosetta_condensed_6_25_2024.sif /rosetta/source/bin/ligand_discovery_search_protocol.linuxgccrelease @args

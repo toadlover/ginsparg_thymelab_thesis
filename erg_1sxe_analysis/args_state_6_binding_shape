@@ -1,0 +1,39 @@
+#keep seed constant
+-constant_seed 1
+#ignore unrecognized residues to help mitigate crashes
+-ignore_unrecognized_res
+#handle ligand repeats if using multiple anchor residues, will otherwise crash without this flag
+-in::file::override_database_params true
+#constrain coordinates
+-constrain_relax_to_start_coords
+#keep all placements; 0 means keep all, any other integer means keep up to that integer
+-best_pdbs_to_keep 0
+#mapped protein system
+-s 1sxe_state_6.pdb
+#mapped motifs file
+#/pi/summer.thyme-umw/2024_intern_lab_space/FINAL_motifs_list_filtered_2_3_2023.motifs
+-motif_filename /input/FINAL_motifs_list_filtered_2_3_2023.motifs
+#mapped test_params directory
+-params_directory_path test_params/
+#rosetta-indexed anchor residue index/indices
+-protein_discovery_locus 2
+#fa_atr cutoff
+-fa_atr_cutoff = -2
+#fa_rep cutoff
+-fa_rep_cutoff = 150
+#ddg cutoff
+-ddg_cutoff = -9
+###################################################
+#extra user args from: /pi/summer.thyme-umw/rosetta_discovery_space/pth2/shapedb_results/top_hits/lower/lower_res1_11_shifted/extra_args
+-output_space_fill_matrix_pdbs true
+-use_empty_space_in_space_fill_pdb true
+#-protein_grid::output_empty_space true
+
+-binding_pocket_center_sf 3,12,5
+-binding_pocket_dimensions_sf 5,5,5
+-space_fill_cutoff_differential_score_sub 0.0
+
+
+-output_motifs_as_pdb false
+
+#-clean_pdb_name false
