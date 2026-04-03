@@ -66,5 +66,47 @@ Created sdf files state_12_binding_shape_O.sdf state_6_binding_shape_O.sdf
 
 
 Alignment to origin:
+Used python script: ginsparg_thymelab_thesis/ordered_ligs_shapedb_vs_tak925/center_sdf.py
+Created files: state_12_binding_shape_O_centered.sdf state_6_binding_shape_O_centered.sdf
 
 Run ShapeDB for database against shapes:
+#running shapedb nn search in: /pi/summer.thyme-umw/rosetta_discovery_space/erg/shapedb_nnsearch/1sxe_pose_6 and /pi/summer.thyme-umw/rosetta_discovery_space/erg/shapedb_nnsearch/1sxe_pose_12
+#using lsf script: run_nnsearch.sub
+#example script:
+#!/bin/bash
+#BSUB -J cleanup_master
+#BSUB -W 168:00        # 168 hours = 7 days
+#BSUB -n 1
+#BSUB -R "rusage[mem=4GB]"   # adjust if needed
+#BSUB -o cleanup_master.out
+#BSUB -e cleanup_master.err
+#BSUB -q long
+
+
+
+################################################
+#User inputs: Edit per run
+################################################
+
+#the ligand being used as a target for shapedb
+ligand=/pi/summer.thyme-umw/rosetta_discovery_space/erg/starting_files/state_6_binding_shape_O_centered.sdf
+
+#the working location (if not wanting to run where this script is being called)
+working_location=/pi/summer.thyme-umw/rosetta_discovery_space/erg/shapedb_nnsearch/1sxe_pose_6
+
+#the number of ligand conformers you want to investigate for this target shape with Rosetta, likely want a few million
+num_confs_to_keep=1000000
+
+################################################
+#Program operations: Do not edit if yo udo not know what you are doing!
+################################################
+
+echo "Starting shapedb nn search controller job at $(date)"
+
+#operate the controller script to run shapedb for the target shape against all conformers in each subchunk with one job per chunk
+python /pi/summer.thyme-umw/enamine-REAL-2.6billion/umass_chan_REAL-M_platform/shapedb/nnsearch_controller.py $ligand $working_location
+
+echo "All chunks processed for shapedb similarity. Finished at $(date)"
+
+#get the top x ligands based on shapedb similarty score for the target shape from all of the data
+python /pi/summer.thyme-umw/enamine-REAL-2.6billion/umass_chan_REAL-M_platform/shapedb/get_top_x_ligands_in_whole_library_hpc.py $num_confs_to_keep $working_location
