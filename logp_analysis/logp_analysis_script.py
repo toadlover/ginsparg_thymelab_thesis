@@ -1,8 +1,12 @@
 #script skeleton given by Summer to get stats like logp on ligands from SMILES strings
 #this will ideally be used to predict toxicity correlation with logP in drugs ordered for screens
+#feed the script a smiles string, and it will give you desired stats
 
 from rdkit import Chem
 from rdkit.Chem import Descriptors
+import os,sys
+
+smi = sys.argv[1]
 
 # Function to compute key descriptors
 def compute_descriptors(smiles):
@@ -32,6 +36,8 @@ smiles_list = {
 	"Seltorexant": "CC1=CC=CC=C1C2=NC3=C(C=CC=C3)C(=O)N2C" # example
 }
 
-for name, smi in smiles_list.items():
-	d = compute_descriptors(smi)
-	print(name, d)
+#for name, smi in smiles_list.items():
+#	d = compute_descriptors(smi)
+#	print(name, d)
+d = compute_descriptors(smi)
+print(name, d)
