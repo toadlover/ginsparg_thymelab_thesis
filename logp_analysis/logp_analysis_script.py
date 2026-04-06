@@ -12,7 +12,7 @@ smi = sys.argv[1]
 def compute_descriptors(smiles):
 	mol = Chem.MolFromSmiles(smiles)
 	if mol is None:
-	return None
+		return None
 
 	desc = {}
 	desc['MW'] = Descriptors.MolWt(mol)
