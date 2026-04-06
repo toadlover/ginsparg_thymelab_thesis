@@ -40,4 +40,4 @@ smiles_list = {
 #	d = compute_descriptors(smi)
 #	print(name, d)
 d = compute_descriptors(smi)
-print(name, d)
+print(d)
