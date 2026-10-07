@@ -1,0 +1,1 @@
+python /pi/summer.thyme-umw/enamine-REAL-2.6billion/ginsparg_thymelab_thesis/smiles_table_figure_making/draw_ligand_table.py july_31_ligand_order.csv july_31_ligand_order.png --columns 5 --cell-width 500 --cell-height 620 --structure-height 360 --name-font-size 40 --smiles-font-size 32 --property-font-size 36 --dpi 300
